@@ -1,0 +1,10 @@
+= Diagramme
+
+Die hier abgelegten Diagramme im SVG-Format sind generierte Dateien. Um diese Dateien zu ändern, müssen die dazugehörigen PlantUML-Quelldateien bearbeitet und die SVGs neu erzeugt werden.
+
+[source,bash]
+----
+plantuml -tsvg *.puml
+----
+
+Zur Erzeugung der Dateien kann folgende Bibliothek genutzt werden: https://plantuml.com/download.

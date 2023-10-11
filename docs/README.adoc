@@ -1,0 +1,16 @@
+= Dokumente
+
+- xref:Ideenfindung/README.adoc[Ideenfindung]
+
+== HTML Erzeugung
+
+[source,bash]
+----
+docker run -it \
+    -u $(id -u):$(id -g) \
+    -v $(pwd):/documents/ \
+    asciidoctor/docker-asciidoctor asciidoctor  \
+    --require asciidoctor-bibtex \
+    --require asciidoctor-diagram \
+    *.adoc */*.adoc
+----
