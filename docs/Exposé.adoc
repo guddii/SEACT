@@ -1,12 +1,40 @@
 = Master-Thesis Exposé
+:author: Florian Gudat <florian.gudat@guices.com>
+:revnumber: v1.0
+:revdate: 2023-09-30
+:revremark: Leipzig
+:library: Asciidoctor
+:idprefix:
+:numbered:
+:toc: macro
+:toc-title:
+:css-signature: github
 
-== Deckblatt
+Version:: 
+{revnumber}, {revdate} ({revremark})
 
-- Name der Hochschule + Studiengang
-- Arbeitstitel
-- falls schon bekannt: Name der Betreuungsperson
-- dein Name + Kontaktdaten
-- Abgabedatum
+Editors:: 
+{author}
+
+Module:: 
+Mastermodul 
+C533.2 Pflichtmodul
+
+Module Supervisor:: 
+Prof. Dr.-Ing. Jean-Alexander Müller
+
+Lecturer::
+Prof. Dr. Andreas Both
+
+Institute::
+Leipzig University of Applied Sciences
+
+Faculty::
+Computer Science and Media
+
+[discrete]
+== Table of Contents
+toc::[]
 
 == Einleitung
 
