@@ -57,6 +57,14 @@ Hierfür werden die Aufgaben des Compliance-Managements, Monitoring, Reporting u
 
 // Begründung/Motivation
 
+Das Problem bei dezentralen Systemen ist, dass der Überblick über die Ablagen, insbesondere bei wachsendem Datenbestand, verloren geht.
+Bei freigegebenen Daten ist dies problematisch, da gegebenenfalls unwissentliche Zugriffe auf diese Daten möglich sind, obwohl dies vom Eigentümer nicht oder nicht mehr gewünscht ist.
+Dies motiviert den Schutz der sensiblen Daten, Revision von Berechtigungen und Revision von Administrationstätigkeiten im Rahmen des Compliance-Managements sowie ein stetiges Monitoring und Reporting der Zugriffe. Diese Funktionen sind durch die Solid-Spezifikation nicht abgedeckt und müssen ergänzt implementiert werden.
+
+Im Rahmen einer Showcase-Implementierung für ein E-Governance-Verfahren footnote:[https://github.com/guddii/showcase-solid-egovernance/] war auffällig, dass auch die Information zur Autorisierung einer Identität verloren geht und jedes Mal neu ausgeführt wird. Das dort genutzte Verfahren zur Autorisierung ist eine Inrupt spezifische Lösung und nur in der Unternehmenslösung des Solid-Servers implementiert.
+
+Die beiden Problemstellungen sollen zeigen, dass es eine generische Lösung benötigt, um auf die individuellen Probleme der jeweiligen softwaretechnischen Lösung zu reagieren und diese bei Bedarf erweitern zu können. 
+
 // Relevanz
 
 == Zielsetzung  
