@@ -1,4 +1,4 @@
-= Exposé
+= Master-Thesis Exposé
 
 == Deckblatt
 
@@ -10,9 +10,26 @@
 
 == Einleitung
 
-- Darstellung des Themas deiner Masterarbeit
-- Begründung/Motivation
-- Relevanz
+// Darstellung des Themas 
+
+Die Solid-Spezifikation macht es möglich, Daten sicher in dezentralen Datenspeichern abzulegen.
+Diese Daten können hierbei an ausgewählte Identitäten (Personen, Organisationen oder Anwendungen) über das Internet freigegeben werden.
+Die Freigabeinformationen sind an die Daten gekoppelt und dementsprechend auch dezentral organisiert.
+Sowohl die Daten als auch die Freigabeinformationen haben eine Identität als Eigentümer, der diese Inhalte verwaltet.
+
+Solid-Server implementieren die serverseitigen Spezifizierungen und Anforderungen der Solid-Spezifikation.
+Sie können als eigene Instanz gehostet, oder über öffentliche Anbieter footnote:[https://solidproject.org/users/get-a-pod#get-a-pod-from-a-pod-provider], genutzt werden.
+Hierdurch erfüllen Sie die Aufgaben eines Identity-Management-Systems in einer dezentralen Infrastruktur.
+
+Das zu bearbeitende Thema der Arbeit ist ein Dienst, welcher es möglich macht, die Informationen aus Anfragen, die die Solid-Spezifikation erfüllen, auszulesen, auszuwerten und gegebenenfalls zu modifizieren.
+Dies soll unabhängig von der Art des Hostings und der Implementierung des Solid-Servers möglich sein.
+Um dies zu erreichen, wird ein Reverse-Proxy footnote:[https://www.cloudflare.com/de-de/learning/cdn/glossary/reverse-proxy/] als Mediator implementiert, welcher eine generische Verarbeitung von Anfragen erlaubt, um repetitive Prozesse zu vereinheitlichen.
+Als Beispiel einer solchen Implementierung wird ein Datenschutzcockpit umgesetzt, welches das Compliance & Audit footnote:[https://www.internet-sicherheit.de/forschung/forschungsprojekte/abgeschlossene-forschungsprojekte/identity-management/idm-referenzmodell/compliance-audit/] des Identity-Management-Referenzmodells footnote:[https://www.internet-sicherheit.de/forschung/forschungsprojekte/abgeschlossene-forschungsprojekte/identity-management/idm-referenzmodell/] bedient.
+Hierfür werden die Aufgaben des Compliance-Managements, Monitoring, Reporting und Auditing für den Eigentümer zugänglich gemacht.
+
+// Begründung/Motivation
+
+// Relevanz
 
 == Zielsetzung  
 
