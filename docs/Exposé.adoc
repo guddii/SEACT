@@ -5,7 +5,6 @@
 :revremark: Leipzig
 :library: Asciidoctor
 :idprefix:
-:numbered:
 :toc: macro
 :toc-title:
 :css-signature: github
@@ -36,8 +35,6 @@ Informatik und Medien
 == Inhaltsverzeichnis
 toc::[]
 
-== Einleitung
-
 // Darstellung des Themas 
 
 Die Solid-Spezifikation macht es möglich, Daten sicher in dezentralen Datenspeichern abzulegen.
@@ -55,19 +52,23 @@ Um dies zu erreichen, wird ein Reverse-Proxyfootnote:[https://www.cloudflare.com
 Als Beispiel einer solchen Implementierung wird ein Datenschutzcockpit umgesetzt, welches das Compliance & Auditfootnote:[https://www.internet-sicherheit.de/forschung/forschungsprojekte/abgeschlossene-forschungsprojekte/identity-management/idm-referenzmodell/compliance-audit/] des Identity-Management-Referenzmodellsfootnote:[https://www.internet-sicherheit.de/forschung/forschungsprojekte/abgeschlossene-forschungsprojekte/identity-management/idm-referenzmodell/] bedient.
 Hierfür werden die Aufgaben des Compliance-Managements, Monitoring, Reporting und Auditing für den Eigentümer zugänglich gemacht.
 
-// Begründung/Motivation
+== Motivation
 
 Das Problem bei dezentralen Systemen ist, dass der Überblick über die Ablagen, insbesondere bei wachsendem Datenbestand, verloren geht.
 Bei freigegebenen Daten ist dies problematisch, da gegebenenfalls unwissentliche Zugriffe auf diese Daten möglich sind, obwohl dies vom Eigentümer nicht oder nicht mehr gewünscht ist.
 Dies motiviert den Schutz der sensiblen Daten, Revision von Berechtigungen und Revision von Administrationstätigkeiten im Rahmen des Compliance-Managements sowie ein stetiges Monitoring und Reporting der Zugriffe. Diese Funktionen sind durch die Solid-Spezifikation nicht abgedeckt und müssen ergänzt implementiert werden.
 
-Im Rahmen einer Showcase-Implementierung für ein E-Governance-Verfahren footnote:[https://github.com/guddii/showcase-solid-egovernance/] war auffällig, dass auch die Information zur Autorisierung einer Identität verloren geht und jedes Mal neu ausgeführt wird. Das dort genutzte Verfahren zur Autorisierung ist eine Inrupt spezifische Lösung und nur in der Unternehmenslösung des Solid-Servers implementiert.
+Im Rahmen einer Showcase-Implementierung für ein E-Governance-Verfahren footnote:[https://github.com/guddii/showcase-solid-egovernance/] war auffällig, dass auch die Information zur Autorisierung einer Identität verloren geht und jedes Mal neu ausgeführt wird. Das dort genutzte Verfahren zur Autorisierung ist eine Inrupt spezifische Lösung und nur in der Unternehmenslösung des Solid-Servers implementiert.
 
-Die beiden Problemstellungen sollen zeigen, dass es eine generische Lösung benötigt, um auf die individuellen Probleme der jeweiligen softwaretechnischen Lösung zu reagieren und diese bei Bedarf erweitern zu können. 
+Die beiden Problemstellungen sollen zeigen, dass es eine generische Lösung benötigt, um auf die individuellen Probleme der jeweiligen softwaretechnischen Lösung zu reagieren und diese bei Bedarf erweitern zu können.
 
 // Relevanz
 
-== Zielsetzung  
+Die Relevanz der Arbeit liegt in der Erweiterung der Funktionalität von Solid-Instanzen, welche durch die Spezifikation nicht abgedeckt sind. Da Solid die Aufgabe eines Identity-Management-Systems übernimmt, ist es notwendig, dass die Kriterien für ein solches System in ausreichender Qualität erfüllt sind. 
+Ein zentraler Bestandteil ist das Compliance-Management, Monitoring, Reporting und Auditing, da es sich um ein System aus über das Internet verknüpften Teilsystemen handelt. Hierbei soll das Solid-Prinzip, dass der Eigentümer die Informationshoheit über seine eigenen Daten besitzt, weiterhin gelten.
+
+
+== Zielsetzung
 
 - Ziel der Arbeit und Erkenntnisinteresse herausstellen
 - Ergebnisse skizzieren
