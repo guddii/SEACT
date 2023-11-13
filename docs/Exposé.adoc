@@ -96,7 +96,35 @@ Die vorliegenden Diagramme präsentieren Entwürfe für private Netzwerke. In de
 
 == Vorläufige Gliederung
 
-Vorläufige Gliederung zur Strukturierung
+[source]
+----
+ 1. Abstract
+ 2. Inhaltsverzeichnis
+ 3. Motivation
+ 4. Theoretische Grundlagen
+    - Solid-Spezifikation
+    - IdM-Referenzmodell
+    - Netzwerkarchitekturen
+    - Reverse-Proxy
+ 5. Verwandte Arbeiten
+ 6. Anforderungen und Konzept
+    - Private und offene Netzwerke
+    - Multi-Domain-Unterstützung
+    - Compliance & Audit
+ 7. Implementierung
+    - Serialisierung von HTTP-Anfragen
+    - Integration als Standalone Reverse-Proxy
+    - Integration mit existierenden Reverse-Proxies (ngnix and treafik)
+ 8. Verifikation
+ 9. Diskussion
+10. Zusammenfassung
+11. Quellenverzeichnis
+12. Abbildungsverzeichnis
+13. Tabellenverzeichnis
+14. Abkürzungsverzeichnis
+15. Glossar
+16. Anhang
+----
 
 == Zeitplan
 
