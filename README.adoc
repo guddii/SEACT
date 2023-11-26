@@ -1,7 +1,27 @@
 = Master-Thesis
 
+Dieses Projekt enthält den Quellcode und die Dokumente für eine Forschung über einen Reverse Proxy zur Erweiterung des Solid-Protokolls. Die schriftliche Ausarbeitung ist unter https://www.guddii.de/MT/ zu finden.
+
 image:https://github.com/guddii/MT/actions/workflows/github-pages.yml/badge.svg[link="https://github.com/guddii/MT/actions/workflows/github-pages.yml"] 
 
-== Usage
+== Installation
 
-- xref:docs/README.adoc[Dokumente]
+Dies ist ein https://nodejs.org/en/download/package-manager[Node.js] basiertes Projekt, bitte verwenden Sie den Paketmanager https://pnpm.io/installation[pnpm], um dieses Projekt zu installieren.
+
+[source,bash]
+----
+pnpm install
+----
+
+== Verwendung
+
+Wenn Sie dieses Projekt im Entwicklungsmodus ausführen möchten, geben Sie den folgenden Befehl in Ihr Terminal ein:
+
+[source,bash]
+----
+pnpm run dev
+----
+
+## Lizenz
+
+Dieses Projekt steht unter link:LICENSE[MIT-Lizenz].
