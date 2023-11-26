@@ -1,0 +1,16 @@
+{
+  "name": "solid",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "community-solid-server --config config.json --rootFilePath data/ --port 5000 --baseUrl http://localhost:3000/",
+    "dev": "community-solid-server --config config.json --rootFilePath data/ --port 5000 --baseUrl http://localhost:3000/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@solid/community-server": "7.0.2"
+  }
+}
