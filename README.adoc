@@ -1,27 +1,27 @@
 = Master-Thesis
 
-Dieses Projekt enthält den Quellcode und die Dokumente für eine Forschung über einen Reverse Proxy zur Erweiterung des Solid-Protokolls. Die schriftliche Ausarbeitung ist unter https://www.guddii.de/MT/ zu finden.
+This project contains the source code and the documents for a research on a reverse proxy to extend the Solid protocol. The written elaboration can be found at https://www.guddii.de/MT/.
 
 image:https://github.com/guddii/MT/actions/workflows/github-pages.yml/badge.svg[link="https://github.com/guddii/MT/actions/workflows/github-pages.yml"] 
 
 == Installation
 
-Dies ist ein https://nodejs.org/en/download/package-manager[Node.js] basiertes Projekt, bitte verwenden Sie den Paketmanager https://pnpm.io/installation[pnpm], um dieses Projekt zu installieren.
+This is a https://nodejs.org/en/download/package-manager[Node.js] based project, please use the package manager https://pnpm.io/installation[pnpm] to install this project.
 
 [source,bash]
 ----
 pnpm install
 ----
 
-== Verwendung
+== Usage
 
-Wenn Sie dieses Projekt im Entwicklungsmodus ausführen möchten, geben Sie den folgenden Befehl in Ihr Terminal ein:
+If you want to run this project in development mode, enter the following command in your terminal:
 
 [source,bash]
 ----
 pnpm run dev
 ----
 
-## Lizenz
+## Licence
 
-Dieses Projekt steht unter link:LICENSE[MIT-Lizenz].
+This project is licensed under link:LICENSE[MIT licence].

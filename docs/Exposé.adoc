@@ -1,4 +1,4 @@
-= Master-Thesis Exposé
+= Exposé for a Master Thesis on the Topic: Solid Server-Side Application Layer Proxy: An Analysis of the Extension of the Solid Protocol by a Server-Side Application Layer Proxy
 :author: Florian Gudat <florian.gudat@guices.com>
 :revnumber: v1.0
 :revdate: 2023-11-08
@@ -8,6 +8,7 @@
 :toc: macro
 :toc-title:
 :css-signature: github
+:bibtex-style: apa
 
 Version:: 
 {revnumber}, {revdate} ({revremark})
@@ -15,121 +16,85 @@ Version::
 Editors:: 
 {author}
 
-Modul (Modulnummer):: 
-Mastermodul 
-(C533.2 Pflichtmodul)
+Module:: 
+Mastermodul (C533.2 Compulsory module)
 
-Modulverantwortlicher:: 
+Module Supervisor:: 
 Prof. Dr.-Ing. Jean-Alexander Müller
 
-Betreuer::
+Lecturer::
 Prof. Dr. Andreas Both
 
-Institut::
-Hochschule für Technik, Wirtschaft und Kultur Leipzig 
+Institute::
+Leipzig University of Applied Sciences
 
-Fakultät::
-Informatik und Medien
+Faculty::
+Computer Science and Media
 
 [discrete]
-== Inhaltsverzeichnis
+== Table of Contents
 toc::[]
 
-// Darstellung des Themas 
-
-Die Solid-Spezifikation erlaubt das sichere Speichern von Daten in dezentralen Datenbanken. Die Daten können dabei über das Internet an ausgewählte Identitäten wie Personen, Organisationen oder Anwendungen weitergegeben werden. Freigabeinformationen sind an die Daten gebunden und daher ebenfalls dezentral organisiert. Sowohl die Daten als auch die Freigabeinformationen haben einen Eigentümer, der für die Verwaltung dieser Inhalte zuständig ist.
-
-Solid-Server implementieren die serverseitigen Spezifikationen und Anforderungen von Solid. Sie können entweder als eigenständige Instanz gehostet oder über öffentliche Anbieter footnote:[https://solidproject.org/users/get-a-pod#get-a-pod-from-a-pod-provider] genutzt werden, um die Aufgaben eines Identity-Management-Systems in einer dezentralen Infrastruktur zu erfüllen.
-
-Das Thema der Arbeit befasst sich mit einem Dienst, der die Möglichkeit bietet, Informationen aus Anfragen gemäß der Solid-Spezifikation auszulesen, auszuwerten und bei Bedarf zu modifizieren. Dies soll unabhängig von Art und Implementierung des Solid-Servers möglich sein. Um dieses Ziel zu erreichen, wird ein Reverse-Proxy footnote:[https://www.cloudflare.com/de-de/learning/cdn/glossary/reverse-proxy/] als Vermittler implementiert, der eine generische Verarbeitung von Anfragen ermöglicht und repetitive Prozesse standardisiert. Ein Datenschutzcockpit wird als Implementierungsbeispiel umgesetzt, welches das Compliance & Audit footnote:[https://www.internet-sicherheit.de/forschung/forschungsprojekte/abgeschlossene-forschungsprojekte/identity-management/idm-referenzmodell/compliance-audit/] des Referenzmodells für Identity-Management footnote:[https://www.internet-sicherheit.de/forschung/forschungsprojekte/abgeschlossene-forschungsprojekte/identity-management/idm-referenzmodell/] bedient. Zudem gewährt es dem Eigentümer Zugang zu den Aufgaben des Compliance-Managements, Monitoring, Reporting und Auditing.
+The Solid protocol enables secure storage of data in decentralised storage, which can then be transmitted to chosen recipients, such as individuals, organisations, or applications via the Internet. The data is decentralised and, hence, the access control is also decentralised. The owner of the data and release information is responsible for managing this content.
 
 == Motivation
 
-Bei dezentralen Systemen geht der Überblick über die Ablagen verloren, insbesondere bei steigendem Datenbestand.
-Bei geteilten Daten ist dies problematisch, da unautorisierte Zugriffe auf diese Daten stattfinden können, obwohl der Eigentümer dies nicht beabsichtigt.
-Dies erfordert den Schutz sensibler Daten sowie die Überprüfung von Berechtigungen und Administrationsaufgaben im Rahmen des Compliance-Managements, zusammen mit einem kontinuierlichen Monitoring und Reporting von Zugriffen. Diese Funktionen sind von der Solid-Spezifikation nicht abgedeckt und müssen zur Implementierung ergänzt werden.
+The Solid project, and the protocol that is part of it, is under the control of the https://www.w3.org/community/solid/[Solid Community Group], which started in 2018. As you can see from their https://solidproject.org/TR/[technical reports], there are still parts of the technology that are draft and not yet finalised. The main problem here is that all this technology is quite new and not yet widely used. There are few implementations of the protocol and the technology is not yet mature. As a result, there are many open questions and issues that need to be addressed.
 
-Im Zuge einer Showcase-Implementierung für ein E-Governance-Verfahren footnote:[https://github.com/guddii/showcase-solid-egovernance/] fiel auf, dass die Autorisierung einer Identität in jeder Iteration erneut durchgeführt werden muss, wodurch wichtige Informationen verloren gehen. Das verwendete Autorisierungsverfahren ist eine Inrupt-spezifische Lösung und lediglich in der Unternehmenslösung des Solid-Servers implementiert.
+citenp:[esposito_assessing_2023(18)] summarized the current state of the Solid protocol when it comes to security and privacy obligations. One of his requirements is the need for tamper-proof access logs with different views depending on their mandate, which requires new measures. These access logs can be used for auditing purposes. This is necessary to ensure that the data is not leaked to third parties and that the data is not modified by third parties.
 
-Die beiden Problemstellungen demonstrieren die Notwendigkeit einer generischen Lösung, um individuelle Herausforderungen der verschiedenen softwaretechnischen Lösungen effektiv anzugehen und diese gegebenenfalls erweitern zu können.
+Access monitoring in distributed systems has been acknowledged as critical by the German authorities. The _XDatenschutzcockpit_ project seeks to promote greater transparency among citizens by providing a nationwide data protection cockpit that monitors access to their data. This cockpit will empower citizens to assess, which data has been exchanged across public authorities, when such exchanges occurred, and for what purposes. The initial pilot iteration was accomplished in September 2022, and the consequent specification was formulated. cite:[diederich_xdatenschutzcockpit_2023]
 
-// Relevanz
+The Solid protocol represents a promising approach that is independent of business logic. The proposal is to employ the Solid protocol as the technical foundation for the data privacy cockpit. This will be augmented by the insights gained from the _XDatenschutzcockpit_-Specification. 
 
-Die Arbeit ist von Relevanz, da sie die Funktionalität von Solid-Instanzen erweitert, die nicht durch die Spezifikation abgedeckt werden. Solid übernimmt die Aufgaben eines Identity-Management-Systems und es ist daher notwendig, dass die Kriterien für ein solches System in ausreichender Qualität erfüllt werden. 
-Ein zentraler Bestandteil ist das Compliance-Management, Monitoring, Reporting und Auditing, da es sich um ein System von über das Internet verknüpften Teilsystemen handelt. Hier sollte das Solid-Prinzip weiterhin gelten, dass der Eigentümer die Kontrolle über seine eigenen Daten hat.
+== Goals
 
-== Zielsetzung
+citenp:[tao_extensible_2016] noted the existence of multiple protocols, with new ones arising frequently. 
+In response, they developed a universal method for augmenting the supported protocols of a server, using a server-side application layer proxy.
+When a new protocol is introduced, a module specific to that protocol is included in the set of modules managed by the application layer proxy. 
+The module will solve the specific problem of the protocol, or throw an error if unable to do so.
+This method is adaptable and may be utilised with the Solid protocol. 
+Further division may be accomplished by implementing dedicated modules to handle specific concerns of the data privacy cockpit, as defined by citenp:[diederich_xdatenschutzcockpit_2023]. 
+By doing this, new features can be added to the data privacy cockpit without the need to change the basic infrastructure.
 
-// Ziel der Arbeit und Erkenntnisinteresse
+In addition, the data privacy cockpit features could be enhanced by analysis and filtering modules, as proposed by cite:[yan_security_2017(233-235)]. Those would mainly be black and whitelisting as well as detection and validation of anomalies. This would enable the data privacy cockpit to detect and prevent attacks on the data. Which eventually could be maintained by the data owners themselves, as they somehow must deal with attacks on their data.
 
-Das Ziel der Arbeit besteht darin, eine generische Lösung zu entwickeln, die beliebige Erweiterungen und Standardisierung von Prozessen ermöglicht. Als Beispiel hierfür werden Anforderungen des Compliance-Managements, Monitorings, Reportings und Audits umgesetzt, da diese ausreichend komplexe Demonstrationszwecke erfüllen. Die Lösung soll unabhängig von der Art des Hostings und der Implementierung des Solid-Servers sein. Um repetitive Prozesse zu vereinheitlichen, wird diese Lösung als Reverse-Proxy implementiert, der eine generische Verarbeitung von Anfragen erlaubt. Als Beispiel für eine solche Implementierung wird ein Datenschutzcockpit umgesetzt, das die Anforderungen des Compliance-Managements, Monitorings, Reportings und Auditings im Rahmen des Identity-Management-Referenzmodells erfüllt. Hier werden dem Eigentümer die Aufgaben des Compliance-Managements, Monitorings, Reportings und Auditing zugänglich gemacht.
+In addition, citenp:[yan_security_2017(233-235)] proposed a gateway mechanism with analysis and filtering modules such as blacklisting, whitelisting, anomaly detection and validation. This approach, especially when the rules and configurations are under the control of the data owners, could significantly improve the ability of the data privacy cockpit to detect and prevent data theft.
 
-Die Untersuchung befasst sich mit der Fragestellung, ob die Anforderungen an ein Identity-Management-System in einer dezentralen Infrastruktur erfüllt werden können und welche Vor- und Nachteile daraus resultieren.
-Die Rahmenbedingungen für die technische Umsetzung sind durch die Solid-Spezifikation gegeben.
+The aim of this thesis is to determine how to achieve logical topologies that allow the use of a data privacy cockpit through a server-side application layer proxy.
+Furthermore, it is necessary to identify the circumstances that allow the retrieval of information while ensuring the compatibility with the Solid protocol and the general properties of the proxy cite:[shapiro_structure_1986(9)]. 
 
-// Ergebnisse skizzieren
+.Architectural sketch of the logical topology
+[.text-center, caption="Figure 1: "]
+plantuml::Diagramme/Sketch.puml[]
 
-Zur Demonstration und Überprüfung von Funktionen werden zwei Makroarchitekturen umgesetzt. Die erste Architektur ist eine Client-Server-Architektur, die direkt auf das Identity-Management-System zugreifen kann. Die zweite Architektur ist eine Backend-For-Frontend-Architektur, die den Zugriff über den Webserver auf das Identity-Management-System weiterleitet. In der Arbeit werden beide Architekturen gegenübergestellt und ihre Vor- und Nachteile herausgearbeitet. 
+As the figure above shows, prototypes of a server-side application layer proxy and a data privacy cockpit have to be developed. The prototypes need to enhance the Solid protocol's capabilities while ensuring extensibility and decoupling from the underlying infrastructure. 
 
-.Client-Server-Architektur im privaten Netzwerk
-[.text-center, caption="Abbildung 1: "]
-image::Diagramme/Architecture_Client.svg[]
+== Research Concept
 
-.Backend-For-Frontend-Architektur im privaten Netzwerk
-[.text-center, caption="Abbildung 1: "]
-image::Diagramme/Architecture_Backend_For_Frontend.svg[]
+The following key research question is to be answered in this Master's thesis:
 
-Die vorliegenden Diagramme präsentieren Entwürfe für private Netzwerke. In der Umsetzung wird auch der Fall von öffentlich zugänglichen Netzwerken betrachtet.
+- What requirements must a server-side proxy of the application layer fulfill to extend the capabilities of the Solid protocol while ensuring extensibility and decoupling from the underlying infrastructure?
 
-== Forschungsstand
+Derived from this key research question, the following sub-questions are to be answered:
 
-- Stand der aktuellen Forschung
-- zentrale Theorien des Themas
+- What effects do different logical topologies, such as changes in access, transport, addressing, protocols and data paths, have on the availability of information within the application layer proxy?
+- In which use cases can server-side application layer proxies be used, and where are the limits if conformity with the Solid protocol is to be guaranteed?
+- How high is the system resource load during filtering and modification by a server-side proxy of the application layer using the Solid protocol?
 
-== Forschungskonzept
+For the analysis, a data privacy cockpit is developed as a solid app that manages the information collected by the server-side application level proxy. It is assumed that the range of functions can be extended variably, and that the possibilities of the various logical topologies can therefore be utilised. The data privacy cockpit is just an example of a complex situation in which the procedure can be used and serves to evaluate the concept. Conclusions for similarly complex use cases can be derived from this if necessary.
 
-- Forschungsfrage(n)
-- Hypothesen
-- Methodik + Begründung
-- Daten
-- evtl. benötigte Mittel
+**Steps:** As part of the Master's thesis, the following
+methodological steps are carried out:
 
-== Vorläufige Gliederung
+. Analysis of the requirements for a server-side application layer proxy and data privacy cockpit
+. Development of a server-side application layer proxy and data privacy cockpit
+. Evaluation of the developed solution
+. Comparison of the results with the requirements
+. Discussion of the results
 
-[source]
-----
- 1. Abstract
- 2. Inhaltsverzeichnis
- 3. Motivation
- 4. Theoretische Grundlagen
-    - Solid-Spezifikation
-    - IdM-Referenzmodell
-    - Netzwerkarchitekturen
-    - Reverse-Proxy
- 5. Verwandte Arbeiten
- 6. Anforderungen und Konzept
-    - Private und offene Netzwerke
-    - Multi-Domain-Unterstützung
-    - Compliance & Audit
- 7. Implementierung
-    - Serialisierung von HTTP-Anfragen
-    - Integration als Standalone Reverse-Proxy
-    - Integration mit existierenden Reverse-Proxies (ngnix and treafik)
- 8. Verifikation
- 9. Diskussion
-10. Zusammenfassung
-11. Quellenverzeichnis
-12. Abbildungsverzeichnis
-13. Tabellenverzeichnis
-14. Abkürzungsverzeichnis
-15. Glossar
-16. Anhang
-----
-
-== Zeitplan
-
-Tabellarische Darstellung der Zeitplanung deiner Masterarbeit (dient als Orientierung und hilft, Probleme frühzeitig zu erkennen)
+This solution includes the development of an experimental prototype to identify different logical topologies and exclude them if necessary. The prototype will also be used to test the limits of the use cases and evaluate the system load.
 
 [bibliography]
-== Literaturverzeichnis
+== Bibliography
 bibliography::[]

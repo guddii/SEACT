@@ -1,0 +1,26 @@
+@startuml
+left to right direction
+skinparam linetype ortho
+skinparam nodesep 25
+skinparam ranksep 25
+interface "HTTP" as HTTP
+component "Solid Server-Side Application Layer Proxy" as proxy <<subsystem>>{
+    component "Proxy Module Manager" as MM 
+    component "Proxy Module 1" as M1 
+    component "Proxy Module 2" as subModule2 
+    component "Proxy Module n" as MN
+}
+component "Solid Provider" as P <<subsystem>>{
+    database "User\nstorage" as SU
+    database "Module\nstorage" as SM
+}
+HTTP -- MM
+MM ..> M1
+MM ..> subModule2
+MM ..> MN
+MM -(0- SU
+M1 -[hidden]- SM
+subModule2 -[hidden]- SM
+MN -(0- SM
+MN ..> SU 
+@enduml
