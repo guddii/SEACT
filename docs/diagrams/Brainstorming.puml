@@ -1,0 +1,30 @@
+@startmindmap
+* Solid
+-- Integration
+---_ Integration pattern
+---_ Data management
+----_ Number of pods
+----_ Transitive request
+'(4pods, 3pods, 2pods data storage; flow control)
+---_ Supplementary authentication / authentication
+-- Application
+---_ Data protection cockpit
+'----_ Network Proxy / Mediator
+--- Collaboration
+-- User experience
+---_ Generic Editor
+---_ Semantic UI Vocabulary
+++ Data Transformation
++++_ SPARQL endpoint
++++_ Versioning
++++_ Data migration
++++_ Model-driven development
+'++++_ I/O via external systems
+'++++_ Solid as data source
+'++++_ Minimality condition
+++ Network proxy / mediator
++++_ Logging
++++_ Debugging
++++_ Access Requests and Grants
++++_ Protocol
+@endmindmap
