@@ -34,23 +34,28 @@ jobs:
         run: |
           mv docs/README.adoc docs/index.adoc
         shell: bash
-      - name: Set dynamic env varables
-        run: |
-          echo "REVNUMBER=$(git describe --first-parent --tags --dirty)" >> $GITHUB_ENV
-          echo "REVDATE=$(date +%F)" >> $GITHUB_ENV
-        shell: bash
+      - name: Git describe
+        id: ghd
+        uses: proudust/gh-describe@v1
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
       - name: Build HTML
         id: build-html
         uses: tonynv/asciidoctor-action@master
         with:
-          program: "./scripts/buildHTML.sh $(git describe --first-parent --tags --dirty) $(date +%F)"
+          program: "./scripts/buildHTML.sh"
         env:
-          Greeting: Hello
+          REVNUMBER: ${{ steps.ghd.outputs.describe }}
+          REVDATE: ${{ steps.date.outputs.date }}
       - name: Build PDF
         id: build-pdf
         uses: tonynv/asciidoctor-action@master
         with:
-          program: "./scripts/buildPDF.sh $(git describe --first-parent --tags --dirty) $(date +%F)"
+          program: "./scripts/buildPDF.sh"
+        env:
+          REVNUMBER: ${{ steps.ghd.outputs.describe }}
+          REVDATE: ${{ steps.date.outputs.date }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
