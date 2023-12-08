@@ -34,6 +34,11 @@ jobs:
         run: |
           mv docs/README.adoc docs/index.adoc
         shell: bash
+      - name: Set dynamic env varables
+        run: |
+          echo "REVNUMBER=$(git describe --first-parent --tags --dirty)" >> $GITHUB_ENV
+          echo "REVDATE=$(date +%F)" >> $GITHUB_ENV
+        shell: bash
       - name: Build HTML
         id: build-html
         uses: tonynv/asciidoctor-action@master
