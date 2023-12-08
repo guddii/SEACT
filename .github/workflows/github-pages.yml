@@ -52,9 +52,9 @@ jobs:
         env:
           REVNUMBER: ${{ steps.ghd.outputs.describe }}
           REVDATE: ${{ steps.date.outputs.date }}
-      - name: Rename README.adoc to index.adoc
+      - name: Rename README to index
         run: |
-          mv out/README.html out/index.html
+          mv ./out/README.html ./out/index.html
         shell: bash
       - name: Setup Pages
         uses: actions/configure-pages@v3
