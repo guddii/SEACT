@@ -38,12 +38,12 @@ jobs:
         id: build-html
         uses: tonynv/asciidoctor-action@master
         with:
-          program: "asciidoctor --require asciidoctor-bibtex --require asciidoctor-diagram --base-dir docs --backend=html5 docs/*.adoc"
+          program: "./scripts/buildHTML.sh"
       - name: Build PDF
         id: build-pdf
         uses: tonynv/asciidoctor-action@master
         with:
-          program: "asciidoctor-pdf --require asciidoctor-bibtex --require asciidoctor-diagram --base-dir docs --theme resources/themes/basic.yml --backend=pdf docs/*.adoc"
+          program: "./scripts/buildPDF.sh"
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
