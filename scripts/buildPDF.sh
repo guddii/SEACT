@@ -5,8 +5,8 @@ asciidoctor-pdf \
     --require asciidoctor-diagram \
     --base-dir docs \
     --theme resources/themes/basic.yml \
-    --attribute revnumber=$(git describe --first-parent --tags --dirty) \
-    --attribute revdate=$(date +%F) \
+    --attribute revnumber=$1 \
+    --attribute revdate=$2 \
     --backend=pdf \
     --destination-dir=out \
     docs/*.adoc
