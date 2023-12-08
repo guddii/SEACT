@@ -11,9 +11,8 @@ fi
 asciidoctor \
     --require asciidoctor-bibtex \
     --require asciidoctor-diagram \
-    --base-dir docs \
+    --destination-dir=out \
     --attribute revnumber=$REVNUMBER \
     --attribute revdate=$REVDATE \
     --backend=html5 \
-    --destination-dir=out \
     docs/*.adoc
