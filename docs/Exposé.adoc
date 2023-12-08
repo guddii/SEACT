@@ -77,7 +77,7 @@ Furthermore, it is necessary to identify the circumstances that allow the retrie
 
 .Architectural sketch of the logical topology
 [.text-center]
-plantuml::diagrams/Sketch.puml[]
+plantuml::resources/diagrams/Sketch.puml[]
 
 As the figure above shows, prototypes of a server-side application layer proxy and a data privacy cockpit have to be developed.
 The prototypes need to enhance the Solid protocol's capabilities while ensuring extensibility and decoupling from the underlying infrastructure.

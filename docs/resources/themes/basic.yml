@@ -1,0 +1,62 @@
+# https://docs.asciidoctor.org/pdf-converter/latest/theme/extends/
+extends: base
+# https://docs.asciidoctor.org/pdf-converter/latest/theme/font/
+font:
+  catalog:
+    Noto Serif:
+      normal: GEM_FONTS_DIR/notoserif-regular-subset.ttf
+      bold: GEM_FONTS_DIR/notoserif-bold-subset.ttf
+      italic: GEM_FONTS_DIR/notoserif-italic-subset.ttf
+      bold_italic: GEM_FONTS_DIR/notoserif-bold_italic-subset.ttf
+# https://docs.asciidoctor.org/pdf-converter/latest/theme/page/
+page:
+  layout: portrait
+  margin: [1in, 1in, 1in, 1in]
+  size: A4
+  # https://docs.asciidoctor.org/pdf-converter/latest/theme/page-numbers/
+  numbering:
+    start-at: body
+# https://docs.asciidoctor.org/pdf-converter/latest/theme/base/
+base:
+  font-color: #000000
+  font-family: Noto Serif
+  font-size: 10
+  line-height: 1.05
+  text-align: justify
+# https://docs.asciidoctor.org/pdf-converter/latest/theme/heading/
+heading:
+  font-color: #262626
+  font-size: 12
+  font-style: normal
+  line-height: 1.05
+  margin-bottom: 10
+  kerning: 5
+link:
+  font-color: $base-font-color
+list:
+  indent: $base-font-size * 1.5
+title-page:
+  revision:
+    font-color: #333333
+    margin-top: 13.125
+  title:
+    line-height: 2
+  logo:
+    image: image:HTWK_Zusatz_en_H_Black_sRGB.svg[pdfwidth=2.5in,align=center]
+footer:
+  height: 60
+  recto:
+    right:
+      content: "{page-number} of {page-count}"
+  verso:
+    left:
+      content: $footer-recto-right-content
+header:
+  height: 0.75in
+  line-height: 1
+  recto:
+    right:
+      content: "{part-title}"
+  verso:
+    left:
+      content: $header-recto-right-content
