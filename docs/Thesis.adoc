@@ -11,3 +11,115 @@
 :keywords: Lorem, ipsum, dolor
 :media: print
 :doctype: book
+
+[preface]
+Version::
+{revnumber}, {revdate}
+Editors::
+{author}
+Module::
+Mastermodul (C533.2 Compulsory module)
+Module Supervisor::
+Prof. Dr.-Ing. Jean-Alexander Müller
+Lecturer::
+Prof. Dr. Andreas Both
+Institute::
+Leipzig University of Applied Sciences
+Faculty::
+Computer Science and Media
+
+<<<
+
+[abstract]
+.Abstract
+--
+An analysis of extending the Solid protocol with a server-side application layer proxy An analysis of extending the Solid protocol with a server-side application layer proxy
+--
+
+[glossary]
+== Glossary
+
+[glossary]
+[[Access-Control-List,Access Control List]] Access Control List:: An Access Control List is a document specifying permissions that determine access to a <<resource>>.
+[[Hypertext-Transfer-Protocol,Hypertext Transfer Protocol]] Hypertext Transfer Protocol:: A protocol for transferring data on the application layer.
+[[Solid-app,Solid app]] Solid app:: Solid app is a software that accesses and stores data from one or more <<storage>> systems.
+[[Uniform-Resource-Identifier,Uniform Resource Identifier]] Uniform Resource Identifier:: A Uniform Resource Identifier identifies a resource.
+[[WebID,WebID]] WebID:: A WebID is an <<HTTP>> <<URI>> that points to an <<agent>>.
+[[agent,agent]] agent:: An agent is a person, an organisation, a group, a device, etc. that is identified by a <<URI>>.
+[[resource,resource]] resource:: A resource is the target of an <<HTTP>> request, identified by a <<URI>>.
+[[storage,storage]] storage:: A storage is a set of <<URI>>s that can be accessed by an agent in a controlled manner.
+
+[glossary]
+= Acronyms
+
+[glossary]
+[horizontal]
+[[ACL,ACL]] ACL:: <<Access-Control-List>>
+[[HTTP,HTTP]] HTTP:: <<Hypertext-Transfer-Protocol>>
+[[URI,URI]] URI:: <<Uniform-Resource-Identifier>>
+
+= Preamble
+
+== Introduction
+
+=== Requirements
+
+=== Research
+
+== Terminology
+
+=== Solid Protocol
+
+=== Proxy
+
+=== Data Privacy Cockpit
+
+= Theoretical Framework
+
+== Application Design
+
+=== Logical Topology (Composition)
+
+=== Information Retrieval
+
+== Integration
+
+=== Logical Boundaries
+
+=== Application Programming Interfaces
+
+== Quality Model
+
+=== Characteristics
+
+=== Indicators
+
+= Analysis
+
+== Methodology
+
+=== Laboratory Prototype
+
+=== Quality Management
+
+== Result Presentation
+
+== Boundaries of the Composition
+
+=== Possible Uses of the Concept
+
+=== Resource Requirements
+
+= Reflection
+
+== Discussion
+
+== Conclusion
+
+[appendix]
+= Appendix
+
+[bibliography]
+= Bibliography
+
+bibliography::[]
