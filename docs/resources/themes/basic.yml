@@ -31,10 +31,13 @@ heading:
   line-height: 1.05
   margin-bottom: 10
   kerning: 5
+# https://docs.asciidoctor.org/pdf-converter/latest/theme/link/
 link:
   font-color: $base-font-color
+# https://docs.asciidoctor.org/pdf-converter/latest/theme/list/
 list:
   indent: $base-font-size * 1.5
+# https://docs.asciidoctor.org/pdf-converter/latest/title-page/
 title-page:
   revision:
     font-color: #333333
@@ -43,20 +46,31 @@ title-page:
     line-height: 2
   logo:
     image: image:HTWK_Zusatz_en_H_Black_sRGB.svg[pdfwidth=2.5in,align=center]
+# https://docs.asciidoctor.org/pdf-converter/latest/theme/running-content/#footer
 footer:
-  height: 60
+  height: 0.75in
+  line-height: 3
   recto:
+    right:
+      content: ""
+    left:
+      content: ""
+  verso:
     right:
       content: "{page-number} of {page-count}"
-  verso:
     left:
-      content: $footer-recto-right-content
+      content: ""
+# https://docs.asciidoctor.org/pdf-converter/latest/theme/running-content/#header
 header:
   height: 0.75in
-  line-height: 1
+  line-height: 0
   recto:
     right:
-      content: "{part-title}"
-  verso:
+      content: ""
     left:
-      content: $header-recto-right-content
+      content: "{document-title}"
+  verso:
+    right:
+      content: "{part-title}"
+    left:
+      content: ""
