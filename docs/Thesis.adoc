@@ -11,11 +11,12 @@
 :keywords: Lorem, ipsum, dolor
 :media: print
 :doctype: book
+:part-signifier: Part
 
 [preface]
 Version::
 {revnumber}, {revdate}
-Editors::
+Editor::
 {author}
 Module::
 Mastermodul (C533.2 Compulsory module)
@@ -37,7 +38,7 @@ An analysis of extending the Solid protocol with a server-side application layer
 --
 
 [glossary]
-== Glossary
+= Glossary
 
 [glossary]
 [[Access-Control-List,Access Control List]] Access Control List:: An Access Control List is a document specifying permissions that determine access to a <<resource>>.
@@ -54,9 +55,17 @@ An analysis of extending the Solid protocol with a server-side application layer
 
 [glossary]
 [horizontal]
-[[ACL,ACL]] ACL:: <<Access-Control-List>>
-[[HTTP,HTTP]] HTTP:: <<Hypertext-Transfer-Protocol>>
-[[URI,URI]] URI:: <<Uniform-Resource-Identifier>>
+[[ACL,ACL]] ACL:: Access Control List
+[[ACP,ACP]] ACP:: Access Control Policy
+[[CRUD,CRUD]] CRUD:: Create, Read, Update and Delete
+[[CSS,CSS]] CSS:: Community Solid Server
+[[DPC,DPC]] DPC:: Data Privacy Cockpit
+[[HTTP,HTTP]] HTTP:: Hypertext Transfer Protocol
+[[HTTPS,HTTPS]] HTTPS:: Hypertext Transfer Protocol Secure
+[[SPARQL,SPARQL]] SPARQL:: SPARQL Protocol and RDF Query Language
+[[UML,UML]] UML:: Unified Modeling Language
+[[URI,URI]] URI:: Uniform Resource Identifier
+[[WAC,WAC]] WAC:: Web Access Control
 
 = Preamble
 
