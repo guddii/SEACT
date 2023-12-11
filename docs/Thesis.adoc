@@ -79,9 +79,49 @@ An analysis of extending the Solid protocol with a server-side application layer
 
 === Solid Protocol
 
+Describe the definition of a protocol
+
+- see Mozilla Developer Networkfootnote:[https://developer.mozilla.org/en-US/docs/Glossary/Protocol]
+- see citenp:[fischer_lexikon_2011(706)]
+
+Describe the Solid protocol
+
+- see citenp:[sarven_solid_2022]
+
+Describe <<CSS>>
+
+- see Community Solid Server configuration generatorfootnote:[https://communitysolidserver.github.io/configuration-generator/v7/]
+* Data management
+** Data storage (<<CRUD>>/<<SPARQL>>)
+** Authorization (<<WAC>>/<<ACP>>)
+** Locking
+* Account management
+** Pod URLs (Suffix/Subdomain)
+** OpenID provider
+* Miscellaneous
+** Notification method (WebSockets/Webhooks)
+** <<HTTP>>/<<HTTPS>>
+
 === Proxy
 
+Describe the general idea of a proxy
+
+- see citenp:[luotonen_world-wide_1994]
+* Server-Client model
+* Position of the proxy (client-side vs. server-side)
+
+Describe a application layer proxy
+
+- see citenp:[?]
+* OSI model
+* Position of the proxy
+* Difference to other proxies
+
 === Data Privacy Cockpit
+
+Describe the idea of a <<DPC>>
+
+- see citenp:[diederich_xdatenschutzcockpit_2023]
 
 = Theoretical Framework
 
