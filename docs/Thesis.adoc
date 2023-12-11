@@ -127,7 +127,21 @@ Describe the idea of a <<DPC>>
 
 == Application Design
 
-=== Logical Topology (Composition)
+=== Logical Topology
+
+.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Component Diagram of the Logical Topology (A)
+[.text-center]
+[plantuml,format=svg]
+....
+include::resources/diagrams/Logical_Topology_A.puml[]
+....
+
+.<<UML>> 2.5.1footnote:uml[] Component Diagram of the Logical Topology (B)
+[.text-center]
+[plantuml,format=svg]
+....
+include::resources/diagrams/Logical_Topology_B.puml[]
+....
 
 === Information Retrieval
 
