@@ -1,17 +1,22 @@
 = Solid Server-Side Application Layer Proxy: An Analysis of the Extension of the Solid Protocol by a Server-Side Application Layer Proxy
+// Metadata:
 :author: Florian Gudat <florian.gudat@guices.com>
 :authorinitials: FL
-:library: Asciidoctor
+:description:
+:keywords:
+// Settings:
+:bibtex-style: apa
+:doctype: book
 :idprefix:
-:sectnums:
+:library: Asciidoctor
+:media: print
+:part-signifier: Part
 :partnums:
+:sectnums:
 :toc: preamble
 :toclevels: 4
-:bibtex-style: apa
-:keywords: Lorem, ipsum, dolor
-:media: print
-:doctype: book
-:part-signifier: Part
+// Refs:
+:url-project: https://github.com/guddii/MT
 
 [preface]
 Version::
@@ -75,7 +80,18 @@ An analysis of extending the Solid protocol with a server-side application layer
 
 ==== Functional Requirements
 
+[horizontal,labelwidth=10,itemwidth=80]
+[[REQ-1,REQ-1]] REQ-1:: Access logs with different views depending on the mandate.
+[[REQ-2,REQ-2]] REQ-2:: Transmission logs with the specific content of the transmitted resource.
+[[REQ-3,REQ-3]] REQ-3:: Rule-based filtering of network requests by the owner of the resource.
+
 ==== Non-Functional Requirements
+
+[horizontal,labelwidth=10,itemwidth=80]
+[[REQ-4,REQ-4]] REQ-4:: Ensuring compatibility with the current version of the Solid protocol.
+[[REQ-5,REQ-5]] REQ-5:: Conformity with the general properties of a proxy must be guaranteed.
+[[REQ-6,REQ-6]] REQ-6:: Efficiency in terms of response times and resource consumption must be appropriate.
+[[REQ-7,REQ-7]] REQ-6:: Metadata that could be extracted from the request should be analysed and logs should be enhanced accordingly.
 
 ==== Acceptance Criteria
 
