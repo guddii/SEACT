@@ -1,0 +1,19 @@
+[preface]
+ifdef::revnumber,revdate[]
+Version::
+ifdef::revnumber[{revnumber},]
+ifdef::revdate[{revdate}]
+endif::revnumber,revdate[]
+Editor::
+{author}
+Module::
+Mastermodul (C533.2 Compulsory module) +
+{url-modulux}
+Module Supervisor::
+Prof. Dr.-Ing. Jean-Alexander Müller
+Lecturer::
+Prof. Dr. Andreas Both
+Institute::
+Leipzig University of Applied Sciences
+Faculty::
+Computer Science and Media

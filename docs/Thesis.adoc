@@ -1,38 +1,7 @@
-= Solid Server-Side Application Layer Proxy: An Analysis of the Extension of the Solid Protocol by a Server-Side Application Layer Proxy
-// Metadata:
-:author: Florian Gudat <florian.gudat@guices.com>
-:authorinitials: FL
-:description:
-:keywords:
-// Settings:
-:bibtex-style: apa
-:doctype: book
-:idprefix:
-:library: Asciidoctor
-:media: print
-:part-signifier: Part
-:partnums:
-:sectnums:
-:toc: preamble
-:toclevels: 4
-// Refs:
-:url-project: https://github.com/guddii/MT
+= Solid-Based Extended Access Control and Traceability in Data-Driven Web-Based Systems
+include::partials/Attributes.adoc[]
 
-[preface]
-Version::
-{revnumber}, {revdate}
-Editor::
-{author}
-Module::
-Mastermodul (C533.2 Compulsory module)
-Module Supervisor::
-Prof. Dr.-Ing. Jean-Alexander Müller
-Lecturer::
-Prof. Dr. Andreas Both
-Institute::
-Leipzig University of Applied Sciences
-Faculty::
-Computer Science and Media
+include::partials/Preface.adoc[]
 
 <<<
 

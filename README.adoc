@@ -1,8 +1,15 @@
-= Master-Thesis
+= Solid-Based Extended Access Control and Traceability in Data-Driven Web-Based Systems (SEACT)
+// Refs:
+:url-repo: https://github.com/guddii/SEACT
 
-This project contains the source code and the documents for a research on a reverse proxy to extend the Solid protocol. The written elaboration can be found at https://www.guddii.de/MT/.
+This work focuses on improving solid-based extended access control and traceability in data-driven web-based systems.
+By implementing an extended access control mechanism and improved traceability of data access, this project aims to strengthen the security and transparency of web applications.
+The https://solidproject.org/TR/protocol[Solid Protocol] forms the basis for these enhancements, which aim to provide clear and effective control over access to sensitive data.
 
-image:https://github.com/guddii/MT/actions/workflows/github-pages.yml/badge.svg[link="https://github.com/guddii/MT/actions/workflows/github-pages.yml"] 
+In this repository you will find the complete source code, detailed integration instructions and examples of how to use these extensions.
+The thesis provides not only a theoretical foundation, but also practical implementations for developers and researchers concerned with privacy and access control in modern web applications.
+
+image:{url-repo}/actions/workflows/github-pages.yml/badge.svg[link="{url-repo}/actions/workflows/github-pages.yml"]
 
 == Installation
 
@@ -22,6 +29,6 @@ If you want to run this project in development mode, enter the following command
 pnpm run dev
 ----
 
-## Licence
+== Licence
 
 This project is licensed under link:LICENSE[MIT licence].

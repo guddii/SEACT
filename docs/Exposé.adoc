@@ -1,32 +1,7 @@
-= Exposé for a Master Thesis on the Topic: Solid Server-Side Application Layer Proxy: An Analysis of the Extension of the Solid Protocol by a Server-Side Application Layer Proxy
-:author: Florian Gudat <florian.gudat@guices.com>
-:library: Asciidoctor
-:idprefix:
-:toc: macro
-:toc-title:
-:css-signature: github
-:bibtex-style: apa
+= Exposé for a Master Thesis on the Topic: Solid-Based Extended Access Control and Traceability in Data-Driven Web-Based Systems
+include::partials/Attributes.adoc[]
 
-Version::
-{revnumber}, {revdate} ({revremark})
-
-Editors::
-{author}
-
-Module::
-Mastermodul (https://modulux.htwk-leipzig.de/modulux/modul/6291[C533.2] Compulsory module)
-
-Module Supervisor::
-Prof. Dr.-Ing. Jean-Alexander Müller
-
-Lecturer::
-Prof. Dr. Andreas Both
-
-Institute::
-Leipzig University of Applied Sciences
-
-Faculty::
-Computer Science and Media
+include::partials/Preface.adoc[]
 
 [discrete]
 == Table of Contents
