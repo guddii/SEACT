@@ -7,7 +7,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo lint",
     "test": "turbo test",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "licensecheck": "pnpx license-checker --summary --onlyAllow 'MIT; BSD; MPL-2.0; ISC; Apache-2.0'"
   },
   "devDependencies": {
     "@types/jest": "^29.5.4",
