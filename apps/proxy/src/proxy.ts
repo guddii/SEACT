@@ -15,10 +15,16 @@ export function proxy(options: ProxyOptions): RequestListener {
   return (clientRequest, clientResponse) => {
     const proxyRequestOptions: RequestOptions = {
       hostname: options.hostname || "localhost",
-      port: options.port || 5000,
+      port: options.port || 3000,
       path: clientRequest.url,
       method: clientRequest.method,
-      headers: clientRequest.headers,
+      headers: {
+        ...{
+          "X-Forwarded-Host": "localhost:4000",
+          "X-Forwarded-Proto": "http",
+        },
+        ...clientRequest.headers,
+      },
     };
 
     function onForwardedRequest(forwardedResponse: IncomingMessage): void {

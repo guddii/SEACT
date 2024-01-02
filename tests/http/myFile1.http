@@ -1,0 +1,15 @@
+### Creating resources for a given URL
+PUT http://localhost:4000/pod1/myFile1.ttl
+Authorization: Bearer {{$auth.token("proxy")}}
+Content-Type: text/turtle
+
+<ex:s> <ex:p> <ex:o>.
+
+### Retrieving resources
+GET http://localhost:4000/pod1/myFile1.ttl
+Authorization: Bearer {{$auth.token("proxy")}}
+Content-Type: text/turtle
+
+### Deleting resources
+DELETE http://localhost:4000/pod1/myFile1.ttl
+Authorization: Bearer {{$auth.token("proxy")}}

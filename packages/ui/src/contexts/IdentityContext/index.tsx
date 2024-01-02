@@ -2,7 +2,7 @@ import type { UrlString, WebId } from "@inrupt/solid-client";
 import { getPodUrlAll } from "@inrupt/solid-client";
 import { useSession } from "@inrupt/solid-ui-react";
 import { log } from "logger";
-import type { Dispatch, ReactNode, SetStateAction } from "react";
+import type { Dispatch, ReactElement, ReactNode, SetStateAction } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 
 export interface IdentityContext {
@@ -25,10 +25,10 @@ interface IdentityProviderProps {
 
 export function IdentityProvider({
   children,
-}: IdentityProviderProps): React.ReactElement {
+}: IdentityProviderProps): ReactElement {
   const { session } = useSession();
-  const [idp, setIdp] = useState("http://localhost:3000");
-  const [currentUrl, setCurrentUrl] = useState("http://localhost:4000");
+  const [idp, setIdp] = useState("http://localhost:4000");
+  const [currentUrl, setCurrentUrl] = useState("http://localhost:5000");
   const [webId, setWebId] = useState<string>("");
   const [storageAll, setStorageAll] = useState<UrlString[]>([]);
   const [storage, setStorage] = useState<UrlString>("");

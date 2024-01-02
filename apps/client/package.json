@@ -5,7 +5,7 @@
   "scripts": {
     "build": "next build",
     "clean": "rm -rf .next",
-    "dev": "next dev -p 4000",
+    "dev": "next dev -p 5000",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "start": "next start"
