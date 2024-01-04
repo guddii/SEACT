@@ -1,0 +1,34 @@
+### Creating resources for a given URL
+PUT http://localhost:4000/pod1/myFile1.ttl
+Authorization: Bearer {{$auth.token("css")}}
+Content-Type: text/turtle
+
+
+<ex:s> <ex:p> <ex:o>.
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 201, "Response status is not 201");
+    });
+%}
+
+### Retrieving resources
+GET http://localhost:4000/pod1/myFile1.ttl
+Authorization: Bearer {{$auth.token("css")}}
+Content-Type: text/turtle
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Deleting resources
+DELETE http://localhost:4000/pod1/myFile1.ttl
+Authorization: Bearer {{$auth.token("css")}}
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 205, "Response status is not 205");
+    });
+%}

@@ -1,0 +1,49 @@
+= HTTP Client Testing
+
+The files contained in this folder can be used for fast HTTP testing.
+The format used here is the one specified by the Jetbrains HTTP Client.
+For further information please consult the documentation https://www.jetbrains.com/help/idea/http-client-in-product code editor.html
+
+== Installation
+
+Before the `.http` files can be executed, client credentials must be created for the test user and storage.
+While the application is running, open a browser window at http://localhost:4000/.account/login/password.
+Login with the default user (`test@example.com`) and password (`secret!`) and create the credentials in the corresponding section.
+Add it to a file called http-client.private.env.json, as shown below.
+
+[source,json]
+----
+{
+  "dev": {
+    "clientId": "test_446bc891-e4dd-4c1b-ad1b-0e672a20619d",
+    "clientSecret": "54a9d73cb08a81fc2441fc4a1a6493bf211cd3f1e5fbae59660822eed4229116f8426878f316d4491dc90d32dca67f629a40ef5214a731e7cb71cb3ec94fc998"
+  }
+}
+----
+
+The `clientId` and `clientSecret` values are just examples, and you need to change them like explained before.
+
+== Usage with IntelliJ
+
+The HTTP requests can be executed as explained in https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html#run_request.
+The environment that needs to be chosen is `dev`.
+
+== Usage with Docker
+
+At this time, the Docker image of the HTTP client can only run unauthorized requests, as the http-client.env.json cannot be serialized properly.
+Those requests can be filtered by a wildcard `*.public.http`, which leads to the following command:
+
+
+[source,bash]
+----
+docker run --rm -v $PWD:/workdir jetbrains/intellij-http-client:latest \
+  --log-level=BASIC \
+  --private-env-file=http-client.private.env.json \
+  --env=dev \
+  --docker-mode \
+  src/*.public.http
+----
+
+At https://www.jetbrains.com/help/idea/http-client-cli.html, you can read more about the CLI usage of the HTTP client.
+
+

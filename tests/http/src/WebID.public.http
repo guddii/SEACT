@@ -1,0 +1,8 @@
+### Read a WebID
+GET http://localhost:4000/pod1/profile/card
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
