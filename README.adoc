@@ -2,14 +2,15 @@
 // Refs:
 :url-repo: https://github.com/guddii/SEACT
 
+image:https://img.shields.io/badge/Project-Solid-7C4DFF.svg[link="https://solidproject.org/"]
+image:{url-repo}/actions/workflows/github-pages.yml/badge.svg[link="{url-repo}/actions/workflows/github-pages.yml"]
+
 This work focuses on improving solid-based extended access control and traceability in data-driven web-based systems.
 By implementing an extended access control mechanism and improved traceability of data access, this project aims to strengthen the security and transparency of web applications.
 The https://solidproject.org/TR/protocol[Solid Protocol] forms the basis for these enhancements, which aim to provide clear and effective control over access to sensitive data.
 
 In this repository you will find the complete source code, detailed integration instructions and examples of how to use these extensions.
 The thesis provides not only a theoretical foundation, but also practical implementations for developers and researchers concerned with privacy and access control in modern web applications.
-
-image:{url-repo}/actions/workflows/github-pages.yml/badge.svg[link="{url-repo}/actions/workflows/github-pages.yml"]
 
 == Installation
 

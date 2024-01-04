@@ -1,9 +1,10 @@
 // Metadata:
-:author: Florian Gudat <florian.gudat@guices.com>
-:authorinitials: FL
+:author_1: Florian Gudat
+:email_1: florian.gudat@guices.com
+:authorinitials_1: FG
 :description:
 :keywords:
-// Settings:
+// General Settings:
 :bibtex-style: apa
 :docinfo: shared
 :docinfodir: resources/docinfo
@@ -14,9 +15,9 @@
 :part-signifier: Part
 :partnums:
 :sectnums:
-:toc: preamble
+:toc: left
 :toclevels: 1
 // Refs:
 :url-repo: https://github.com/guddii/SEACT
-:url-docs: https://www.guddii.de/SEACT
+:url-docs: https://guddii.de/SEACT
 :url-modulux: https://modulux.htwk-leipzig.de/modulux/modul/6291
