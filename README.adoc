@@ -3,7 +3,7 @@
 :url-repo: https://github.com/guddii/SEACT
 
 image:https://img.shields.io/badge/Project-Solid-7C4DFF.svg[link="https://solidproject.org/"]
-image:{url-repo}/actions/workflows/github-pages.yml/badge.svg[link="{url-repo}/actions/workflows/github-pages.yml"]
+image:https://img.shields.io/github/actions/workflow/status/guddii/SEACT/github-pages.yml[link="{url-repo}/actions/workflows/github-pages.yml"]
 
 This work focuses on improving solid-based extended access control and traceability in data-driven web-based systems.
 By implementing an extended access control mechanism and improved traceability of data access, this project aims to strengthen the security and transparency of web applications.
@@ -20,6 +20,9 @@ This is a https://nodejs.org/en/download/package-manager[Node.js] based project,
 ----
 pnpm install
 ----
+
+An `.env` file is also required to provide the necessary configurations at runtime.
+See xref:.example.env[] for a copyable example of the use of environment variables.
 
 == Usage
 
