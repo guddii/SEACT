@@ -2,7 +2,26 @@
 <module type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/apps/client/public" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/client/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/dpc/public" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/dpc/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/proxy/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/logger/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/solid/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/ui/src" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/client/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/dpc/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/proxy/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/proxy/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/server/data" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/logger/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/logger/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/solid/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/ui/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/ui/dist" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
