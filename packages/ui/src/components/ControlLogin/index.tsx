@@ -1,21 +1,25 @@
 import { LoginButton, LogoutButton } from "@inrupt/solid-ui-react";
-import { Button } from "antd";
+import { Button, Space } from "antd";
 import { log } from "logger";
+import type { ReactElement } from "react";
 import { useIdentity } from "../../contexts/IdentityContext";
 
-export function ControlLogin(): React.ReactElement {
+export function ControlLogin(): ReactElement {
   const { idp, currentUrl, webId } = useIdentity();
 
   if (webId) {
     return (
-      <LogoutButton
-        onError={log}
-        onLogout={() => {
-          window.location.reload();
-        }}
-      >
-        <Button>Logout</Button>
-      </LogoutButton>
+      <Space>
+        <Button type="text">{webId}</Button>
+        <LogoutButton
+          onError={log}
+          onLogout={() => {
+            window.location.reload();
+          }}
+        >
+          <Button>Logout</Button>
+        </LogoutButton>
+      </Space>
     );
   }
 

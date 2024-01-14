@@ -1,8 +1,7 @@
 ### Creating resources for a given URL
-PUT http://localhost:4000/pod1/myFile1.ttl
-Authorization: Bearer {{$auth.token("css")}}
+PUT http://localhost:4000/client/myFile1.ttl
+Authorization: Bearer {{$auth.token("client")}}
 Content-Type: text/turtle
-
 
 <ex:s> <ex:p> <ex:o>.
 
@@ -13,8 +12,8 @@ Content-Type: text/turtle
 %}
 
 ### Retrieving resources
-GET http://localhost:4000/pod1/myFile1.ttl
-Authorization: Bearer {{$auth.token("css")}}
+GET http://localhost:4000/client/myFile1.ttl
+Authorization: Bearer {{$auth.token("client")}}
 Content-Type: text/turtle
 
 > {%
@@ -23,9 +22,56 @@ Content-Type: text/turtle
     });
 %}
 
+### Modify a resource using N3 Patch
+PATCH http://localhost:4000/client/myFile1.ttl
+Authorization: Bearer {{$auth.token("client")}}
+Content-Type: text/n3
+
+@prefix solid: <http://www.w3.org/ns/solid/terms#>. _:rename a solid:InsertDeletePatch; solid:inserts { <ex:s2> <ex:p2> <ex:o2>. }.
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 205, "Response status is not 205");
+    });
+%}
+
+### Modify a resource using SPARQL Update
+PATCH http://localhost:4000/client/myFile1.ttl
+Authorization: Bearer {{$auth.token("client")}}
+Content-Type: application/sparql-update
+
+INSERT DATA { <ex:s3> <ex:p3> <ex:o3> }
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 205, "Response status is not 205");
+    });
+%}
+
+### Retrieve resources headers
+HEAD http://localhost:4000/client/myFile1.ttl
+Authorization: Bearer {{$auth.token("client")}}
+Content-Type: text/turtle
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Retrieve resources headers
+OPTIONS http://localhost:4000/client/myFile1.ttl
+Authorization: Bearer {{$auth.token("client")}}
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 204, "Response status is not 204");
+    });
+%}
+
 ### Deleting resources
-DELETE http://localhost:4000/pod1/myFile1.ttl
-Authorization: Bearer {{$auth.token("css")}}
+DELETE http://localhost:4000/client/myFile1.ttl
+Authorization: Bearer {{$auth.token("client")}}
 
 > {%
     client.test("Request executed successfully", function () {

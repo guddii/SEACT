@@ -12,7 +12,7 @@ scope = webid
 %}
 
 ### Authorization by token, part 2. Use type/token to authorize.
-PUT http://localhost:4000/pod1/myFile0.ttl
+PUT http://localhost:4000/client/myFile0.ttl
 Authorization: {{token_type}} {{access_token}}
 Content-Type: text/turtle
 
@@ -25,7 +25,7 @@ Content-Type: text/turtle
 %}
 
 ### Deleting resources
-DELETE http://localhost:4000/pod1/myFile0.ttl
+DELETE http://localhost:4000/client/myFile0.ttl
 Authorization: {{token_type}} {{access_token}}
 
 > {%

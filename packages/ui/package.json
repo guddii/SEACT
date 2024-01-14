@@ -22,10 +22,10 @@
     "preset": "jest-presets/jest/browser"
   },
   "dependencies": {
-    "@ant-design/cssinjs": "^1.17.5",
-    "@inrupt/solid-client-authn-browser": "^1.17.5",
-    "@inrupt/solid-client": "^1.30.2",
-    "@inrupt/solid-ui-react": "^2.9.0",
+    "@ant-design/cssinjs": "^1.18.2",
+    "@inrupt/solid-client-authn-browser": "^2.0.0",
+    "@inrupt/solid-client": "^2.0.0",
+    "@inrupt/solid-ui-react": "^3.0.0",
     "@inrupt/vocab-common-rdf": "^1.0.5",
     "@inrupt/vocab-solid": "^1.0.4",
     "antd": "^5.11.4",

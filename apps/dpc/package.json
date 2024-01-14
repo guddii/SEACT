@@ -1,11 +1,11 @@
 {
-  "name": "client",
+  "name": "dpc",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "build": "next build",
     "clean": "rm -rf .next",
-    "dev": "next dev -p 5010",
+    "dev": "next dev -p 5000",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "start": "next start"
@@ -14,7 +14,11 @@
     "next": "^14.0.3",
     "react-dom": "^18.2.0",
     "react": "^18.2.0",
-    "ui": "workspace:*"
+    "ui": "workspace:*",
+    "antd": "^5.12.8",
+    "@ant-design/icons": "^5.2.6",
+    "logger": "workspace:*",
+    "@inrupt/vocab-common-rdf": "^1.0.5"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.4.19",

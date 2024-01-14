@@ -8,15 +8,17 @@ For further information please consult the documentation https://www.jetbrains.c
 
 Before the `.http` files can be executed, client credentials must be created for the test user and storage.
 While the application is running, open a browser window at http://localhost:4000/.account/login/password.
-Login with the default user (`test@example.com`) and password (`secret!`) and create the credentials in the corresponding section.
+Login with the default user (`client@example.com`) and password (`secret!`) and create the credentials in the corresponding section.
 Add it to a file called http-client.private.env.json, as shown below.
 
 [source,json]
 ----
 {
   "dev": {
-    "clientId": "test_446bc891-e4dd-4c1b-ad1b-0e672a20619d",
-    "clientSecret": "54a9d73cb08a81fc2441fc4a1a6493bf211cd3f1e5fbae59660822eed4229116f8426878f316d4491dc90d32dca67f629a40ef5214a731e7cb71cb3ec94fc998"
+    "clientId": "test_21e128b5-bcab-4e77-ba89-b42a1fa82f90",
+    "clientSecret": "2a03068a95893f90ed095262f31eda7dbb7ec5cd7ed2c61eaead18225d223f5e7f662337f7212407a9913ea312d64f27f30e5e42ae5caa19ef4054ba2948f18e",
+    "dpcId": "dpc_bdf9492b-2be1-4d1a-91fa-848316c241b2",
+    "dpcSecret": "68a262e4289958465698e1c6529678b7ee598953a2921c992924c574c639aca8f5b9081e4a2a1f14a9bfab76ec59757d493bfdd5271f6e32490cc95ba53483d0"
   }
 }
 ----

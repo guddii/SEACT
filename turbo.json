@@ -2,9 +2,11 @@
     "$schema": "https://turbo.build/schema.json",
     "pipeline": {
       "build": {
+        "dotEnv": [".env.production.local", ".env.local", ".env.production", ".env"],
         "dependsOn": ["^build"]
       },
       "test": {
+        "dotEnv": [".env.test.local", ".env.test", ".env"],
         "outputs": ["coverage/**"],
         "dependsOn": []
       },
@@ -15,6 +17,7 @@
         "dependsOn": ["^build"]
       },
       "dev": {
+        "dotEnv": [".env.development.local", ".env.local", ".env.development", ".env"],
         "dependsOn": ["^build"],
         "cache": false,
         "persistent": true
