@@ -1,41 +1,32 @@
-import { Card, Flex, Form, Input } from "antd";
-import { useIdentity } from "../../contexts/IdentityContext";
+import { Card, Form, Input, Space } from "antd";
+import type { ReactElement } from "react";
 import { ControlFetch } from "../ControlFetch";
-import { ControlLogin } from "../ControlLogin";
 
 const { TextArea } = Input;
 
-const boxStyle: React.CSSProperties = {
-  width: "100%",
-  height: "95vh",
-};
-
 interface FormReadWriteProps {
-  path: string;
+  ressource: string;
 }
 
-export function FormReadWrite({
-  path,
-}: FormReadWriteProps): React.ReactElement {
-  const { storage } = useIdentity();
-  const ressource = `${storage ? storage : "/"}${path}`;
+export function FormReadWrite({ ressource }: FormReadWriteProps): ReactElement {
   return (
-    <Form>
-      <Flex align="center" justify="center" style={boxStyle}>
-        <Card
-          actions={[
-            <ControlFetch key="get" method="GET" ressource={ressource} />,
-            <ControlFetch key="put" method="PUT" ressource={ressource} />,
-          ]}
-          extra={<ControlLogin />}
-          style={{ width: 550 }}
-          title="Read and write solid pod"
-        >
-          <Form.Item extra={ressource} name="http://schema.org/name">
-            <TextArea rows={4} />
-          </Form.Item>
-        </Card>
-      </Flex>
-    </Form>
+    <Card>
+      <Form
+        autoComplete="off"
+        labelCol={{ span: 1 }}
+        style={{ maxWidth: "100%" }}
+        wrapperCol={{ span: 23 }}
+      >
+        <Form.Item extra={ressource} label="WebId" name="field">
+          <TextArea rows={8} />
+        </Form.Item>
+        <Form.Item>
+          <Space>
+            <ControlFetch key="get" method="GET" ressource={ressource} />
+            <ControlFetch key="put" method="PUT" ressource={ressource} />
+          </Space>
+        </Form.Item>
+      </Form>
+    </Card>
   );
 }

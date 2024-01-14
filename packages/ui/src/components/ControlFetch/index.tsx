@@ -1,7 +1,7 @@
 import type { UrlString } from "@inrupt/solid-client";
 import { useSession } from "@inrupt/solid-ui-react";
 import { App, Button, Form } from "antd";
-import { useIdentity } from "../../contexts/IdentityContext";
+import type { MouseEventHandler, ReactElement } from "react";
 
 interface ControlFetchProps {
   ressource: UrlString;
@@ -11,21 +11,12 @@ interface ControlFetchProps {
 export function ControlFetch({
   ressource,
   method,
-}: ControlFetchProps): React.ReactElement {
+}: ControlFetchProps): ReactElement {
   const form = Form.useFormInstance();
   const { session } = useSession();
-  const { storage } = useIdentity();
   const { message } = App.useApp();
 
-  const onClick: React.MouseEventHandler<HTMLElement> = () => {
-    if (!storage) {
-      void message.open({
-        type: "error",
-        content: "A storage is required.",
-      });
-      return;
-    }
-
+  const onClick: MouseEventHandler<HTMLElement> = () => {
     if (method === "GET") {
       session
         .fetch(ressource, {
@@ -42,7 +33,7 @@ export function ControlFetch({
           response
             .text()
             .then((text) => {
-              form.setFieldsValue({ "http://schema.org/name": text });
+              form.setFieldsValue({ field: text });
             })
             .catch(() => {
               void message.open({
@@ -63,10 +54,15 @@ export function ControlFetch({
       session
         .fetch(ressource, {
           method,
-          body: String(form.getFieldValue("http://schema.org/name")),
+          body: String(form.getFieldValue("field")),
           headers: {
             "Content-Type": "text/turtle",
           },
+        })
+        .then((response) => {
+          if (response.status >= 400) {
+            throw new Error(response.statusText || "An error occurred.");
+          }
         })
         .catch((error: Error) => {
           void message.open({
@@ -77,9 +73,5 @@ export function ControlFetch({
     }
   };
 
-  return (
-    <Button onClick={onClick} type="text">
-      {method}
-    </Button>
-  );
+  return <Button onClick={onClick}>{method}</Button>;
 }

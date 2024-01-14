@@ -19,7 +19,10 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "logger": "workspace:*",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "@inrupt/solid-client": "^2.0.0",
+    "@inrupt/solid-client-authn-node": "^2.0.0",
+    "@inrupt/vocab-common-rdf": "^1.0.5"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.2",

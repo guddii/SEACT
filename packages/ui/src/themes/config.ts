@@ -1,9 +1,9 @@
 import type { ThemeConfig } from "antd";
 
-const theme: ThemeConfig = {
+const themeConfig: ThemeConfig = {
   token: {
     fontSize: 16,
   },
 };
 
-export default theme;
+export default themeConfig;
