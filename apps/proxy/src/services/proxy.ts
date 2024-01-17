@@ -6,8 +6,7 @@ import type {
   ServerResponse,
 } from "node:http";
 import http from "node:http";
-import { log } from "logger";
-import { PROXY } from "core";
+import { PROXY, log } from "core";
 
 type BeforeForwardingCallback = (
   clientRequest: IncomingMessage,

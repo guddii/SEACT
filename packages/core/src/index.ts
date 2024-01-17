@@ -1,3 +1,5 @@
+// Utils
+export * from "./utils/log";
 export * from "./utils/url-helper";
 
 // Solid app configs

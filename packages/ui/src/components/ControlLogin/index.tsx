@@ -1,7 +1,7 @@
 import { LoginButton, LogoutButton } from "@inrupt/solid-ui-react";
 import { Button, Space } from "antd";
-import { log } from "logger";
 import type { ReactElement } from "react";
+import { log } from "core";
 import { useIdentity } from "../../contexts/IdentityContext";
 
 export function ControlLogin(): ReactElement {
