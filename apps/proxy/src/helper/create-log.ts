@@ -1,6 +1,8 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { buildThing } from "@inrupt/solid-client";
 import { HTTP, RDF } from "@inrupt/vocab-common-rdf";
+import { updateUrl, DPC } from "core";
+import { getAgentUserSession } from "../services/proxy-session";
 import { findDpcContainer } from "./find-dpc-container";
 import { createOrUpdateRessource } from "./create-or-update-ressource";
 
@@ -14,12 +16,19 @@ export const createLog = async ({
   res,
 }: CreateLogOptions): Promise<void> => {
   const dpcContainer = findDpcContainer(req);
+  const session = await getAgentUserSession(DPC);
+
+  if (!session) {
+    return;
+  }
+
   if (!dpcContainer) {
     return;
   }
 
   const response = await createOrUpdateRessource({
-    ressource: `${dpcContainer}/responses`,
+    ressource: updateUrl("/responses", dpcContainer),
+    session,
     callback: (thing) =>
       buildThing(thing)
         .addUrl(RDF.type, HTTP.Response)
@@ -29,7 +38,8 @@ export const createLog = async ({
   });
 
   const request = await createOrUpdateRessource({
-    ressource: `${dpcContainer}/requests`,
+    ressource: updateUrl("/requests", dpcContainer),
+    session,
     callback: (thing) =>
       buildThing(thing)
         .addUrl(RDF.type, HTTP.Request)
@@ -41,10 +51,13 @@ export const createLog = async ({
         .build(),
   });
 
+  const path = `/connections#${encodeURIComponent(
+    req.headers.host || Date.now(),
+  )}`;
+
   await createOrUpdateRessource({
-    ressource: `${dpcContainer}/connections#${encodeURIComponent(
-      req.headers.host || Date.now(),
-    )}`,
+    ressource: updateUrl(path, dpcContainer),
+    session,
     callback: (thing) =>
       buildThing(thing)
         .addUrl(RDF.type, HTTP.Connection)

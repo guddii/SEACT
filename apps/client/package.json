@@ -14,7 +14,8 @@
     "next": "^14.0.3",
     "react-dom": "^18.2.0",
     "react": "^18.2.0",
-    "ui": "workspace:*"
+    "ui": "workspace:*",
+    "core": "workspace:*"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.4.19",

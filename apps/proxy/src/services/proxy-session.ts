@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import type { IncomingMessage } from "node:http";
 import type { ILoginInputOptions } from "@inrupt/solid-client-authn-node";
+import { PROXY, toUrlString } from "core";
 
 const SKIP_REQ_HEADER_VAL = randomUUID();
 
@@ -22,13 +23,12 @@ export class ProxySession {
     };
     const authString = `${client.id}:${client.secret}`;
 
-    const tokenUrl = `${process.env.CSS_BASE_URL}/.oidc/token`;
     const urlSearchParams = new URLSearchParams({
       grant_type: "client_credentials",
       scope: "webid",
     });
 
-    const response = await fetch(tokenUrl, {
+    const response = await fetch(toUrlString(PROXY.tokenUrl), {
       method: "POST",
       headers: {
         authorization: `Basic ${Buffer.from(authString).toString("base64")}`,
@@ -68,15 +68,23 @@ export class ProxySession {
 
 const session = new ProxySession();
 
-export const getAgentUserSession = async (): Promise<ProxySession> => {
+export const getAgentUserSession = async ({
+  clientId,
+  clientSecret,
+  oidcIssuer,
+}: ILoginInputOptions): Promise<ProxySession | null> => {
+  if (!clientId || !clientSecret || !oidcIssuer) {
+    return null;
+  }
+
   if (session.info.isLoggedIn) {
     return session;
   }
 
   await session.login({
-    clientId: process.env.DPC_ID,
-    clientSecret: process.env.DPC_SECRET,
-    oidcIssuer: process.env.CSS_BASE_URL,
+    clientId,
+    clientSecret,
+    oidcIssuer,
   });
 
   return session;

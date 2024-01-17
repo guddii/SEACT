@@ -11,6 +11,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/logger/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/solid/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/packages/ui/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/core/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/apps/client/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/apps/dpc/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/apps/proxy/.turbo" />
@@ -21,6 +22,10 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/solid/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/ui/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/ui/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/client/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/dpc/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/core/.turbo" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/core/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

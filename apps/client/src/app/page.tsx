@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { FormReadWrite, LayoutDefault } from "ui";
 import type { ReactElement } from "react";
+import { CLIENT, toUrlString } from "core";
 
 export const metadata: Metadata = {
   title: "Read write solid pod",
@@ -10,10 +11,9 @@ export const metadata: Metadata = {
 };
 
 export default function Page(): ReactElement {
-  const ressource = `${process.env.CLIENT_WEB_ID}`;
   return (
     <LayoutDefault metadata={metadata}>
-      <FormReadWrite ressource={ressource} />
+      <FormReadWrite ressource={toUrlString(CLIENT.webId)} />
     </LayoutDefault>
   );
 }

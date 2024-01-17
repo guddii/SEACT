@@ -1,4 +1,4 @@
-import type { SolidDataset, Thing, UrlString } from "@inrupt/solid-client";
+import type { SolidDataset, Thing } from "@inrupt/solid-client";
 import {
   createSolidDataset,
   createThing,
@@ -8,45 +8,45 @@ import {
   setThing,
 } from "@inrupt/solid-client";
 import { HTTP } from "@inrupt/vocab-common-rdf";
-import { getAgentUserSession } from "../services/proxy-session";
+import { toUrlString, removeHash } from "core";
+import type { ProxySession } from "../services/proxy-session";
 import { createAccess } from "./create-access";
 
 export interface CreateOrUpdateRessourceOptions {
-  ressource: UrlString;
+  ressource: URL;
+  session: ProxySession;
   callback: (thing: Thing) => Thing;
 }
 export const createOrUpdateRessource = async ({
   ressource,
+  session,
   callback,
 }: CreateOrUpdateRessourceOptions): Promise<Thing> => {
-  const ressourceUrl = new URL(ressource);
-  if (!ressourceUrl.hash) {
-    ressourceUrl.hash = Date.now().toString();
+  if (!ressource.hash) {
+    ressource.hash = Date.now().toString();
   }
-
-  const session = await getAgentUserSession();
 
   let dataset: SolidDataset;
 
   try {
-    dataset = await getSolidDataset(ressourceUrl.toString(), {
+    dataset = await getSolidDataset(toUrlString(ressource), {
       fetch: session.fetch,
     });
   } catch (error) {
     dataset = createSolidDataset();
   }
 
-  let thing = getThing(dataset, ressourceUrl.toString());
+  let thing = getThing(dataset, toUrlString(ressource));
 
   if (!thing) {
-    thing = createThing({ url: ressourceUrl.toString() });
+    thing = createThing({ url: toUrlString(ressource) });
   }
 
   const response = callback(thing);
 
   dataset = setThing(dataset, response);
 
-  await saveSolidDatasetAt(ressourceUrl.toString(), dataset, {
+  await saveSolidDatasetAt(toUrlString(ressource), dataset, {
     fetch: session.fetch,
     prefixes: {
       ...HTTP.PREFIX_AND_NAMESPACE,
@@ -54,7 +54,7 @@ export const createOrUpdateRessource = async ({
     },
   });
 
-  await createAccess(ressourceUrl.toString());
+  await createAccess(removeHash(ressource), session);
 
   return response;
 };
