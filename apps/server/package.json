@@ -1,15 +1,10 @@
 {
   "name": "@seact/server",
-  "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "community-solid-server",
-    "dev": "community-solid-server"
+    "dev": "community-solid-server",
+    "start": "community-solid-server"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@solid/community-server": "7.0.2"
   }
