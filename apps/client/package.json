@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "@seact/client",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -14,16 +14,16 @@
     "next": "^14.0.3",
     "react-dom": "^18.2.0",
     "react": "^18.2.0",
-    "ui": "workspace:*",
-    "core": "workspace:*"
+    "@seact/ui": "workspace:*",
+    "@seact/core": "workspace:*"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.4.19",
     "@types/node": "^17.0.12",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
-    "eslint-config-custom": "workspace:*",
-    "tsconfig": "workspace:*",
+    "@seact/eslint-config-custom": "workspace:*",
+    "@seact/tsconfig": "workspace:*",
     "typescript": "^5.2.2"
   }
 }

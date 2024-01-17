@@ -3,7 +3,7 @@ import { getPodUrlAll } from "@inrupt/solid-client";
 import { useSession } from "@inrupt/solid-ui-react";
 import type { Dispatch, ReactElement, ReactNode, SetStateAction } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
-import { log } from "core";
+import { log } from "@seact/core";
 
 export interface IdentityContext {
   idp: UrlString;

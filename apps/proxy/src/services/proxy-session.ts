@@ -1,7 +1,7 @@
 import { randomUUID } from "node:crypto";
 import type { IncomingMessage } from "node:http";
 import type { ILoginInputOptions } from "@inrupt/solid-client-authn-node";
-import { PROXY, toUrlString } from "core";
+import { PROXY, toUrlString } from "@seact/core";
 
 const SKIP_REQ_HEADER_VAL = randomUUID();
 

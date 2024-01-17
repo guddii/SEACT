@@ -1,7 +1,7 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { buildThing } from "@inrupt/solid-client";
 import { HTTP, RDF } from "@inrupt/vocab-common-rdf";
-import { updateUrl, DPC } from "core";
+import { updateUrl, DPC } from "@seact/core";
 import { getAgentUserSession } from "../services/proxy-session";
 import { findDpcContainer } from "./find-dpc-container";
 import { createOrUpdateRessource } from "./create-or-update-ressource";

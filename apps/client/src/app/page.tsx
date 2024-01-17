@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { FormReadWrite, LayoutDefault } from "ui";
+import { FormReadWrite, LayoutDefault } from "@seact/ui";
 import type { ReactElement } from "react";
-import { CLIENT, toUrlString } from "core";
+import { CLIENT, toUrlString } from "@seact/core";
 
 export const metadata: Metadata = {
   title: "Read write solid pod",

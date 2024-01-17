@@ -8,7 +8,7 @@ import {
   setThing,
 } from "@inrupt/solid-client";
 import { HTTP } from "@inrupt/vocab-common-rdf";
-import { toUrlString, removeHash } from "core";
+import { toUrlString, removeHash } from "@seact/core";
 import type { ProxySession } from "../services/proxy-session";
 import { createAccess } from "./create-access";
 

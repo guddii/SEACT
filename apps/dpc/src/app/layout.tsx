@@ -1,4 +1,4 @@
-import { AppSolid } from "ui";
+import { AppSolid } from "@seact/ui";
 import type { ReactElement, ReactNode } from "react";
 
 interface RootLayoutProps {

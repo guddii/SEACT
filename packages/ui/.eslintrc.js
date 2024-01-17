@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ["custom/react"],
+  extends: [require.resolve("@seact/eslint-config-custom/react")],
 };

@@ -6,7 +6,7 @@ import {
   getThingAll,
 } from "@inrupt/solid-client";
 import type { Session } from "@inrupt/solid-client-authn-browser";
-import { toUrlString } from "core";
+import { toUrlString } from "@seact/core";
 
 interface GetDatasetAsMatrixOptions {
   session: Session;

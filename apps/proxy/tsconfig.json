@@ -5,6 +5,6 @@
     "outDir": "./dist",
   },
   "exclude": ["node_modules"],
-  "extends": "tsconfig/base.json",
+  "extends": "@seact/tsconfig/base.json",
   "include": ["."]
 }

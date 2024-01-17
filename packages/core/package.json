@@ -1,5 +1,5 @@
 {
-  "name": "core",
+  "name": "@seact/core",
   "version": "0.0.0",
   "private": true,
   "main": "./dist/index.js",
@@ -15,14 +15,14 @@
     "test": "jest --passWithNoTests"
   },
   "jest": {
-    "preset": "jest-presets/jest/node"
+    "preset": "@seact/jest-presets/jest/node"
   },
   "devDependencies": {
     "@inrupt/solid-client-authn-node": "^2.0.0",
     "@types/node": "^18.11.9",
-    "eslint-config-custom": "workspace:*",
-    "jest-presets": "workspace:*",
-    "tsconfig": "workspace:*",
+    "@seact/eslint-config-custom": "workspace:*",
+    "@seact/jest-presets": "workspace:*",
+    "@seact/tsconfig": "workspace:*",
     "tsup": "^6.0.1",
     "typescript": "^5.2.2"
   }

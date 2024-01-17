@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ["custom/server"],
+  extends: [require.resolve("@seact/eslint-config-custom/server")],
 };

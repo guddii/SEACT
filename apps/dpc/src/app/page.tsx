@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Box, LayoutDefault, TableRDF } from "ui";
+import { Box, LayoutDefault, TableRDF } from "@seact/ui";
 import type { ReactElement } from "react";
 import React from "react";
 import type { TabsProps } from "antd";
 import { Tabs } from "antd";
 import { HTTP } from "@inrupt/vocab-common-rdf";
-import { DPC, updateUrlString } from "core";
+import { DPC, updateUrlString } from "@seact/core";
 
 export const metadata: Metadata = {
   title: "Access Logs",

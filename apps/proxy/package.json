@@ -1,5 +1,5 @@
 {
-  "name": "proxy",
+  "name": "@seact/proxy",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -12,7 +12,7 @@
     "test": "jest --detectOpenHandles"
   },
   "jest": {
-    "preset": "jest-presets/jest/node"
+    "preset": "@seact/jest-presets/jest/node"
   },
   "dependencies": {
     "body-parser": "^1.20.2",
@@ -22,7 +22,7 @@
     "@inrupt/solid-client": "^2.0.0",
     "@inrupt/solid-client-authn-node": "^2.0.0",
     "@inrupt/vocab-common-rdf": "^1.0.5",
-    "core": "workspace:*"
+    "@seact/core": "workspace:*"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.2",
@@ -31,10 +31,10 @@
     "@types/morgan": "^1.9.5",
     "@types/node": "^20.5.9",
     "@types/supertest": "^2.0.12",
-    "eslint-config-custom": "workspace:*",
-    "jest-presets": "workspace:*",
+    "@seact/eslint-config-custom": "workspace:*",
+    "@seact/jest-presets": "workspace:*",
     "supertest": "^6.3.3",
-    "tsconfig": "workspace:*",
+    "@seact/tsconfig": "workspace:*",
     "tsup": "^6.0.1",
     "typescript": "^5.2.2"
   }

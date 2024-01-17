@@ -1,5 +1,5 @@
 import type { IncomingMessage } from "node:http";
-import { DPC, updateUrl } from "core";
+import { DPC, updateUrl } from "@seact/core";
 
 export const findDpcContainer = (req: IncomingMessage): URL | null => {
   if (!req.url) {

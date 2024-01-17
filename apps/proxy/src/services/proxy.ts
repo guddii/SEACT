@@ -6,7 +6,7 @@ import type {
   ServerResponse,
 } from "node:http";
 import http from "node:http";
-import { PROXY, log } from "core";
+import { PROXY, log } from "@seact/core";
 
 type BeforeForwardingCallback = (
   clientRequest: IncomingMessage,

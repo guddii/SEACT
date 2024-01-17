@@ -1,6 +1,6 @@
 import type { AccessModes } from "@inrupt/solid-client";
 import { universalAccess } from "@inrupt/solid-client";
-import { CLIENT, toUrlString } from "core";
+import { CLIENT, toUrlString } from "@seact/core";
 import type { ProxySession } from "../services/proxy-session";
 
 export const createAccess = async (
