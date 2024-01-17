@@ -1,0 +1,28 @@
+{
+  "private": true,
+  "name": "@seact/core",
+  "main": "./dist/index.js",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint src/",
+    "test": "jest --passWithNoTests",
+    "typecheck": "tsc --noEmit",
+    "watch": "tsup --watch"
+  },
+  "types": "./dist/index.d.ts",
+  "devDependencies": {
+    "@inrupt/solid-client-authn-node": "^2.0.0",
+    "@seact/eslint-config-custom": "workspace:*",
+    "@seact/jest-presets": "workspace:*",
+    "@seact/tsconfig": "workspace:*",
+    "@types/node": "^18.11.9",
+    "tsup": "^6.0.1",
+    "typescript": "^5.2.2"
+  },
+  "jest": {
+    "preset": "@seact/jest-presets/jest/node"
+  }
+}

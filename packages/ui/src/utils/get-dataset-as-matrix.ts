@@ -1,4 +1,4 @@
-import type { IriString, Thing } from "@inrupt/solid-client";
+import type { Thing } from "@inrupt/solid-client";
 import {
   getPropertyAll,
   getTermAll,
@@ -6,6 +6,7 @@ import {
   getThingAll,
 } from "@inrupt/solid-client";
 import type { Session } from "@inrupt/solid-client-authn-browser";
+import { toUrlString } from "@seact/core";
 
 interface GetDatasetAsMatrixOptions {
   session: Session;
@@ -26,7 +27,7 @@ const getAsMatrix = (thingAll: Thing[]): Record<string, string>[] => {
 };
 
 export const getDatasetAsMatrix = async (
-  ressource: IriString,
+  ressource: string | URL,
   options: GetDatasetAsMatrixOptions,
 ): Promise<Record<string, string>[]> => {
   const { session } = options;
@@ -35,7 +36,9 @@ export const getDatasetAsMatrix = async (
     return [];
   }
 
-  const dataset = await getSolidDataset(ressource, { fetch: session.fetch });
+  const dataset = await getSolidDataset(toUrlString(ressource), {
+    fetch: session.fetch,
+  });
 
   const thingAll = getThingAll(dataset);
   return getAsMatrix(thingAll);

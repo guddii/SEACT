@@ -1,32 +1,31 @@
 {
-  "name": "dpc",
-  "version": "0.0.0",
   "private": true,
+  "name": "@seact/dpc",
   "scripts": {
     "build": "next build",
     "clean": "rm -rf .next",
     "dev": "next dev -p 5000",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit",
-    "start": "next start"
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "next": "^14.0.3",
-    "react-dom": "^18.2.0",
-    "react": "^18.2.0",
-    "ui": "workspace:*",
-    "antd": "^5.12.8",
     "@ant-design/icons": "^5.2.6",
-    "logger": "workspace:*",
-    "@inrupt/vocab-common-rdf": "^1.0.5"
+    "@inrupt/vocab-common-rdf": "^1.0.5",
+    "@seact/core": "workspace:*",
+    "@seact/ui": "workspace:*",
+    "antd": "^5.12.8",
+    "next": "^14.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.4.19",
+    "@seact/eslint-config-custom": "workspace:*",
+    "@seact/tsconfig": "workspace:*",
     "@types/node": "^17.0.12",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
-    "eslint-config-custom": "workspace:*",
-    "tsconfig": "workspace:*",
     "typescript": "^5.2.2"
   }
 }

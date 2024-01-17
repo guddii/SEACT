@@ -3,14 +3,13 @@ import React, { useEffect, useState } from "react";
 import type { TableProps } from "antd";
 import { App, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import type { UrlString } from "@inrupt/solid-client";
 import { useSession } from "@inrupt/solid-ui-react";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { getDatasetAsMatrix } from "../../utils/get-dataset-as-matrix.ts";
-import { toTable } from "../../adapter/rdf/to-table.tsx";
+import { toTable } from "../../adapter/rdf/to-table";
 
 interface TableRDFProps extends TableProps<Record<string, string>> {
-  ressource: UrlString;
+  ressource: string;
   excludeColumns?: string[];
   showInExpander?: string;
 }

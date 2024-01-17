@@ -1,14 +1,19 @@
-import type { AccessModes, UrlString } from "@inrupt/solid-client";
+import type { AccessModes } from "@inrupt/solid-client";
 import { universalAccess } from "@inrupt/solid-client";
-import { getAgentUserSession } from "../services/proxy-session";
+import { CLIENT, toUrlString } from "@seact/core";
+import type { ProxySession } from "../services/proxy-session";
 
 export const createAccess = async (
-  resourceUrl: UrlString,
+  resource: URL,
+  session: ProxySession | null,
 ): Promise<AccessModes | null> => {
-  const session = await getAgentUserSession();
+  if (!session) {
+    return null;
+  }
+  const webId = toUrlString(CLIENT.webId);
   return universalAccess.setAgentAccess(
-    resourceUrl,
-    process.env.CLIENT_WEB_ID || "",
+    toUrlString(resource),
+    webId,
     { read: true },
     { fetch: session.fetch },
   );

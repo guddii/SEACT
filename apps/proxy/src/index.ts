@@ -1,4 +1,4 @@
-import { log } from "logger";
+import { log } from "@seact/core";
 import { createServer } from "./server";
 
 const port = 4000;

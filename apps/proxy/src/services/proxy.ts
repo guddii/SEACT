@@ -6,7 +6,7 @@ import type {
   ServerResponse,
 } from "node:http";
 import http from "node:http";
-import { log } from "logger";
+import { PROXY, log } from "@seact/core";
 
 type BeforeForwardingCallback = (
   clientRequest: IncomingMessage,
@@ -25,21 +25,14 @@ interface ProxyOptions {
 export function proxy(options: ProxyOptions): RequestListener {
   return (clientRequest, clientResponse) => {
     const proxyRequestOptions: RequestOptions = {
-      hostname: new URL(
-        process.env.PROXY_FORWARDING_URL || "http://localhost:3000",
-      ).hostname,
-      port: new URL(process.env.PROXY_FORWARDING_URL || "http://localhost:3000")
-        .port,
+      hostname: PROXY.forwardingUrl.hostname,
+      port: PROXY.forwardingUrl.port,
       path: clientRequest.url,
       method: clientRequest.method,
       headers: {
         ...{
-          "X-Forwarded-Host": new URL(
-            process.env.PROXY_BASE_URL || "http://localhost:4000",
-          ).host,
-          "X-Forwarded-Proto": new URL(
-            process.env.PROXY_BASE_URL || "http://localhost:4000",
-          ).protocol.slice(0, -1),
+          "X-Forwarded-Host": PROXY.baseUrl.host,
+          "X-Forwarded-Proto": PROXY.baseUrl.protocol.slice(0, -1),
         },
         ...clientRequest.headers,
       },

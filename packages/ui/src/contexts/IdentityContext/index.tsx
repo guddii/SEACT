@@ -1,9 +1,9 @@
 import type { UrlString, WebId } from "@inrupt/solid-client";
 import { getPodUrlAll } from "@inrupt/solid-client";
 import { useSession } from "@inrupt/solid-ui-react";
-import { log } from "logger";
 import type { Dispatch, ReactElement, ReactNode, SetStateAction } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
+import { log } from "@seact/core";
 
 export interface IdentityContext {
   idp: UrlString;
