@@ -1,8 +1,8 @@
 import process from "node:process";
 import { PROXY } from "../apps/proxy";
-import { SolidAgent } from "../../models/solid-agent";
+import { Agent } from "../../models/agent.ts";
 
-export const CLIENT = new SolidAgent({
+export const CLIENT = new Agent({
   webId:
     process.env.CLIENT_WEB_ID || "http://localhost:4000/client/profile/card#me",
   storage: process.env.CLIENT_STORAGE || "http://localhost:4000/client",
