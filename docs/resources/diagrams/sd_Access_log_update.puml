@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam sequenceReferenceBackgroundColor white
+
+mainframe **sd** Access Log Update ( ""resource"" )
+autonumber 1 1 "<b>[0]"
+
+participant "Proxy" as Proxy
+participant "Server" as Server
+
+Proxy   ->  Proxy       : **GET** Request for current state of the ""resource""
+ref over Proxy, Server  : Forwarded Request
+opt hasClientErrorResponse
+Proxy   -> Proxy        : Create new dataset
+end
+Proxy   -> Proxy        : **PUT** Request dataset with log data at the ""resource"" path
+ref over Proxy, Server : Forwarded Request
+@enduml
