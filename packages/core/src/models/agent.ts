@@ -2,7 +2,7 @@ import type { ILoginInputOptions } from "@inrupt/solid-client-authn-node";
 import { createUrl, toUrlString } from "../utils/url-helper";
 import type { SolidApp } from "./solid-app";
 
-export interface SolidAgentOptions {
+export interface AgentOptions {
   webId: string;
   storage: string;
   clientId: ILoginInputOptions["clientId"];
@@ -10,14 +10,14 @@ export interface SolidAgentOptions {
   provider: SolidApp;
 }
 
-export class SolidAgent {
+export class Agent {
   public readonly webId: URL;
   public readonly storage: URL;
   public readonly clientId: ILoginInputOptions["clientId"];
   public readonly clientSecret: ILoginInputOptions["clientSecret"];
   public readonly provider: SolidApp;
 
-  constructor(option: SolidAgentOptions) {
+  constructor(option: AgentOptions) {
     this.webId = createUrl(option.webId);
     this.storage = createUrl(option.storage);
     this.clientId = option.clientId;

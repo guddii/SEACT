@@ -2,6 +2,10 @@ import { randomUUID } from "node:crypto";
 import type { IncomingMessage } from "node:http";
 import type { ILoginInputOptions } from "@inrupt/solid-client-authn-node";
 import { PROXY, toUrlString } from "@seact/core";
+import {
+  isRedirectionMessage,
+  isSuccessfulResponse,
+} from "../helper/http-helper.ts";
 
 const SKIP_REQ_HEADER_VAL = randomUUID();
 
@@ -28,7 +32,7 @@ export class ProxySession {
       scope: "webid",
     });
 
-    const response = await fetch(toUrlString(PROXY.tokenUrl), {
+    const response: Response = await fetch(toUrlString(PROXY.tokenUrl), {
       method: "POST",
       headers: {
         authorization: `Basic ${Buffer.from(authString).toString("base64")}`,
@@ -38,9 +42,11 @@ export class ProxySession {
       body: urlSearchParams.toLocaleString(),
     });
 
-    const data = await response.json();
-    this.token = data as Record<string, string>;
-    this.info.isLoggedIn = true;
+    if (isSuccessfulResponse(response) || isRedirectionMessage(response)) {
+      const data = await response.json();
+      this.token = data as Record<string, string>;
+      this.info.isLoggedIn = true;
+    }
   }
 
   fetch: typeof fetch = async (input, init) => {
@@ -72,11 +78,7 @@ export const getAgentUserSession = async ({
   clientId,
   clientSecret,
   oidcIssuer,
-}: ILoginInputOptions): Promise<ProxySession | null> => {
-  if (!clientId || !clientSecret || !oidcIssuer) {
-    return null;
-  }
-
+}: ILoginInputOptions): Promise<ProxySession> => {
   if (session.info.isLoggedIn) {
     return session;
   }

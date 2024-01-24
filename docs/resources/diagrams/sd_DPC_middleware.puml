@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam sequenceReferenceBackgroundColor white
+
+mainframe **sd** DPC Middleware
+autonumber 1 1 "<b>[0]"
+
+participant "Proxy" as Proxy
+participant "Server" as Server
+
+ref over Proxy, Server  : Authentication with Client Credentials ( DPC )
+opt isDpcAgentLoggedIn
+loop hasContainerResources
+    Proxy   ->  Proxy   : <b>HEAD</b> Request closest container resource
+ref over Proxy, Server  : Forwarded Request
+    break existStorageInResponseHeader
+    Proxy   -> Proxy        : Set requested container resource as storage
+    end
+end
+opt existStorage
+||5||
+ref over Proxy, Server : Access Log Update ( "/responses" )
+ref over Proxy, Server : Access Log Update ( "/requests" )
+ref over Proxy, Server : Access Log Update ( "/connections" )
+end
+end
+@enduml

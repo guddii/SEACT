@@ -1,0 +1,86 @@
+= Architecture
+include::partials/Attributes.adoc[]
+
+include::partials/Glossary.adoc[]
+
+include::partials/Acronyms.adoc[]
+
+== System Behavior
+
+This section describes the system behavior using <<UML>> 2.5 with https://plantuml.com/de/[PlantUML] as the generator.
+The dynamic behavior of the system's objects will be illustrated with sequence diagrams and other interaction diagrams (sd).
+
+=== Authorised CRUD Requests
+
+The process of authorizing a request can be divided into two steps.
+Firstly, an authorization token will be requested using a Client Credentials Flow as defined in https://datatracker.ietf.org/doc/html/rfc6749#section-4.4[RFC 6749], although other authorization processes are also possible.
+Secondly, the CRUD request will be sent with an authorization header and the response will be provided accordingly.
+The key difference is that the request and response will be forwarded by the proxy instance.
+
+.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of an authorized CRUD request
+[.text-center]
+[plantuml,format=svg]
+....
+include::resources/diagrams/sd_Request_a_resource.puml[]
+....
+
+=== Authentication with Client Credentials
+
+To obtain the authorization token, send a POST request to the authorization server with the client ID and secret in the authentication header.
+It is also necessary to set the grant type to `client_credentials` and the scope to `webid`.
+The proxy will forward requests as every CRUD request because the authorization server is not directly accessible.
+
+.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the authentication using client credentials
+[.text-center]
+[plantuml,format=svg]
+....
+include::resources/diagrams/sd_Authentication_with_Client_Credentials.puml[]
+....
+
+=== Forwarded Request
+
+Request forwarding is quite simple, the proxy receives a CRUD request that is passed through the server.
+The returning server response will take the path back to the original requester.
+Since the requester can be the proxy itself, there needs to be some kind of guard to prevent infinite recursive calls.
+If the requester is someone other than the proxy, the Data Privacy Cockpit middleware can be executed.
+
+.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the request being forwarded by the proxy
+[.text-center]
+[plantuml,format=svg]
+....
+include::resources/diagrams/sd_Forwarded_request.puml[]
+....
+
+=== Data Privacy Cockpit Middleware
+
+The Data Privacy Cockpit is a Solid application that requires a dedicated agent and client credentials.
+The agent must log in before any other actions can be executed.
+If successful, the container resources of the requested resource will be searched until the corresponding storage is found or no more container resources are left to search.
+If a storage is found, access logs will be created or updated, with one resource for each RDF class:
+
+- https://www.w3.org/TR/HTTP-in-RDF10/#ResponseClass
+- https://www.w3.org/TR/HTTP-in-RDF10/#RequestClass
+- https://www.w3.org/TR/HTTP-in-RDF10/#ConnectionClass
+
+The log resources will be grouped by the storage they belong to and owned by the DPC agent.
+
+.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the Data Privacy Cockpit middleware
+[.text-center]
+[plantuml,format=svg]
+....
+include::resources/diagrams/sd_DPC_middleware.puml[]
+....
+
+=== Access Log Update
+
+The update to the access log begins with a test to determine if the resource already exists on the server.
+If it does, it will be received as a dataset.
+Otherwise, a new dataset will be created.
+The dataset will be enriched with new log data and stored on the server.
+
+.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of an access log resource update
+[.text-center]
+[plantuml,format=svg]
+....
+include::resources/diagrams/sd_Access_log_update.puml[]
+....

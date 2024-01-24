@@ -1,0 +1,12 @@
+[glossary]
+= Glossary
+
+[glossary]
+[[Access-Control-List,Access Control List]] Access Control List:: An Access Control List is a document specifying permissions that determine access to a <<resource>>.
+[[Hypertext-Transfer-Protocol,Hypertext Transfer Protocol]] Hypertext Transfer Protocol:: A protocol for transferring data on the application layer.
+[[Solid-app,Solid app]] Solid app:: Solid app is a software that accesses and stores data from one or more <<storage>> systems.
+[[Uniform-Resource-Identifier,Uniform Resource Identifier]] Uniform Resource Identifier:: A Uniform Resource Identifier identifies a resource.
+[[WebID,WebID]] WebID:: A WebID is an <<HTTP>> <<URI>> that points to an <<agent>>.
+[[agent,agent]] agent:: An agent is a person, an organisation, a group, a device, etc. that is identified by a <<URI>>.
+[[resource,resource]] resource:: A resource is the target of an <<HTTP>> request, identified by a <<URI>>.
+[[storage,storage]] storage:: A storage is a set of <<URI>>s that can be accessed by an agent in a controlled manner.

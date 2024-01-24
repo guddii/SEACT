@@ -1,20 +1,15 @@
-import type {
-  ClientRequest,
-  IncomingMessage,
-  RequestListener,
-  RequestOptions,
-  ServerResponse,
-} from "node:http";
+import type { ClientRequest, IncomingMessage, RequestOptions } from "node:http";
 import http from "node:http";
 import { PROXY, log } from "@seact/core";
+import type { Response, Request } from "express";
 
 type BeforeForwardingCallback = (
   clientRequest: IncomingMessage,
 ) => Promise<void>;
 
 type AfterForwardingCallback = (
-  clientRequest: IncomingMessage,
-  clientResponse: ServerResponse,
+  clientRequest: Request,
+  clientResponse: Response,
 ) => Promise<void>;
 
 interface ProxyOptions {
@@ -22,8 +17,8 @@ interface ProxyOptions {
   onAfterForwarding?: AfterForwardingCallback;
 }
 
-export function proxy(options: ProxyOptions): RequestListener {
-  return (clientRequest, clientResponse) => {
+export function proxy(options: ProxyOptions) {
+  return (clientRequest: Request, clientResponse: Response) => {
     const proxyRequestOptions: RequestOptions = {
       hostname: PROXY.forwardingUrl.hostname,
       port: PROXY.forwardingUrl.port,
@@ -40,6 +35,11 @@ export function proxy(options: ProxyOptions): RequestListener {
 
     function onForwardedRequest(forwardedResponse: IncomingMessage): void {
       if (typeof forwardedResponse.statusCode === "number") {
+        // Callback before forwarding the request
+        if (options.onBeforeForwarding) {
+          options.onBeforeForwarding(clientRequest).catch(log);
+        }
+
         clientResponse.writeHead(
           forwardedResponse.statusCode,
           forwardedResponse.headers,
@@ -48,6 +48,11 @@ export function proxy(options: ProxyOptions): RequestListener {
         forwardedResponse.pipe(clientResponse, {
           end: true,
         });
+
+        // Callback after forwarding the request
+        if (options.onAfterForwarding) {
+          options.onAfterForwarding(clientRequest, clientResponse).catch(log);
+        }
       }
     }
 
@@ -57,20 +62,10 @@ export function proxy(options: ProxyOptions): RequestListener {
       clientResponse.end();
     }
 
-    // Callback before forwarding the request
-    if (options.onBeforeForwarding) {
-      options.onBeforeForwarding(clientRequest).catch(log);
-    }
-
     // Forwarding request
     const proxyRequest: ClientRequest = http
       .request(proxyRequestOptions, onForwardedRequest)
       .on("error", onForwardedError);
-
-    // Callback after forwarding the request
-    if (options.onAfterForwarding) {
-      options.onAfterForwarding(clientRequest, clientResponse).catch(log);
-    }
 
     clientRequest.pipe(proxyRequest, {
       end: true,

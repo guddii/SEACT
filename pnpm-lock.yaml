@@ -130,6 +130,9 @@ importers:
       '@inrupt/vocab-common-rdf':
         specifier: ^1.0.5
         version: 1.0.5
+      '@inrupt/vocab-solid':
+        specifier: ^1.0.4
+        version: 1.0.4
       '@seact/core':
         specifier: workspace:*
         version: link:../../packages/core
@@ -142,6 +145,9 @@ importers:
       express:
         specifier: ^4.18.2
         version: 4.18.2
+      http-link-header:
+        specifier: ^1.1.1
+        version: 1.1.1
       morgan:
         specifier: ^1.10.0
         version: 1.10.0
@@ -162,8 +168,11 @@ importers:
         specifier: ^2.8.10
         version: 2.8.17
       '@types/express':
-        specifier: ^4.17.17
+        specifier: ^4.17.21
         version: 4.17.21
+      '@types/http-link-header':
+        specifier: ^1.0.5
+        version: 1.0.5
       '@types/morgan':
         specifier: ^1.9.5
         version: 1.9.9
@@ -3975,7 +3984,6 @@ packages:
     resolution: {integrity: sha512-AxhIKR8UbyoqCTNp9rRepkktHuUOw3DjfOfDCaO9kwI8AYzjhxyrvZq4+mRw/2daD3hYDknrtSeV6SsPwmc71w==}
     dependencies:
       '@types/node': 20.9.3
-    dev: false
 
   /@types/is-empty@1.2.3:
     resolution: {integrity: sha512-4J1l5d79hoIvsrKh5VUKVRA1aIdsOb10Hu5j3J2VfP/msDnfTdGPmNp2E1Wg+vs97Bktzo+MZePFFXSGoykYJw==}

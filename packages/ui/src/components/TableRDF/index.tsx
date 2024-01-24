@@ -9,12 +9,12 @@ import { getDatasetAsMatrix } from "../../utils/get-dataset-as-matrix.ts";
 import { toTable } from "../../adapter/rdf/to-table";
 
 interface TableRDFProps extends TableProps<Record<string, string>> {
-  ressource: string;
+  resource: string;
   excludeColumns?: string[];
   showInExpander?: string;
 }
 export function TableRDF({
-  ressource,
+  resource,
   excludeColumns,
   showInExpander,
   ...args
@@ -40,7 +40,7 @@ export function TableRDF({
   }
 
   useEffect(() => {
-    getDatasetAsMatrix(ressource, { session })
+    getDatasetAsMatrix(resource, { session })
       .then(toTable({ setColumns, setData, excludeColumns }))
       .catch((error: Error) => {
         void message.open({
@@ -51,7 +51,7 @@ export function TableRDF({
       .finally(() => {
         setLoading(false);
       });
-  }, [excludeColumns, message, ressource, session, webId]);
+  }, [excludeColumns, message, resource, session, webId]);
 
   return (
     <Table

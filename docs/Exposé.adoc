@@ -3,11 +3,6 @@ include::partials/Attributes.adoc[]
 
 include::partials/Preface.adoc[]
 
-[discrete]
-== Table of Contents
-
-toc::[]
-
 The Solid protocol enables secure storage of data in a decentralised environment, which can then be shared with others, such as individuals, organisations, or applications via the Internet.
 The data is decentralised and so is the access control information.
 The owner of the data and access control information is responsible for managing these contents.
