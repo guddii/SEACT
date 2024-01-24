@@ -1,6 +1,5 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
 import express from "express";
-import type { Express } from "express";
+import type { Express, Request, Response } from "express";
 import morgan from "morgan";
 import { proxy } from "./services/proxy";
 import { ProxySession } from "./services/proxy-session";
@@ -8,8 +7,8 @@ import { createLog } from "./helper/create-log";
 import { statusRouter } from "./resources/status/status.router";
 
 const onAfterForwarding = async (
-  req: IncomingMessage,
-  res: ServerResponse,
+  req: Request,
+  res: Response,
 ): Promise<void> => {
   if (ProxySession.isOwnRequest(req)) {
     await createLog({ req, res });

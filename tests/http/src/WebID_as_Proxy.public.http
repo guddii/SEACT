@@ -1,0 +1,10 @@
+### Read a WebID as Proxy
+GET http://localhost:3000/client/profile/card#me
+X-Forwarded-Host: localhost:4000
+X-Forwarded-Proto: http
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 201");
+    });
+%}

@@ -15,13 +15,12 @@ export const createLog = async ({
   req,
   res,
 }: CreateLogOptions): Promise<void> => {
-  const dpcContainer = findDpcContainer(req);
   const session = await getAgentUserSession(DPC);
-
-  if (!session) {
+  if (!session.info.isLoggedIn) {
     return;
   }
 
+  const dpcContainer = await findDpcContainer(req, session);
   if (!dpcContainer) {
     return;
   }

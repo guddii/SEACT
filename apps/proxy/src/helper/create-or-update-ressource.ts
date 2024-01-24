@@ -8,9 +8,8 @@ import {
   setThing,
 } from "@inrupt/solid-client";
 import { HTTP } from "@inrupt/vocab-common-rdf";
-import { toUrlString, removeHash } from "@seact/core";
+import { toUrlString } from "@seact/core";
 import type { ProxySession } from "../services/proxy-session";
-import { createAccess } from "./create-access";
 
 export interface CreateOrUpdateRessourceOptions {
   ressource: URL;
@@ -53,8 +52,6 @@ export const createOrUpdateRessource = async ({
       ...{ httpm: "http://www.w3.org/2011/http-methods#" },
     },
   });
-
-  await createAccess(removeHash(ressource), session);
 
   return response;
 };

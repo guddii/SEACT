@@ -16,12 +16,16 @@ export const createUrlString = (
   return toUrlString(createUrl(url, base));
 };
 
+export const normalizePathname = (pathname: string): string => {
+  return pathname.replace("//", "/");
+};
+
 export const updateUrl = (patch: string | URL, base: URL): URL => {
   const patchUrl = createUrl(patch, base);
   const updatedUrl = createUrl(base);
 
   // Append pathname
-  updatedUrl.pathname = base.pathname + patchUrl.pathname;
+  updatedUrl.pathname = normalizePathname(base.pathname + patchUrl.pathname);
   // Replace hash if present
   updatedUrl.hash = patchUrl.hash || base.hash;
   // Append search params
@@ -40,4 +44,8 @@ export const removeHash = (url: URL): URL => {
   const urlWithoutHash = createUrl(url);
   urlWithoutHash.hash = "";
   return urlWithoutHash;
+};
+
+export const appendTrailingSlash = (url: URL): URL => {
+  return updateUrl("/", url);
 };
