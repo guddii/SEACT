@@ -4,7 +4,7 @@ import { HTTP, RDF } from "@inrupt/vocab-common-rdf";
 import { updateUrl, DPC } from "@seact/core";
 import { getAgentUserSession } from "../services/proxy-session";
 import { findDpcContainer } from "./find-dpc-container";
-import { createOrUpdateRessource } from "./create-or-update-ressource";
+import { createOrUpdateResource } from "./create-or-update-resource";
 
 export interface CreateLogOptions {
   req: IncomingMessage;
@@ -25,8 +25,8 @@ export const createLog = async ({
     return;
   }
 
-  const response = await createOrUpdateRessource({
-    ressource: updateUrl("/responses", dpcContainer),
+  const response = await createOrUpdateResource({
+    resource: updateUrl("/responses", dpcContainer),
     session,
     callback: (thing) =>
       buildThing(thing)
@@ -36,8 +36,8 @@ export const createLog = async ({
         .build(),
   });
 
-  const request = await createOrUpdateRessource({
-    ressource: updateUrl("/requests", dpcContainer),
+  const request = await createOrUpdateResource({
+    resource: updateUrl("/requests", dpcContainer),
     session,
     callback: (thing) =>
       buildThing(thing)
@@ -54,8 +54,8 @@ export const createLog = async ({
     req.headers.host || Date.now(),
   )}`;
 
-  await createOrUpdateRessource({
-    ressource: updateUrl(path, dpcContainer),
+  await createOrUpdateResource({
+    resource: updateUrl(path, dpcContainer),
     session,
     callback: (thing) =>
       buildThing(thing)

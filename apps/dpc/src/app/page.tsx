@@ -23,7 +23,7 @@ export default function Page(): ReactElement {
         <Box>
           <TableRDF
             excludeColumns={[HTTP.requests]}
-            ressource={updateUrlString(
+            resource={updateUrlString(
               "/requests/client/connections",
               DPC.storage,
             )}
@@ -37,10 +37,7 @@ export default function Page(): ReactElement {
       children: (
         <Box>
           <TableRDF
-            ressource={updateUrlString(
-              "/requests/client/requests",
-              DPC.storage,
-            )}
+            resource={updateUrlString("/requests/client/requests", DPC.storage)}
           />
         </Box>
       ),
@@ -51,7 +48,7 @@ export default function Page(): ReactElement {
       children: (
         <Box>
           <TableRDF
-            ressource={updateUrlString(
+            resource={updateUrlString(
               "/requests/client/responses",
               DPC.storage,
             )}

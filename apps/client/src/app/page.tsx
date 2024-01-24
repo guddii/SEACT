@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function Page(): ReactElement {
   return (
     <LayoutDefault metadata={metadata}>
-      <FormReadWrite ressource={toUrlString(CLIENT.webId)} />
+      <FormReadWrite resource={toUrlString(CLIENT.webId)} />
     </LayoutDefault>
   );
 }

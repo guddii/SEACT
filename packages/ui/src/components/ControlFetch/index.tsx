@@ -4,12 +4,12 @@ import { App, Button, Form } from "antd";
 import type { MouseEventHandler, ReactElement } from "react";
 
 interface ControlFetchProps {
-  ressource: UrlString;
+  resource: UrlString;
   method: RequestInit["method"];
 }
 
 export function ControlFetch({
-  ressource,
+  resource,
   method,
 }: ControlFetchProps): ReactElement {
   const form = Form.useFormInstance();
@@ -19,7 +19,7 @@ export function ControlFetch({
   const onClick: MouseEventHandler<HTMLElement> = () => {
     if (method === "GET") {
       session
-        .fetch(ressource, {
+        .fetch(resource, {
           method,
           headers: {
             Accept: "text/turtle",
@@ -52,7 +52,7 @@ export function ControlFetch({
 
     if (method === "PUT") {
       session
-        .fetch(ressource, {
+        .fetch(resource, {
           method,
           body: String(form.getFieldValue("field")),
           headers: {

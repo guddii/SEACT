@@ -12,40 +12,40 @@ import { toUrlString } from "@seact/core";
 import type { ProxySession } from "../services/proxy-session";
 
 export interface CreateOrUpdateRessourceOptions {
-  ressource: URL;
+  resource: URL;
   session: ProxySession;
   callback: (thing: Thing) => Thing;
 }
-export const createOrUpdateRessource = async ({
-  ressource,
+export const createOrUpdateResource = async ({
+  resource,
   session,
   callback,
 }: CreateOrUpdateRessourceOptions): Promise<Thing> => {
-  if (!ressource.hash) {
-    ressource.hash = Date.now().toString();
+  if (!resource.hash) {
+    resource.hash = Date.now().toString();
   }
 
   let dataset: SolidDataset;
 
   try {
-    dataset = await getSolidDataset(toUrlString(ressource), {
+    dataset = await getSolidDataset(toUrlString(resource), {
       fetch: session.fetch,
     });
   } catch (error) {
     dataset = createSolidDataset();
   }
 
-  let thing = getThing(dataset, toUrlString(ressource));
+  let thing = getThing(dataset, toUrlString(resource));
 
   if (!thing) {
-    thing = createThing({ url: toUrlString(ressource) });
+    thing = createThing({ url: toUrlString(resource) });
   }
 
   const response = callback(thing);
 
   dataset = setThing(dataset, response);
 
-  await saveSolidDatasetAt(toUrlString(ressource), dataset, {
+  await saveSolidDatasetAt(toUrlString(resource), dataset, {
     fetch: session.fetch,
     prefixes: {
       ...HTTP.PREFIX_AND_NAMESPACE,

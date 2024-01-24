@@ -27,7 +27,7 @@ const getAsMatrix = (thingAll: Thing[]): Record<string, string>[] => {
 };
 
 export const getDatasetAsMatrix = async (
-  ressource: string | URL,
+  resource: string | URL,
   options: GetDatasetAsMatrixOptions,
 ): Promise<Record<string, string>[]> => {
   const { session } = options;
@@ -36,7 +36,7 @@ export const getDatasetAsMatrix = async (
     return [];
   }
 
-  const dataset = await getSolidDataset(toUrlString(ressource), {
+  const dataset = await getSolidDataset(toUrlString(resource), {
     fetch: session.fetch,
   });
 
