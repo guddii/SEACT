@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam sequenceReferenceBackgroundColor white
+
+mainframe **sd** Log Discovery
+autonumber 1 1 "<b>[0]"
+
+participant "DPC Client" as DPC_Client
+participant "DPC API" as DPC_API
+participant "Proxy" as Proxy
+participant "Server" as Server
+
+DPC_Client  ->  DPC_API             ++  : **GET** Login
+ref over DPC_API,Proxy,Server           : Authorization Code Flow
+DPC_Client  <-- DPC_API                 : Success response
+DPC_Client  ->  DPC_API                 : **GET** List of claimed storages\nfor current session
+ref over DPC_API,Proxy,Server           : DPC Claim Registry
+DPC_Client  <-- DPC_API                 : DPC storage and verification key pairs
+@enduml

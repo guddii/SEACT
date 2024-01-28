@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam sequenceReferenceBackgroundColor white
+
+mainframe **sd** Schedule a Token
+autonumber 1 1 "<b>[0]"
+
+participant "DPC API" as DPC_API
+participant "Proxy" as Proxy
+participant "Server" as Server
+
+DPC_API     ->  DPC_API                 : Generate verification token
+ref over DPC_API,Proxy,Server        : Write Token to Client Storage
+ref over DPC_API,Proxy,Server           : Authorization Client Credentials Flow ( DPC )
+DPC_API     ->  Proxy               ++  : **PUT** Token and WebID to list of claimed storages
+ref over Proxy, Server                  : Forwarded Request
+DPC_API     <-- Proxy               --  : Success
+ref over DPC_API,Proxy, Server : Set Claim Status ( "scheduled" )
+@enduml
