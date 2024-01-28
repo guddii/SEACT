@@ -9,7 +9,7 @@ autonumber 1 1 "<b>[0]"
 participant "Proxy" as Proxy
 participant "Server" as Server
 
-ref over Proxy, Server  : Authentication with Client Credentials ( DPC )
+ref over Proxy, Server  : Authorization Client Credentials Flow ( DPC )
 opt isDpcAgentLoggedIn
 loop hasContainerResources
     Proxy   ->  Proxy   : <b>HEAD</b> Request closest container resource

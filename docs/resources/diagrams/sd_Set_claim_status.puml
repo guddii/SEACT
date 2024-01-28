@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam sequenceReferenceBackgroundColor white
+
+mainframe **sd** Set Claim Status ( ""new status"" )
+autonumber 1 1 "<b>[0]"
+
+participant "DPC API" as DPC_API
+participant "Proxy" as Proxy
+participant "Server" as Server
+
+DPC_API     ->  Proxy               ++  : **PUT** Set claim status to the ""new status""
+ref over Proxy, Server                  : Forwarded Request
+DPC_API     <-- Proxy               --  : Success response
+
+@enduml

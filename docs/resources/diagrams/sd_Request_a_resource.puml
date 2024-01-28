@@ -10,8 +10,8 @@ participant "Client" as Client
 participant "Proxy" as Proxy
 participant "Server" as Server
 
-ref over Client,Proxy, Server  : Authentication with Client Credentials ( CLIENT )
-Client  ->  Proxy   ++  : **CRUD** Request
-ref over Proxy, Server  : Forwarded Request
-Client  <-- Proxy   --  : Forwarded server response
+ref over Client,Proxy,Server    : Authorization Client Credentials Flow ( CLIENT )
+Client  ->  Proxy   ++          : **CRUD** Request
+ref over Proxy, Server          : Forwarded Request
+Client  <-- Proxy   --          : Forwarded server response
 @enduml

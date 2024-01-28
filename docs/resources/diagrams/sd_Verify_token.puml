@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam sequenceReferenceBackgroundColor white
+
+mainframe **sd** Verify Token
+autonumber 1 1 "<b>[0]"
+
+participant "DPC Client" as DPC_Client
+participant "DPC API" as DPC_API
+participant "Proxy" as Proxy
+participant "Server" as Server
+
+DPC_Client  ->  DPC_API             ++  : **GET** Verify token
+ref over DPC_API,Proxy,Server           : DPC Claim Registry
+DPC_API     ->  Proxy               ++  : **GET** Verification key from CLIENT storage
+ref over Proxy, Server                  : Forwarded Request
+note over Proxy, Server
+DPC agent must have
+read permissions
+end note
+DPC_API     <-- Proxy               --  : Verification token from client storage
+DPC_API     -> DPC_API                  : Compare the dpc verification key and \nthe client verification key
+alt equivalent verification keys
+ref over DPC_API,Proxy, Server : Set Agent Read Access ( "/responses" )
+ref over DPC_API,Proxy, Server : Set Agent Read Access ( "/requests" )
+ref over DPC_API,Proxy, Server : Set Agent Read Access ( "/connections" )
+ref over DPC_API,Proxy, Server : Set Claim Status ( "verified" )
+DPC_Client  <-- DPC_API                 : Success response
+else
+||5||
+ref over DPC_API,Proxy, Server : Set Claim Status ( "rejected" )
+DPC_Client  <-- DPC_API             --  : Respond the invalidly of verification keys
+end
+@enduml
