@@ -3,7 +3,7 @@ import type { Express, Request, Response } from "express";
 import morgan from "morgan";
 import { proxy } from "./services/proxy";
 import { ProxySession } from "./services/proxy-session";
-import { createLog } from "./helper/create-log";
+import { createLog } from "./utils/create-log";
 import { statusRouter } from "./resources/status/status.router";
 
 const onAfterForwarding = async (
