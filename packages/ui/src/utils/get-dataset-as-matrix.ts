@@ -5,12 +5,10 @@ import {
   getSolidDataset,
   getThingAll,
 } from "@inrupt/solid-client";
-import type { Session } from "@inrupt/solid-client-authn-browser";
 import { toUrlString } from "@seact/core";
+import type { UseServerSession } from "../hooks/useServerSession.ts";
 
-interface GetDatasetAsMatrixOptions {
-  session: Session;
-}
+type GetDatasetAsMatrixOptions = Pick<UseServerSession, "session">;
 
 const getAsMatrix = (thingAll: Thing[]): Record<string, string>[] => {
   return thingAll.flatMap((thing) => {

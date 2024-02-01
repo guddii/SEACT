@@ -1,12 +1,12 @@
 import type { ReactElement } from "react";
 import React, { useEffect, useState } from "react";
 import type { TableProps } from "antd";
-import { App, Table } from "antd";
+import { Flex, App, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { useSession } from "@inrupt/solid-ui-react";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { getDatasetAsMatrix } from "../../utils/get-dataset-as-matrix.ts";
 import { toTable } from "../../adapter/rdf/to-table";
+import { ControlClaim } from "../ControlClaim";
 
 interface TableRDFProps extends TableProps<Record<string, string>> {
   resource: string;
@@ -19,8 +19,7 @@ export function TableRDF({
   showInExpander,
   ...args
 }: TableRDFProps): ReactElement {
-  const { session } = useSession();
-  const { webId } = useIdentity();
+  const { webId, session } = useIdentity();
   const { message } = App.useApp();
 
   const [columns, setColumns] = useState<
@@ -53,13 +52,23 @@ export function TableRDF({
       });
   }, [excludeColumns, message, resource, session, webId]);
 
+  const boxStyle: React.CSSProperties = {
+    width: "100%",
+    height: 60,
+  };
+
   return (
-    <Table
-      columns={columns}
-      dataSource={data}
-      expandable={expandable}
-      loading={loading}
-      {...args}
-    />
+    <>
+      <Table
+        columns={columns}
+        dataSource={data}
+        expandable={expandable}
+        loading={loading}
+        {...args}
+      />
+      <Flex align="center" justify="center" style={boxStyle}>
+        <ControlClaim />
+      </Flex>
+    </>
   );
 }

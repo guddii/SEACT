@@ -1,7 +1,7 @@
 import type { UrlString } from "@inrupt/solid-client";
-import { useSession } from "@inrupt/solid-ui-react";
 import { App, Button, Form } from "antd";
 import type { MouseEventHandler, ReactElement } from "react";
+import { useIdentity } from "../../contexts/IdentityContext";
 
 interface ControlFetchProps {
   resource: UrlString;
@@ -13,7 +13,7 @@ export function ControlFetch({
   method,
 }: ControlFetchProps): ReactElement {
   const form = Form.useFormInstance();
-  const { session } = useSession();
+  const { session } = useIdentity();
   const { message } = App.useApp();
 
   const onClick: MouseEventHandler<HTMLElement> = () => {

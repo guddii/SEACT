@@ -15,8 +15,8 @@ const urlToTitle = (eventuallyUrl: string): string => {
 
 function mapColumns<T>(column: string): ValueOf<ColumnsType<T>> {
   const defaultColumn = {
-    title: `${urlToTitle(column)}`,
-    dataIndex: `${column}`,
+    title: urlToTitle(column),
+    dataIndex: column,
   };
 
   switch (column) {

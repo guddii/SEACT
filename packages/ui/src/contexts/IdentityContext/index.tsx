@@ -4,6 +4,8 @@ import { useSession } from "@inrupt/solid-ui-react";
 import type { Dispatch, ReactElement, ReactNode, SetStateAction } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
 import { log } from "@seact/core";
+import type { ServerSession } from "../../hooks/use-server-session.ts";
+import { useServerSession } from "../../hooks/use-server-session.ts";
 
 export interface IdentityContext {
   idp: UrlString;
@@ -15,18 +17,25 @@ export interface IdentityContext {
   storageAll: UrlString[];
   storage: UrlString;
   setStorage: Dispatch<SetStateAction<UrlString>>;
+  sessionRequestInProgress: boolean;
+  clientSession: boolean;
+  session: ServerSession;
 }
 
 const IdentityContext = createContext<IdentityContext | undefined>(undefined);
 
 interface IdentityProviderProps {
   children: ReactNode;
+  clientSession?: boolean;
 }
 
 export function IdentityProvider({
   children,
+  clientSession = true,
 }: IdentityProviderProps): ReactElement {
-  const { session } = useSession();
+  const { session, sessionRequestInProgress } = (
+    clientSession ? useSession : useServerSession
+  )();
   const [idp, setIdp] = useState("http://localhost:4000");
   const [currentUrl, setCurrentUrl] = useState("http://localhost:5000");
   const [webId, setWebId] = useState<string>("");
@@ -68,6 +77,9 @@ export function IdentityProvider({
     storageAll,
     storage,
     setStorage,
+    sessionRequestInProgress,
+    clientSession,
+    session,
   };
 
   return (

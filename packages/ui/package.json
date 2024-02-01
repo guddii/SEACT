@@ -30,6 +30,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@inrupt/solid-client-authn-core": "^2.0.0",
     "@next/eslint-plugin-next": "^13.4.19",
     "@seact/eslint-config-custom": "workspace:*",
     "@seact/jest-presets": "workspace:*",

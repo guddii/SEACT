@@ -10,7 +10,7 @@ export default function RootLayout({
 }: RootLayoutProps): ReactElement {
   return (
     <html lang="en">
-      <AppSolid>{children}</AppSolid>
+      <AppSolid clientSession={false}>{children}</AppSolid>
     </html>
   );
 }
