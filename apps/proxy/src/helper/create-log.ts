@@ -1,10 +1,9 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { buildThing } from "@inrupt/solid-client";
 import { HTTP, RDF } from "@inrupt/vocab-common-rdf";
-import { updateUrl, DPC } from "@seact/core";
+import { updateUrl, DPC, createOrUpdateResource } from "@seact/core";
 import { getAgentUserSession } from "../services/proxy-session";
 import { findDpcContainer } from "./find-dpc-container";
-import { createOrUpdateResource } from "./create-or-update-resource";
 
 export interface CreateLogOptions {
   req: IncomingMessage;
@@ -25,6 +24,11 @@ export const createLog = async ({
     return;
   }
 
+  const prefixes = {
+    ...HTTP.PREFIX_AND_NAMESPACE,
+    ...{ httpm: "http://www.w3.org/2011/http-methods#" },
+  };
+
   const response = await createOrUpdateResource({
     resource: updateUrl("/responses", dpcContainer),
     session,
@@ -34,6 +38,7 @@ export const createLog = async ({
         .addStringNoLocale(HTTP.httpVersion, req.httpVersion)
         .addStringNoLocale(HTTP.statusCodeValue, `${res.statusCode}`)
         .build(),
+    prefixes,
   });
 
   const request = await createOrUpdateResource({
@@ -48,6 +53,7 @@ export const createLog = async ({
         .addUrl(HTTP.mthd, `http://www.w3.org/2011/http-methods#${req.method}`)
         .addUrl(HTTP.resp, response)
         .build(),
+    prefixes,
   });
 
   const path = `/connections#${encodeURIComponent(
@@ -63,5 +69,6 @@ export const createLog = async ({
         .addStringNoLocale(HTTP.connectionAuthority, req.headers.host || "")
         .addUrl(HTTP.requests, request)
         .build(),
+    prefixes,
   });
 };

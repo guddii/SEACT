@@ -13,6 +13,9 @@
     "watch": "tsup --watch"
   },
   "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@inrupt/solid-client": "^2.0.0"
+  },
   "devDependencies": {
     "@inrupt/solid-client-authn-node": "^2.0.0",
     "@seact/eslint-config-custom": "workspace:*",
