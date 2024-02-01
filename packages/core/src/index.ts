@@ -1,7 +1,3 @@
-// Utils
-export * from "./utils/log";
-export * from "./utils/url-helper";
-
 // Solid app configs
 export * from "./config/apps/proxy";
 
@@ -11,3 +7,8 @@ export * from "./config/agents/dpc";
 
 // Solid
 export * from "./solid/create-or-update-resource";
+
+// Utils
+export * from "./utils/log";
+export * from "./utils/url-helper";
+export * from "./utils/http-helper";
