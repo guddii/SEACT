@@ -1,6 +1,6 @@
 import type { ClientRequest, IncomingMessage, RequestOptions } from "node:http";
 import http from "node:http";
-import { PROXY, log } from "@seact/core";
+import { APPS, log } from "@seact/core";
 import type { Response, Request } from "express";
 
 type BeforeForwardingCallback = (
@@ -20,14 +20,14 @@ interface ProxyOptions {
 export function proxy(options: ProxyOptions) {
   return (clientRequest: Request, clientResponse: Response) => {
     const proxyRequestOptions: RequestOptions = {
-      hostname: PROXY.forwardingUrl.hostname,
-      port: PROXY.forwardingUrl.port,
+      hostname: APPS.PROXY.forwardingUrl.hostname,
+      port: APPS.PROXY.forwardingUrl.port,
       path: clientRequest.url,
       method: clientRequest.method,
       headers: {
         ...{
-          "X-Forwarded-Host": PROXY.baseUrl.host,
-          "X-Forwarded-Proto": PROXY.baseUrl.protocol.slice(0, -1),
+          "X-Forwarded-Host": APPS.PROXY.baseUrl.host,
+          "X-Forwarded-Proto": APPS.PROXY.baseUrl.protocol.slice(0, -1),
         },
         ...clientRequest.headers,
       },

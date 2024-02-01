@@ -1,6 +1,6 @@
 import type { AccessModes } from "@inrupt/solid-client";
 import { universalAccess } from "@inrupt/solid-client";
-import { CLIENT, toUrlString } from "@seact/core";
+import { AGENTS, toUrlString } from "@seact/core";
 import type { ProxySession } from "../services/proxy-session";
 
 export const createAccess = async (
@@ -10,7 +10,7 @@ export const createAccess = async (
   if (!session) {
     return null;
   }
-  const webId = toUrlString(CLIENT.webId);
+  const webId = toUrlString(AGENTS.CLIENT.webId);
   return universalAccess.setAgentAccess(
     toUrlString(resource),
     webId,

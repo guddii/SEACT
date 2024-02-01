@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import type { IncomingMessage } from "node:http";
 import type { ILoginInputOptions } from "@inrupt/solid-client-authn-node";
 import {
-  PROXY,
+  APPS,
   toUrlString,
   isRedirectionMessage,
   isSuccessfulResponse,
@@ -33,7 +33,7 @@ export class ProxySession {
       scope: "webid",
     });
 
-    const response: Response = await fetch(toUrlString(PROXY.tokenUrl), {
+    const response: Response = await fetch(toUrlString(APPS.PROXY.tokenUrl), {
       method: "POST",
       headers: {
         authorization: `Basic ${Buffer.from(authString).toString("base64")}`,

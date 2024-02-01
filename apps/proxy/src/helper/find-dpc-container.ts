@@ -1,9 +1,9 @@
 import type { IncomingMessage } from "node:http";
 import {
-  DPC,
+  AGENTS,
   updateUrl,
   createUrl,
-  PROXY,
+  APPS,
   appendTrailingSlash,
 } from "@seact/core";
 import { WS } from "@inrupt/vocab-solid";
@@ -66,7 +66,7 @@ export const findDpcContainer = async (
     return null;
   }
 
-  const resource = updateUrl(req.url, PROXY.baseUrl);
+  const resource = updateUrl(req.url, APPS.PROXY.baseUrl);
   const containerResources = getContainerResources(resource);
 
   const storage = await findStorage(containerResources, {
@@ -74,7 +74,7 @@ export const findDpcContainer = async (
   });
 
   if (storage) {
-    return updateUrl(`/requests${storage.pathname}`, DPC.storage);
+    return updateUrl(`/requests${storage.pathname}`, AGENTS.DPC.storage);
   }
 
   return null;

@@ -1,9 +1,6 @@
-// Solid app configs
-export * from "./config/apps/proxy";
-
-// Solid user configs
-export * from "./config/agents/client";
-export * from "./config/agents/dpc";
+// Configs
+export * from "./config/apps";
+export * from "./config/agents";
 
 // Solid
 export * from "./solid/create-or-update-resource";

@@ -1,7 +1,7 @@
 import type { IncomingMessage, ServerResponse } from "node:http";
 import { buildThing } from "@inrupt/solid-client";
 import { HTTP, RDF } from "@inrupt/vocab-common-rdf";
-import { updateUrl, DPC, createOrUpdateResource } from "@seact/core";
+import { updateUrl, AGENTS, createOrUpdateResource } from "@seact/core";
 import { getAgentUserSession } from "../services/proxy-session";
 import { findDpcContainer } from "./find-dpc-container";
 
@@ -14,7 +14,7 @@ export const createLog = async ({
   req,
   res,
 }: CreateLogOptions): Promise<void> => {
-  const session = await getAgentUserSession(DPC);
+  const session = await getAgentUserSession(AGENTS.DPC);
   if (!session.info.isLoggedIn) {
     return;
   }

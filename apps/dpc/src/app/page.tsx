@@ -5,7 +5,7 @@ import React from "react";
 import type { TabsProps } from "antd";
 import { Tabs } from "antd";
 import { HTTP } from "@inrupt/vocab-common-rdf";
-import { DPC, updateUrlString } from "@seact/core";
+import { AGENTS, updateUrlString } from "@seact/core";
 
 export const metadata: Metadata = {
   title: "Access Logs",
@@ -25,7 +25,7 @@ export default function Page(): ReactElement {
             excludeColumns={[HTTP.requests]}
             resource={updateUrlString(
               "/requests/client/connections",
-              DPC.storage,
+              AGENTS.DPC.storage,
             )}
           />
         </Box>
@@ -37,7 +37,10 @@ export default function Page(): ReactElement {
       children: (
         <Box>
           <TableRDF
-            resource={updateUrlString("/requests/client/requests", DPC.storage)}
+            resource={updateUrlString(
+              "/requests/client/requests",
+              AGENTS.DPC.storage,
+            )}
           />
         </Box>
       ),
@@ -50,7 +53,7 @@ export default function Page(): ReactElement {
           <TableRDF
             resource={updateUrlString(
               "/requests/client/responses",
-              DPC.storage,
+              AGENTS.DPC.storage,
             )}
           />
         </Box>
