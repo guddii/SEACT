@@ -13,3 +13,6 @@ export * from "./solid/create-or-update-resource";
 export * from "./utils/log";
 export * from "./utils/url-helper";
 export * from "./utils/http-helper";
+
+// RDF Vocabulary
+export * from "./vocab";
