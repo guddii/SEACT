@@ -22,6 +22,14 @@ export const getSession = async (): Promise<Session> => {
   return session;
 };
 
+export const getWebId = async (session?: Session): Promise<string> => {
+  const localSession = session || (await getSession());
+  if (!localSession.info.webId) {
+    throw new Error("No webId in session");
+  }
+  return localSession.info.webId;
+};
+
 export const setSessionCookie = async (): Promise<Session> => {
   let session: Session;
   try {

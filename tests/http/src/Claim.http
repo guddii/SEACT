@@ -1,0 +1,19 @@
+### ...
+GET http://localhost:4000/dpc/logs/registry
+Authorization: Bearer {{$auth.token("dpc")}}
+Accept: application/ld+json
+
+> {%
+    client.global.set("claim", response.body[0]["urn:claim#claims"][0]["@id"]);
+%}
+
+### ...
+GET {{claim}}
+Authorization: Bearer {{$auth.token("dpc")}}
+Accept: text/turtle
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}

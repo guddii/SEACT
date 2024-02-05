@@ -14,13 +14,16 @@
   },
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@inrupt/solid-client": "^2.0.0"
+    "@inrupt/solid-client": "^2.0.0",
+    "@inrupt/vocab-solid": "^1.0.4",
+    "http-link-header": "^1.1.1"
   },
   "devDependencies": {
     "@inrupt/solid-client-authn-node": "^2.0.0",
     "@seact/eslint-config-custom": "workspace:*",
     "@seact/jest-presets": "workspace:*",
     "@seact/tsconfig": "workspace:*",
+    "@types/http-link-header": "^1.0.5",
     "@types/node": "^18.11.9",
     "tsup": "^6.0.1",
     "typescript": "^5.2.2"

@@ -4,8 +4,8 @@ import type { ReactElement } from "react";
 import React from "react";
 import type { TabsProps } from "antd";
 import { Tabs } from "antd";
-import { HTTP } from "@inrupt/vocab-common-rdf";
-import { AGENTS, updateUrlString } from "@seact/core";
+import { HTTP, RDF } from "@inrupt/vocab-common-rdf";
+import { APPS, updateUrlString } from "@seact/core";
 
 export const metadata: Metadata = {
   title: "Access Logs",
@@ -22,11 +22,8 @@ export default function Page(): ReactElement {
       children: (
         <Box>
           <TableRDF
-            excludeColumns={[HTTP.requests]}
-            resource={updateUrlString(
-              "/requests/client/connections",
-              AGENTS.DPC.storage,
-            )}
+            excludeColumns={["key", RDF.type, HTTP.requests]}
+            resource={updateUrlString("/api/log/connections", APPS.DPC.baseUrl)}
           />
         </Box>
       ),
@@ -37,10 +34,8 @@ export default function Page(): ReactElement {
       children: (
         <Box>
           <TableRDF
-            resource={updateUrlString(
-              "/requests/client/requests",
-              AGENTS.DPC.storage,
-            )}
+            excludeColumns={["key", RDF.type]}
+            resource={updateUrlString("/api/log/requests", APPS.DPC.baseUrl)}
           />
         </Box>
       ),
@@ -51,10 +46,8 @@ export default function Page(): ReactElement {
       children: (
         <Box>
           <TableRDF
-            resource={updateUrlString(
-              "/requests/client/responses",
-              AGENTS.DPC.storage,
-            )}
+            excludeColumns={["key", RDF.type]}
+            resource={updateUrlString("/api/log/responses", APPS.DPC.baseUrl)}
           />
         </Box>
       ),

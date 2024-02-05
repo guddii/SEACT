@@ -11,8 +11,8 @@ import type { UseServerSession } from "../hooks/useServerSession.ts";
 type GetDatasetAsMatrixOptions = Pick<UseServerSession, "session">;
 
 const getAsMatrix = (thingAll: Thing[]): Record<string, string>[] => {
-  return thingAll.flatMap((thing) => {
-    const matrix = { thing: thing.url };
+  return thingAll.flatMap((thing, index) => {
+    const matrix = { key: String(index), thing: thing.url };
     getPropertyAll(thing).forEach((property) => {
       const termAll = getTermAll(thing, property);
       Object.assign(matrix, {
