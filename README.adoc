@@ -24,6 +24,14 @@ pnpm install
 An `.env` file is also required to provide the necessary configurations at runtime.
 See xref:.example.env[] for a copyable example of the use of environment variables.
 
+[source,bash]
+----
+cp .example.env .env
+cp -r apps/server/dump/dev/data apps/server/data
+----
+
+To run this in development mode, use the existing environment configuration and the dump of the https://communitysolidserver.github.io/[Community Solid Server] data.
+
 == Usage
 
 If you want to run this project in development mode, enter the following command in your terminal:
@@ -32,6 +40,23 @@ If you want to run this project in development mode, enter the following command
 ----
 pnpm run dev
 ----
+
+The following users are available in development mode:
+
+
+|===
+|   |email |password
+
+|client
+|client@example.com
+|secret!
+
+|dpc
+|dpc@example.com
+|secret!
+|===
+
+The accounts are available at http://localhost:4000/.account/
 
 == Licence
 
