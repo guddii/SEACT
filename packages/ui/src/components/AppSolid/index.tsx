@@ -7,16 +7,22 @@ import { StyledComponentsRegistry } from "../StyledComponentsRegistry";
 
 interface AppSolidProps {
   children: ReactNode;
+  clientSession?: boolean;
 }
 
-export function AppSolid({ children }: AppSolidProps): ReactElement {
+export function AppSolid({
+  children,
+  clientSession = true,
+}: AppSolidProps): ReactElement {
   return (
     <body style={{ margin: 0 }}>
       <StyledComponentsRegistry>
         <App>
           <ConfigProvider theme={theme}>
-            <SessionProvider sessionId="session-provider-example">
-              <IdentityProvider>{children}</IdentityProvider>
+            <SessionProvider>
+              <IdentityProvider clientSession={clientSession}>
+                {children}
+              </IdentityProvider>
             </SessionProvider>
           </ConfigProvider>
         </App>

@@ -2,6 +2,10 @@
 
 include::partials/Attributes.adoc[]
 
+include::partials/Preface.adoc[]
+
+<<<
+
 include::partials/Glossary.adoc[leveloffset=+1]
 
 include::partials/Acronyms.adoc[leveloffset=+1]
@@ -11,7 +15,9 @@ include::partials/Acronyms.adoc[leveloffset=+1]
 This section describes the system behavior using <<UML>> 2.5 with https://plantuml.com/de/[PlantUML] as the generator.
 The dynamic behavior of the system's objects will be illustrated with sequence diagrams and other interaction diagrams (sd).
 
-=== Authorised CRUD Requests
+=== Entries
+
+==== Authorised CRUD Requests
 
 The process of authorizing a request can be divided into two steps.
 Firstly, an authorization token will be requested using a Client Credentials Flow as defined in https://datatracker.ietf.org/doc/html/rfc6749#section-4.4[RFC 6749], although other authorization processes are also possible.
@@ -25,7 +31,35 @@ The key difference is that the request and response will be forwarded by the pro
 include::resources/diagrams/sd_Request_a_resource.puml[]
 ....
 
-=== Authentication with Client Credentials
+==== Log Claiming
+
+Network logs are captured by storage, not by WebID, and it is necessary to associate the data with a WebID at some point to make it readable to the owner.
+This is done by a claiming mechanism.
+This requires a solid application that has access to both the user storage and the DPC storage.
+Both connections are handled by the DPC API server, and when the connections are established, the API schedules an auth token on behalf of the client agent to be verified by the DPC API server when it discovers the logs.
+
+.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the log claiming process
+[.text-center]
+[plantuml,format=svg]
+....
+include::resources/diagrams/sd_Log_claiming.puml[]
+....
+
+==== Log Discovery
+
+The logs in the DPC API server are represented as routes.
+These routes will either return an empty turtle file or attempt to resolve the scheduled claim and receive the actual files from the claimed storages.
+
+.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the discovery of logs
+[.text-center]
+[plantuml,format=svg]
+....
+include::resources/diagrams/sd_Log_discovery.puml[]
+....
+
+=== References
+
+==== Authentication with Client Credentials
 
 To obtain the authorization token, send a POST request to the authorization server with the client ID and secret in the authentication header.
 It is also necessary to set the grant type to `client_credentials` and the scope to `webid`.
@@ -38,7 +72,7 @@ The proxy will forward requests as every CRUD request because the authorization 
 include::resources/diagrams/sd_Authentication_with_Client_Credentials.puml[]
 ....
 
-=== Forwarded Request
+==== Forwarded Request
 
 Request forwarding is quite simple, the proxy receives a CRUD request that is passed through the server.
 The returning server response will take the path back to the original requester.
@@ -52,7 +86,7 @@ If the requester is someone other than the proxy, the Data Privacy Cockpit middl
 include::resources/diagrams/sd_Forwarded_request.puml[]
 ....
 
-=== Data Privacy Cockpit Middleware
+==== Data Privacy Cockpit Middleware
 
 The Data Privacy Cockpit is a Solid application that requires a dedicated agent and client credentials.
 The agent must log in before any other actions can be executed.
@@ -72,7 +106,7 @@ The log resources will be grouped by the storage they belong to and owned by the
 include::resources/diagrams/sd_DPC_middleware.puml[]
 ....
 
-=== Access Log Update
+==== Access Log Update
 
 The update to the access log begins with a test to determine if the resource already exists on the server.
 If it does, it will be received as a dataset.
@@ -86,26 +120,11 @@ The dataset will be enriched with new log data and stored on the server.
 include::resources/diagrams/sd_Access_log_update.puml[]
 ....
 
-=== Log Claiming
+==== Schedule a Token
 
-Network logs are captured by storage, not by WebID, and it is necessary to associate the data with a WebID at some point to make it readable to the owner.
-This is done by a claiming mechanism.
-This requires a solid application that has access to both the user storage and the DPC storage.
-Both connections are handled by the DPC API server, and when the connections are established, the API schedules an auth token on behalf of the client agent that is to be verified by the DPC API server.
-
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the log claiming process
-[.text-center]
-[plantuml,format=svg]
-....
-include::resources/diagrams/sd_Log_claiming.puml[]
-....
-
-=== Schedule a Token
-
-When scheduling a verification token, a random key must first be generated.
-Since the DPC API has an active connection to the client storage, it will store the token there.
-In addition, the token and WebID must be stored somewhere that is accessible to the DPC agent, to verify their equality in later processes.
-To verify the status of this process, it is set to `scheduled`.
+To schedule a verification token, start by generating a random key.
+The DPC API will then store the token, storage, and WebID in a location accessible to the DPC agent for later verification.
+If the DPC API cannot access the client's storage, the process will terminate without adding data to the DPC storage.
 
 .<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of scheduling a token
 [.text-center]
@@ -114,7 +133,7 @@ To verify the status of this process, it is set to `scheduled`.
 include::resources/diagrams/sd_Schedule_a_token.puml[]
 ....
 
-=== Write Token to Client Storage
+==== Write Token to Client Storage
 
 Writing the verification token consists of two steps.
 The first step is to write the token to the client's storage.
@@ -127,62 +146,30 @@ Since the token must be read by the DPC agent, the second step is to grant read 
 include::resources/diagrams/sd_Write_token_to_client_storage.puml[]
 ....
 
-=== Set Claim Status
+==== Write Token to DPC Storage
 
-When setting the claim status, a specific entry, from the registry of claims, will be patched.
+Before writing the token to the DPC storage, the agent must first verify their identity.
+After authorization, a new claim containing the verification token and associated storage will be added to the list of claims, along with the WebID-related claims in the registry.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of setting the claim status
+.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of writing a verification token to the DPC storage
 [.text-center]
 [plantuml,format=svg]
 ....
-include::resources/diagrams/sd_Set_claim_status.puml[]
+include::resources/diagrams/sd_Write_token_to_dpc_storage.puml[]
 ....
 
-=== Verify Token
+==== Get Claimed Resource
 
-Verifying a token requires an existing client connection.
-The DPC API will look up the tokens associated with the WebID of the current session.
-Meanwhile, the access token is requested from the store of the WebID.
-If both tokens match, the read privileges for the logging resources are extended by the session's WebID and the status is set to `verified`.
-If the tokens do not match, the request is `rejected`.
+The process of obtaining a claimed resource will be managed by the DPC agent.
+The WebID from the active client session will be used to retrieve the claims from the registry, along with the storage and verification token for that claim.
+The DPC agent will then retrieve the verification token from the storage.
+If both verification tokens match, the request will be forwarded by the DPC agent.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the verification of a token
+.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of how to get a claimed resource
 [.text-center]
 [plantuml,format=svg]
 ....
-include::resources/diagrams/sd_Verify_token.puml[]
+include::resources/diagrams/sd_Get_claimed_resource.puml[]
 ....
 
-=== DPC Claim Registry
 
-A claim registry lookup requires an authorized session of a DPC agent.
-If this is the case, the persisted storage and verification pairs can be requested for a given WebID.
-
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of a claim registry look up
-[.text-center]
-[plantuml,format=svg]
-....
-include::resources/diagrams/sd_DPC_claim_registry.puml[]
-....
-
-=== Set Agent Read Access
-
-This process describes the process of patching the access permission of the client of the current session.
-
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of a resource permission update
-[.text-center]
-[plantuml,format=svg]
-....
-include::resources/diagrams/sd_Set_agent_read_access.puml[]
-....
-
-=== Log Discovery
-
-The access logs of the storages associated with a WebID can be easily queried with an authorized request to the DPC Claim Registry.
-
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the discovery of logs
-[.text-center]
-[plantuml,format=svg]
-....
-include::resources/diagrams/sd_Log_discovery.puml[]
-....

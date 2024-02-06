@@ -1,0 +1,21 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam sequenceReferenceBackgroundColor white
+
+mainframe **sd** Write Token to DPC Storage
+autonumber 1 1 "<b>[0]"
+
+participant "DPC API" as DPC_API
+participant "Proxy" as Proxy
+participant "Server" as Server
+
+
+ref over DPC_API,Proxy,Server           : Authorization Client Credentials Flow ( DPC )
+DPC_API     ->  Proxy               ++  : **PUT** New claim for token and storage
+ref over Proxy, Server                  : Forwarded Request
+DPC_API     <-- Proxy               --  : Turtle reference
+DPC_API     ->  Proxy               ++  : **PUT** Turtle reference to WebID in the registry
+ref over Proxy, Server                  : Forwarded Request
+DPC_API     <-- Proxy               --  : Success response
+@enduml

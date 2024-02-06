@@ -1,0 +1,21 @@
+### Retrieving verification for client as client agent
+GET http://localhost:4000/client/dpc
+Authorization: Bearer {{$auth.token("client")}}
+Accept: text/turtle
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Retrieving verification for client as dpc agent
+GET http://localhost:4000/client/dpc
+Authorization: Bearer {{$auth.token("dpc")}}
+Accept: text/turtle
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}

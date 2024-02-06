@@ -1,11 +1,12 @@
 import { randomUUID } from "node:crypto";
 import type { IncomingMessage } from "node:http";
 import type { ILoginInputOptions } from "@inrupt/solid-client-authn-node";
-import { PROXY, toUrlString } from "@seact/core";
 import {
+  APPS,
+  toUrlString,
   isRedirectionMessage,
   isSuccessfulResponse,
-} from "../helper/http-helper.ts";
+} from "@seact/core";
 
 const SKIP_REQ_HEADER_VAL = randomUUID();
 
@@ -32,7 +33,7 @@ export class ProxySession {
       scope: "webid",
     });
 
-    const response: Response = await fetch(toUrlString(PROXY.tokenUrl), {
+    const response: Response = await fetch(toUrlString(APPS.PROXY.tokenUrl), {
       method: "POST",
       headers: {
         authorization: `Basic ${Buffer.from(authString).toString("base64")}`,

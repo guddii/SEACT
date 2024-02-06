@@ -17,6 +17,4 @@ DPC_Client  <-- DPC_API                 : Success response
 DPC_Client  ->  DPC_API                 : **PUT** Claim a storages
 ref over DPC_API,Proxy,Server           : Schedule a Token
 DPC_Client  <-- DPC_API                 : Verification token
-
-ref over DPC_Client,Proxy,Server        : Verify Token
 @enduml

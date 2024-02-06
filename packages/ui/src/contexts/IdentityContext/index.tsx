@@ -1,9 +1,10 @@
 import type { UrlString, WebId } from "@inrupt/solid-client";
-import { getPodUrlAll } from "@inrupt/solid-client";
 import { useSession } from "@inrupt/solid-ui-react";
 import type { Dispatch, ReactElement, ReactNode, SetStateAction } from "react";
 import { createContext, useContext, useEffect, useState } from "react";
-import { log } from "@seact/core";
+import { getContainerResources } from "@seact/core";
+import type { ServerSession } from "../../hooks/use-server-session.ts";
+import { useServerSession } from "../../hooks/use-server-session.ts";
 
 export interface IdentityContext {
   idp: UrlString;
@@ -12,25 +13,30 @@ export interface IdentityContext {
   setCurrentUrl: Dispatch<SetStateAction<UrlString>>;
   webId: WebId;
   setWebId: Dispatch<SetStateAction<WebId>>;
-  storageAll: UrlString[];
   storage: UrlString;
   setStorage: Dispatch<SetStateAction<UrlString>>;
+  sessionRequestInProgress: boolean;
+  clientSession: boolean;
+  session: ServerSession;
 }
 
 const IdentityContext = createContext<IdentityContext | undefined>(undefined);
 
 interface IdentityProviderProps {
   children: ReactNode;
+  clientSession?: boolean;
 }
 
 export function IdentityProvider({
   children,
+  clientSession = true,
 }: IdentityProviderProps): ReactElement {
-  const { session } = useSession();
+  const { session, sessionRequestInProgress } = (
+    clientSession ? useSession : useServerSession
+  )();
   const [idp, setIdp] = useState("http://localhost:4000");
   const [currentUrl, setCurrentUrl] = useState("http://localhost:5000");
   const [webId, setWebId] = useState<string>("");
-  const [storageAll, setStorageAll] = useState<UrlString[]>([]);
   const [storage, setStorage] = useState<UrlString>("");
 
   useEffect(() => {
@@ -45,16 +51,10 @@ export function IdentityProvider({
 
   useEffect(() => {
     if (webId) {
-      getPodUrlAll(webId)
-        .then((podUrlAll) => {
-          setStorageAll(podUrlAll);
-          if (podUrlAll[0]) {
-            setStorage(podUrlAll[0]);
-          }
-        })
-        .catch((error) => {
-          log(error);
-        });
+      const containerResources = getContainerResources(new URL(webId))
+        .reverse()
+        .map((containerResource) => containerResource.href);
+      setStorage(containerResources[0]);
     }
   }, [webId]);
 
@@ -65,9 +65,11 @@ export function IdentityProvider({
     setCurrentUrl,
     webId,
     setWebId,
-    storageAll,
     storage,
     setStorage,
+    sessionRequestInProgress,
+    clientSession,
+    session,
   };
 
   return (

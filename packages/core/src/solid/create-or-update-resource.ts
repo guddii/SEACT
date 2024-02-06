@@ -7,19 +7,21 @@ import {
   saveSolidDatasetAt,
   setThing,
 } from "@inrupt/solid-client";
-import { HTTP } from "@inrupt/vocab-common-rdf";
-import { toUrlString } from "@seact/core";
-import type { ProxySession } from "../services/proxy-session";
+import { toUrlString } from "../utils/url-helper";
 
 export interface CreateOrUpdateRessourceOptions {
   resource: URL;
-  session: ProxySession;
+  session: { fetch: typeof fetch };
   callback: (thing: Thing) => Thing;
+  prefixes?: Record<string, string>;
+  updateThing?: boolean;
 }
 export const createOrUpdateResource = async ({
   resource,
   session,
   callback,
+  prefixes = {},
+  updateThing = true,
 }: CreateOrUpdateRessourceOptions): Promise<Thing> => {
   if (!resource.hash) {
     resource.hash = Date.now().toString();
@@ -35,8 +37,10 @@ export const createOrUpdateResource = async ({
     dataset = createSolidDataset();
   }
 
-  let thing = getThing(dataset, toUrlString(resource));
-
+  let thing;
+  if (updateThing) {
+    thing = getThing(dataset, toUrlString(resource));
+  }
   if (!thing) {
     thing = createThing({ url: toUrlString(resource) });
   }
@@ -47,10 +51,7 @@ export const createOrUpdateResource = async ({
 
   await saveSolidDatasetAt(toUrlString(resource), dataset, {
     fetch: session.fetch,
-    prefixes: {
-      ...HTTP.PREFIX_AND_NAMESPACE,
-      ...{ httpm: "http://www.w3.org/2011/http-methods#" },
-    },
+    prefixes,
   });
 
   return response;
