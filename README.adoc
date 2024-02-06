@@ -27,10 +27,17 @@ See xref:.example.env[] for a copyable example of the use of environment variabl
 [source,bash]
 ----
 cp .example.env .env
-cp -r apps/server/dump/dev/data apps/server/data
 ----
 
-To run this in development mode, use the existing environment configuration and the dump of the https://communitysolidserver.github.io/[Community Solid Server] data.
+If you use a copied version of the environment variables, you must also adjust the hosts in the local environment.
+
+[source]
+----
+127.0.0.1 client.localhost
+127.0.0.1 dpc.localhost
+127.0.0.1 proxy.localhost
+127.0.0.1 server.localhost
+----
 
 == Usage
 
@@ -43,7 +50,7 @@ pnpm run dev
 
 The following users are available in development mode:
 
-
+[width=100%]
 |===
 |   |email |password
 
@@ -56,7 +63,7 @@ The following users are available in development mode:
 |secret!
 |===
 
-The accounts are available at http://localhost:4000/.account/
+The accounts are available at http://proxy.localhost:4000/.account/
 
 == Licence
 

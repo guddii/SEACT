@@ -1,5 +1,5 @@
 ### ...
-GET http://localhost:4000/dpc/logs/registry
+GET http://proxy.localhost:4000/dpc/logs/registry
 Authorization: Bearer {{$auth.token("dpc")}}
 Accept: application/ld+json
 

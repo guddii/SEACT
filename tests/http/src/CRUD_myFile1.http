@@ -1,5 +1,5 @@
 ### Creating resources for a given URL
-PUT http://localhost:4000/client/myFile1.ttl
+PUT http://proxy.localhost:4000/client/myFile1.ttl
 Authorization: Bearer {{$auth.token("client")}}
 Content-Type: text/turtle
 
@@ -12,7 +12,7 @@ Content-Type: text/turtle
 %}
 
 ### Retrieving resources
-GET http://localhost:4000/client/myFile1.ttl
+GET http://proxy.localhost:4000/client/myFile1.ttl
 Authorization: Bearer {{$auth.token("client")}}
 Content-Type: text/turtle
 
@@ -23,7 +23,7 @@ Content-Type: text/turtle
 %}
 
 ### Modify a resource using N3 Patch
-PATCH http://localhost:4000/client/myFile1.ttl
+PATCH http://proxy.localhost:4000/client/myFile1.ttl
 Authorization: Bearer {{$auth.token("client")}}
 Content-Type: text/n3
 
@@ -36,7 +36,7 @@ Content-Type: text/n3
 %}
 
 ### Modify a resource using SPARQL Update
-PATCH http://localhost:4000/client/myFile1.ttl
+PATCH http://proxy.localhost:4000/client/myFile1.ttl
 Authorization: Bearer {{$auth.token("client")}}
 Content-Type: application/sparql-update
 
@@ -49,7 +49,7 @@ INSERT DATA { <ex:s3> <ex:p3> <ex:o3> }
 %}
 
 ### Retrieve resources headers
-HEAD http://localhost:4000/client/myFile1.ttl
+HEAD http://proxy.localhost:4000/client/myFile1.ttl
 Authorization: Bearer {{$auth.token("client")}}
 Content-Type: text/turtle
 
@@ -60,7 +60,7 @@ Content-Type: text/turtle
 %}
 
 ### Retrieve resources headers
-OPTIONS http://localhost:4000/client/myFile1.ttl
+OPTIONS http://proxy.localhost:4000/client/myFile1.ttl
 Authorization: Bearer {{$auth.token("client")}}
 
 > {%
@@ -70,7 +70,7 @@ Authorization: Bearer {{$auth.token("client")}}
 %}
 
 ### Deleting resources
-DELETE http://localhost:4000/client/myFile1.ttl
+DELETE http://proxy.localhost:4000/client/myFile1.ttl
 Authorization: Bearer {{$auth.token("client")}}
 
 > {%

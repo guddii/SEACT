@@ -25,7 +25,7 @@ export const useServerSession = (): UseServerSession => {
     useState<boolean>(true);
 
   useEffect(() => {
-    void fetch("/session").then((response) => {
+    void fetch("/info").then((response) => {
       void response
         .json()
         .then((info: InfoResponse) => {

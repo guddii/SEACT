@@ -29,7 +29,7 @@ export function ControlLoginClientSide(): ReactElement {
   if (webId) {
     return (
       <Space>
-        <Button type="text">{webId}</Button>
+        <Space>{webId}</Space>
         <LogoutButton
           onError={log}
           onLogout={() => {
@@ -65,7 +65,7 @@ export function ControlLoginServerSide(): ReactElement {
   if (webId) {
     return (
       <Space>
-        <Button type="text">{webId}</Button>
+        <Space>{webId}</Space>
         <Button href={`/logout?${referrer()}`}>Logout</Button>
       </Space>
     );

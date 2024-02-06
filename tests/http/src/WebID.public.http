@@ -1,5 +1,5 @@
 ### Read a WebID
-GET http://localhost:4000/client/profile/card#me
+GET http://proxy.localhost:4000/client/profile/card#me
 
 > {%
     client.test("Request executed successfully", function () {
@@ -8,7 +8,7 @@ GET http://localhost:4000/client/profile/card#me
 %}
 
 ### Read a WebID Metadata
-GET http://localhost:4000/client/profile/card.meta
+GET http://proxy.localhost:4000/client/profile/card.meta
 
 > {%
     client.test("Request executed successfully", function () {

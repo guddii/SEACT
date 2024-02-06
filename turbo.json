@@ -1,29 +1,60 @@
 {
-    "$schema": "https://turbo.build/schema.json",
-    "pipeline": {
-      "build": {
-        "dotEnv": [".env.production.local", ".env.local", ".env.production", ".env"],
-        "dependsOn": ["^build"]
-      },
-      "test": {
-        "dotEnv": [".env.test.local", ".env.test", ".env"],
-        "outputs": ["coverage/**"],
-        "dependsOn": []
-      },
-      "lint": {
-        "dependsOn": ["^build"]
-      },
-      "typecheck": {
-        "dependsOn": ["^build"]
-      },
-      "dev": {
-        "dotEnv": [".env.development.local", ".env.local", ".env.development", ".env"],
-        "dependsOn": ["^build"],
-        "cache": false,
-        "persistent": true
-      },
-      "clean": {
-        "cache": false
-      }
+  "$schema": "https://turbo.build/schema.json",
+  "globalDotEnv": [".env"],
+  "globalEnv": [
+    "CSS_BASE_URL",
+    "CSS_PORT",
+    "CSS_CONFIG",
+    "CSS_SEED_CONFIG",
+    "CSS_ROOT_FILE_PATH",
+    "CSS_LOGGING_LEVEL",
+    "PROXY_BASE_URL",
+    "PROXY_FORWARDING_URL",
+    "PROXY_TOKEN_URL",
+    "DPC_BASE_URL",
+    "CLIENT_WEB_ID",
+    "CLIENT_STORAGE",
+    "CLIENT_ID",
+    "CLIENT_SECRET",
+    "DPC_WEB_ID",
+    "DPC_STORAGE",
+    "DPC_ID",
+    "DPC_SECRET"
+  ],
+  "pipeline": {
+    "build": {
+      "dotEnv": [
+        ".env.production.local",
+        ".env.local",
+        ".env.production",
+        ".env"
+      ],
+      "dependsOn": ["^build"]
+    },
+    "test": {
+      "dotEnv": [".env.test.local", ".env.test", ".env"],
+      "outputs": ["coverage/**"],
+      "dependsOn": []
+    },
+    "lint": {
+      "dependsOn": ["^build"]
+    },
+    "typecheck": {
+      "dependsOn": ["^build"]
+    },
+    "dev": {
+      "dotEnv": [
+        ".env.development.local",
+        ".env.local",
+        ".env.development",
+        ".env"
+      ],
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
+    "clean": {
+      "cache": false
     }
   }
+}

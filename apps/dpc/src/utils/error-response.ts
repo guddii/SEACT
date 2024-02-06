@@ -1,4 +1,12 @@
+import { NetworkError } from "./error.ts";
+
 export const errorResponse = (error: unknown): Response => {
+  if (error instanceof NetworkError) {
+    return Response.json(error, {
+      status: error.status,
+      statusText: error.statusText,
+    });
+  }
   if (error instanceof Error) {
     return Response.json(
       {

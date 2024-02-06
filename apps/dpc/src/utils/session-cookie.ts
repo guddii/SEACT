@@ -22,6 +22,12 @@ export const getSession = async (): Promise<Session> => {
   return session;
 };
 
+export const infoResponse = async (): Promise<Response> => {
+  const session = await setSessionCookie();
+
+  return Response.json(session.info);
+};
+
 export const getWebId = async (session?: Session): Promise<string> => {
   const localSession = session || (await getSession());
   if (!localSession.info.webId) {

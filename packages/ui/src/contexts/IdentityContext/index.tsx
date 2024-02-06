@@ -34,8 +34,8 @@ export function IdentityProvider({
   const { session, sessionRequestInProgress } = (
     clientSession ? useSession : useServerSession
   )();
-  const [idp, setIdp] = useState("http://localhost:4000");
-  const [currentUrl, setCurrentUrl] = useState("http://localhost:5000");
+  const [idp, setIdp] = useState("http://proxy.localhost:4000");
+  const [currentUrl, setCurrentUrl] = useState("http://dpc.localhost:5000");
   const [webId, setWebId] = useState<string>("");
   const [storage, setStorage] = useState<UrlString>("");
 

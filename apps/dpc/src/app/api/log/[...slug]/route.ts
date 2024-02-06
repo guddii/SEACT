@@ -9,6 +9,6 @@ export async function GET(request: Request): Promise<Response> {
 
     return await getClaimedResource(webId, pathname);
   } catch (error: unknown) {
-    return emptyResponse();
+    return emptyResponse("text/turtle");
   }
 }
