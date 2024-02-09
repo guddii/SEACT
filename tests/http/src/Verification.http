@@ -1,5 +1,5 @@
 ### Retrieving verification for client as client agent
-GET http://localhost:4000/client/dpc
+GET http://proxy.localhost:4000/client/dpc
 Authorization: Bearer {{$auth.token("client")}}
 Accept: text/turtle
 
@@ -10,7 +10,7 @@ Accept: text/turtle
 %}
 
 ### Retrieving verification for client as dpc agent
-GET http://localhost:4000/client/dpc
+GET http://proxy.localhost:4000/client/dpc
 Authorization: Bearer {{$auth.token("dpc")}}
 Accept: text/turtle
 

@@ -1,6 +1,6 @@
 ### Read a WebID as Proxy
-GET http://localhost:3000/client/profile/card#me
-X-Forwarded-Host: localhost:4000
+GET http://server.localhost:3000/client/profile/card#me
+X-Forwarded-Host: proxy.localhost:4000
 X-Forwarded-Proto: http
 
 > {%

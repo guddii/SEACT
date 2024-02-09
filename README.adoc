@@ -14,38 +14,98 @@ The thesis provides not only a theoretical foundation, but also practical implem
 
 == Installation
 
-This is a https://nodejs.org/en/download/package-manager[Node.js] based project, please use the package manager https://pnpm.io/installation[pnpm] to install this project.
+To be able to run the web applications locally, you need the following entries in your host file:
+
+[source]
+----
+127.0.0.1 client.localhost
+127.0.0.1 dpc.localhost
+127.0.0.1 proxy.localhost
+127.0.0.1 server.localhost
+----
+
+These entries are necessary so that Node.js and Docker can be resolved as local hosts.
+
+In addition, an .env file is required to provide the necessary environment variables at runtime.
+You can find the available environment variables in xref:.example.env[] or copy the entire file:
+
+[source,bash]
+----
+cp .example.env .env
+----
+
+Some variables cannot be set immediately and are only added after the first start of the application.
+
+=== Installation and Build with Node.js
+
+Once you have performed the general <<Installation>>, you can install the project via https://nodejs.org/en/download/package-manager[Node.js].
+Please use https://pnpm.io/installation[pnpm] as package manager for this:
 
 [source,bash]
 ----
 pnpm install
 ----
 
-An `.env` file is also required to provide the necessary configurations at runtime.
-See xref:.example.env[] for a copyable example of the use of environment variables.
-
-[source,bash]
-----
-cp .example.env .env
-cp -r apps/server/dump/dev/data apps/server/data
-----
-
-To run this in development mode, use the existing environment configuration and the dump of the https://communitysolidserver.github.io/[Community Solid Server] data.
-
-== Usage
-
-If you want to run this project in development mode, enter the following command in your terminal:
+To add the missing environment variables, you can start the application for the first time:
 
 [source,bash]
 ----
 pnpm run dev
 ----
 
+Execute the bootstrapping script while the application is running:
+
+[source,bash]
+----
+node ./scripts/bootstrap.js
+----
+
+This command completes the missing environment variables in the .env file.
+The application must be restarted for the environment variables to be loaded.
+
+=== Installation and Build with Docker
+
+Alternatively, you can also use https://docs.docker.com/get-docker/[Docker]  to install and build the application within a container.
+However, the general installation must also have been performed for this.
+
+[source,bash]
+----
+docker network create seact
+docker compose up --build
+----
+
+This command builds and starts the application. If this was successful, the bootstrapping can be executed:
+
+[source,bash]
+----
+docker run -it --rm --name seact-bootstrap --network=seact -v "$PWD":/usr/src/app -w /usr/src/app node:20-alpine node ./scripts/bootstrap.js
+----
+
+This command completes the missing environment variables in the .env file.
+The application must be restarted for the environment variables to be loaded.
+
+
+== Usage
+
+If you want to run this project, enter one of the following commands in your terminal, depending on whether you have installed the application via Node.js or Docker:
+
+[source,bash]
+----
+pnpm run dev
+----
+
+or
+
+[source,bash]
+----
+docker compose up
+----
+
 The following users are available in development mode:
 
-
+[cols="2,1,1",width=100%]
 |===
-|   |email |password
+|name |email |password
 
 |client
 |client@example.com
@@ -56,7 +116,7 @@ The following users are available in development mode:
 |secret!
 |===
 
-The accounts are available at http://localhost:4000/.account/
+The accounts are available at http://proxy.localhost:4000/.account/
 
 == Licence
 

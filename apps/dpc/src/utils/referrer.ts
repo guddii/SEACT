@@ -13,8 +13,7 @@ export const forwardFromReferrer = (req: Request, app: SolidApp): Response => {
   return Response.redirect(app.baseUrl);
 };
 
-export const appendReferrer = (req: Request, app: SolidApp): URL => {
-  const url = createUrl("/login/callback", app.baseUrl);
+export const appendReferrer = (req: Request, url: URL): URL => {
   const referrer = createUrl(req.url).searchParams.get(REFERRER_QUERY_PARAM);
 
   if (referrer) {

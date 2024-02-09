@@ -198,8 +198,8 @@ importers:
   apps/server:
     dependencies:
       '@solid/community-server':
-        specifier: 7.0.2
-        version: 7.0.2
+        specifier: ^7.0.4
+        version: 7.0.4
 
   packages/core:
     dependencies:
@@ -3729,8 +3729,8 @@ packages:
       - encoding
     dev: false
 
-  /@solid/community-server@7.0.2:
-    resolution: {integrity: sha512-LQQHR7eZB4Gg2e4k0MyXCP1YjLcKDHCROu3v7s+Y7P3Vq6cD7RnS/MxW1bpr7LB9b9rCdVRGzn6izu/gPPK9JQ==}
+  /@solid/community-server@7.0.4:
+    resolution: {integrity: sha512-8NfFyphfFdcVJjbL0Su5/SIGAGKiGRuHJGFgZyTjh9PMvPNFAIGfrjdgbIdscKWPLe4eM+PndtOjrcEkn/5wSg==}
     engines: {node: '>=18.0'}
     hasBin: true
     dependencies:

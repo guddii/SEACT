@@ -1,0 +1,67 @@
+version: "3"
+
+services:
+  client:
+    container_name: seact-client
+    build:
+      context: .
+      dockerfile: ./apps/client/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "5010:5010"
+    networks:
+      seact:
+        aliases:
+          - client.localhost
+    env_file:
+      - .env
+    environment:
+      PORT: 5010
+
+  dpc:
+    container_name: seact-dpc
+    build:
+      context: .
+      dockerfile: ./apps/dpc/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    networks:
+      seact:
+        aliases:
+          - dpc.localhost
+    env_file:
+      - .env
+    environment:
+      PORT: 5000
+
+  proxy:
+    container_name: seact-proxy
+    build:
+      context: .
+      dockerfile: ./apps/proxy/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    networks:
+      seact:
+        aliases:
+          - proxy.localhost
+    env_file:
+      - .env
+
+  server:
+    image: solidproject/community-server:7.0.4
+    restart: unless-stopped
+    networks:
+      seact:
+        aliases:
+          - server.localhost
+    volumes:
+      - ./apps/server/data:/community-server/data
+    env_file:
+      - .env
+
+networks:
+  seact:
+    external: true

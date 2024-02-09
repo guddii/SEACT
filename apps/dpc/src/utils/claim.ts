@@ -19,6 +19,7 @@ import {
 } from "@seact/core";
 import type { Session } from "@inrupt/solid-client-authn-node";
 import { getAgentUserSession } from "./session.ts";
+import { NetworkError } from "./error.ts";
 
 export async function createVerification(
   session: Session,
@@ -39,7 +40,7 @@ export async function createVerification(
   });
 
   if (!isSuccessfulResponse(response)) {
-    throw new Error(response.statusText);
+    throw new NetworkError(response);
   }
 
   return response;
@@ -78,7 +79,7 @@ export async function createVerificationAcl(
   });
 
   if (!isSuccessfulResponse(response)) {
-    throw new Error(response.statusText);
+    throw new NetworkError(response);
   }
 
   return response;

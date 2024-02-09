@@ -16,7 +16,6 @@
       <excludeFolder url="file://$MODULE_DIR$/apps/dpc/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/apps/proxy/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/apps/proxy/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/apps/server/data" />
       <excludeFolder url="file://$MODULE_DIR$/packages/logger/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/logger/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/solid/dist" />
@@ -26,6 +25,7 @@
       <excludeFolder url="file://$MODULE_DIR$/apps/dpc/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/core/.turbo" />
       <excludeFolder url="file://$MODULE_DIR$/packages/core/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/server/data/storage" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
