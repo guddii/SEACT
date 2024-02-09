@@ -64,4 +64,4 @@ services:
 
 networks:
   seact:
-    external: false
+    external: true
