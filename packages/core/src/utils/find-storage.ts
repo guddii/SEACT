@@ -34,7 +34,7 @@ export const getContainerResources = (resource: URL, depth = 1): URL[] => {
 
 export const findStorage = async (
   containerResources: URL[],
-  options: { fetch: typeof fetch },
+  session: { fetch: typeof fetch },
 ): Promise<URL | null> => {
   const containerResource = containerResources.pop();
 
@@ -42,7 +42,7 @@ export const findStorage = async (
     return null;
   }
 
-  const containerResponse = await options.fetch(containerResource, {
+  const containerResponse = await session.fetch(containerResource, {
     method: "HEAD",
   });
 
@@ -51,5 +51,5 @@ export const findStorage = async (
     return containerResource;
   }
 
-  return findStorage(containerResources, options);
+  return findStorage(containerResources, session);
 };
