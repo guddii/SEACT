@@ -161,7 +161,7 @@ export async function getToken(
   session: Session,
 ): Promise<string> {
   const resource = toUrlString(
-    createUrl(`${String(storage)}/dpc#verification`),
+    updateUrl("/dpc#verification", createUrl(storage)),
   );
   const dataset = await getSolidDataset(resource, {
     fetch: session.fetch,

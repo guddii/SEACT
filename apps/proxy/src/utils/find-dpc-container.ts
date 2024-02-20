@@ -6,11 +6,10 @@ import {
   getContainerResources,
   findStorage,
 } from "@seact/core";
-import type { ProxySession } from "../services/proxy-session.ts";
 
 export const findDpcContainer = async (
   req: IncomingMessage,
-  session: ProxySession,
+  session: { fetch: typeof fetch },
 ): Promise<URL | null> => {
   if (!req.url) {
     return null;
@@ -19,9 +18,7 @@ export const findDpcContainer = async (
   const resource = updateUrl(req.url, APPS.PROXY.baseUrl);
   const containerResources = getContainerResources(resource);
 
-  const storage = await findStorage(containerResources, {
-    fetch: session.fetch,
-  });
+  const storage = await findStorage(containerResources, session);
 
   if (storage) {
     return updateUrl(`/logs${storage.pathname}`, AGENTS.DPC.storage);

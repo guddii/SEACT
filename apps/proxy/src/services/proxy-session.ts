@@ -1,21 +1,16 @@
-import { randomUUID } from "node:crypto";
-import type { IncomingMessage } from "node:http";
 import type { ILoginInputOptions } from "@inrupt/solid-client-authn-node";
+import { APPS, isSuccessfulResponse } from "@seact/core";
+import type { Request } from "express";
 import {
-  APPS,
-  toUrlString,
-  isRedirectionMessage,
-  isSuccessfulResponse,
-} from "@seact/core";
-
-const SKIP_REQ_HEADER_VAL = randomUUID();
+  fetchWithSkipHeader,
+  hasSkipHeader,
+} from "../utils/fetch-with-skip-header.ts";
 
 export class ProxySession {
-  public static SKIP_REQ_HEADER_KEY = "x-skip";
   token: Record<string, string> = {};
   public readonly info: Record<string, boolean> = { isLoggedIn: false };
 
-  async login(options: ILoginInputOptions): Promise<void> {
+  login = async (options: ILoginInputOptions): Promise<void> => {
     if (!options.clientId) {
       throw new Error("clientId is required");
     }
@@ -33,27 +28,25 @@ export class ProxySession {
       scope: "webid",
     });
 
-    const response: Response = await fetch(toUrlString(APPS.PROXY.tokenUrl), {
+    const response: Response = await fetchWithSkipHeader(APPS.PROXY.tokenUrl, {
       method: "POST",
       headers: {
         authorization: `Basic ${Buffer.from(authString).toString("base64")}`,
         "content-type": "application/x-www-form-urlencoded",
-        [ProxySession.SKIP_REQ_HEADER_KEY]: SKIP_REQ_HEADER_VAL,
       },
       body: urlSearchParams.toLocaleString(),
     });
 
-    if (isSuccessfulResponse(response) || isRedirectionMessage(response)) {
+    if (isSuccessfulResponse(response)) {
       const data = await response.json();
       this.token = data as Record<string, string>;
       this.info.isLoggedIn = true;
     }
-  }
+  };
 
   fetch: typeof fetch = async (input, init) => {
     const authHeaders: RequestInit["headers"] = {
-      Authorization: `${this.token.token_type} ${this.token.access_token}`,
-      [ProxySession.SKIP_REQ_HEADER_KEY]: SKIP_REQ_HEADER_VAL,
+      authorization: `${this.token.token_type} ${this.token.access_token}`,
     };
 
     const headers: RequestInit["headers"] = {
@@ -61,15 +54,22 @@ export class ProxySession {
       ...authHeaders,
     };
 
-    return fetch(input, {
+    return fetchWithSkipHeader(input, {
       ...init,
       headers,
     });
   };
 
-  static isOwnRequest(req: IncomingMessage): boolean {
-    const skipHeader = req.headers[ProxySession.SKIP_REQ_HEADER_KEY] || "";
-    return skipHeader !== SKIP_REQ_HEADER_VAL;
+  static isServerRequest(req: Request): boolean {
+    // TODO: Replace with actual server sender filtering
+    return [
+      "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)",
+      "node",
+    ].includes(req.headers["user-agent"] || "node");
+  }
+
+  static isOwnRequest(req: Request): boolean {
+    return hasSkipHeader(req);
   }
 }
 

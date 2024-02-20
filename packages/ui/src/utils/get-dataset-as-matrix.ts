@@ -38,6 +38,6 @@ export const getDatasetAsMatrix = async (
     fetch: session.fetch,
   });
 
-  const thingAll = getThingAll(dataset);
+  const thingAll = getThingAll(dataset).reverse();
   return getAsMatrix(thingAll);
 };

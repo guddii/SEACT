@@ -1,26 +1,34 @@
 import express from "express";
-import type { Express, Request, Response } from "express";
+import type { Express, Request, Response, NextFunction } from "express";
 import morgan from "morgan";
-import { proxy } from "./services/proxy";
-import { ProxySession } from "./services/proxy-session";
+import { createProxyMiddleware } from "http-proxy-middleware";
+import { APPS } from "@seact/core";
 import { createLog } from "./utils/create-log";
 import { statusRouter } from "./resources/status/status.router";
+import { asyncMiddleware } from "./services/async-middleware.ts";
+import { errorHandler } from "./services/error-handler.ts";
 
-const onAfterForwarding = async (
+const beforeForwarding = async (
   req: Request,
   res: Response,
+  next: NextFunction,
 ): Promise<void> => {
-  if (ProxySession.isOwnRequest(req)) {
-    await createLog({ req, res });
-  }
+  await createLog(req, res, next);
+  next();
 };
+
+const proxy = createProxyMiddleware({
+  target: APPS.PROXY.forwardingUrl,
+});
 
 export const createServer = (): Express => {
   const app = express();
   app
+    .use(errorHandler)
     .use(morgan("dev"))
     .use("/status", statusRouter)
-    .use(proxy({ onAfterForwarding }));
+    .use(asyncMiddleware(beforeForwarding))
+    .use(proxy);
 
   return app;
 };
