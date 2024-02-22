@@ -6,11 +6,16 @@ import {
   hasSkipHeader,
 } from "../utils/fetch-with-skip-header.ts";
 
+interface ProxyLoginInputOptions extends ILoginInputOptions {
+  webId: URL;
+}
+
 export class ProxySession {
+  webId: URL | undefined;
   token: Record<string, string> = {};
   public readonly info: Record<string, boolean> = { isLoggedIn: false };
 
-  login = async (options: ILoginInputOptions): Promise<void> => {
+  login = async (options: ProxyLoginInputOptions): Promise<void> => {
     if (!options.clientId) {
       throw new Error("clientId is required");
     }
@@ -41,6 +46,7 @@ export class ProxySession {
       const data = await response.json();
       this.token = data as Record<string, string>;
       this.info.isLoggedIn = true;
+      this.webId = options.webId;
     }
   };
 
@@ -60,31 +66,48 @@ export class ProxySession {
     });
   };
 
-  static isServerRequest(req: Request): boolean {
-    // TODO: Replace with actual server sender filtering
-    return [
-      "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)",
-      "node",
-    ].includes(req.headers["user-agent"] || "node");
+  static isAgentRequest(
+    req: Request,
+    agent: { webId: URL | undefined },
+  ): boolean {
+    if (agent.webId) {
+      return req.url.startsWith(agent.webId.pathname);
+    }
+    return false;
   }
 
-  static isOwnRequest(req: Request): boolean {
+  static isInternalServerRequest(req: Request): boolean {
+    // Filters /.well-known/openid-configuration + all internal calls
+    return req.url.startsWith("/.");
+  }
+
+  static isSelfRequest(req: Request): boolean {
     return hasSkipHeader(req);
+  }
+
+  static isLoggableRequest(req: Request): boolean {
+    return !(
+      ProxySession.isSelfRequest(req) ||
+      ProxySession.isInternalServerRequest(req) ||
+      ProxySession.isAgentRequest(req, session)
+    );
   }
 }
 
 const session = new ProxySession();
 
 export const getAgentUserSession = async ({
+  webId,
   clientId,
   clientSecret,
   oidcIssuer,
-}: ILoginInputOptions): Promise<ProxySession> => {
+}: ProxyLoginInputOptions): Promise<ProxySession> => {
   if (session.info.isLoggedIn) {
     return session;
   }
 
   await session.login({
+    webId,
     clientId,
     clientSecret,
     oidcIssuer,

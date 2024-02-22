@@ -8,8 +8,8 @@ import {
 import type { AsyncMiddlewareFn } from "../services/async-middleware.ts";
 import { findDpcContainer } from "./find-dpc-container.ts";
 
-export const createLog: AsyncMiddlewareFn = async (req, res) => {
-  if (!ProxySession.isOwnRequest(req) && !ProxySession.isServerRequest(req)) {
+export const createLog: AsyncMiddlewareFn = async (req, res, next) => {
+  if (ProxySession.isLoggableRequest(req)) {
     const session = await getAgentUserSession(AGENTS.DPC);
     if (!session.info.isLoggedIn) {
       return;
