@@ -22,8 +22,8 @@ Access monitoring in distributed systems has also been recognised as critical by
 The _XDatenschutzcockpit_ project aims to increase transparency for citizens by offering a national data protection cockpit that monitors access to their data and allows them to assess what data has been exchanged between authorities, as well as the timing and purpose of such exchanges.
 The pilot phase was completed in September 2022, leading to the creation of the specification, which is tied to e-government services. cite:[diederich_xdatenschutzcockpit_2023]
 
-The combination of both ideas leads to the approach of applying the data protection cockpit specification to the solid protocol, as the solid protocol represents a promising approach that is independent of the business logic.
-It is proposed to use the solid protocol as the technical basis for the data protection cockpit.
+The combination of both ideas leads to the approach of applying the data protection cockpit specification to the Solid protocol, as the Solid protocol represents a promising approach that is independent of the business logic.
+It is proposed to use the Solid protocol as the technical basis for the data protection cockpit.
 This is supplemented by the findings from the _XData Protection Cockpit_ specification.
 
 == Objectives and research interest
@@ -61,7 +61,7 @@ Derived from this key research question, the following sub-questions are to be a
 - In which use cases can server-side application layer proxies be used, and where are the limits if conformity with the Solid protocol is to be guaranteed?
 - How high is the system resource load during filtering and modification by a server-side proxy of the application layer using the Solid protocol?
 
-For the analysis, a data privacy cockpit is developed as a solid app that manages the information collected by the server-side application level proxy.
+For the analysis, a data privacy cockpit is developed as a Solid app that manages the information collected by the server-side application level proxy.
 It is assumed that the range of functions can be extended variably, and that the possibilities of the various logical topologies can therefore be utilised.
 The data privacy cockpit is just an example of a complex situation in which the procedure can be used and serves to evaluate the concept.
 Conclusions for similarly complex use cases can be derived from this if necessary.

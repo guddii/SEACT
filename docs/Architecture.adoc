@@ -35,7 +35,7 @@ include::resources/diagrams/sd_Request_a_resource.puml[]
 
 Network logs are captured by storage, not by WebID, and it is necessary to associate the data with a WebID at some point to make it readable to the owner.
 This is done by a claiming mechanism.
-This requires a solid application that has access to both the user storage and the DPC storage.
+This requires a Solid application that has access to both the user storage and the DPC storage.
 Both connections are handled by the DPC API server, and when the connections are established, the API schedules an auth token on behalf of the client agent to be verified by the DPC API server when it discovers the logs.
 
 .<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the log claiming process
