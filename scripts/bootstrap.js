@@ -39,22 +39,19 @@ const generateToken = async ({ authorization }, { webId }) => {
   return response.json();
 };
 
-const writeEnv = async ({ name }) => {
+const writeAgentsToEnv = async ({ name }) => {
   const agent = {
     name,
     NAME: name.toUpperCase(),
     email: `${name}@example.com`,
     password: "secret!",
     storage: `http://proxy.localhost:4000/${name}`,
-    webId: `http://proxy.localhost:4000/${name}/profile/card#me`
-  }
+    webId: `http://proxy.localhost:4000/${name}/profile/card#me`,
+  };
 
   const { authorization } = await login(agent);
 
-  const { id, secret } = await generateToken(
-    { authorization },
-    agent,
-  );
+  const { id, secret } = await generateToken({ authorization }, agent);
 
   fs.appendFileSync(".env", `\n# ${agent.NAME} Agent (generated)\n`);
   fs.appendFileSync(".env", `${agent.NAME}_WEB_ID="${agent.webId}"\n`);
@@ -63,7 +60,13 @@ const writeEnv = async ({ name }) => {
   fs.appendFileSync(".env", `${agent.NAME}_SECRET="${secret}"\n`);
 };
 
+const writeFeatureFlagsToEnv = async () => {
+  fs.appendFileSync(".env", `\n# Feature Flags  (generated)\n`);
+  fs.appendFileSync(".env", `FEATURE_FLAG_LOGGING=true`);
+};
+
 (async () => {
-  await writeEnv({ name: "client" });
-  await writeEnv({ name: "dpc" });
+  await writeAgentsToEnv({ name: "client" });
+  await writeAgentsToEnv({ name: "dpc" });
+  await writeFeatureFlagsToEnv();
 })();

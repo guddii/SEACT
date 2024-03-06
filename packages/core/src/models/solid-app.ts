@@ -15,20 +15,18 @@ export class SolidApp {
 export interface SolidAppProxyOptions extends SolidAppOptions {
   forwardingUrl: string;
   tokenUrl: string;
+  featureLogging: boolean;
 }
 
 export class SolidAppProxy extends SolidApp {
   public readonly forwardingUrl: URL;
   public readonly tokenUrl: URL;
+  public readonly featureLogging: boolean;
 
   constructor(options: SolidAppProxyOptions) {
     super(options);
     this.forwardingUrl = createUrl(options.forwardingUrl);
     this.tokenUrl = createUrl(options.tokenUrl);
+    this.featureLogging = options.featureLogging;
   }
-}
-
-export interface SolidAppDPCOptions extends SolidAppOptions {
-  forwardingUrl: string;
-  tokenUrl: string;
 }

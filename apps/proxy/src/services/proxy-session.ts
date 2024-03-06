@@ -1,5 +1,5 @@
 import type { ILoginInputOptions } from "@inrupt/solid-client-authn-node";
-import { APPS, isSuccessfulResponse } from "@seact/core";
+import { isSuccessfulResponse, APPS } from "@seact/core";
 import type { Request } from "express";
 import {
   fetchWithSkipHeader,
@@ -86,6 +86,10 @@ export class ProxySession {
   }
 
   static isLoggableRequest(req: Request): boolean {
+    if (!APPS.PROXY.featureLogging) {
+      return false;
+    }
+
     return !(
       ProxySession.isSelfRequest(req) ||
       ProxySession.isInternalServerRequest(req) ||
