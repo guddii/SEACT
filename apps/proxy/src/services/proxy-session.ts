@@ -1,10 +1,11 @@
 import type { ILoginInputOptions } from "@inrupt/solid-client-authn-node";
-import { APPS, isSuccessfulResponse } from "@seact/core";
+import { isSuccessfulResponse, APPS } from "@seact/core";
 import type { Request } from "express";
 import {
   fetchWithSkipHeader,
   hasSkipHeader,
 } from "../utils/fetch-with-skip-header.ts";
+import { oidcDiscovery } from "../utils/oidc-discovery.ts";
 
 interface ProxyLoginInputOptions extends ILoginInputOptions {
   webId: URL;
@@ -33,14 +34,22 @@ export class ProxySession {
       scope: "webid",
     });
 
-    const response: Response = await fetchWithSkipHeader(APPS.PROXY.tokenUrl, {
-      method: "POST",
-      headers: {
-        authorization: `Basic ${Buffer.from(authString).toString("base64")}`,
-        "content-type": "application/x-www-form-urlencoded",
+    const oidcConfig = await oidcDiscovery();
+    if (!oidcConfig) {
+      throw new Error("Could not find OIDC Configuration");
+    }
+
+    const response: Response = await fetchWithSkipHeader(
+      oidcConfig.token_endpoint,
+      {
+        method: "POST",
+        headers: {
+          authorization: `Basic ${Buffer.from(authString).toString("base64")}`,
+          "content-type": "application/x-www-form-urlencoded",
+        },
+        body: urlSearchParams.toLocaleString(),
       },
-      body: urlSearchParams.toLocaleString(),
-    });
+    );
 
     if (isSuccessfulResponse(response)) {
       const data = await response.json();
@@ -86,6 +95,10 @@ export class ProxySession {
   }
 
   static isLoggableRequest(req: Request): boolean {
+    if (!APPS.PROXY.featureLogging) {
+      return false;
+    }
+
     return !(
       ProxySession.isSelfRequest(req) ||
       ProxySession.isInternalServerRequest(req) ||
