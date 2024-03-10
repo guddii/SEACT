@@ -1,4 +1,4 @@
-### ...
+### Get claims for first user (client) from registry
 GET http://proxy.localhost:4000/dpc/logs/registry
 Authorization: Bearer {{$auth.token("dpc")}}
 Accept: application/ld+json
@@ -7,13 +7,25 @@ Accept: application/ld+json
     client.global.set("claim", response.body[0]["urn:claim#claims"][0]["@id"]);
 %}
 
-### ...
+### Get first verification code and storage pair
 GET {{claim}}
 Authorization: Bearer {{$auth.token("dpc")}}
-Accept: text/turtle
+Accept: application/ld+json
+
 
 > {%
-    client.test("Request executed successfully", function () {
-        client.assert(response.status === 200, "Response status is not 200");
+    client.global.set("token", response.body[0]["urn:claim#token"][0]["@value"]);
+    client.global.set("storage", response.body[0]["urn:claim#storage"][0]["@id"]);
+%}
+
+### Get the token from the storage
+GET {{storage}}/dpc
+Authorization: Bearer {{$auth.token("dpc")}}
+Accept: application/ld+json
+
+> {%
+    client.global.set("token2", response.body[0]["urn:claim#token"][0]["@value"]);
+    client.test("Compare token", function () {
+        client.assert(client.global.get("token") === client.global.get("token2"), "Token are not equal");
     });
 %}

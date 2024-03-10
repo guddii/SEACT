@@ -1,3 +1,4 @@
+import type http from "node:http";
 import type { ILoginInputOptions } from "@inrupt/solid-client-authn-node";
 import { isSuccessfulResponse, APPS } from "@seact/core";
 import type { Request } from "express";
@@ -76,27 +77,47 @@ export class ProxySession {
   };
 
   static isAgentRequest(
-    req: Request,
+    req: Request | http.IncomingMessage,
     agent: { webId: URL | undefined },
   ): boolean {
+    if (!req.url) {
+      return true;
+    }
     if (agent.webId) {
       return req.url.startsWith(agent.webId.pathname);
     }
     return false;
   }
 
-  static isInternalServerRequest(req: Request): boolean {
-    // Filters /.well-known/openid-configuration + all internal calls
+  static isOidcConfigRequest(req: Request | http.IncomingMessage): boolean {
+    return req.url === APPS.PROXY.openidConfigurationUrl.pathname;
+  }
+
+  static isInternalServerRequest(req: Request | http.IncomingMessage): boolean {
+    if (!req.url) {
+      return true;
+    }
     return req.url.startsWith("/.");
   }
 
-  static isSelfRequest(req: Request): boolean {
+  static isSelfRequest(req: Request | http.IncomingMessage): boolean {
     return hasSkipHeader(req);
   }
 
-  static isLoggableRequest(req: Request): boolean {
+  static isLoggableRequest(
+    req: Request | http.IncomingMessage,
+    strict?: boolean,
+  ): boolean {
     if (!APPS.PROXY.featureLogging) {
       return false;
+    }
+
+    if (strict) {
+      return !(
+        ProxySession.isSelfRequest(req) ||
+        ProxySession.isOidcConfigRequest(req) ||
+        ProxySession.isAgentRequest(req, session)
+      );
     }
 
     return !(
