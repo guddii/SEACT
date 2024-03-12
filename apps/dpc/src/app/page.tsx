@@ -4,11 +4,11 @@ import type { ReactElement } from "react";
 import React from "react";
 import type { TabsProps } from "antd";
 import { Tabs } from "antd";
-import { HTTP, RDF } from "@inrupt/vocab-common-rdf";
+import { RDF } from "@inrupt/vocab-common-rdf";
 import { APPS, updateUrlString } from "@seact/core";
 
 export const metadata: Metadata = {
-  title: "Access Logs",
+  title: "Logs",
   other: {
     breadcrumb: ["Client", "Data Privacy Cockpit"],
   },
@@ -18,36 +18,12 @@ export default function Page(): ReactElement {
   const items: TabsProps["items"] = [
     {
       key: "1",
-      label: "Connections",
+      label: "Access Logs",
       children: (
         <Box>
           <TableRDF
-            excludeColumns={["key", RDF.type, HTTP.requests]}
-            resource={updateUrlString("/api/log/connections", APPS.DPC.baseUrl)}
-          />
-        </Box>
-      ),
-    },
-    {
-      key: "2",
-      label: "Requests",
-      children: (
-        <Box>
-          <TableRDF
-            excludeColumns={["key", RDF.type]}
-            resource={updateUrlString("/api/log/requests", APPS.DPC.baseUrl)}
-          />
-        </Box>
-      ),
-    },
-    {
-      key: "3",
-      label: "Responses",
-      children: (
-        <Box>
-          <TableRDF
-            excludeColumns={["key", RDF.type]}
-            resource={updateUrlString("/api/log/responses", APPS.DPC.baseUrl)}
+            excludeColumns={["key", "thing", RDF.type]}
+            resource={updateUrlString("/api/log/accessLog", APPS.DPC.baseUrl)}
           />
         </Box>
       ),
