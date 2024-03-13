@@ -36,7 +36,7 @@ include::resources/diagrams/sd_Request_a_resource.puml[]
 Network logs are captured by storage, not by WebID, and it is necessary to associate the data with a WebID at some point to make it readable to the owner.
 This is done by a claiming mechanism.
 This requires a Solid application that has access to both the user storage and the DPC storage.
-Both connections are handled by the DPC API server, and when the connections are established, the API schedules an auth token on behalf of the client agent to be verified by the DPC API server when it discovers the logs.
+Both connections are handled by the DPC API server, and when the connections are established, the API initializes an verification token on behalf of the client agent to be verified by the DPC API server when it discovers the logs.
 
 .<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the log claiming process
 [.text-center]
@@ -48,7 +48,7 @@ include::resources/diagrams/sd_Log_claiming.puml[]
 ==== Log Discovery
 
 The logs in the DPC API server are represented as routes.
-These routes will either return an empty turtle file or attempt to resolve the scheduled claim and receive the actual files from the claimed storages.
+These routes will either return an empty turtle file or attempt to resolve the claim and receive the actual files from the claimed storages.
 
 .<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the discovery of logs
 [.text-center]
@@ -120,17 +120,17 @@ The dataset will be enriched with new log data and stored on the server.
 include::resources/diagrams/sd_Access_log_update.puml[]
 ....
 
-==== Schedule a Token
+==== Initialize a Verification Token
 
-To schedule a verification token, start by generating a random key.
+To initialize a verification token, start by generating a random key.
 The DPC API will then store the token, storage, and WebID in a location accessible to the DPC agent for later verification.
 If the DPC API cannot access the client's storage, the process will terminate without adding data to the DPC storage.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of scheduling a token
+.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of initializing a verification token
 [.text-center]
 [plantuml,format=svg]
 ....
-include::resources/diagrams/sd_Schedule_a_token.puml[]
+include::resources/diagrams/sd_Initialize_a_verification_token.puml[]
 ....
 
 ==== Write Token to Client Storage

@@ -85,7 +85,7 @@ export async function createVerificationAcl(
   return response;
 }
 
-export async function scheduleClaim(
+export async function initClaim(
   token: string,
   storage: URL,
 ): Promise<Thing | null> {
