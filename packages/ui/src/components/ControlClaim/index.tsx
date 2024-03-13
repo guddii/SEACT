@@ -7,7 +7,7 @@ import { useIdentity } from "../../contexts/IdentityContext";
 export function ControlClaim(): ReactElement {
   const { message } = App.useApp();
   const { webId, storage } = useIdentity();
-  const [isLoadingSchedule, setIsLoadingSchedule] = useState(false);
+  const [isLoadingInitClaim, setIsLoadingInitClaim] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isReloadModalOpen, setIsReloadModalOpen] = useState(false);
   const [form] = Form.useForm();
@@ -24,12 +24,12 @@ export function ControlClaim(): ReactElement {
     setIsModalOpen(false);
   };
 
-  const schedule = (values: Record<string, string>): void => {
-    setIsLoadingSchedule(true);
+  const initClaim = (values: Record<string, string>): void => {
+    setIsLoadingInitClaim(true);
 
     const formData = setValuesToForm(values);
 
-    void fetch("/api/claim/schedule", {
+    void fetch("/api/claim/init", {
       method: "PUT",
       body: formData,
     })
@@ -49,7 +49,7 @@ export function ControlClaim(): ReactElement {
         }
       })
       .finally(() => {
-        setIsLoadingSchedule(false);
+        setIsLoadingInitClaim(false);
       });
   };
 
@@ -70,7 +70,7 @@ export function ControlClaim(): ReactElement {
         open={isModalOpen}
         title="Claim Access Logs"
       >
-        <Form form={form} initialValues={{ storage }} onFinish={schedule}>
+        <Form form={form} initialValues={{ storage }} onFinish={initClaim}>
           <Form.Item
             label="Storage"
             name={STORAGE}
@@ -91,7 +91,11 @@ export function ControlClaim(): ReactElement {
           this page. Click OK to continue.
         </p>
       </Modal>
-      <Button disabled={!webId} loading={isLoadingSchedule} onClick={showModal}>
+      <Button
+        disabled={!webId}
+        loading={isLoadingInitClaim}
+        onClick={showModal}
+      >
         Claim Access Logs
       </Button>
     </Space>

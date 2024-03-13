@@ -5,7 +5,7 @@ import { getSession, getWebId } from "../../../../utils/session-cookie";
 import {
   createVerification,
   createVerificationAcl,
-  scheduleClaim,
+  initClaim,
   updateRegistry,
 } from "../../../../utils/claim.ts";
 
@@ -19,7 +19,7 @@ export async function PUT(req: Request): Promise<Response> {
     await createVerification(session, token, storage);
     await createVerificationAcl(webId, session, storage);
 
-    const claim = await scheduleClaim(token, storage);
+    const claim = await initClaim(token, storage);
     await updateRegistry(webId, claim);
 
     return Response.json(

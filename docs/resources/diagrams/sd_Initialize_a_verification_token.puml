@@ -3,7 +3,7 @@
 
 skinparam sequenceReferenceBackgroundColor white
 
-mainframe **sd** Schedule a Token
+mainframe **sd** Initialize a Verification Token
 autonumber 1 1 "<b>[0]"
 
 participant "DPC API" as DPC_API
