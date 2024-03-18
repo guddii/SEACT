@@ -5,5 +5,6 @@ export const CLAIM = {
   claims: "urn:claim#claims",
   token: "urn:claim#token",
   webid: "urn:claim#webid",
-  storage: "urn:claim#storage",
+  monitoredStorage: "urn:claim#monitoredStorage",
+  claimedData: "urn:claim#claimedData",
 };

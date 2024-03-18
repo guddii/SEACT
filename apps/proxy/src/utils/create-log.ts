@@ -14,7 +14,7 @@ import {
   ProxySession,
 } from "../services/proxy-session.ts";
 import type { AsyncMiddlewareFn } from "../services/async-middleware.ts";
-import { findDpcContainer } from "./find-dpc-container.ts";
+import { findClaimedData } from "./find-claimed-data.ts";
 import { parseJwt } from "./jwt-parser.ts";
 import { registrationStore, type Registration } from "./registration-store.ts";
 import type { OpenIDConfiguration } from "./oidc-discovery.ts";
@@ -88,25 +88,22 @@ export const createLog: AsyncMiddlewareFn = async (req, res, next) => {
       return;
     }
 
-    const dpcContainer = await findDpcContainer(req, session);
-    if (!dpcContainer) {
-      next();
-      return;
+    const claimedData = await findClaimedData(req, session);
+    if (claimedData) {
+      await createOrUpdateResource({
+        resource: updateUrl("/accessLog", claimedData),
+        session,
+        callback: (thing) =>
+          buildThing(thing)
+            .addUrl(RDF.type, VOCAB.LOG.AccessLog)
+            .addDatetime(VOCAB.LOG.date, new Date())
+            .addStringNoLocale(VOCAB.LOG.accessor, accessor)
+            .addStringNoLocale(VOCAB.LOG.application, application)
+            .addStringNoLocale(VOCAB.LOG.action, getCRUD(req))
+            .addStringNoLocale(VOCAB.LOG.resource, req.url || "")
+            .build(),
+      });
     }
-
-    await createOrUpdateResource({
-      resource: updateUrl("/accessLog", dpcContainer),
-      session,
-      callback: (thing) =>
-        buildThing(thing)
-          .addUrl(RDF.type, VOCAB.LOG.AccessLog)
-          .addDatetime(VOCAB.LOG.date, new Date())
-          .addStringNoLocale(VOCAB.LOG.accessor, accessor)
-          .addStringNoLocale(VOCAB.LOG.application, application)
-          .addStringNoLocale(VOCAB.LOG.action, getCRUD(req))
-          .addStringNoLocale(VOCAB.LOG.resource, req.url || "")
-          .build(),
-    });
   }
 
   next();

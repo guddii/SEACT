@@ -15,14 +15,15 @@ loop hasContainerResources
     Proxy   ->  Proxy   : <b>HEAD</b> Request closest container resource
 ref over Proxy, Server  : Forwarded Request
     break existStorageInResponseHeader
-    Proxy   -> Proxy        : Set requested container resource as storage
+    Proxy   -> Proxy        : Lookup claim data in registry by storage
+    ref over Proxy, Server  : Forwarded Request
+    Proxy   -> Proxy        : Set base url from registry claim data
     end
+
 end
 opt existStorage
 ||5||
-ref over Proxy, Server : Access Log Update ( "/responses" )
-ref over Proxy, Server : Access Log Update ( "/requests" )
-ref over Proxy, Server : Access Log Update ( "/connections" )
+ref over Proxy, Server : Access Log Update ( "/accessLog" )
 end
 end
 @enduml

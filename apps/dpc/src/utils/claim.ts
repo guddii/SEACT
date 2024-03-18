@@ -101,7 +101,7 @@ export async function initClaim(
       return buildThing(thing)
         .addUrl(RDF.type, VOCAB.CLAIM.Claim)
         .addStringNoLocale(VOCAB.CLAIM.token, token)
-        .addUrl(VOCAB.CLAIM.storage, toUrlString(storage))
+        .addUrl(VOCAB.CLAIM.monitoredStorage, toUrlString(storage))
         .build();
     },
     updateThing: false,
@@ -198,7 +198,7 @@ export async function getLogBaseUrl(
 
   const token = getStringNoLocale(thing, VOCAB.CLAIM.token);
 
-  const storage = getUrl(thing, VOCAB.CLAIM.storage);
+  const storage = getUrl(thing, VOCAB.CLAIM.monitoredStorage);
   if (!storage) {
     throw new Error("No storage");
   }
