@@ -60,13 +60,7 @@ const writeAgentsToEnv = async ({ name }) => {
   fs.appendFileSync(".env", `${agent.NAME}_SECRET="${secret}"\n`);
 };
 
-const writeFeatureFlagsToEnv = async () => {
-  fs.appendFileSync(".env", `\n# Feature Flags  (generated)\n`);
-  fs.appendFileSync(".env", `FEATURE_FLAG_LOGGING=true`);
-};
-
 (async () => {
   await writeAgentsToEnv({ name: "client" });
   await writeAgentsToEnv({ name: "dpc" });
-  await writeFeatureFlagsToEnv();
 })();
