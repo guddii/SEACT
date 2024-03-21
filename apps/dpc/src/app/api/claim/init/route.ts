@@ -1,13 +1,15 @@
 import { randomBytes } from "node:crypto";
-import { createUrl, getStorageFromForm } from "@seact/core";
-import { errorResponse } from "../../../../utils/error-response.ts";
-import { getSession, getWebId } from "../../../../utils/session-cookie";
 import {
+  createUrl,
+  getStorageFromForm,
   createVerification,
   createVerificationAcl,
-  initClaim,
-  updateRegistry,
-} from "../../../../utils/claim.ts";
+  toUrlString,
+  AGENTS,
+} from "@seact/core";
+import { errorResponse } from "../../../../utils/error-response.ts";
+import { getSession, getWebId } from "../../../../utils/session-cookie";
+import { updateRegistry } from "../../../../utils/claim.ts";
 
 export async function PUT(req: Request): Promise<Response> {
   try {
@@ -16,11 +18,21 @@ export async function PUT(req: Request): Promise<Response> {
     const session = await getSession();
     const webId = await getWebId(session);
 
-    await createVerification(session, token, storage);
-    await createVerificationAcl(webId, session, storage);
+    // Setup client storage
+    const verification = await createVerification(session, token, storage);
+    await createVerificationAcl(
+      verification.internal_resourceInfo.sourceIri,
+      toUrlString(AGENTS.DPC.webId),
+      session,
+    );
 
-    const claim = await initClaim(token, storage);
-    await updateRegistry(webId, claim);
+    // Setup dpc storage
+    await updateRegistry(
+      verification.internal_resourceInfo.sourceIri,
+      webId,
+      token,
+      storage,
+    );
 
     return Response.json(
       { token },

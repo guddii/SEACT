@@ -1,4 +1,9 @@
-import type { SolidDataset, Thing } from "@inrupt/solid-client";
+import type {
+  SolidDataset,
+  Thing,
+  WithChangeLog,
+  WithServerResourceInfo,
+} from "@inrupt/solid-client";
 import {
   createSolidDataset,
   createThing,
@@ -16,13 +21,16 @@ export interface CreateOrUpdateRessourceOptions {
   prefixes?: Record<string, string>;
   updateThing?: boolean;
 }
+
 export const createOrUpdateResource = async ({
   resource,
   session,
   callback,
   prefixes = {},
   updateThing = true,
-}: CreateOrUpdateRessourceOptions): Promise<Thing> => {
+}: CreateOrUpdateRessourceOptions): Promise<
+  SolidDataset & WithServerResourceInfo & WithChangeLog
+> => {
   if (!resource.hash) {
     resource.hash = Date.now().toString();
   }
@@ -45,14 +53,10 @@ export const createOrUpdateResource = async ({
     thing = createThing({ url: toUrlString(resource) });
   }
 
-  const response = callback(thing);
+  dataset = setThing(dataset, callback(thing));
 
-  dataset = setThing(dataset, response);
-
-  await saveSolidDatasetAt(toUrlString(resource), dataset, {
+  return saveSolidDatasetAt(toUrlString(resource), dataset, {
     fetch: session.fetch,
     prefixes,
   });
-
-  return response;
 };

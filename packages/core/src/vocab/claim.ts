@@ -1,10 +1,9 @@
 export const CLAIM = {
-  RegisterEntry: "urn:claim#RegisterEntry",
-  Claim: "urn:claim#Claim",
+  Registry: "urn:claim#Registry",
   Verification: "urn:claim#Verification",
-  claims: "urn:claim#claims",
-  token: "urn:claim#token",
-  webid: "urn:claim#webid",
+  verificationCode: "urn:claim#verificationCode",
+  verificationResource: "urn:claim#verificationResource",
+  trustee: "urn:claim#trustee",
   monitoredStorage: "urn:claim#monitoredStorage",
   claimedData: "urn:claim#claimedData",
 };

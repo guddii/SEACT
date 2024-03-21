@@ -12,10 +12,13 @@ participant "Server" as Server
 
 
 ref over DPC_API,Proxy,Server           : Authorization Client Credentials Flow ( DPC )
-DPC_API     ->  Proxy               ++  : **PUT** New claim for token and storage
+DPC_API     ->  Proxy               ++  : **PUT** New folder for claim data
 ref over Proxy, Server                  : Forwarded Request
 DPC_API     <-- Proxy               --  : Turtle reference
-DPC_API     ->  Proxy               ++  : **PUT** Turtle reference to WebID in the registry
+DPC_API     ->  Proxy               ++  : **GET** Registries
 ref over Proxy, Server                  : Forwarded Request
-DPC_API     <-- Proxy               --  : Success response
+DPC_API     <-- Proxy               --  : Dataset
+DPC_API     ->  Proxy               ++  : **PUT** New claim entry to registry
+ref over Proxy, Server                  : Forwarded Request
+DPC_API     <-- Proxy               --  : Turtle reference
 @enduml

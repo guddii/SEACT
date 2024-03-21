@@ -1,14 +1,11 @@
 import type { IncomingMessage } from "node:http";
-import {
-  APPS,
-  VOCAB,
-  createUrl,
-  findStorage,
-  getContainerResources,
-  updateUrl,
-} from "@seact/core";
 import { getUrl } from "@inrupt/solid-client";
-import { findRegistryByMonitoredStorage } from "./registries.ts";
+import { APPS } from "../config/apps";
+import { VOCAB } from "../vocab";
+import { AGENTS } from "../config/agents";
+import { createUrl, updateUrl } from "./url-helper";
+import { findStorage, getContainerResources } from "./find-storage";
+import { findRegistryByMonitoredStorage, getRegistries } from "./registries";
 
 export const findClaimedData = async (
   req: IncomingMessage,
@@ -24,7 +21,8 @@ export const findClaimedData = async (
   const storage = await findStorage(containerResources, options);
 
   if (storage) {
-    const claim = await findRegistryByMonitoredStorage(storage, options);
+    const registries = await getRegistries(AGENTS.DPC, options);
+    const claim = findRegistryByMonitoredStorage(storage, registries);
     if (claim) {
       const claimStorage = getUrl(claim, VOCAB.CLAIM.claimedData);
       if (claimStorage) {

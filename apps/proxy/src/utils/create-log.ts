@@ -5,6 +5,7 @@ import {
   createOrUpdateResource,
   createUrl,
   VOCAB,
+  findClaimedData,
 } from "@seact/core";
 import { RDF } from "@inrupt/vocab-common-rdf";
 import { buildThing } from "@inrupt/solid-client";
@@ -14,7 +15,6 @@ import {
   ProxySession,
 } from "../services/proxy-session.ts";
 import type { AsyncMiddlewareFn } from "../services/async-middleware.ts";
-import { findClaimedData } from "./find-claimed-data.ts";
 import { parseJwt } from "./jwt-parser.ts";
 import { registrationStore, type Registration } from "./registration-store.ts";
 import type { OpenIDConfiguration } from "./oidc-discovery.ts";

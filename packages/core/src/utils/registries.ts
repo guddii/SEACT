@@ -1,0 +1,70 @@
+import type { SolidDataset, Thing } from "@inrupt/solid-client";
+import {
+  saveSolidDatasetAt,
+  createSolidDataset,
+  getUrlAll,
+  getThingAll,
+  getSolidDataset,
+} from "@inrupt/solid-client";
+import type {
+  WithChangeLog,
+  WithServerResourceInfo,
+} from "@inrupt/solid-client/dist/interfaces";
+import type { Agent } from "../models/agent.ts";
+import { VOCAB } from "../vocab";
+import { toUrlString, updateUrl } from "./url-helper.ts";
+
+export const getRegistriesResource = (agent: Agent): URL => {
+  return updateUrl("/registries", agent.storage);
+};
+
+export const getRegistries = async (
+  agent: Agent,
+  options: { fetch: typeof fetch },
+): Promise<SolidDataset> => {
+  const registriesUrl = getRegistriesResource(agent);
+  let dataset: SolidDataset;
+  try {
+    dataset = await getSolidDataset(toUrlString(registriesUrl), options);
+  } catch (e) {
+    dataset = createSolidDataset();
+  }
+  return dataset;
+};
+
+export const setRegistries = async (
+  agent: Agent,
+  dataset: SolidDataset,
+  options: {
+    fetch: typeof fetch;
+  },
+): Promise<SolidDataset & WithServerResourceInfo & WithChangeLog> => {
+  const registriesUrl = getRegistriesResource(agent);
+  return saveSolidDatasetAt(toUrlString(registriesUrl), dataset, options);
+};
+
+export const findRegistryByMonitoredStorage = (
+  resource: URL,
+  dataset: SolidDataset,
+): Thing | undefined => {
+  const registriesThings = getThingAll(dataset);
+
+  return registriesThings.find((registry) => {
+    return getUrlAll(registry, VOCAB.CLAIM.monitoredStorage).find((storage) => {
+      return storage === toUrlString(resource);
+    });
+  });
+};
+
+export const findRegistryByTrustee = (
+  resource: URL | string,
+  dataset: SolidDataset,
+): Thing | undefined => {
+  const registriesThings = getThingAll(dataset);
+
+  return registriesThings.find((registry) => {
+    return getUrlAll(registry, VOCAB.CLAIM.trustee).find((item) => {
+      return item === toUrlString(resource);
+    });
+  });
+};
