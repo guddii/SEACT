@@ -1,8 +1,9 @@
 import type { ReactElement } from "react";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useMemo, useCallback, useEffect, useState } from "react";
 import type { TableProps } from "antd";
 import { Button, Flex, App, Table, Space } from "antd";
 import type { ColumnsType } from "antd/es/table";
+import { useSession } from "@inrupt/solid-ui-react";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { getDatasetAsMatrix } from "../../utils/get-dataset-as-matrix.ts";
 import { toTable } from "../../adapter/rdf/to-table";
@@ -38,9 +39,11 @@ export function TableRDF({
     };
   }
 
+  const fetch = session.fetch;
+
   const createOptions = useCallback(() => {
     if (webId) {
-      getDatasetAsMatrix(resource, { session })
+      getDatasetAsMatrix(resource, { fetch })
         .then(toTable({ setColumns, setData, excludeColumns }))
         .catch((error: Error) => {
           void message.open({
@@ -54,7 +57,7 @@ export function TableRDF({
     } else {
       setLoading(false);
     }
-  }, [excludeColumns, message, resource, session, webId]);
+  }, [excludeColumns, message, resource, fetch, webId]);
 
   useEffect(() => {
     createOptions();

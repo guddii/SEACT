@@ -26,18 +26,16 @@ const getAsMatrix = (thingAll: Thing[]): Record<string, string>[] => {
 
 export const getDatasetAsMatrix = async (
   resource: string | URL,
-  options: GetDatasetAsMatrixOptions,
+  session: { fetch: typeof fetch },
 ): Promise<Record<string, string>[]> => {
-  const { session } = options;
+  try {
+    const dataset = await getSolidDataset(toUrlString(resource), {
+      fetch: session.fetch,
+    });
 
-  if (!session.info.isLoggedIn) {
+    const thingAll = getThingAll(dataset).reverse();
+    return getAsMatrix(thingAll);
+  } catch (e) {
     return [];
   }
-
-  const dataset = await getSolidDataset(toUrlString(resource), {
-    fetch: session.fetch,
-  });
-
-  const thingAll = getThingAll(dataset).reverse();
-  return getAsMatrix(thingAll);
 };
