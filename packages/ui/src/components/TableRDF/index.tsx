@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import type { TableProps } from "antd";
-import { Flex, App, Table } from "antd";
+import { Button, Flex, App, Table, Space } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { getDatasetAsMatrix } from "../../utils/get-dataset-as-matrix.ts";
@@ -38,19 +38,27 @@ export function TableRDF({
     };
   }
 
-  useEffect(() => {
-    getDatasetAsMatrix(resource, { session })
-      .then(toTable({ setColumns, setData, excludeColumns }))
-      .catch((error: Error) => {
-        void message.open({
-          type: "error",
-          content: error.toString(),
+  const createOptions = useCallback(() => {
+    if (webId) {
+      getDatasetAsMatrix(resource, { session })
+        .then(toTable({ setColumns, setData, excludeColumns }))
+        .catch((error: Error) => {
+          void message.open({
+            type: "error",
+            content: error.toString(),
+          });
+        })
+        .finally(() => {
+          setLoading(false);
         });
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    } else {
+      setLoading(false);
+    }
   }, [excludeColumns, message, resource, session, webId]);
+
+  useEffect(() => {
+    createOptions();
+  }, [createOptions]);
 
   const boxStyle: React.CSSProperties = {
     width: "100%",
