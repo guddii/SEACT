@@ -15,6 +15,7 @@
   "types": "./dist/index.d.ts",
   "dependencies": {
     "@inrupt/solid-client": "^2.0.0",
+    "@inrupt/vocab-common-rdf": "^1.0.5",
     "@inrupt/vocab-solid": "^1.0.4",
     "http-link-header": "^1.1.1"
   },

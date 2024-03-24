@@ -1,31 +1,22 @@
 ### Get claims for first user (client) from registry
-GET http://proxy.localhost:4000/dpc/logs/registry
+GET http://proxy.localhost:4000/dpc/registries
 Authorization: Bearer {{$auth.token("dpc")}}
 Accept: application/ld+json
 
 > {%
-    client.global.set("claim", response.body[0]["urn:claim#claims"][0]["@id"]);
+    client.global.set("verificationResource", response.body[0]["urn:claim#verificationResource"][0]["@id"]);
+    client.global.set("verificationCodeDPC", response.body[0]["urn:claim#verificationCode"][0]["@value"]);
 %}
 
-### Get first verification code and storage pair
-GET {{claim}}
-Authorization: Bearer {{$auth.token("dpc")}}
-Accept: application/ld+json
-
-
-> {%
-    client.global.set("token", response.body[0]["urn:claim#token"][0]["@value"]);
-    client.global.set("storage", response.body[0]["urn:claim#storage"][0]["@id"]);
-%}
-
-### Get the token from the storage
-GET {{storage}}/dpc
+### Get the token from client storage
+GET {{verificationResource}}
 Authorization: Bearer {{$auth.token("dpc")}}
 Accept: application/ld+json
 
 > {%
-    client.global.set("token2", response.body[0]["urn:claim#token"][0]["@value"]);
+    client.global.set("verificationCodeClient", response.body[0]["urn:claim#verificationCode"][0]["@value"]);
+
     client.test("Compare token", function () {
-        client.assert(client.global.get("token") === client.global.get("token2"), "Token are not equal");
+        client.assert(client.global.get("verificationCodeDPC") === client.global.get("verificationCodeClient"), "Token are not equal");
     });
 %}

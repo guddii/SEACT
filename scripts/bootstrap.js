@@ -39,10 +39,9 @@ const generateToken = async ({ authorization }, { webId }) => {
   return response.json();
 };
 
-const writeAgentsToEnv = async ({ name }) => {
+const generateAgentWithCredentials = async ({ name }) => {
   const agent = {
     name,
-    NAME: name.toUpperCase(),
     email: `${name}@example.com`,
     password: "secret!",
     storage: `http://proxy.localhost:4000/${name}`,
@@ -51,22 +50,42 @@ const writeAgentsToEnv = async ({ name }) => {
 
   const { authorization } = await login(agent);
 
-  const { id, secret } = await generateToken({ authorization }, agent);
+  const credential = await generateToken({ authorization }, agent);
 
-  fs.appendFileSync(".env", `\n# ${agent.NAME} Agent (generated)\n`);
-  fs.appendFileSync(".env", `${agent.NAME}_WEB_ID="${agent.webId}"\n`);
-  fs.appendFileSync(".env", `${agent.NAME}_STORAGE="${agent.storage}"\n`);
-  fs.appendFileSync(".env", `${agent.NAME}_ID="${id}"\n`);
-  fs.appendFileSync(".env", `${agent.NAME}_SECRET="${secret}"\n`);
+  return {
+    ...agent,
+    ...credential,
+  };
 };
 
-const writeFeatureFlagsToEnv = async () => {
-  fs.appendFileSync(".env", `\n# Feature Flags  (generated)\n`);
-  fs.appendFileSync(".env", `FEATURE_FLAG_LOGGING=true`);
+const writeAgentToEnv = (agents) => {
+  for (const agent of agents) {
+    const NAME = agent.name.toUpperCase();
+    fs.appendFileSync(".env", `\n# ${NAME} Agent (generated)\n`);
+    fs.appendFileSync(".env", `${NAME}_WEB_ID="${agent.webId}"\n`);
+    fs.appendFileSync(".env", `${NAME}_STORAGE="${agent.storage}"\n`);
+    fs.appendFileSync(".env", `${NAME}_ID="${agent.id}"\n`);
+    fs.appendFileSync(".env", `${NAME}_SECRET="${agent.secret}"\n`);
+  }
+};
+
+const writeAgentToPrivateHttpClientEnv = (agents) => {
+  const dev = {};
+  for (const agent of agents) {
+    dev[`${agent.name}Id`] = agent.id;
+    dev[`${agent.name}Secret`] = agent.secret;
+  }
+
+  fs.writeFileSync(
+    "tests/http/http-client.private.env.json",
+    JSON.stringify({ dev }, null, 2),
+  );
 };
 
 (async () => {
-  await writeAgentsToEnv({ name: "client" });
-  await writeAgentsToEnv({ name: "dpc" });
-  await writeFeatureFlagsToEnv();
+  const client = await generateAgentWithCredentials({ name: "client" });
+  const dpc = await generateAgentWithCredentials({ name: "dpc" });
+
+  writeAgentToEnv([dpc]);
+  writeAgentToPrivateHttpClientEnv([client, dpc]);
 })();

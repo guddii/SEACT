@@ -1,8 +1,9 @@
 import type { ReactElement } from "react";
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useCallback, useEffect, useState } from "react";
 import type { TableProps } from "antd";
-import { Flex, App, Table } from "antd";
+import { Button, Flex, App, Table, Space } from "antd";
 import type { ColumnsType } from "antd/es/table";
+import { useSession } from "@inrupt/solid-ui-react";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { getDatasetAsMatrix } from "../../utils/get-dataset-as-matrix.ts";
 import { toTable } from "../../adapter/rdf/to-table";
@@ -38,19 +39,29 @@ export function TableRDF({
     };
   }
 
-  useEffect(() => {
-    getDatasetAsMatrix(resource, { session })
-      .then(toTable({ setColumns, setData, excludeColumns }))
-      .catch((error: Error) => {
-        void message.open({
-          type: "error",
-          content: error.toString(),
+  const fetch = session.fetch;
+
+  const createOptions = useCallback(() => {
+    if (webId) {
+      getDatasetAsMatrix(resource, { fetch })
+        .then(toTable({ setColumns, setData, excludeColumns }))
+        .catch((error: Error) => {
+          void message.open({
+            type: "error",
+            content: error.toString(),
+          });
+        })
+        .finally(() => {
+          setLoading(false);
         });
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [excludeColumns, message, resource, session, webId]);
+    } else {
+      setLoading(false);
+    }
+  }, [excludeColumns, message, resource, fetch, webId]);
+
+  useEffect(() => {
+    createOptions();
+  }, [createOptions]);
 
   const boxStyle: React.CSSProperties = {
     width: "100%",

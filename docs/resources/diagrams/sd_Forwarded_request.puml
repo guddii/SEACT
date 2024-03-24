@@ -10,11 +10,12 @@ participant "Proxy" as Proxy
 participant "Server" as Server
 
         [->  Proxy  ++  : **CRUD** Request
+        opt isLoggableRequest
+        ||5||
+        ref over Proxy, Server : DPC Middleware
+        end
 Proxy   ->  Server  ++  : **CRUD** Request
 Proxy   <-- Server  --  : Server response
         [<-- Proxy  --  : Server response
-opt isNotOwnRequest
-||5||
-ref over Proxy, Server : DPC Middleware
-end
+
 @enduml

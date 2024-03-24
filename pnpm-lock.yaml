@@ -209,6 +209,9 @@ importers:
       '@inrupt/solid-client':
         specifier: ^2.0.0
         version: 2.0.0
+      '@inrupt/vocab-common-rdf':
+        specifier: ^1.0.5
+        version: 1.0.5
       '@inrupt/vocab-solid':
         specifier: ^1.0.4
         version: 1.0.4

@@ -7,6 +7,16 @@ GET http://proxy.localhost:4000/client/profile/card#me
     });
 %}
 
+### Read a WebID as DPC Agent
+GET http://proxy.localhost:4000/client/profile/card#me
+Authorization: Bearer {{$auth.token("dpc")}}
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 201");
+    });
+%}
+
 ### Read a WebID Metadata
 GET http://proxy.localhost:4000/client/profile/card.meta
 
