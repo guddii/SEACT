@@ -22,6 +22,29 @@ include::partials/Namespaces.adoc[]
 
 == Introduction
 
+The <<Solid>> Project is an RDF-based ecosystem that aims to achieve a decentralized web for persons, social entities, or software.
+The technology is new and not yet fully mature.
+The current version is missing some essential features required for production environments.
+Ongoing research and development is being conducted to improve the ecosystem, resulting in the regular introduction of new features or Solid providers.
+
+This thesis aims to develop and analyze a <<Solid>>-based application that aligns with the <<Solid>> ecosystem without enforcing it.
+The application will enhance data privacy concerns, specifically in terms of data traceability and access control.
+The goal is to increase visibility and track requested resources from parties within and beyond the ecosystem through logs and their representation.
+These requests should be processed and made manipulatable to achieve better control over the exposed data.
+All of these achievements should be established in a clear context and communicated through data <<API>>s to ensure safety for new features and potential changes in <<Solid>> providers.
+
+=== Research
+
+==== Problem Definition
+
+==== Objectives and Research Interest
+
+==== Research Question
+
+==== Research Design
+
+==== Methodology
+
 === Requirements
 
 ==== Functional Requirements
@@ -40,18 +63,6 @@ include::partials/Namespaces.adoc[]
 [[REQ-7,REQ-7]] REQ-6:: Metadata that could be extracted from the request should be analysed and logs should be enhanced accordingly.
 
 ==== Acceptance Criteria
-
-=== Research
-
-==== Problem Definition
-
-==== Objectives and Research Interest
-
-==== Research Question
-
-==== Research Design
-
-==== Methodology
 
 == Terminology
 
