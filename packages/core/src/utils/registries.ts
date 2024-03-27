@@ -37,7 +37,14 @@ export const setRegistries = async (
   },
 ): Promise<SolidDataset & WithServerResourceInfo & WithChangeLog> => {
   const registriesUrl = await getRegistrySet(agent, options);
-  return saveSolidDatasetAt(toUrlString(registriesUrl), dataset, options);
+  const prefixes = {
+    ...VOCAB.INTEROP.PREFIX_AND_NAMESPACE,
+    ...VOCAB.CLAIM.PREFIX_AND_NAMESPACE,
+  };
+  return saveSolidDatasetAt(toUrlString(registriesUrl), dataset, {
+    fetch: options.fetch,
+    prefixes,
+  });
 };
 
 export const findRegistryByMonitoredStorage = (

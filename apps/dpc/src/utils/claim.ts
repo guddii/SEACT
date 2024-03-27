@@ -19,6 +19,7 @@ import {
   getRegistries,
   setRegistries,
   findRegistryByTrustee,
+  createAccessLogNamespace,
 } from "@seact/core";
 import type { Session } from "@inrupt/solid-client-authn-node";
 import { getAgentUserSession } from "./session.ts";
@@ -31,6 +32,7 @@ export async function updateRegistry(
   storage: URL,
 ): Promise<Thing | null> {
   const session = await getAgentUserSession(AGENTS.DPC);
+  await createAccessLogNamespace(AGENTS.DPC, session);
 
   let registries: SolidDataset = await getRegistries(AGENTS.DPC, session);
 

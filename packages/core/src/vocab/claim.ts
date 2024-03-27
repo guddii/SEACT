@@ -1,9 +1,14 @@
+const namespace = `urn:claim#`;
+
 export const CLAIM = {
-  Registry: "urn:claim#Registry",
-  Verification: "urn:claim#Verification",
-  verificationCode: "urn:claim#verificationCode",
-  verificationResource: "urn:claim#verificationResource",
-  trustee: "urn:claim#trustee",
-  monitoredStorage: "urn:claim#monitoredStorage",
-  claimedData: "urn:claim#claimedData",
+  Registry: `${namespace}Registry`,
+  Verification: `${namespace}Verification`,
+  verificationCode: `${namespace}verificationCode`,
+  verificationResource: `${namespace}verificationResource`,
+  trustee: `${namespace}trustee`,
+  monitoredStorage: `${namespace}monitoredStorage`,
+  claimedData: `${namespace}claimedData`,
+  PREFIX_AND_NAMESPACE: {
+    claim: namespace,
+  },
 };
