@@ -140,7 +140,7 @@ async function createAccessLogNamespaceTree(
   });
 }
 
-interface CreateAccessLogNamespace {
+export interface AccessLogNamespace {
   vocab: SolidDataset & WithServerResourceInfo;
   vocabAcl: AccessModes | null;
   shex: SolidDataset & WithServerResourceInfo;
@@ -152,7 +152,7 @@ interface CreateAccessLogNamespace {
 export async function createAccessLogNamespace(
   agent: Agent,
   session: Session,
-): Promise<CreateAccessLogNamespace> {
+): Promise<AccessLogNamespace> {
   const vocab = await createAccessLogNamespaceVocab(agent, session);
   const vocabAcl = await universalAccess.setPublicAccess(
     vocab.internal_resourceInfo.sourceIri,

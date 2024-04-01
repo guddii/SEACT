@@ -1,9 +1,9 @@
-import { HTTP } from "@inrupt/vocab-common-rdf";
+import crypto from "node:crypto";
+import { LDP } from "@inrupt/vocab-common-rdf";
 import type { ValueOf } from "next/constants";
 import type { ColumnsType } from "antd/es/table";
-import type { PresetStatusColorType } from "antd/es/_util/colors";
-import { Badge } from "antd";
 import React, { type Dispatch, type SetStateAction } from "react";
+import Link from "next/link";
 
 const urlToTitle = (eventuallyUrl: string): string => {
   try {
@@ -20,15 +20,24 @@ function mapColumns<T>(column: string): ValueOf<ColumnsType<T>> {
   };
 
   switch (column) {
-    case HTTP.statusCodeValue:
+    case LDP.contains:
       return {
         ...defaultColumn,
-        render: (text: string) => {
-          const statusCode = parseInt(text);
-          let status: PresetStatusColorType = "success";
-          if (statusCode >= 400) status = "warning";
-          if (statusCode >= 500) status = "error";
-          return <Badge status={status} text={text} />;
+        render: (text: string | null) => {
+          if (text) {
+            const links = text.split(", ");
+            return links.map((link) => {
+              const href = link.replace("/api/", "/");
+              const key = crypto.randomBytes(20).toString("hex");
+              return (
+                <div key={key}>
+                  <Link href={href}>{link}</Link>
+                  <br />
+                </div>
+              );
+            });
+          }
+          return text;
         },
       };
     default:

@@ -1,6 +1,5 @@
 import type { SolidDataset, Thing } from "@inrupt/solid-client";
 import {
-  createContainerInContainer,
   setThing,
   buildThing,
   getSolidDataset,
@@ -20,8 +19,14 @@ import {
   setRegistries,
   findRegistryByTrustee,
   createAccessLogNamespace,
+  createClaimContainer,
+  createAccessLogContainer,
 } from "@seact/core";
 import type { Session } from "@inrupt/solid-client-authn-node";
+import type {
+  WithChangeLog,
+  WithServerResourceInfo,
+} from "@inrupt/solid-client/dist/interfaces";
 import { getAgentUserSession } from "./session.ts";
 import { createShake256Hash } from "./shake256.ts";
 
@@ -30,35 +35,50 @@ export async function updateRegistry(
   trustee: string,
   token: string,
   storage: URL,
-): Promise<Thing | null> {
+): Promise<SolidDataset & WithServerResourceInfo & WithChangeLog> {
   const session = await getAgentUserSession(AGENTS.DPC);
-  await createAccessLogNamespace(AGENTS.DPC, session);
+  const accessLogNamespace = await createAccessLogNamespace(
+    AGENTS.DPC,
+    session,
+  );
 
   let registries: SolidDataset = await getRegistries(AGENTS.DPC, session);
 
   const dataContainer = await getDataContainer(AGENTS.DPC, session);
-  const dataResource = await createContainerInContainer(
-    dataContainer.internal_resourceInfo.sourceIri,
+  const claimContainer = await createClaimContainer(dataContainer, session);
+  const accessLogContainer = await createAccessLogContainer(
+    claimContainer,
+    accessLogNamespace,
     session,
   );
 
-  registries = setThing(
-    registries,
-    buildThing({ name: createShake256Hash(toUrlString(storage)) })
-      .addUrl(RDF.type, VOCAB.CLAIM.Registry)
-      .addUrl(VOCAB.CLAIM.trustee, trustee)
-      .addUrl(VOCAB.CLAIM.monitoredStorage, toUrlString(storage))
-      .addUrl(
-        VOCAB.CLAIM.verificationResource,
-        `${verificationResource}#verification`,
-      )
-      .addStringNoLocale(VOCAB.CLAIM.verificationCode, token)
-      .addUrl(
-        VOCAB.CLAIM.claimedData,
-        dataResource.internal_resourceInfo.sourceIri,
-      )
-      .build(),
-  );
+  const claimThing: Thing = buildThing({
+    name: createShake256Hash(toUrlString(storage)),
+  })
+    .addUrl(RDF.type, VOCAB.CLAIM.Registry)
+    .addUrl(VOCAB.CLAIM.trustee, trustee)
+    .addUrl(VOCAB.CLAIM.monitoredStorage, toUrlString(storage))
+    .addUrl(
+      VOCAB.CLAIM.verificationResource,
+      `${verificationResource}#verification`,
+    )
+    .addStringNoLocale(VOCAB.CLAIM.verificationCode, token)
+    .addUrl(
+      VOCAB.CLAIM.claimedData,
+      claimContainer.internal_resourceInfo.sourceIri,
+    )
+    .build();
+
+  const claimAndInteropThing = buildThing(claimThing)
+    .addUrl(RDF.type, VOCAB.INTEROP.DataRegistry)
+    .addUrl(
+      VOCAB.INTEROP.hasDataRegistration,
+      accessLogContainer.internal_resourceInfo.sourceIri,
+    )
+    .addUrl(VOCAB.CLAIM.monitoredStorage, toUrlString(storage))
+    .build();
+
+  registries = setThing(registries, claimAndInteropThing);
 
   return setRegistries(AGENTS.DPC, registries, session);
 }
@@ -130,5 +150,7 @@ export async function getClaimedResource(
   }
 
   const claimedDataUrl = createUrl(claimedData);
-  return session.fetch(toUrlString(updateUrl(pathname, claimedDataUrl)));
+  const url = updateUrl(pathname, claimedDataUrl);
+
+  return session.fetch(url);
 }
