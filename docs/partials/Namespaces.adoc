@@ -1,0 +1,10 @@
+[glossary]
+= Namespaces
+
+[glossary]
+[horizontal]
+[[claim,claim]] claim:: urn:claim# (custom vocabulary)
+[[foaf,foaf]] foaf:: http://xmlns.com/foaf/0.1/
+[[interop,interop]] interop:: http://www.w3.org/ns/solid/interop#
+[[ldp,ldp]] ldp:: http://www.w3.org/ns/ldp#
+[[st,st]] st:: http://www.w3.org/ns/shapetrees#
