@@ -11,7 +11,7 @@ export * from "./models/solid-app";
 
 // Solid
 export * from "./solid/create-or-update-resource";
-export * from "./solid/read-or-create-resource";
+export * from "./solid/read-or-create-public-resource";
 
 // Utils
 export * from "./utils/access-log-container";

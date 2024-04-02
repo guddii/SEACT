@@ -4,6 +4,7 @@ import type {
   WithServerResourceInfo,
 } from "@inrupt/solid-client";
 import {
+  universalAccess,
   buildThing,
   createSolidDataset,
   createThing,
@@ -27,7 +28,7 @@ export interface ReadOrCreateRessourceOptions {
   createHeader?: boolean;
 }
 
-export const readOrCreateResource = async ({
+export const readOrCreatePublicResource = async ({
   resource,
   session,
   thingCallbackPairs,
@@ -64,9 +65,17 @@ export const readOrCreateResource = async ({
       dataset = setThing(dataset, thingCallbackPair.callback(thing));
     }
 
-    return saveSolidDatasetAt(toUrlString(resource), dataset, {
+    const response = await saveSolidDatasetAt(toUrlString(resource), dataset, {
       fetch: session.fetch,
       prefixes: newPrefixes,
     });
+
+    await universalAccess.setPublicAccess(
+      response.internal_resourceInfo.sourceIri,
+      { read: true },
+      session,
+    );
+
+    return response;
   }
 };
