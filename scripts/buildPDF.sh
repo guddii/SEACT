@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Build with Docker
+# docker run --rm -u $(id -u):$(id -g) --volume $(pwd):/documents/ asciidoctor/docker-asciidoctor:latest bash -c ./scripts/buildPDF.sh
+
 if [ -z "${REVNUMBER}" ]; then
     REVNUMBER=$(git describe --first-parent --tags --dirty)
 fi

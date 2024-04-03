@@ -1,0 +1,14 @@
+@prefix interop: <http://www.w3.org/ns/solid/interop#>.
+@prefix claim:   <urn:claim#>.
+
+<#ab674650> # <1>
+    a                           interop:DataRegistry ;
+    interop:hasDataRegistration <http://example.tld/dpc/data/74242fac/AccessLog/> .
+
+<#ab674650>
+    a                           claim:Registry ;
+    claim:trustee               <http://example.tld/client/profile/card#me> ;
+    claim:monitoredStorage      <http://example.tld/client/> ;
+    claim:verificationResource  <http://example.tld/client/dpc#verification> ;
+    claim:verificationCode      "66097db6e9c3c234eb35f8ca66b5e4d829c6dd6..." ;
+    claim:claimedData           <http://example.tld/dpc/data/74242fac/> .

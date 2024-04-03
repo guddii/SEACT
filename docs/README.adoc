@@ -27,11 +27,15 @@ include::partials/Attributes.adoc[]
 |===
 |Item |HTML |PDF
 
+|Logical Topology
+|xref:{url-docs}/Topology.html[window=_blank]
+|xref:{url-docs}/Topology.pdf[window=_blank]
+
+|Logical Data Model
+|xref:{url-docs}/Model.html[window=_blank]
+|xref:{url-docs}/Model.pdf[window=_blank]
+
 |Software Architecture
 |xref:{url-docs}/Architecture.html[window=_blank]
 |xref:{url-docs}/Architecture.pdf[window=_blank]
-
-|Data Model
-|xref:{url-docs}/Data.html[window=_blank]
-|xref:{url-docs}/Data.pdf[window=_blank]
 |===

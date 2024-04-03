@@ -1,0 +1,245 @@
+= Data Model
+include::partials/Attributes.adoc[]
+
+include::partials/Preface.adoc[]
+
+<<<
+
+include::partials/Glossary.adoc[leveloffset=+1]
+
+include::partials/Acronyms.adoc[leveloffset=+1]
+
+include::partials/Namespaces.adoc[leveloffset=+1]
+
+<<<
+
+// tag::body[]
+== Entity-Relationship Model
+
+The Solid Specification outlines the overall framework of the system-wide data model.
+Additionally, the Solid Application Interoperability Specificationfootnote:[https://solid.github.io/data-interoperability-panel/specification/], an extension to the Solid ecosystem, will be utilised to achieve an application-independent design and a uniform mechanism for data discovery.
+It should be noted that the Specification has not yet been fully matured or implemented by any Solid Provider.
+However, it can be used in part.
+The Editor's Draft of November 7th, 2023 introduces a mechanism for discovering registered data without requiring knowledge of the physical structure of the file system or <<HTTP>> endpoints.
+An application only needs to be aware of the profile document and follow the suggested references in the specification.
+xref:dm_Logical_model[xrefstyle=short] illustrates these entities and relations.
+
+The Entity-Relationship model uses Clive Finkelstein's <<IE>> notation.
+This format is clear and easy to comprehend, making it appropriate for gaining a broad understanding of the logical concept.
+To gain a deeper understanding of the information structure in an <<RDF>> context, <<Namespaces>> have been added to the entity names, as well as entity types in double angle brackets: <<Dataset>>, <<Thing>>, <<Shape_Tree>>, and <<Shape_Expression>>.
+The path labels indicate possible routes through the graph structure, while the number within the bracket indicates the branch that has been taken.
+
+.<<IE>> diagram of the logical data model
+[.text-center]
+[plantuml,format=svg,id="dm_Logical_model"]
+....
+include::resources/diagrams/dm_Logical_model.puml[]
+....
+
+As previously mentioned, the model meets the requirements of the Solid Application Interoperability Specification.
+The profile document declares an `interop:Agent`, which refers to a registry set.
+This declaration informs agents that the data model will be modelled according to the specification.
+The registry set contains a list of all references to data registrations.
+A data registration is a resource container that contains all resources in a given treefootnote:[https://shapetrees.org/TR/specification/] and shapefootnote:[https://shex.io/shex-semantics/].
+For more information on this data modeling, please consult to the specification.
+
+As the interoperability specification does not address the handling of multi-agent data or require agents to participate in the specification, some enhancements have been made to the data model.
+In xref:dm_Logical_model[xrefstyle=short], the highlighted additions (bold) to the model include the requirement that <<Thing, Things>> contained by the registry set must have a unique identifier based on the claimed item, which in this case is the hashed (SHAKE256) storage <<URL>>.
+The <<Thing, Thing's>> type is claim:Registry, a newly introduced <<RDF>> vocabulary.
+This vocabulary includes the following terms:
+
+* Trustee: The WebID reference of the agent requesting access to the claimed data
+* Monitored storage: The observed storage reference
+* Verification resource: The reference to the verification resource in the monitored storage.
+* Verification Code: A random hash
+* Claimed data: The reference to the resource container of all claimed data resources
+
+The `claim:Verification` is a resource within the observed storage that serves to verify using a verification code.
+This code must correspond to the verification code within the `claim:Registry` to authorize the trustee's access to the claimed data.
+
+== Information Retrieval
+
+The <<DPC>> <<agent>> captures, manages, and presents client data.
+Data can only be retrieved through the <<DPC>> <<agent>>.
+xref:dm_Logical_model[xrefstyle=short] shows five paths through the data structure.
+Two of the paths are alternative paths that lead to the same leaf of the graph.
+The resulting data that can be received is:
+
+[horizontal]
+AccessLogShape:: following path [1,1,1], [1,2,1,1]
+AccessLog:: following path [1,1,2], [1,2,2]
+Verification:: following path [1,2,2]
+
+The bracketed numbers indicate which branch to follow to access the described data.
+
+== Serialized Model
+
+Before looking at the serialized model, it is important to understand the structure of the <<HTTP>> endpoints.
+The storage URLs for the <<HTTP>> <<API, APIs>> will begin with a storage identifier added as a suffix to the base <<URL>>.
+xref:wbs_Endpoint_structure[xrefstyle=short] shows the storage <<URL, URLs>> at the second level.
+The data of the corresponding <<agent>> will be represented below this node.
+
+.The structure of the <<HTTP>> endpoints
+[.text-center]
+[plantuml,format=svg,id="wbs_Endpoint_structure"]
+....
+include::resources/diagrams/wbs_Endpoint_structure.puml[]
+....
+
+The two most commonly used serialization formats for <<RDF>>-based data in data-driven web-based systems are `text/turtle` and `application/ld+json`.
+This inspection does not focus on data storage, as the Solid provider is considered replaceable.
+However, <<HTTP>> <<API, APIs>> use Turtle as the exchange format for communication, which will be displayed below.
+As part of the structural hierarchy shown in xref:wbs_Endpoint_structure[xrefstyle=short], all resources and listings refer to the data model shown in xref:dm_Logical_model[xrefstyle=short].
+
+=== Personal Profile Document
+
+To participate in the Solid Application Interoperability Specification, an `interop:Agent` must be declared in the profile document.
+The node will refer to the <<Registry Set, registry set>> that contains the references to the registered data.
+
+.`interop:Agent` <<Thing>> at http://example.tld/dpc/profile/card
+[source,turtle]
+----
+include::resources/dump/model/dpc/profile/card$.ttl[lines=14..17]
+----
+
+<1> Declaration as `interop:Agent`.
+<2> Reference to the registry set.
+
+NOTE: Followed Path [1]
+
+=== Registry Set
+
+The registry set contains an entry for each agent who has claimed data captured by the <<DPC>> <<agent>>.
+This captured data will be referred to as <<Data Registration, data registration>>.
+
+The subject of the <<RDF_triple>>, however, must be unique and built based on the claimed subject.
+In this case, it will be the hashed <<storage>> <<URL>>.
+
+.`interop:DataRegistry` <<Thing>> at http://example.tld/dpc/registries
+[source,turtle]
+----
+include::resources/dump/model/dpc/registries$.ttl[lines=3..6]
+----
+
+<1> The hashed (SHAKE256) <<storage>> <<URL>>.
+
+NOTE: Followed Path [1,1]
+
+=== Data Registration
+
+The <<Shape_Tree>> data is referenced in the data registration.
+As it is a container resource (see <<Container (Access Logs)>>), all child resources will satisfy the <<Shape Trees, referenced Shape Tree>>.
+
+.`interop:DataRegistration` <<Thing>> at http://example.tld/dpc/data/74242fac/AccessLog/
+[source,turtle]
+----
+include::resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=7..11]
+----
+
+<1> The referenced <<Shape_Tree>>.
+
+NOTE: Followed Path [1,1,1], [1,2,1,1]
+
+=== Shape Trees
+
+Both <<Shape_Tree, Shape Trees>>, `AccessLogRegistrationTree`, and `AccessLogTree` define the contents of the referring <<container_resource>>.
+The `AccessLogRegistrationTree` defines the resources that contain Shape Tree Resources in a given shape.
+The <<Shape Expression, referenced Shape Expression>> declares the form of the shape.
+
+.Shape Tree at http://example.tld/dpc/ns/log.tree
+[source]
+----
+include::resources/dump/model/dpc/ns/log.tree[]
+----
+
+<1> The internal reference to `AccessLogTree`
+<2> The reference to the <<Shape_Expression>>
+
+NOTE: Followed Path [1,1,1], [1,2,1,1]
+
+=== Shape Expression
+
+The <<Shape Expression>> (<<ShEx>>) defines the schema for every literal associated with a predicate of the vocabulary.
+The RDF vocabulary will not be listed further.
+
+.Shape Expression
+[source]
+----
+include::resources/dump/model/dpc/ns/log.shex[]
+----
+
+NOTE: Followed Path [1,1,1], [1,2,1,1]
+
+=== Container (Access Logs)
+
+As explained in the <<Data Registration>> section, this container resource corresponds to the `interop:DataRegistration` definition.
+The files contained within it meet the specified definitions.
+For example, the file dated 2024-04-02 will be referred to as <<Access Log>>, matching the <<Shape Expression>>.
+
+.`ldp:Container` <<Thing>> at http://example.tld/dpc/data/74242fac/AccessLog/
+[source,turtle]
+----
+include::resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=13..14]
+include::resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=23..23]
+----
+
+NOTE: Followed Path [1,1,2], [1,2,2]
+
+=== Access Log
+
+The access log is a resource that contains the actual data and satisfies the shape as defined in the <<Shape Expression>>.
+
+.`ldp:Container` <<Thing>> at http://example.tld/dpc/data/74242fac/AccessLog/2024-04-02
+[source,turtle]
+----
+include::resources/dump/model/dpc/data/74242fac/AccessLog/2024-04-02$.ttl[]
+----
+
+NOTE: Followed Path [1,1,2], [1,2,2]
+
+=== Claim Registry
+
+The claim registry is an custom extension of the `interorp:DataRegistry` within the <<Registry Set, registry set>>.
+It refers to the root container for <<Container (Claimed Data), claimed data>> and the <<Verification, verification resource>>.
+
+.`claim:Registry` <<Thing>> in at http://example.tld/dpc/registries
+[source,turtle]
+----
+include::resources/dump/model/dpc/registries$.ttl[lines=7..14]
+----
+
+NOTE: Followed Path [1,2]
+
+=== Container (Claimed Data)
+
+This resource contains all claimed data.
+When using the Solid Application Interoperability Specification, it primarily refers to <<Data Registration, data registrations>> and their corresponding <<Container (Access Logs), containers>>.
+
+.`ldp:Container` <<Thing>> at http://example.tld/dpc/data/74242fac/
+[source,turtle]
+----
+include::resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=13..14]
+include::resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=23..23]
+----
+
+NOTE: Followed Path [1,2,1]
+
+=== Verification
+
+The verification resource shown in xref:wbs_Endpoint_structure[xrefstyle=short] is the only resource stored by the client and will be used for comparison purposes.
+The verification code will be compared to the verification code of the <<Claim Registry, claim registry>>.
+If they are equivalent, access to the <<Container (Claimed Data), claimed data>> will be granted.
+
+.`claim:Verification` <<Thing>> at at http://example.tld/client/dpc
+[source,turtle]
+----
+include::resources/dump/model/client/dpc$.ttl[]
+----
+
+NOTE: Followed Path [1,2,2]
+
+Each of the mentioned resources must have a corresponding <<ACL>>.
+The lists have been intentionally omitted for simplicity.
+The <<DPC>> <<agent, agent>> requires read and write access to all of these resources.
+The only exception is the <<Verification, verification resource>>, which only needs to be read.
+// end::body[]

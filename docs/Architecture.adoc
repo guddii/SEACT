@@ -9,6 +9,9 @@ include::partials/Glossary.adoc[leveloffset=+1]
 
 include::partials/Acronyms.adoc[leveloffset=+1]
 
+<<<
+
+// tag::body[]
 == System Behavior
 
 This section describes the system behavior using <<UML>> 2.5 with https://plantuml.com/de/[PlantUML] as the generator.
@@ -170,5 +173,4 @@ If both verification tokens match, the request will be forwarded by the DPC agen
 ....
 include::resources/diagrams/sd_Get_claimed_resource.puml[]
 ....
-
-
+// end::body[]

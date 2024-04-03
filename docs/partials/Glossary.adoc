@@ -2,14 +2,18 @@
 = Glossary
 
 [glossary]
-[[Access-Control-List,Access Control List]] Access Control List:: An Access Control List is a document specifying permissions that determine access to a <<resource>>.
+[[Access_Control_List,Access Control List]] Access Control List:: An Access Control List is a document specifying permissions that determine access to a <<resource>>.
 [[Dataset,Dataset]] Dataset:: The representation of an <<RDF>> <<resource>> as a set of <<Thing, Things>>.
-[[Hypertext-Transfer-Protocol,Hypertext Transfer Protocol]] Hypertext Transfer Protocol:: A protocol for transferring data on the application layer.
-[[Solid-app,Solid app]] Solid app:: Solid app is a software that accesses and stores data from one or more <<storage>> systems.
+[[Hypertext_Transfer_Protocol,Hypertext Transfer Protocol]] Hypertext Transfer Protocol:: A protocol for transferring data on the application layer.
+[[RDF_node,RDF node]] RDF node:: t.b.d
+[[RDF_triple,RDF triple]] RDF triple:: t.b.d
+[[Shape_Expression,Shape Expression]] Shape Expression:: t.b.d
+[[Shape_Tree,Shape Tree]] Shape Tree:: t.b.d.
+[[Solid_app,Solid app]] Solid app:: Solid app is a software that accesses and stores data from one or more <<storage>> systems.
 [[Thing,Thing]] Thing:: A chunk of RDF data within a Dataset, composed of subject, predicate, and object.
-[[Uniform-Resource-Identifier,Uniform Resource Identifier]] Uniform Resource Identifier:: A Uniform Resource Identifier identifies a resource.
+[[Uniform_Resource_Identifier,Uniform Resource Identifier]] Uniform Resource Identifier:: A Uniform Resource Identifier identifies a resource.
 [[WebID,WebID]] WebID:: A WebID is an <<HTTP>> <<URI>> that points to an <<agent>>.
 [[agent,agent]] agent:: An agent is a person, an organisation, a group, a device, etc. that is identified by a <<URI>>.
-[[container-resource,container-resource]] container resource:: A <<RDF>> <<resource>>, containing further container resources or resources.
+[[container_resource,container resource]] container resource:: A <<RDF>> <<resource>>, containing further container resources or resources.
 [[resource,resource]] resource:: A resource is the target of an <<HTTP>> request, identified by a <<URI>>.
 [[storage,storage]] storage:: A storage is a set of <<URI>>s that can be accessed by an agent in a controlled manner.
