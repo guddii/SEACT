@@ -11,11 +11,10 @@ participant "Proxy" as Proxy
 participant "Server" as Server
 
 ref over DPC_API,Proxy,Server           : Authorization Client Credentials Flow ( DPC )
-DPC_API     ->  Proxy                ++  : **GET** Claims from registry
-ref over Proxy, Server                  : Forwarded Request
-DPC_API     <-- Proxy                --  : Dataset with verification codes
+ref over DPC_API,Proxy,Server           : Lookup Claim Data in Registry
 
-DPC_API     ->  Proxy                ++  : **GET** Verification code from clients' storage
+
+DPC_API     ->  Proxy                ++  : **GET** Verification code from verification resource
 ref over Proxy, Server                  : Forwarded Request
 note over Proxy, Server
 DPC agent must have
@@ -23,8 +22,8 @@ read permissions
 end note
 DPC_API     <-- Proxy                --  : Verification code
 
-opt equivalent verification codes
-DPC_API     ->  Proxy                 : **GET** the requested ""resource"" (in storage)
+opt equivalentVerificationCodes
+DPC_API     ->  Proxy                 : **GET** the requested ""resource"" from claim data path
 ref over Proxy, Server                  : Forwarded Request
 DPC_API     <-- Proxy                 : Any response
 end

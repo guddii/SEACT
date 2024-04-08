@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam sequenceReferenceBackgroundColor white
+
+mainframe **sd** Write Verification Code to DPC Storage
+autonumber 1 1 "<b>[0]"
+
+participant "DPC API" as DPC_API
+participant "Proxy" as Proxy
+participant "Server" as Server
+
+
+ref over DPC_API,Proxy,Server           : Authorization Client Credentials Flow ( DPC )
+DPC_API     ->  Proxy               ++  : **PUT** New resource container for registry data
+ref over Proxy, Server                  : Forwarded Request
+DPC_API     <-- Proxy               --  : Turtle reference
+ref over DPC_API ,Proxy, Server         : Lookup Claim Data in Registry
+@enduml

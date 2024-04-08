@@ -15,10 +15,15 @@ include::partials/Acronyms.adoc[leveloffset=+1]
 // tag::body[]
 == System Behavior
 
-This section describes the system behavior using <<UML>> 2.5 with https://plantuml.com/de/[PlantUML] as the generator.
-The dynamic behavior of the system's objects will be illustrated with sequence diagrams and other interaction diagrams (sd).
+This section illustrates the dynamic behavior of the system's objects using <<UML>> 2.5 with https://plantuml.com/de/[PlantUML] as the generator.
+Sequence diagrams and other interaction diagrams (sd) will be used.
+Please note that this is a simplified representation of the system's behavior.
+It may omit some insignificant details or vary in the actual program code.
 
 === Entries
+
+There are three main behaviors that reflect interactions that can be executed directly or indirectly by the client: CRUD requests to a given resource, claiming log data, and discovering this data.
+The reference section defines subsequences that may be used in each of these interactions.
 
 ==== Authorised CRUD Requests
 
@@ -39,7 +44,7 @@ include::resources/diagrams/sd_Request_a_resource.puml[]
 Network logs are captured by storage, not by WebID, and it is necessary to associate the data with a WebID at some point to make it readable to the owner.
 This is done by a claiming mechanism.
 This requires a Solid application that has access to both the user storage and the DPC storage.
-Both connections are handled by the DPC API server, and when the connections are established, the API initializes an verification token on behalf of the client agent to be verified by the DPC API server when it discovers the logs.
+Both connections are handled by the DPC API server, and when the connections are established, the API initializes an verification code on behalf of the client agent to be verified by the DPC API server when it discovers the logs.
 
 .<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the log claiming process
 [.text-center]
@@ -81,6 +86,7 @@ Request forwarding is quite simple, the proxy receives a CRUD request that is pa
 The returning server response will take the path back to the original requester.
 Since the requester can be the proxy itself, there needs to be some kind of guard to prevent infinite recursive calls.
 If the requester is someone other than the proxy, the Data Privacy Cockpit middleware can be executed.
+In certain cases, it may be necessary to read and evaluate the server response, which can be done during a response interception step.
 
 .<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the request being forwarded by the proxy
 [.text-center]
@@ -89,18 +95,12 @@ If the requester is someone other than the proxy, the Data Privacy Cockpit middl
 include::resources/diagrams/sd_Forwarded_request.puml[]
 ....
 
-==== Data Privacy Cockpit Middleware
+==== DPC Middleware
 
 The Data Privacy Cockpit is a Solid application that requires a dedicated agent and client credentials.
 The agent must log in before any other actions can be executed.
 If successful, the container resources of the requested resource will be searched until the corresponding storage is found or no more container resources are left to search.
-If a storage is found, access logs will be created or updated, with one resource for each RDF class:
-
-- https://www.w3.org/TR/HTTP-in-RDF10/#ResponseClass
-- https://www.w3.org/TR/HTTP-in-RDF10/#RequestClass
-- https://www.w3.org/TR/HTTP-in-RDF10/#ConnectionClass
-
-The log resources will be grouped by the storage they belong to and owned by the DPC agent.
+If a storage is found, access logs will be created or updated.
 
 .<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the Data Privacy Cockpit middleware
 [.text-center]
@@ -109,64 +109,80 @@ The log resources will be grouped by the storage they belong to and owned by the
 include::resources/diagrams/sd_DPC_middleware.puml[]
 ....
 
-==== Access Log Update
+// TODO
+// ==== Authentication with Code Flow
 
-The update to the access log begins with a test to determine if the resource already exists on the server.
+==== Lookup Claim Data in Registry
+
+The process of retrieving claimed data follows the data discovery outlined in the Solid Application Interoperability specification.
+If the data does not already exist, it will be created.
+Finally, the registry data will be filtered from the set of data and returned.
+
+.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the claim data lookup
+[.text-center]
+[plantuml,format=svg]
+....
+include::resources/diagrams/sd_Lookup_claim_data_in_registry.puml[]
+....
+
+==== Create or Update Dataset
+
+The update of a dataset begins with a test to determine if the resource already exists on the server.
 If it does, it will be received as a dataset.
 Otherwise, a new dataset will be created.
-The dataset will be enriched with new log data and stored on the server.
+The dataset will be enriched with new data and stored on the server.
 
 .<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of an access log resource update
 [.text-center]
 [plantuml,format=svg]
 ....
-include::resources/diagrams/sd_Access_log_update.puml[]
+include::resources/diagrams/sd_Create_or_update_dataset.puml[]
 ....
 
-==== Initialize a Verification Token
+==== Initialize a Verification Code
 
-To initialize a verification token, start by generating a random key.
-The DPC API will then store the token, storage, and WebID in a location accessible to the DPC agent for later verification.
+To initialize a verification code, start by generating a random key.
+The DPC API will store the verification code, storage, WebID, and additional data in a location accessible to the DPC agent for later verification.
 If the DPC API cannot access the client's storage, the process will terminate without adding data to the DPC storage.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of initializing a verification token
+.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of initializing a verification code
 [.text-center]
 [plantuml,format=svg]
 ....
-include::resources/diagrams/sd_Initialize_a_verification_token.puml[]
+include::resources/diagrams/sd_Initialize_a_verification_code.puml[]
 ....
 
-==== Write Token to Client Storage
+==== Write Verification Code to Client Storage
 
-Writing the verification token consists of two steps.
-The first step is to write the token to the client's storage.
-Since the token must be read by the DPC agent, the second step is to grant read permissions.
+Writing the verification code consists of two steps.
+The first step is to write the verification code to the client's storage.
+Since the code must be read by the DPC agent, the second step is to grant read permissions for the agent.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of writing a verification token to the clients' storage
+.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of writing a verification code to the clients' storage
 [.text-center]
 [plantuml,format=svg]
 ....
-include::resources/diagrams/sd_Write_token_to_client_storage.puml[]
+include::resources/diagrams/sd_Write_verification_code_to_client_storage.puml[]
 ....
 
-==== Write Token to DPC Storage
+==== Write Verification Code to DPC Storage
 
-Before writing the token to the DPC storage, the agent must first verify their identity.
-After authorization, a new claim containing the verification token and associated storage will be added to the list of claims, along with the WebID-related claims in the registry.
+Before writing the verification code to the DPC storage, the agent must first verify their identity.
+After authorization, a new claim containing the verification code and associated storage will be added to the list of claims, along with the storage-related claims in the registry.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of writing a verification token to the DPC storage
+.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of writing a verification code to the DPC storage
 [.text-center]
 [plantuml,format=svg]
 ....
-include::resources/diagrams/sd_Write_token_to_dpc_storage.puml[]
+include::resources/diagrams/sd_Write_verification_code_to_dpc_storage.puml[]
 ....
 
 ==== Get Claimed Resource
 
 The process of obtaining a claimed resource will be managed by the DPC agent.
-The WebID from the active client session will be used to retrieve the claims from the registry, along with the storage and verification token for that claim.
-The DPC agent will then retrieve the verification token from the storage.
-If both verification tokens match, the request will be forwarded by the DPC agent.
+The WebID from the active client session will be used to retrieve the claims from the registry, along with the storage and verification code for that claim.
+The DPC agent will then retrieve the verification code from the storage.
+If both verification codes match, the request will be forwarded by the DPC agent.
 
 .<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of how to get a claimed resource
 [.text-center]

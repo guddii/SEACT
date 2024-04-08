@@ -10,20 +10,17 @@ participant "Proxy" as Proxy
 participant "Server" as Server
 
 ref over Proxy, Server  : Authorization Client Credentials Flow ( DPC )
-opt isDpcAgentLoggedIn
 loop hasContainerResources
     Proxy   ->  Proxy   : <b>HEAD</b> Request closest container resource
 ref over Proxy, Server  : Forwarded Request
     break existStorageInResponseHeader
-    Proxy   -> Proxy        : Lookup claim data in registry by storage
-    ref over Proxy, Server  : Forwarded Request
-    Proxy   -> Proxy        : Set base url from registry claim data
+    ||5||
+    ref over Proxy, Server  : Lookup Claim Data in Registry
+    Proxy   -> Proxy        : Get access log container url from registry data
     end
-
-end
-opt existStorage
+opt existAccessLogContainerUrl
 ||5||
-ref over Proxy, Server : Access Log Update ( "/accessLog" )
+ref over Proxy, Server : Create or Update Dataset ( "/yyyy-mm-dd" , accessLogData )
 end
 end
 @enduml
