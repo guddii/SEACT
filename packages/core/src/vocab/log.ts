@@ -1,8 +1,16 @@
+import { AGENTS } from "../config/agents";
+import { toUrlString } from "../utils/url-helper.ts";
+
+const namespace = `${toUrlString(AGENTS.DPC.storage)}/ns/log#`;
+
 export const LOG = {
-  AccessLog: "urn:log#AccessLog",
-  date: "urn:log#date",
-  accessor: "urn:log#accessor",
-  application: "urn:log#application",
-  resource: "urn:log#resource",
-  action: "urn:log#action",
+  AccessLog: `${namespace}AccessLog`,
+  date: `${namespace}date`,
+  accessor: `${namespace}accessor`,
+  application: `${namespace}application`,
+  resource: `${namespace}resource`,
+  action: `${namespace}action`,
+  PREFIX_AND_NAMESPACE: {
+    log: namespace,
+  },
 };

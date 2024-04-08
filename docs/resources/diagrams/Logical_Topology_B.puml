@@ -4,20 +4,20 @@ skinparam linetype ortho
 skinparam nodesep 30
 skinparam ranksep 30
 interface "Public Endpoint" as PE
-component "Solid Server-Side Application Layer Proxy" as proxy <<subsystem>>{
+component "Proxy" as proxy <<subsystem>>{
     component "Proxy Module Manager" as MM
     component "Proxy Module 1" as M1
     component "Proxy Module 2" as M2
     component "Proxy Module n" as MN
 }
 component "Solid Provider" as P <<subsystem>>{
-    database "User\nstorage" as SU
+    database "Client\nstorage" as CU
 }
 PE -- MM
 MM ..> M1
 MM ..> M2
 MM ..> MN
-MM -(0- SU
-MN -(0- SU
-MN ..> SU
+MM -(0- CU
+MN -(0- CU
+MN ..> CU
 @enduml

@@ -5,7 +5,7 @@ import { emptyResponse } from "../../../../utils/empty-response.ts";
 export async function GET(request: Request): Promise<Response> {
   try {
     const webId = await getWebId();
-    const pathname = new URL(request.url).pathname.replace("/api/log/", "/");
+    const pathname = new URL(request.url).pathname.replace("/api/data/", "/");
 
     return await getClaimedResource(webId, pathname);
   } catch (error: unknown) {

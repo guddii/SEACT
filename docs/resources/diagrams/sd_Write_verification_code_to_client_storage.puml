@@ -3,7 +3,7 @@
 
 skinparam sequenceReferenceBackgroundColor white
 
-mainframe **sd** Write Token to Client Storage
+mainframe **sd** Write Verification Code to Client Storage
 autonumber 1 1 "<b>[0]"
 
 participant "DPC API" as DPC_API
@@ -11,10 +11,10 @@ participant "Proxy" as Proxy
 participant "Server" as Server
 
 
-DPC_API  ->  Proxy               ++  : **PUT** Verification token to the storage to be claimed
+DPC_API  ->  Proxy               ++  : **PUT** Verification code to the storage to be claimed
 ref over Proxy, Server               : Forwarded Request
 DPC_API  <-- Proxy               --  : Success response
-DPC_API  ->  Proxy               ++  : **PUT** Verification token read permissions for DPC agent
+DPC_API  ->  Proxy               ++  : **PUT** Verification code read permissions for DPC agent
 ref over Proxy, Server               : Forwarded Request
 DPC_API  <-- Proxy               --  : Success response
 

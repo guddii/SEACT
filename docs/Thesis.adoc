@@ -1,4 +1,5 @@
 = Solid-Based Extended Access Control and Traceability in Data-Driven Web-Based Systems
+// Global Attributes
 include::partials/Attributes.adoc[]
 
 include::partials/Preface.adoc[]
@@ -14,6 +15,8 @@ An analysis of extending the Solid protocol with a server-side application layer
 include::partials/Glossary.adoc[]
 
 include::partials/Acronyms.adoc[]
+
+include::partials/Namespaces.adoc[]
 
 = Preamble
 
@@ -100,27 +103,18 @@ Describe the idea of a <<DPC>>
 
 = Theoretical Framework
 
-== Application Design
+== System Design
 
 === Logical Topology
+include::Topology.adoc[leveloffset=+2,tags=body]
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Component Diagram of the Logical Topology (A)
-[.text-center]
-[plantuml,format=svg]
-....
-include::resources/diagrams/Logical_Topology_A.puml[]
-....
-
-.<<UML>> 2.5.1footnote:uml[] Component Diagram of the Logical Topology (B)
-[.text-center]
-[plantuml,format=svg]
-....
-include::resources/diagrams/Logical_Topology_B.puml[]
-....
-
-=== Information Retrieval
+=== Logical Data Model
+include::Model.adoc[leveloffset=+2,tags=body]
 
 == Integration
+
+=== Software Architecture
+include::Architecture.adoc[leveloffset=+2,tags=body]
 
 === Logical Boundaries
 

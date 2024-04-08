@@ -1,0 +1,12 @@
+PREFIX st: <http://www.w3.org/ns/shapetrees#> .
+PREFIX log-shex: <http://example.tld/dpc/ns/log.shex#>.
+
+<#AccessLogRegistrationTree>
+  a st:ShapeTree ;
+  st:expectsType st:Container ;
+  st:contains <#AccessLogTree> . # <1>
+
+<#AccessLogTree>
+  a st:ShapeTree ;
+  st:expectsType st:Resource ;
+  st:shape log-shex:AccessLogShape . # <2>

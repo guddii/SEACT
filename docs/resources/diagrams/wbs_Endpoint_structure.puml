@@ -1,0 +1,17 @@
+@startwbs
++ http://example.tld\n      (Base URL)
+++ /client
++++_ /dpc
+++ /dpc
++++ /data
+++++ /74242fac
++++++ AccessLog
+++++++_ 2024-04-02
++++ /ns
+++++_ /log
+++++_ /log.shex
+++++_ /log.tree
++++ /profile
+++++_ /card
++++_ /registries
+@endwbs

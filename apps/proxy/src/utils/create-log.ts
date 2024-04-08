@@ -4,10 +4,12 @@ import {
   updateUrl,
   createOrUpdateResource,
   createUrl,
+  findDataRegistrationsInClaimContainer,
+  createAccessLogNamespace,
   VOCAB,
-  findClaimedData,
+  findAccessLogContainer,
 } from "@seact/core";
-import { RDF } from "@inrupt/vocab-common-rdf";
+import { RDF, XSD } from "@inrupt/vocab-common-rdf";
 import { buildThing } from "@inrupt/solid-client";
 import type express from "express";
 import {
@@ -88,10 +90,29 @@ export const createLog: AsyncMiddlewareFn = async (req, res, next) => {
       return;
     }
 
-    const claimedData = await findClaimedData(req, session);
-    if (claimedData) {
+    const dataRegistrationsInClaimContainer =
+      await findDataRegistrationsInClaimContainer(req, session);
+    const accessLogNamespace = await createAccessLogNamespace(
+      AGENTS.DPC,
+      session,
+    );
+    const accessLogContainer = await findAccessLogContainer(
+      dataRegistrationsInClaimContainer,
+      accessLogNamespace,
+      session,
+    );
+
+    const date = new Date();
+    // Get year, month, and day part from the date
+    const year = date.toLocaleString("default", { year: "numeric" });
+    const month = date.toLocaleString("default", { month: "2-digit" });
+    const day = date.toLocaleString("default", { day: "2-digit" });
+    // Generate yyyy-mm-dd date string
+    const formattedDate = `${year}-${month}-${day}`;
+
+    if (accessLogContainer) {
       await createOrUpdateResource({
-        resource: updateUrl("/accessLog", claimedData),
+        resource: updateUrl(`/${formattedDate}`, accessLogContainer),
         session,
         callback: (thing) =>
           buildThing(thing)
@@ -102,6 +123,10 @@ export const createLog: AsyncMiddlewareFn = async (req, res, next) => {
             .addStringNoLocale(VOCAB.LOG.action, getCRUD(req))
             .addStringNoLocale(VOCAB.LOG.resource, req.url || "")
             .build(),
+        prefixes: {
+          al: `${accessLogNamespace.vocab.internal_resourceInfo.sourceIri}#`,
+          ...XSD.PREFIX_AND_NAMESPACE,
+        },
       });
     }
   }

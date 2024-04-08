@@ -1,0 +1,12 @@
+@prefix al:      <http://example.tld/dpc/ns/log#>.
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#>.
+
+<#1712073817394>
+    a              al:AccessLog ;
+    al:date        "2024-04-02T16:03:37.426Z"^^xsd:dateTime ;
+    al:accessor    "http://example.tld/dpc/profile/card#me" ;
+    al:application "Data Privacy Cockpit" ;
+    al:action      "READ" ;
+    al:resource    "/client/dpc" .
+
+

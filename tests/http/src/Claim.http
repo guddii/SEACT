@@ -1,14 +1,23 @@
-### Get claims for first user (client) from registry
-GET http://proxy.localhost:4000/dpc/registries
+### Get registry set from WebId
+GET http://proxy.localhost:4000/dpc/profile/card
+Accept: application/ld+json
+
+> {%
+    client.global.set("hasRegistrySet", response.body[2]["http://www.w3.org/ns/solid/interop#hasRegistrySet"][0]["@id"]);
+%}
+
+### Get the first data registration for the first claim (client) from registry
+GET {{hasRegistrySet}}
 Authorization: Bearer {{$auth.token("dpc")}}
 Accept: application/ld+json
 
 > {%
     client.global.set("verificationResource", response.body[0]["urn:claim#verificationResource"][0]["@id"]);
     client.global.set("verificationCodeDPC", response.body[0]["urn:claim#verificationCode"][0]["@value"]);
+    client.global.set("hasDataRegistration", response.body[0]["http://www.w3.org/ns/solid/interop#hasDataRegistration"][0]["@id"]);
 %}
 
-### Get the token from client storage
+### Get the verification code from the client storage and compare it with the private verification code
 GET {{verificationResource}}
 Authorization: Bearer {{$auth.token("dpc")}}
 Accept: application/ld+json
@@ -20,3 +29,16 @@ Accept: application/ld+json
         client.assert(client.global.get("verificationCodeDPC") === client.global.get("verificationCodeClient"), "Token are not equal");
     });
 %}
+
+### Get the first contaied file of the data registraion
+GET {{hasDataRegistration}}
+Authorization: Bearer {{$auth.token("dpc")}}
+Accept: application/ld+json
+
+> {%
+    client.global.set("firstFile", response.body.find(thing => thing["http://www.w3.org/ns/ldp#contains"])["http://www.w3.org/ns/ldp#contains"][0]["@id"]);
+%}
+
+### Get the contents of a file
+GET {{firstFile}}
+Authorization: Bearer {{$auth.token("dpc")}}

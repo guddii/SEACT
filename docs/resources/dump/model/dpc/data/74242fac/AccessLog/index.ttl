@@ -1,0 +1,27 @@
+@prefix dc:      <http://purl.org/dc/terms/>.
+@prefix ldp:     <http://www.w3.org/ns/ldp#>.
+@prefix posix:   <http://www.w3.org/ns/posix/stat#>.
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#>.
+@prefix interop: <http://www.w3.org/ns/solid/interop#>.
+
+<>
+    a                           interop:DataRegistration ;
+    interop:registeredBy        <http://example.tld/dpc/profile/card#id> ;
+    interop:registeredAt        "2024-04-02T16:00:09.959Z"^^xsd:dateTime ;
+    interop:registeredShapeTree <http://example.tld/dpc/ns/log.tree#AccessLogRegistrationTree> . # <1>
+
+<>
+    a           ldp:Container, ldp:BasicContainer, ldp:Resource ;
+    dc:modified "2024-04-02T16:03:37.000Z"^^xsd:dateTime .
+
+<2024-04-02>
+    a           ldp:Resource, <http://www.w3.org/ns/iana/media-types/text/turtle#Resource> ;
+    dc:modified "2024-04-02T21:52:33.000Z"^^xsd:dateTime .
+
+<>
+    posix:mtime  1712073817 ;
+    ldp:contains <2024-04-02> .
+
+<2024-04-02>
+    posix:mtime 1712094753 ;
+    posix:size  1486 .

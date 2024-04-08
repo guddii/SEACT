@@ -1,25 +1,31 @@
 import type { ReactElement } from "react";
-import React, { useMemo, useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import type { TableProps } from "antd";
-import { Button, Flex, App, Table, Space } from "antd";
+import { Flex, App, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
-import { useSession } from "@inrupt/solid-ui-react";
+import { usePathname } from "next/navigation";
+import { APPS, updateUrlString } from "@seact/core";
 import { useIdentity } from "../../contexts/IdentityContext";
 import { getDatasetAsMatrix } from "../../utils/get-dataset-as-matrix.ts";
 import { toTable } from "../../adapter/rdf/to-table";
 import { ControlClaim } from "../ControlClaim";
 
 interface TableRDFProps extends TableProps<Record<string, string>> {
-  resource: string;
+  pathname?: string;
   excludeColumns?: string[];
   showInExpander?: string;
 }
 export function TableRDF({
-  resource,
+  pathname,
   excludeColumns,
   showInExpander,
   ...args
 }: TableRDFProps): ReactElement {
+  const dynamicPathname = usePathname();
+  const resource = updateUrlString(
+    pathname || `/api${dynamicPathname}`,
+    APPS.DPC.baseUrl,
+  );
   const { webId, session } = useIdentity();
   const { message } = App.useApp();
 

@@ -4,7 +4,7 @@
 skinparam sequenceReferenceBackgroundColor white
 
 autonumber 1 1 "<b>[0]"
-mainframe **sd** Request a Resource
+mainframe **sd** Authorised CRUD Requests
 
 participant "Client" as Client
 participant "Proxy" as Proxy

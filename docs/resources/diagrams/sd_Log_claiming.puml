@@ -15,6 +15,6 @@ DPC_Client  ->  DPC_API             ++  : **GET** Login
 ref over DPC_API,Proxy,Server           : Authorization Code Flow
 DPC_Client  <-- DPC_API                 : Success response
 DPC_Client  ->  DPC_API                 : **PUT** Claim a storages
-ref over DPC_API,Proxy,Server           : Initialize a Verification Token
-DPC_Client  <-- DPC_API                 : Verification token
+ref over DPC_API,Proxy,Server           : Initialize a Verification Code
+DPC_Client  <-- DPC_API                 : Verification code
 @enduml

@@ -12,17 +12,14 @@ import type {
 } from "@inrupt/solid-client/dist/interfaces";
 import type { Agent } from "../models/agent.ts";
 import { VOCAB } from "../vocab";
-import { toUrlString, updateUrl } from "./url-helper.ts";
-
-export const getRegistriesResource = (agent: Agent): URL => {
-  return updateUrl("/registries", agent.storage);
-};
+import { toUrlString } from "./url-helper.ts";
+import { getRegistrySet } from "./social-agent.ts";
 
 export const getRegistries = async (
   agent: Agent,
   options: { fetch: typeof fetch },
 ): Promise<SolidDataset> => {
-  const registriesUrl = getRegistriesResource(agent);
+  const registriesUrl = await getRegistrySet(agent, options);
   let dataset: SolidDataset;
   try {
     dataset = await getSolidDataset(toUrlString(registriesUrl), options);
@@ -39,8 +36,15 @@ export const setRegistries = async (
     fetch: typeof fetch;
   },
 ): Promise<SolidDataset & WithServerResourceInfo & WithChangeLog> => {
-  const registriesUrl = getRegistriesResource(agent);
-  return saveSolidDatasetAt(toUrlString(registriesUrl), dataset, options);
+  const registriesUrl = await getRegistrySet(agent, options);
+  const prefixes = {
+    ...VOCAB.INTEROP.PREFIX_AND_NAMESPACE,
+    ...VOCAB.CLAIM.PREFIX_AND_NAMESPACE,
+  };
+  return saveSolidDatasetAt(toUrlString(registriesUrl), dataset, {
+    fetch: options.fetch,
+    prefixes,
+  });
 };
 
 export const findRegistryByMonitoredStorage = (

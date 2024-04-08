@@ -1,5 +1,7 @@
 = Solid-Based Extended Access Control and Traceability in Data-Driven Web-Based Systems (SEACT)
+// Global Attributes
 include::partials/Attributes.adoc[]
+:url-docs: https://guddii.de/SEACT
 :toc: macro
 
 == Research
@@ -27,7 +29,15 @@ include::partials/Attributes.adoc[]
 |===
 |Item |HTML |PDF
 
-|Architecture
+|Logical Topology
+|xref:{url-docs}/Topology.html[window=_blank]
+|xref:{url-docs}/Topology.pdf[window=_blank]
+
+|Logical Data Model
+|xref:{url-docs}/Model.html[window=_blank]
+|xref:{url-docs}/Model.pdf[window=_blank]
+
+|Software Architecture
 |xref:{url-docs}/Architecture.html[window=_blank]
 |xref:{url-docs}/Architecture.pdf[window=_blank]
 |===

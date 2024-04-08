@@ -55,7 +55,7 @@ export function ControlClaim(): ReactElement {
 
   const handleReloadOk = () => {
     setIsReloadModalOpen(false);
-    location.reload();
+    location.href = location.origin;
   };
 
   const handleReloadCancel = () => {

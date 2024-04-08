@@ -1,0 +1,26 @@
+### Get the access log shape tree
+GET http://proxy.localhost:4000/dpc/ns/log.tree
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Get the access log shape expressions
+GET http://proxy.localhost:4000/dpc/ns/log.shex
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
+
+### Get the access log vocabulary
+GET http://proxy.localhost:4000/dpc/ns/log
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+%}
