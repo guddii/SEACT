@@ -1,0 +1,156 @@
+= 🧑‍🎓 Masterseminar: Solid-Based Extended Access Control and Traceability in Data-Driven Web-Based Systems
+// Global Attributes
+include::partials/Attributes.adoc[]
+:date: 2024-04-10
+:toc: macro
+:toclevels: 1
+:toc-title!:
+:sectnums!:
+// reveal.js
+:revealjs_theme: white
+:revealjs_slideNumber: true
+:revealjs_margin: 0.25
+:revealjs_minimumTimePerSlide: 2
+:revealjs_hash: true
+:revealjs_viewDistance: 5
+:revealjs_navigationMode: linear
+
+{date}
+
+{revnumber}
+
+HTWK Leipzig
+
+== Agenda
+
+toc::[]
+
+== Einordnung
+
+[%notitle]
+=== Rahmenbedingungen
+
+**Betreuer:**
+
+1. Herr Prof. Dr. rer. nat. Andreas Both _(HTWK Leipzig)_
+2. Herr M. Sc. Michael Schmeißer _(mgm technology partners GmbH)_
+
+**Abgabetermin:**
+
+17.06.2024
+
+[%notitle]
+=== Betrieb
+
+mgm technology partners ist ein internationales Software-Unternehmen mit Fokus auf von Enterprise-Projekten.
+
+- **Hauptarbeitsfelder des Betriebs:** Low Code Plattform, Public Sector, Handel & Gewerbe und Industrieversicherungen
+- **Hauptarbeitsfeld des Zweitbetreuers:** Public Sector
+
+== Thema der Arbeit
+
+=== Hintergrund
+
+_Solid_ ist eine **Spezifikation**, mit der Menschen ihre Daten sicher in **dezentralen Datenspeichern**, den sogenannten Pods, speichern können.  Ein Pod ist vergleichbar mit einem sicheren, persönlichen Webserver für Daten.
+Die **Kontrolle** darüber, welche Personen und Anwendungen auf den Pod zugreifen können, liegt bei der Person, die den Pod besitzt.
+
+=== Problemstellung
+
+- Das _Solid Ecosystem_ ist eine **_Bleeding-Edge-Technologie_**
+  * Änderungen in der Spezifikation
+  * Erweiterung des _Ecosystem_
+  * Verschiedene neue Anbieter
+- Schwächen bei der **Rückverfolgbarkeit** und **Kontrolle** des Zugangs zu Ressourcen
+
+=== Lösungsansatz
+
+> Datenschutzcockpit (DSC)
+
+- **DSC Reverse Proxy:** Erstellung eines serverseitigen Proxys auf Anwendungsebene zur Überwachung des Datenverkehrs
+- **DSC Client:** Darstellung und Verwaltung der Daten aus der Überwachung
+
+=== Motivation
+
+- Nachvollziehbarkeit der Zugriffe auf Ressourcen
+- Updatefähig und anbieterunabhängig
+
+**Im größeren Kontext**
+
+- Standardisierung repetitiver Sequenzen
+- Erweiterung oder Korrektur der Spezifikation
+
+=== Methodik
+
+1. Formulierung der Anforderungen an das System
+2. Entwicklung eines Prototyps
+3. Evaluierung der Anforderungen
+4. Anpassung der Anforderungen
+
+=== Theoretische Grundlagen
+
+- https://solidproject.org/TR/protocol[Solid Protocol]
+- https://solid.github.io/data-interoperability-panel/specification/[Solid Application Interoperability]
+
+=== Funktionale Anforderungen
+
+- **REQ-1:** Zugriffsprotokolle mit unterschiedlichen Ansichten je nach Mandat.
+- **REQ-2:** Übertragungsprotokolle mit dem spezifischen Inhalt der übertragenen Ressource.
+- (**REQ-3:** Regelbasierte Filterung von Netzanfragen durch den Eigentümer der Ressourcen.)
+
+=== Nicht-funktionale Anforderungen
+
+- **REQ-4:** Gewährleistung der Kompatibilität mit der aktuellen Version des Solid-Protokolls.
+- **REQ-5:** Die Konformität mit den allgemeinen Eigenschaften eines Proxys muss gewährleistet sein.
+- **REQ-6:** Die Effizienz in Bezug auf die Antwortzeiten und den Ressourcenverbrauch muss angemessen sein.
+- **REQ-7:** Nachnutzung von vorhandenen Spezifikationen des Solid-Ökosystems.
+
+=== Forschungsfragen
+
+- **QUEST-1:** Können die funktionalen und nicht-funktionalen Anforderungen in einem Solid-basierten System erfüllt werden, ohne dass das Systemdesign hierdurch beeinträchtigt wird?
+- **QUEST-2:** Wie stark erhöht sich die Netzwerklast durch das Verfahren?
+- **QUEST-3:** Wie viel zusätzliche Speicherkapazität wird durch dieses Verfahren benötigt?
+
+== Lösung der Aufgabe
+
+=== Modell: Logische Topologie
+
+.UML 2.5.1 Komponentendiagramm der logischen Topologie
+[.text-center]
+[plantuml,format=svg,id="Logical_Topology_A"]
+....
+include::resources/diagrams/Logical_Topology_A.puml[]
+....
+
+=== Modell: Logisches Datenmodell
+
+.IE-Diagramm des logischen Datenmodells
+[.text-center]
+[plantuml,format=svg,id="dm_Logical_model"]
+....
+include::resources/diagrams/dm_Logical_model.puml[]
+....
+
+=== Technologie und Werkzeuge
+
+- https://communitysolidserver.github.io/CommunitySolidServer/latest/[Community Solid Server]
+- https://docs.inrupt.com/developer-tools/javascript/client-libraries/[Inrupt JavaScript Client Libraries]
+- https://github.com/stars/guddii/lists/solid-testing[Solid Specification Testing]
+- https://github.com/stars/guddii/lists/load-testing[Load and Performance Testing]: JMeter
+- SOLID Design Principles
+
+== Ergebnisse
+
+- DPC Client: http://dpc.localhost:5000/
+- Example Client: http://client.localhost:5010/
+
+== Roadmap
+
+- https://github.com/users/guddii/projects/6/views/3[Backlog]
+- https://github.com/users/guddii/projects/6/views/4[Roadmap]
+
+== Diskussion
+
+- Sind Solid Specification Testing nötig?
+- Parameter und Strategien für Load und Performance Tests? Anzahl der Requests, Benutzer, Pods und ShapeTees?
+- Sind SOLID Design Principles zeitgemäß?
+- Welches Vokabular ist für die Log-Dateien geeignet?

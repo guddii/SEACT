@@ -56,6 +56,14 @@ jobs:
         env:
           REVNUMBER: ${{ steps.ghd.outputs.describe }}
           REVDATE: ${{ steps.date.outputs.date }}
+      - name: Build Slides
+        id: build-slides
+        uses: tonynv/asciidoctor-action@master
+        with:
+          program: "./scripts/buildSlides.sh"
+        env:
+          REVNUMBER: ${{ steps.ghd.outputs.describe }}
+          REVDATE: ${{ steps.date.outputs.date }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
