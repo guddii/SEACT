@@ -22,20 +22,43 @@ include::partials/Namespaces.adoc[]
 
 == Introduction
 
-The <<Solid>> Project is an RDF-based ecosystem that aims to achieve a decentralized web for persons, social entities, or software.
+The Solid Project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
 The technology is new and not yet fully mature.
 The current version is missing some essential features required for production environments.
 Ongoing research and development is being conducted to improve the ecosystem, resulting in the regular introduction of new features or Solid providers.
 
-This thesis aims to develop and analyze a <<Solid>>-based application that aligns with the <<Solid>> ecosystem without enforcing it.
+This thesis aims to develop and analyze a Solid-based application that aligns with the Solid ecosystem without enforcing it.
 The application will enhance data privacy concerns, specifically in terms of data traceability and access control.
 The goal is to increase visibility and track requested resources from parties within and beyond the ecosystem through logs and their representation.
 These requests should be processed and made manipulatable to achieve better control over the exposed data.
-All of these achievements should be established in a clear context and communicated through data <<API>>s to ensure safety for new features and potential changes in <<Solid>> providers.
+All of these achievements should be established in a clear context and communicated through data APIs to ensure safety for new features and potential changes in Solid providers.
 
 === Research
 
 ==== Problem Definition
+
+As already mentioned, the Solid project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, organizations, and applications, referred to as agents.
+The backbone of the project is the Solid Protocol.
+The protocol specifies how agents store their data securely in decentralized data storages, also known as Pods.
+These storage systems can be compared to secure, personal web servers for data, such as Dropbox, ownCloud, Nextcloud, or similar software, but with a specified public API.
+This interface utilizes WebIDs to identify the agents within the system.
+As the storage owner has control over which agents can access it, they can choose to restrict access to only WebIDs, completely restrict access, or make it publicly accessible.
+
+The Solid Community Group has been developing this technological approach since 2018. The ecosystem is currently in its early stages of development, and some specifications are still in draft form.
+Therefore, it may lack some features that are highly recommended in productive environments.
+This results in the following issues that require attention:
+
+[horizontal,labelwidth=15,itemwidth=auto]
+[[ISSUE-1,ISSUE-1]] ISSUE-1:: The Solid protocol only specifies the ability to grant or deny access.
+It does not track the actual request for a resource.
+[[ISSUE-2,ISSUE-2]] ISSUE-2:: Solid is based on RDF and therefore favors interconnected data, what increased the demand for the stored data.
+[[ISSUE-3,ISSUE-3]] ISSUE-3:: There may be changes to existing specifications as they need to be improved or are still in the draft stage.
+[[ISSUE-4,ISSUE-4]] ISSUE-4:: The Solid ecosystem will be expanded with newly introduced specifications or APIs.
+[[ISSUE-5,ISSUE-5]] ISSUE-5:: New Solid providers are being introduced because of their increasing popularity.
+
+The first and second issues describe the need for traceability to control access to one's own data.
+A general problem with updates is addressed by the third through fifth issues.
+However, all of these concerns will affect the goals of this research.
 
 ==== Objectives and Research Interest
 
@@ -49,14 +72,14 @@ All of these achievements should be established in a clear context and communica
 
 ==== Functional Requirements
 
-[horizontal,labelwidth=10,itemwidth=80]
+[horizontal,labelwidth=15,itemwidth=auto]
 [[REQ-1,REQ-1]] REQ-1:: Access logs with different views depending on the mandate.
 [[REQ-2,REQ-2]] REQ-2:: Transmission logs with the specific content of the transmitted resource.
 [[REQ-3,REQ-3]] REQ-3:: Rule-based filtering of network requests by the owner of the resource.
 
 ==== Non-Functional Requirements
 
-[horizontal,labelwidth=10,itemwidth=80]
+[horizontal,labelwidth=15,itemwidth=auto]
 [[REQ-4,REQ-4]] REQ-4:: Ensuring compatibility with the current version of the Solid protocol.
 [[REQ-5,REQ-5]] REQ-5:: Conformity with the general properties of a proxy must be guaranteed.
 [[REQ-6,REQ-6]] REQ-6:: Efficiency in terms of response times and resource consumption must be appropriate.
@@ -117,14 +140,17 @@ Describe the idea of a <<DPC>>
 == System Design
 
 === Logical Topology
+
 include::Topology.adoc[leveloffset=+2,tags=body]
 
 === Logical Data Model
+
 include::Model.adoc[leveloffset=+2,tags=body]
 
 == Integration
 
 === Software Architecture
+
 include::Architecture.adoc[leveloffset=+2,tags=body]
 
 === Logical Boundaries
