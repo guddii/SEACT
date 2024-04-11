@@ -44,7 +44,7 @@ jobs:
         id: build-slides
         uses: tonynv/asciidoctor-action@master
         with:
-          program: "./scripts/docs/research/html.sh"
+          program: "./scripts/docs/slides/html.sh"
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
