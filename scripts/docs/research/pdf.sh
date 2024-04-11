@@ -6,7 +6,7 @@ if [[ $GITHUB_REF_NAME = v* ]]
 then
   REVNUMBER=$GITHUB_REF_NAME+$GITHUB_RUN_ID
 else
-  REVNUMBER=$GITHUB_SHA
+  REVNUMBER=${GITHUB_SHA:0:7}
 fi
 
 asciidoctor-pdf \
