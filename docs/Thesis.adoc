@@ -86,7 +86,24 @@ However, they can reveal the vulnerable aspects of this concept to determine whe
 
 ==== Methodology
 
-=== Requirements
+=== Concept and Requirements
+
+The concept is inspired by existing software solutions in the field of e-governance, such as _X-Road_ from Estonia and _XDatenschutzcockpit_, which is currently being developed in Germany for access control of citizen data.
+Both systems have an embedded logging system that monitors access data.
+Since they are tied to the specific context in which they are used, the idea of a *Data Privacy Cockpit* will be ported to the Solid ecosystem.
+
+When applying the concept to the solid context, two fundamental software components can be identified to solve the problems under the given premises:
+
+[horizontal]
+DPC Reverse Proxy:: A server-side proxy at the application level monitors data traffic and creates logs if necessary.
+DPC Client:: The traffic data from the reverse proxy is displayed and managed by the client.
+
+The concept idea's data capturing unit will be implemented as a proxy to meet the requirements of vendor-agnostic software that is secure from updates, as criticized in <<ISSUE-3>>, <<ISSUE-4>>, and <<ISSUE-5>>.
+However, this requires the application to be a Solid app, as it communicates over HTTP APIs with the actual Solid provider.
+Since every request passes through the reverse proxy, there is a high risk of resulting in an inefficient software solution.
+
+The tension between vendor-agnostic software and efficiency is a key consideration for the solution's requirements, particularly in non-functional requirements.
+However, the functional requirements are straightforward.
 
 ==== Functional Requirements
 
@@ -146,12 +163,6 @@ Describe a application layer proxy
 * OSI model
 * Position of the proxy
 * Difference to other proxies
-
-=== Data Privacy Cockpit
-
-Describe the idea of a <<DPC>>
-
-- see citenp:[diederich_xdatenschutzcockpit_2023]
 
 = Theoretical Framework
 
