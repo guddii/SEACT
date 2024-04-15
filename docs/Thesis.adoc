@@ -48,7 +48,7 @@ The Solid Community Group has been developing this technological approach since 
 Therefore, it may lack some features that are highly recommended in productive environments.
 This results in the following issues that require attention:
 
-[horizontal,labelwidth=15,itemwidth=auto]
+[horizontal,labelwidth=15]
 [[ISSUE-1,ISSUE-1]] ISSUE-1:: The Solid protocol only specifies the ability to grant or deny access.
 It does not track the actual request for a resource.
 [[ISSUE-2,ISSUE-2]] ISSUE-2:: Solid is based on RDF and therefore favors interconnected data, what increased the demand for the stored data.
@@ -107,62 +107,88 @@ However, the functional requirements are straightforward.
 
 ==== Functional Requirements
 
-[horizontal,labelwidth=15,itemwidth=auto]
-[[REQ-1,REQ-1]] REQ-1:: Access logs with different views depending on the mandate.
-[[REQ-2,REQ-2]] REQ-2:: Transmission logs with the specific content of the transmitted resource.
-[[REQ-3,REQ-3]] REQ-3:: Rule-based filtering of network requests by the owner of the resource.
+The following list outlines the minimum functions that the prototype must have in order to answer the questions.
+
+[horizontal,labelwidth=15]
+[[REQ-F1,REQ-F1]] REQ-F1:: Access logs with different views depending on the mandate.
+[[REQ-F2,REQ-F2]] REQ-F2:: Transmission logs with the specific content of the transmitted resource.
+// [[REQ-F3,REQ-F3]] REQ-F3:: Rule-based filtering of network requests by the owner of the resource.
 
 ==== Non-Functional Requirements
 
-[horizontal,labelwidth=15,itemwidth=auto]
-[[REQ-4,REQ-4]] REQ-4:: Ensuring compatibility with the current version of the Solid protocol.
-[[REQ-5,REQ-5]] REQ-5:: Conformity with the general properties of a proxy must be guaranteed.
-[[REQ-6,REQ-6]] REQ-6:: Efficiency in terms of response times and resource consumption must be appropriate.
-[[REQ-7,REQ-7]] REQ-6:: Metadata that could be extracted from the request should be analysed and logs should be enhanced accordingly.
+In comparison to the functional requirements, establishing the following non-functional requirements is more challenging.
+However, they are even more important as they verify the general conceptual idea.
 
-==== Acceptance Criteria
+[horizontal,labelwidth=15]
+[[REQ-NF1,REQ-NF1]] REQ-NF1:: Ensuring compatibility with the current version of the Solid protocol.
+[[REQ-NF2,REQ-NF2]] REQ-NF2:: Conformity with the general properties of a proxy must be guaranteed.
+[[REQ-NF3,REQ-NF3]] REQ-NF3:: Efficiency in terms of response times and resource consumption must be appropriate.
+[[REQ-NF4,REQ-NF4]] REQ-NF4:: Metadata that could be extracted from the request should be analysed and logs should be enhanced accordingly.
+
+The proposed solution is based on functional and non-functional aspects.
+The objective is to develop a prototype that meets the client's requirement for traceability of accessed resources while operating accurately within a Solid ecosystem.
 
 == Terminology
 
-=== Solid Protocol
+This section provides definitions for the central terms used.
+Basic terms will only be included in the abbreviation section or the glossary due to the limited scope of this section.
 
-Describe the definition of a protocol
+=== Solid Project, Ecosystem, and Protocol
 
-- see Mozilla Developer Networkfootnote:[https://developer.mozilla.org/en-US/docs/Glossary/Protocol]
-- see citenp:[fischer_lexikon_2011(706)]
+The Solid Project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
+The ecosystem comprises various specifications and associated technologies, primarily listed in the Solid Technical Reports.
+The most fundamental specification is the Solid Protocol, also known as core, which is listed there.
 
-Describe the Solid protocol
+==== Solid Protocol
 
-- see citenp:[sarven_solid_2022]
+According to the Mozilla Developer Networkfootnote:[https://developer.mozilla.org/en-US/docs/Glossary/Protocol], a protocol is a set of rules for exchanging data between computers. citenp:[fischer_lexikon_2011(706)] provide additional clarification on this topic.
+The protocol includes setup, termination, collision prevention or correction, content integrity, and the actual actions within the same layer.
 
-Describe <<CSS>>
+The Solid Protocol is a type of protocol that encapsulates a modified set of new and existing specifications to fit into the ecosystem.
+The Protocol Specification includes additions and adoptions, or references to the original ones cite:[sarven_solid_2022].
 
-- see Community Solid Server configuration generatorfootnote:[https://communitysolidserver.github.io/configuration-generator/v7/]
-* Data management
-** Data storage (<<CRUD>>/<<SPARQL>>)
-** Authorization (<<WAC>>/<<ACP>>)
-** Locking
-* Account management
-** Pod URLs (Suffix/Subdomain)
-** OpenID provider
-* Miscellaneous
-** Notification method (WebSockets/Webhooks)
-** <<HTTP>>/<<HTTPS>>
+==== Solid Provider
 
-=== Proxy
+A Solid Provider is a web server that uses the Solid Protocol and provides the specified APIs and functions as a service.
+These services can be hosted on a private server or used from public hosting providers.
+The most common self-hosted implementations are Community Solid Server and Node Solid Server, among othersfootnote:[https://solidproject.org/developers/tutorials/getting-started#own-server].
+Both are available on different public hosting providers, in addition to Inrupt PodSpacesfootnote:[https://ap.inrupt.com], which is only accessible as cloud software.
 
-Describe the general idea of a proxy
+=== Server-Side Application Layer Proxy
 
-- see citenp:[luotonen_world-wide_1994]
-* Server-Client model
-* Position of the proxy (client-side vs. server-side)
+A proxy is a structural design pattern in software development that acts as It should serve as a placeholder for another object to access or control, in order to improve efficiency and reduce complexity.
 
-Describe a application layer proxy
+The internet operates on the Client-Server model, where a client requests a resource from the server, which responds accordingly.
+Introducing a proxy to this model involves adding another server.
+This proxy server accepts requests and delegates them to the actual server.
+The response is then forwarded to the requesting party.
+However, this offers the opportunity for a proxy to isolate either the client or the server from the network.
+When referring to a server-side proxy, isolation of the server is described, as shown in xref:Proxy[xrefstyle=short] cite:[luotonen_world-wide_1994].
 
-- see citenp:[?]
-* OSI model
-* Position of the proxy
-* Difference to other proxies
+.<<UML>> Component Diagram of the Client-Server model utilizing a Proxy
+[.text-center]
+[plantuml,format=svg,id="Proxy"]
+....
+agent Client
+cloud Network
+agent Proxy as "Proxy\nServer"
+agent Server as "Remote\nServer"
+
+Client  -> Network
+Network -> Proxy
+Proxy   -> Server
+Server  -> Proxy
+Proxy   -> Network
+Network -> Client
+....
+
+In addition to its position within the network, the Proxy can also have a position in the OSI model.
+The model describes how data will be transported in seven layers, each with different functions.
+Every layer can only communicate with its closest layer, starting with the physical layer that transmits a raw bitstream over a physical medium, up to the seventh layer, the application layer.
+This is the human interaction layer, through which applications can access network services.
+An Application Layer Proxy operates within this layer.
+
+In this document, the Server-Side Application Layer Proxy will be referred to as the (Reverse) Proxy for simplicity.
 
 = Theoretical Framework
 
