@@ -1,4 +1,4 @@
-= Software Architecture
+= System Behavior
 // Global Attributes
 include::partials/Attributes.adoc[]
 
@@ -13,19 +13,18 @@ include::partials/Acronyms.adoc[leveloffset=+1]
 <<<
 
 // tag::body[]
-== System Behavior
 
 This section illustrates the dynamic behavior of the system's objects using <<UML>> 2.5 with https://plantuml.com/de/[PlantUML] as the generator.
 Sequence diagrams and other interaction diagrams (sd) will be used.
 Please note that this is a simplified representation of the system's behavior.
 It may omit some insignificant details or vary in the actual program code.
 
-=== Entries
+== Entries
 
 There are three main behaviors that reflect interactions that can be executed directly or indirectly by the client: CRUD requests to a given resource, claiming log data, and discovering this data.
 The reference section defines subsequences that may be used in each of these interactions.
 
-==== Authorised CRUD Requests
+=== Authorised CRUD Requests
 
 The process of authorizing a request can be divided into two steps.
 Firstly, an authorization token will be requested using a Client Credentials Flow as defined in https://datatracker.ietf.org/doc/html/rfc6749#section-4.4[RFC 6749], although other authorization processes are also possible.
@@ -39,7 +38,7 @@ The key difference is that the request and response will be forwarded by the pro
 include::resources/diagrams/sd_Request_a_resource.puml[]
 ....
 
-==== Log Claiming
+=== Log Claiming
 
 Network logs are captured by storage, not by WebID, and it is necessary to associate the data with a WebID at some point to make it readable to the owner.
 This is done by a claiming mechanism.
@@ -53,7 +52,7 @@ Both connections are handled by the DPC API server, and when the connections are
 include::resources/diagrams/sd_Log_claiming.puml[]
 ....
 
-==== Log Discovery
+=== Log Discovery
 
 The logs in the DPC API server are represented as routes.
 These routes will either return an empty turtle file or attempt to resolve the claim and receive the actual files from the claimed storages.
@@ -65,9 +64,9 @@ These routes will either return an empty turtle file or attempt to resolve the c
 include::resources/diagrams/sd_Log_discovery.puml[]
 ....
 
-=== References
+== References
 
-==== Authentication with Client Credentials
+=== Authentication with Client Credentials
 
 To obtain the authorization token, send a POST request to the authorization server with the client ID and secret in the authentication header.
 It is also necessary to set the grant type to `client_credentials` and the scope to `webid`.
@@ -80,7 +79,7 @@ The proxy will forward requests as every CRUD request because the authorization 
 include::resources/diagrams/sd_Authentication_with_Client_Credentials.puml[]
 ....
 
-==== Forwarded Request
+=== Forwarded Request
 
 Request forwarding is quite simple, the proxy receives a CRUD request that is passed through the server.
 The returning server response will take the path back to the original requester.
@@ -95,7 +94,7 @@ In certain cases, it may be necessary to read and evaluate the server response, 
 include::resources/diagrams/sd_Forwarded_request.puml[]
 ....
 
-==== DPC Middleware
+=== DPC Middleware
 
 The Data Privacy Cockpit is a Solid application that requires a dedicated agent and client credentials.
 The agent must log in before any other actions can be executed.
@@ -110,9 +109,9 @@ include::resources/diagrams/sd_DPC_middleware.puml[]
 ....
 
 // TODO
-// ==== Authentication with Code Flow
+// === Authentication with Code Flow
 
-==== Lookup Claim Data in Registry
+=== Lookup Claim Data in Registry
 
 The process of retrieving claimed data follows the data discovery outlined in the Solid Application Interoperability specification.
 If the data does not already exist, it will be created.
@@ -125,7 +124,7 @@ Finally, the registry data will be filtered from the set of data and returned.
 include::resources/diagrams/sd_Lookup_claim_data_in_registry.puml[]
 ....
 
-==== Create or Update Dataset
+=== Create or Update Dataset
 
 The update of a dataset begins with a test to determine if the resource already exists on the server.
 If it does, it will be received as a dataset.
@@ -139,7 +138,7 @@ The dataset will be enriched with new data and stored on the server.
 include::resources/diagrams/sd_Create_or_update_dataset.puml[]
 ....
 
-==== Initialize a Verification Code
+=== Initialize a Verification Code
 
 To initialize a verification code, start by generating a random key.
 The DPC API will store the verification code, storage, WebID, and additional data in a location accessible to the DPC agent for later verification.
@@ -152,7 +151,7 @@ If the DPC API cannot access the client's storage, the process will terminate wi
 include::resources/diagrams/sd_Initialize_a_verification_code.puml[]
 ....
 
-==== Write Verification Code to Client Storage
+=== Write Verification Code to Client Storage
 
 Writing the verification code consists of two steps.
 The first step is to write the verification code to the client's storage.
@@ -165,7 +164,7 @@ Since the code must be read by the DPC agent, the second step is to grant read p
 include::resources/diagrams/sd_Write_verification_code_to_client_storage.puml[]
 ....
 
-==== Write Verification Code to DPC Storage
+=== Write Verification Code to DPC Storage
 
 Before writing the verification code to the DPC storage, the agent must first verify their identity.
 After authorization, a new claim containing the verification code and associated storage will be added to the list of claims, along with the storage-related claims in the registry.
@@ -177,7 +176,7 @@ After authorization, a new claim containing the verification code and associated
 include::resources/diagrams/sd_Write_verification_code_to_dpc_storage.puml[]
 ....
 
-==== Get Claimed Resource
+=== Get Claimed Resource
 
 The process of obtaining a claimed resource will be managed by the DPC agent.
 The WebID from the active client session will be used to retrieve the claims from the registry, along with the storage and verification code for that claim.

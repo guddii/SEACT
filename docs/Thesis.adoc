@@ -232,9 +232,9 @@ include::Model.adoc[leveloffset=+2,tags=body]
 
 == Integration
 
-=== Software Architecture
+=== System Behavior
 
-include::Architecture.adoc[leveloffset=+2,tags=body]
+include::Behavior.adoc[leveloffset=+2,tags=body]
 
 === Logical Boundaries
 
