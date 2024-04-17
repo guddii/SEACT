@@ -33,9 +33,7 @@ The goal is to increase visibility and track requested resources from parties wi
 These requests should be processed and made manipulatable to achieve better control over the exposed data.
 All of these achievements should be established in a clear context and communicated through data APIs to ensure safety for new features and potential changes in Solid providers.
 
-=== Research
-
-==== Problem Definition
+=== Problem Definition
 
 As already mentioned, the Solid project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, organizations, and applications, referred to as agents.
 The backbone of the project is the Solid Protocol.
@@ -60,7 +58,7 @@ The first and second issues describe the need for traceability to control access
 A general problem with updates is addressed by the third through fifth issues.
 However, all of these concerns will affect the goals of this research.
 
-==== Objectives and Research Interest
+=== Objectives and Research Interest
 
 The research has two primary goals that align with the listed problems.
 The first goal is to achieve transparency regarding which data has been accessed and by whom.
@@ -82,7 +80,7 @@ As answering this question in one go is difficult, it will be divided into three
 The listed questions cannot definitively determine whether the proposed approach is suitable for use in productive environments.
 However, they can reveal the vulnerable aspects of this concept to determine whether this approach should be pursued in principle.
 
-==== Research Design
+=== Research Design
 
 The research will employ two different research methodologies, namely qualitative and quantitative, to address the research objectives and research interests.
 Regarding the qualitative analysis, it is intended to explain how the proposed approach will affect the system design as required by <<QUEST-1>>.
@@ -230,11 +228,11 @@ include::Topology.adoc[leveloffset=+2,tags=body]
 
 include::Model.adoc[leveloffset=+2,tags=body]
 
-== Integration
-
 === System Behavior
 
 include::Behavior.adoc[leveloffset=+2,tags=body]
+
+== Integration
 
 === Logical Boundaries
 
