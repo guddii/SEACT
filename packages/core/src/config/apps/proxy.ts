@@ -1,4 +1,5 @@
 import process from "node:process";
+import { randomUUID } from "node:crypto";
 import { SolidAppProxy } from "../../models/solid-app";
 
 export const PROXY = new SolidAppProxy({
@@ -9,4 +10,5 @@ export const PROXY = new SolidAppProxy({
     process.env.PROXY_OPENID_CONFIGURATION_URL ||
     "http://proxy.localhost:4000/.well-known/openid-configuration",
   featureLogging: Boolean(process.env.FEATURE_FLAG_LOGGING),
+  bypassToken: process.env.PROXY_BYPASS_TOKEN || randomUUID(),
 });
