@@ -31,7 +31,7 @@ Firstly, an authorization token will be requested using a Client Credentials Flo
 Secondly, the CRUD request will be sent with an authorization header and the response will be provided accordingly.
 The key difference is that the request and response will be forwarded by the proxy instance.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of an authorized CRUD request
+.<<UML>> 2.5.1{fn-uml} Sequence diagram of an authorized CRUD request
 [.text-center]
 [plantuml,format=svg]
 ....
@@ -45,7 +45,7 @@ This is done by a claiming mechanism.
 This requires a Solid application that has access to both the user storage and the DPC storage.
 Both connections are handled by the DPC API server, and when the connections are established, the API initializes an verification code on behalf of the client agent to be verified by the DPC API server when it discovers the logs.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the log claiming process
+.<<UML>> 2.5.1{fn-uml} Sequence diagram of the log claiming process
 [.text-center]
 [plantuml,format=svg]
 ....
@@ -57,7 +57,7 @@ include::resources/diagrams/sd_Log_claiming.puml[]
 The logs in the DPC API server are represented as routes.
 These routes will either return an empty turtle file or attempt to resolve the claim and receive the actual files from the claimed storages.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the discovery of logs
+.<<UML>> 2.5.1{fn-uml} Sequence diagram of the discovery of logs
 [.text-center]
 [plantuml,format=svg]
 ....
@@ -72,7 +72,7 @@ To obtain the authorization token, send a POST request to the authorization serv
 It is also necessary to set the grant type to `client_credentials` and the scope to `webid`.
 The proxy will forward requests as every CRUD request because the authorization server is not directly accessible.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the authentication using client credentials
+.<<UML>> 2.5.1{fn-uml} Sequence diagram of the authentication using client credentials
 [.text-center]
 [plantuml,format=svg]
 ....
@@ -87,7 +87,7 @@ Since the requester can be the proxy itself, there needs to be some kind of guar
 If the requester is someone other than the proxy, the Data Privacy Cockpit middleware can be executed.
 In certain cases, it may be necessary to read and evaluate the server response, which can be done during a response interception step.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the request being forwarded by the proxy
+.<<UML>> 2.5.1{fn-uml} Sequence diagram of the request being forwarded by the proxy
 [.text-center]
 [plantuml,format=svg]
 ....
@@ -101,7 +101,7 @@ The agent must log in before any other actions can be executed.
 If successful, the container resources of the requested resource will be searched until the corresponding storage is found or no more container resources are left to search.
 If a storage is found, access logs will be created or updated.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the Data Privacy Cockpit middleware
+.<<UML>> 2.5.1{fn-uml} Sequence diagram of the Data Privacy Cockpit middleware
 [.text-center]
 [plantuml,format=svg]
 ....
@@ -117,7 +117,7 @@ The process of retrieving claimed data follows the data discovery outlined in th
 If the data does not already exist, it will be created.
 Finally, the registry data will be filtered from the set of data and returned.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of the claim data lookup
+.<<UML>> 2.5.1{fn-uml} Sequence diagram of the claim data lookup
 [.text-center]
 [plantuml,format=svg]
 ....
@@ -131,7 +131,7 @@ If it does, it will be received as a dataset.
 Otherwise, a new dataset will be created.
 The dataset will be enriched with new data and stored on the server.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of an access log resource update
+.<<UML>> 2.5.1{fn-uml} Sequence diagram of an access log resource update
 [.text-center]
 [plantuml,format=svg]
 ....
@@ -144,7 +144,7 @@ To initialize a verification code, start by generating a random key.
 The DPC API will store the verification code, storage, WebID, and additional data in a location accessible to the DPC agent for later verification.
 If the DPC API cannot access the client's storage, the process will terminate without adding data to the DPC storage.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of initializing a verification code
+.<<UML>> 2.5.1{fn-uml} Sequence diagram of initializing a verification code
 [.text-center]
 [plantuml,format=svg]
 ....
@@ -157,7 +157,7 @@ Writing the verification code consists of two steps.
 The first step is to write the verification code to the client's storage.
 Since the code must be read by the DPC agent, the second step is to grant read permissions for the agent.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of writing a verification code to the clients' storage
+.<<UML>> 2.5.1{fn-uml} Sequence diagram of writing a verification code to the clients' storage
 [.text-center]
 [plantuml,format=svg]
 ....
@@ -169,7 +169,7 @@ include::resources/diagrams/sd_Write_verification_code_to_client_storage.puml[]
 Before writing the verification code to the DPC storage, the agent must first verify their identity.
 After authorization, a new claim containing the verification code and associated storage will be added to the list of claims, along with the storage-related claims in the registry.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of writing a verification code to the DPC storage
+.<<UML>> 2.5.1{fn-uml} Sequence diagram of writing a verification code to the DPC storage
 [.text-center]
 [plantuml,format=svg]
 ....
@@ -183,7 +183,7 @@ The WebID from the active client session will be used to retrieve the claims fro
 The DPC agent will then retrieve the verification code from the storage.
 If both verification codes match, the request will be forwarded by the DPC agent.
 
-.<<UML>> 2.5.1footnote:uml[https://www.omg.org/spec/UML/2.5.1] Sequence diagram of how to get a claimed resource
+.<<UML>> 2.5.1{fn-uml} Sequence diagram of how to get a claimed resource
 [.text-center]
 [plantuml,format=svg]
 ....
