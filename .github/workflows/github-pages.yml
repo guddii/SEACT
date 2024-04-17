@@ -45,6 +45,10 @@ jobs:
         uses: tonynv/asciidoctor-action@master
         with:
           program: "./scripts/docs/slides/html.sh"
+      - name: Copy reports
+        run: |
+          cp -r ./tests/jmeter/reports ./out
+        shell: bash
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact

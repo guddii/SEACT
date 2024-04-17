@@ -1,0 +1,50 @@
+{
+  "Read WebID HTTP Request without Logging" : {
+    "transaction" : "Read WebID HTTP Request without Logging",
+    "sampleCount" : 500,
+    "errorCount" : 0,
+    "errorPct" : 0.0,
+    "meanResTime" : 735.5259999999994,
+    "medianResTime" : 502.0,
+    "minResTime" : 133.0,
+    "maxResTime" : 2840.0,
+    "pct1ResTime" : 1694.5000000000002,
+    "pct2ResTime" : 1947.95,
+    "pct3ResTime" : 2317.71,
+    "throughput" : 0.6751592700718099,
+    "receivedKBytesPerSec" : 0.9276846611240591,
+    "sentKBytesPerSec" : 0.1094496472967973
+  },
+  "Total" : {
+    "transaction" : "Total",
+    "sampleCount" : 1000,
+    "errorCount" : 1,
+    "errorPct" : 0.1,
+    "meanResTime" : 740.3190000000002,
+    "medianResTime" : 507.0,
+    "minResTime" : 132.0,
+    "maxResTime" : 2840.0,
+    "pct1ResTime" : 1661.0,
+    "pct2ResTime" : 2021.9499999999985,
+    "pct3ResTime" : 2415.82,
+    "throughput" : 1.3499484994647455,
+    "receivedKBytesPerSec" : 1.8556808659312147,
+    "sentKBytesPerSec" : 0.23070408926399458
+  },
+  "Read WebID HTTP Request with Logging" : {
+    "transaction" : "Read WebID HTTP Request with Logging",
+    "sampleCount" : 500,
+    "errorCount" : 1,
+    "errorPct" : 0.2,
+    "meanResTime" : 745.1120000000006,
+    "medianResTime" : 507.5,
+    "minResTime" : 132.0,
+    "maxResTime" : 2640.0,
+    "pct1ResTime" : 1655.6000000000004,
+    "pct2ResTime" : 2134.5499999999997,
+    "pct3ResTime" : 2493.96,
+    "throughput" : 0.6766595752743177,
+    "receivedKBytesPerSec" : 0.9305681512916079,
+    "sentKBytesPerSec" : 0.12158726743210398
+  }
+}
