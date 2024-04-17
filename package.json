@@ -10,7 +10,10 @@
     "licensecheck": "pnpx license-checker --summary --onlyAllow 'MIT; BSD; MPL-2.0; ISC; Apache-2.0'",
     "lint": "turbo lint",
     "test": "dotenv -- turbo test",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "docs:research:html": "./scripts/docs/with-docker.sh ./scripts/docs/research/html.sh",
+    "docs:research:pdf": "./scripts/docs/with-docker.sh ./scripts/docs/research/pdf.sh",
+    "docs:slides:html": "./scripts/docs/with-docker.sh ./scripts/docs/slides/html.sh"
   },
   "devDependencies": {
     "@types/jest": "^29.5.4",

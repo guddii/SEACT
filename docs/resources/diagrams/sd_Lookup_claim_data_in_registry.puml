@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+skinparam sequenceReferenceBackgroundColor white
+
+mainframe **sd** Lookup Claim Data in Registry
+autonumber 1 1 "<b>[0]"
+
+participant "Proxy" as Proxy
+participant "Server" as Server
+
+        [->     Proxy       ++  : **GET** Registry data
+ref over Proxy, Server          : Authorization Client Credentials Flow ( DPC )
+ref over Proxy, Server          : Create or Update Dataset ( "/dpc/profile/card#id" , interopAgentData )
+ref over Proxy, Server          : Create or Update Dataset ( "/dpc/registries" , claimData )
+ref over Proxy, Server          : Create or Update Dataset ( "/dpc/registries" , interopDataRegistrationData )
+Proxy   -->     Proxy           : Find registry by monitored storage
+        [<--    Proxy       --  : Registry data
+
+@enduml

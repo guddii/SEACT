@@ -5,11 +5,12 @@
 [[Access_Control_List,Access Control List]] Access Control List:: An Access Control List is a document specifying permissions that determine access to a <<resource>>.
 [[Dataset,Dataset]] Dataset:: The representation of an <<RDF>> <<resource>> as a set of <<Thing, Things>>.
 [[Hypertext_Transfer_Protocol,Hypertext Transfer Protocol]] Hypertext Transfer Protocol:: A protocol for transferring data on the application layer.
-[[RDF_node,RDF node]] RDF node:: t.b.d
-[[RDF_triple,RDF triple]] RDF triple:: t.b.d
-[[Shape_Expression,Shape Expression]] Shape Expression:: t.b.d
-[[Shape_Tree,Shape Tree]] Shape Tree:: t.b.d.
+[[RDF_graph,RDF graph]] RDF graph:: An <<RDF>> graph is a set of <<RDF_triple, RDF triples>>.
+[[RDF_triple,RDF triple]] RDF triple:: An <<RDF>> triple is composed of three elements: the subject, the predicate, and the object.
+[[Shape_Expression,Shape Expression]] Shape Expression:: The Shape Expressions language is employed to describe the set of <<RDF_triple, RDF triples>> in a graph and the <<RDF_graph>> structures themselves.
+[[Shape_Tree,Shape Tree]] Shape Tree:: The Shape trees integrate RDF vocabularies, shapes, and resources into hierarchical structures.
 [[Solid_app,Solid app]] Solid app:: Solid app is a software that accesses and stores data from one or more <<storage>> systems.
+[[Solid,Solid]] Solid:: Solid is a project for web decentralization. The name derives from Social Linked Data.
 [[Thing,Thing]] Thing:: A chunk of RDF data within a Dataset, composed of subject, predicate, and object.
 [[Uniform_Resource_Identifier,Uniform Resource Identifier]] Uniform Resource Identifier:: A Uniform Resource Identifier identifies a resource.
 [[WebID,WebID]] WebID:: A WebID is an <<HTTP>> <<URI>> that points to an <<agent>>.
