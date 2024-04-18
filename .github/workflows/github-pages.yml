@@ -30,6 +30,11 @@ jobs:
         run: |
           mv ./docs/README.adoc ./docs/index.adoc
         shell: bash
+      - name: Copy reports
+        run: |
+          mkdir ./out/
+          cp -r ./tests/jmeter/reports/ ./out/reports/
+        shell: bash
       - name: Build HTML
         id: build-html
         uses: tonynv/asciidoctor-action@master
@@ -45,10 +50,6 @@ jobs:
         uses: tonynv/asciidoctor-action@master
         with:
           program: "./scripts/docs/slides/html.sh"
-      - name: Copy reports
-        run: |
-          cp -r ./tests/jmeter/reports ./out
-        shell: bash
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
