@@ -1,0 +1,18 @@
+[preamble]
+= Notation
+
+The diagrams in this document were generated using Asciidoctor Diagram {asciidoctor-diagram-version}{fn-asciidoctor-diagram} and its bundled PlantUML{fn-plantuml} version.
+
+Unless otherwise specified, all framed diagrams will use the UML 2.5.1{fn-uml} standard, constrained by the limitations of PlantUML. As defined in the standard, the following abbreviations will be utilized to identify the type of UML diagram:
+
+// See https://www.omg.org/spec/UML/2.5.1/PDF#page=726
+[horizontal]
+// act:: activity frames
+cmp:: component diagram
+// dep:: deployment frames
+sd:: interaction diagram
+// pkg:: package frames
+// stm:: state machine frames
+// uc::  use case frames
+
+Notations that are not applicable to the entire document will be described in detail in the relevant section.

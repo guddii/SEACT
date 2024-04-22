@@ -1,0 +1,41 @@
+= Solid
+
+The Solid Project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
+The ecosystem comprises various specifications and associated technologies, primarily listed in the Solid Technical Reports.
+The most fundamental specification is the Solid Protocol, also known as core, which is listed there.
+
+== Solid Protocol
+
+According to the Mozilla Developer Networkfootnote:[https://developer.mozilla.org/en-US/docs/Glossary/Protocol], a protocol is a set of rules for exchanging data between computers. citenp:[fischer_lexikon_2011(706)] provide additional clarification on this topic.
+The protocol includes setup, termination, collision prevention or correction, content integrity, and the actual actions within the same layer.
+
+The Solid Protocol is a type of protocol that encapsulates a modified set of new and existing specifications to fit into the ecosystem.
+The Protocol Specification includes additions and adoptions, or references to the original ones cite:[sarven_solid_2022].
+The specifications included here are only representative of a subset of the definitions relevant to this research, primarily focusing on resources, identity, authentication and authorization.
+
+=== Resource (Storage Resource)
+
+=== Identity (WebID)
+
+=== Authentication
+
+// TODO: Authenticated and unauthenticated requests
+
+==== Access Control List
+
+==== Web Access Control
+
+==== Access Control Policy
+
+=== Authorization
+
+==== Solid OpenID Connect
+
+==== Security Token
+
+== Solid Provider
+
+A Solid Provider is a web server that uses the Solid Protocol and provides the specified APIs and functions as a service.
+These services can be hosted on a private server or used from public hosting providers.
+The most common self-hosted implementations are Community Solid Server and Node Solid Server, among othersfootnote:[https://solidproject.org/developers/tutorials/getting-started#own-server].
+Both are available on different public hosting providers, in addition to Inrupt PodSpacesfootnote:[https://ap.inrupt.com], which is only accessible as cloud software.

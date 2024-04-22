@@ -9,7 +9,7 @@ include::partials/Preface.adoc[]
 [abstract]
 .Abstract
 --
-An analysis of extending the Solid protocol with a server-side application layer proxy An analysis of extending the Solid protocol with a server-side application layer proxy
+An analysis of extending the Solid protocol with a server-side application layer proxy
 --
 
 include::partials/Glossary.adoc[]
@@ -18,9 +18,20 @@ include::partials/Acronyms.adoc[]
 
 include::partials/Namespaces.adoc[]
 
+include::partials/Notation.adoc[]
+
+'''
+
+This document is divided into five sections: the Preamble, Theoretical Framework, Design and Implementation, Analysis, and Reflection.
+The <<Preamble>> will refine the research context, the terminology used in this document, and the related work in this research area.
+Fundamental concepts, such as data sovereignty and recommended quality aspects, will be summarized in the <<Theoretical Framework>>.
+The <<Design and Implementation>> section will explain the system design concept and the technological choices made.
+The <<Analysis>> section will define the experimental conditions and validate them with the quality criteria described in the Theoretical Framework.
+The <<Reflection>> section will discuss the considerations from the Preamble, describe future work, and conclude the overall research.
+
 = Preamble
 
-== Introduction
+== Research
 
 The Solid Project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
 The technology is new and not yet fully mature.
@@ -33,190 +44,40 @@ The goal is to increase visibility and track requested resources from parties wi
 These requests should be processed and made manipulatable to achieve better control over the exposed data.
 All of these achievements should be established in a clear context and communicated through data APIs to ensure safety for new features and potential changes in Solid providers.
 
-=== Problem Definition
-
-As already mentioned, the Solid project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, organizations, and applications, referred to as agents.
-The backbone of the project is the Solid Protocol.
-The protocol specifies how agents store their data securely in decentralized data storages, also known as Pods.
-These storage systems can be compared to secure, personal web servers for data, such as Dropbox, ownCloud, Nextcloud, or similar software, but with a specified public API.
-This interface utilizes WebIDs to identify the agents within the system.
-As the storage owner has control over which agents can access it, they can choose to restrict access to only WebIDs, completely restrict access, or make it publicly accessible.
-
-The Solid Community Group has been developing this technological approach since 2018. The ecosystem is currently in its early stages of development, and some specifications are still in draft form.
-Therefore, it may lack some features that are highly recommended in productive environments.
-This results in the following issues that require attention:
-
-[horizontal,labelwidth=15]
-[[ISSUE-1,ISSUE-1]] ISSUE-1:: The Solid protocol only specifies the ability to grant or deny access.
-It does not track the actual request for a resource.
-[[ISSUE-2,ISSUE-2]] ISSUE-2:: Solid is based on RDF and therefore favors interconnected data, what increased the demand for the stored data.
-[[ISSUE-3,ISSUE-3]] ISSUE-3:: There may be changes to existing specifications as they need to be improved or are still in the draft stage.
-[[ISSUE-4,ISSUE-4]] ISSUE-4:: The Solid ecosystem will be expanded with newly introduced specifications or APIs.
-[[ISSUE-5,ISSUE-5]] ISSUE-5:: New Solid providers are being introduced because of their increasing popularity.
-
-The first and second issues describe the need for traceability to control access to one's own data.
-A general problem with updates is addressed by the third through fifth issues.
-However, all of these concerns will affect the goals of this research.
-
-=== Objectives and Research Interest
-
-The research has two primary goals that align with the listed problems.
-The first goal is to achieve transparency regarding which data has been accessed and by whom.
-This would significantly increase control over one's own data.
-The second objective is to find a solution that can handle the fast-moving Solid ecosystem.
-
-The goals described leads to the following *key research question* this paper aims to address:
-
-> Is there a Solid-based system design that enables increased transparency and access control for requested personal data?
-> Can the system use the network interface in a vendor-agnostic way without a significant decrease in performance?
-
-As answering this question in one go is difficult, it will be divided into three sub-questions:
-
-[horizontal,labelwidth=15]
-[[QUEST-1,QUEST-1]] QUEST-1:: Can a Solid-based system meet both <<Functional Requirements,functional>> and <<Non-Functional Requirements, non-functional requirements>> without compromising system design?
-[[QUEST-2,QUEST-3]] QUEST-2:: To what extent does the process contribute to the increase in network load?
-[[QUEST-3,QUEST-3]] QUEST-3:: What is the amount of storage capacity that is required for the monitoring data?
-
-The listed questions cannot definitively determine whether the proposed approach is suitable for use in productive environments.
-However, they can reveal the vulnerable aspects of this concept to determine whether this approach should be pursued in principle.
-
-=== Research Design
-
-The research will employ two different research methodologies, namely qualitative and quantitative, to address the research objectives and research interests.
-Regarding the qualitative analysis, it is intended to explain how the proposed approach will affect the system design as required by <<QUEST-1>>.
-On the other hand, a quantitative analysis will quantify the expected increase in the network load and the storage requirements in response to <<QUEST-2>> and <<QUEST-3>>.
-
-The identified analyses will be conducted using data and insights collected from an experimental prototype.
-The prototype must satisfy the specified requirements, which are derived from the problem definition.
-
-The sampling will consider the schema values listed in xref:tblSamplingSchema[xrefstyle=short].
-In order to have comparable values, each sample will be taken with and without the considered approach.
-
-.Sampling Schema
-[cols="1,2,2",id="tblSamplingSchema"]
-|===
-|Item | Format | Example
-
-| Timestamp
-| UTC
-| `Tue, 16 Apr 2024 10:38:17 GMT`
-
-| Latency
-| millisecond
-| `37`
-|===
-
-It should be noted that the general proxy functions of delegating and forwarding requests have been excluded from this view.
-There are various implementations of proxies that must not be considered in this research.
-However, the DPC proxy module, which runs before and after the client response and request, has been included.
-
-// Todo: How will the data be analysed?
-
-=== Concept and Requirements
-
-The concept is inspired by existing software solutions in the field of e-governance, such as _X-Road_ from Estonia and _XDatenschutzcockpit_, which is currently being developed in Germany for access control of citizen data.
-Both systems have an embedded logging system that monitors access data.
-Since they are tied to the specific context in which they are used, the idea of a *Data Privacy Cockpit* will be ported to the Solid ecosystem.
-
-When applying the concept to the solid context, two fundamental software components can be identified to solve the problems under the given premises:
-
-[horizontal]
-DPC Proxy:: A server-side proxy at the application level monitors data traffic and creates logs if necessary.
-DPC Client:: The traffic data from the reverse proxy is displayed and managed by the client.
-
-The concept idea's data capturing unit will be implemented as a proxy to meet the requirements of vendor-agnostic software that is secure from updates, as criticized in <<ISSUE-3>>, <<ISSUE-4>>, and <<ISSUE-5>>.
-However, this requires the application to be a Solid app, as it communicates over HTTP APIs with the actual Solid provider.
-Since every request passes through the reverse proxy, there is a high risk of resulting in an inefficient software solution.
-
-The tension between vendor-agnostic software and efficiency is a key consideration for the solution's requirements, particularly in non-functional requirements.
-However, the functional requirements are straightforward.
-
-==== Functional Requirements
-
-The following list outlines the minimum functions that the prototype must have in order to answer the questions.
-
-[horizontal,labelwidth=15]
-[[REQ-F1,REQ-F1]] REQ-F1:: Access logs with different views depending on the mandate.
-[[REQ-F2,REQ-F2]] REQ-F2:: Transmission logs with the specific content of the transmitted resource.
-// [[REQ-F3,REQ-F3]] REQ-F3:: Rule-based filtering of network requests by the owner of the resource.
-
-==== Non-Functional Requirements
-
-In comparison to the functional requirements, establishing the following non-functional requirements is more challenging.
-However, they are even more important as they verify the general conceptual idea.
-
-[horizontal,labelwidth=15]
-[[REQ-NF1,REQ-NF1]] REQ-NF1:: Ensuring compatibility with the current version of the Solid protocol.
-[[REQ-NF2,REQ-NF2]] REQ-NF2:: Conformity with the general properties of a proxy must be guaranteed.
-[[REQ-NF3,REQ-NF3]] REQ-NF3:: Efficiency in terms of response times and resource consumption must be appropriate.
-[[REQ-NF4,REQ-NF4]] REQ-NF4:: Metadata that could be extracted from the request should be analysed and logs should be enhanced accordingly.
-
-The proposed solution is based on functional and non-functional aspects.
-The objective is to develop a prototype that meets the client's requirement for traceability of accessed resources while operating accurately within a Solid ecosystem.
+include::partials/chapter/Problem_Definition.adoc[leveloffset=+2]
+include::partials/chapter/Objectives_and_Research_Interest.adoc[leveloffset=+2]
+include::partials/chapter/Research_Design.adoc[leveloffset=+2]
+include::partials/chapter/Concept_and_Requirements.adoc[leveloffset=+2]
 
 == Terminology
 
 This section provides definitions for the central terms used.
 Basic terms will only be included in the abbreviation section or the glossary due to the limited scope of this section.
 
-=== Solid Project, Ecosystem, and Protocol
+include::partials/chapter/Solid.adoc[leveloffset=+2]
+include::partials/chapter/Monitoring.adoc[leveloffset=+2]
+include::partials/chapter/System.adoc[leveloffset=+2]
+include::partials/chapter/Proxy.adoc[leveloffset=+2]
 
-The Solid Project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
-The ecosystem comprises various specifications and associated technologies, primarily listed in the Solid Technical Reports.
-The most fundamental specification is the Solid Protocol, also known as core, which is listed there.
+== Related Work
 
-==== Solid Protocol
-
-According to the Mozilla Developer Networkfootnote:[https://developer.mozilla.org/en-US/docs/Glossary/Protocol], a protocol is a set of rules for exchanging data between computers. citenp:[fischer_lexikon_2011(706)] provide additional clarification on this topic.
-The protocol includes setup, termination, collision prevention or correction, content integrity, and the actual actions within the same layer.
-
-The Solid Protocol is a type of protocol that encapsulates a modified set of new and existing specifications to fit into the ecosystem.
-The Protocol Specification includes additions and adoptions, or references to the original ones cite:[sarven_solid_2022].
-
-==== Solid Provider
-
-A Solid Provider is a web server that uses the Solid Protocol and provides the specified APIs and functions as a service.
-These services can be hosted on a private server or used from public hosting providers.
-The most common self-hosted implementations are Community Solid Server and Node Solid Server, among othersfootnote:[https://solidproject.org/developers/tutorials/getting-started#own-server].
-Both are available on different public hosting providers, in addition to Inrupt PodSpacesfootnote:[https://ap.inrupt.com], which is only accessible as cloud software.
-
-=== Server-Side Application Layer Proxy
-
-A proxy is a structural design pattern in software development that acts as It should serve as a placeholder for another object to access or control, in order to improve efficiency and reduce complexity.
-
-The internet operates on the Client-Server model, where a client requests a resource from the server, which responds accordingly.
-Introducing a proxy to this model involves adding another server.
-This proxy server accepts requests and delegates them to the actual server.
-The response is then forwarded to the requesting party.
-However, this offers the opportunity for a proxy to isolate either the client or the server from the network.
-When referring to a server-side proxy, isolation of the server is described, as shown in xref:Proxy[xrefstyle=short] cite:[luotonen_world-wide_1994].
-
-.<<UML>> Component Diagram of the Client-Server model utilizing a Proxy
-[.text-center]
-[plantuml,format=svg,id="Proxy"]
-....
-agent Client
-cloud Network
-agent Proxy as "Proxy\nServer"
-agent Server as "Remote\nServer"
-
-Client  -> Network
-Network -> Proxy
-Proxy   -> Server
-Server  -> Proxy
-Proxy   -> Network
-Network -> Client
-....
-
-In addition to its position within the network, the Proxy can also have a position in the OSI model.
-The model describes how data will be transported in seven layers, each with different functions.
-Every layer can only communicate with its closest layer, starting with the physical layer that transmits a raw bitstream over a physical medium, up to the seventh layer, the application layer.
-This is the human interaction layer, through which applications can access network services.
-An Application Layer Proxy operates within this layer.
-
-In this document, the Server-Side Application Layer Proxy will be referred to as the (Reverse) Proxy for simplicity.
+include::partials/chapter/Related_Work.adoc[leveloffset=+2]
 
 = Theoretical Framework
+
+== Data Sovereignty
+
+include::partials/chapter/Limits_of_Solid.adoc[leveloffset=+2]
+include::partials/chapter/Data_Trustee.adoc[leveloffset=+2]
+include::partials/chapter/Data_Capturing_Strategies.adoc[leveloffset=+2]
+include::partials/chapter/Ownership_Verification.adoc[leveloffset=+2]
+
+== Quality Model
+
+include::partials/chapter/System_Design_Quality.adoc[leveloffset=+2]
+include::partials/chapter/Performance_Efficiency.adoc[leveloffset=+2]
+
+= Design and Implementation
 
 == System Design
 
@@ -232,37 +93,22 @@ include::Model.adoc[leveloffset=+2,tags=body]
 
 include::Behavior.adoc[leveloffset=+2,tags=body]
 
-== Integration
+== Technology
 
-=== Logical Boundaries
-
-=== Application Programming Interfaces
-
-== Quality Model
-
-=== Characteristics
-
-=== Indicators
+include::partials/chapter/Technology_Stack.adoc[leveloffset=+2]
+include::partials/chapter/Limits_of_the_Technology_Stack.adoc[leveloffset=+2]
+include::partials/chapter/Deviation_from_Specification.adoc[leveloffset=+2]
 
 = Analysis
 
-== Methodology
-
-=== Laboratory Prototype
-
-=== Quality Management
-
-== Result Presentation
-
-== Boundaries of the Composition
-
-=== Possible Uses of the Concept
-
-=== Resource Requirements
+include::partials/chapter/Experiments.adoc[leveloffset=+1]
+include::partials/chapter/Validation.adoc[leveloffset=+1]
 
 = Reflection
 
 == Discussion
+
+== Futur Work
 
 == Conclusion
 
@@ -276,3 +122,9 @@ For the first time functions can be viewed and controlled by users, as they own 
 = Bibliography
 
 bibliography::[]
+
+[colophon]
+= Colophon
+
+ifdef::backend-html5[Built with Asciidoctor {asciidoctor-version}, Asciidoctor Bibtex {asciidoctor-bibtex-version} and Asciidoctor Diagram {asciidoctor-diagram-version} on {ostype}.]
+ifndef::backend-html5[Built with Asciidoctor PDF {asciidoctor-pdf-version}, Asciidoctor Bibtex {asciidoctor-bibtex-version} and Asciidoctor Diagram {asciidoctor-diagram-version} on {ostype}.]

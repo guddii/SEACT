@@ -1,0 +1,44 @@
+= Concept and Requirements
+
+The concept is inspired by existing software solutions in the field of e-governance, such as _X-Road_ from Estonia and _XDatenschutzcockpit_, which is currently being developed in Germany for access control of citizen data.
+Both systems have an embedded logging system that monitors access data.
+Since they are tied to the specific context in which they are used, the idea of a *Data Privacy Cockpit* will be ported to the Solid ecosystem.
+
+When applying the concept to the solid context, two fundamental software components can be identified to solve the problems under the given premises:
+
+[horizontal]
+DPC Proxy:: A server-side proxy at the application level monitors data traffic and creates logs if necessary.
+DPC Client:: The traffic data from the reverse proxy is displayed and managed by the client.
+
+The concept idea's data capturing unit will be implemented as a proxy to meet the requirements of vendor-agnostic software that is secure from updates, as criticized in <<ISSUE-3>>, <<ISSUE-4>>, and <<ISSUE-5>>.
+However, this requires the application to be a Solid app, as it communicates over HTTP APIs with the actual Solid provider.
+Since every request passes through the reverse proxy, there is a high risk of resulting in an inefficient software solution.
+
+The tension between vendor-agnostic software and efficiency is a key consideration for the solution's requirements, particularly in non-functional requirements.
+However, the functional requirements are straightforward.
+
+== Functional Requirements
+
+The following list outlines the minimum functions that the prototype must have in order to answer the questions.
+
+[horizontal,labelwidth=15]
+[[REQ-F1,REQ-F1]] REQ-F1:: Access logs with different views depending on the mandate.
+[[REQ-F2,REQ-F2]] REQ-F2:: Transmission logs with the specific content of the transmitted resource.
+// [[REQ-F3,REQ-F3]] REQ-F3:: Rule-based filtering of network requests by the owner of the resource.
+
+== Non-Functional Requirements
+
+In comparison to the functional requirements, establishing the following non-functional requirements is more challenging.
+However, they are even more important as they verify the general conceptual idea.
+
+[horizontal,labelwidth=15]
+[[REQ-NF1,REQ-NF1]] REQ-NF1:: Ensuring compatibility with the current version of the Solid protocol.
+[[REQ-NF2,REQ-NF2]] REQ-NF2:: Conformity with the general properties of a proxy must be guaranteed.
+[[REQ-NF3,REQ-NF3]] REQ-NF3:: Efficiency in terms of response times and resource consumption must be appropriate.
+[[REQ-NF4,REQ-NF4]] REQ-NF4:: Metadata that could be extracted from the request should be analysed and logs should be enhanced accordingly.
+
+The proposed solution is based on both functional and non-functional aspects.
+The objective is to develop a prototype that meets the client’s requirement for traceability of accessed resources while operating accurately within a Solid ecosystem.
+
+The conceptual idea is considered successful if the requirements could be satisfied adequately.
+The adequacy will be evaluated with the prototype, as described in the <<Research Design>>.

@@ -1,0 +1,46 @@
+= Proxy
+
+A proxy is a structural design pattern in software development that serves as a placeholder for another object to access or control.
+This improves efficiency and reduces complexity.
+In this case, the accessed object is the Solid Provider.
+
+Proxies can be classified into a variety of groups.
+In this study, we focus on web proxies, as the communication between the proxy and the Solid Provider will use HTTP APIs.
+The subsequent categorization of this research is based on the position within the client-server model, as well as the OSI layer in which it is operational.
+
+== Server-Side Proxy
+
+The internet operates on the Client-Server model, where a client requests a resource from the server, which responds accordingly.
+Introducing a proxy to this model involves adding another server.
+This proxy server accepts requests and delegates them to the actual server.
+The response is then forwarded to the requesting party.
+However, this offers the opportunity for a proxy to isolate either the client or the server from the network.
+When referring to a server-side proxy, isolation of the server is described, as shown in xref:Proxy[xrefstyle=short] cite:[luotonen_world-wide_1994].
+
+.<<UML>> Component Diagram of the Client-Server model utilizing a Proxy
+[.text-center]
+[plantuml,format=svg,id="Proxy"]
+....
+agent Client
+cloud Network
+agent Proxy as "Proxy\nServer"
+agent Server as "Remote\nServer"
+
+Client  -> Network
+Network -> Proxy
+Proxy   -> Server
+Server  -> Proxy
+Proxy   -> Network
+Network -> Client
+....
+
+== Application Layer Proxy
+
+In addition to its position within the network, the Proxy can also have a position in the OSI model.
+The model describes how data will be transported in seven layers, each with different functions.
+Every layer can only communicate with its closest layer, starting with the physical layer that transmits a raw bitstream over a physical medium, up to the seventh layer, the application layer.
+This is the human interaction layer, through which applications can access network services.
+An Application Layer Proxy operates within this layer.
+
+In the following text, the term "Proxy" will be used to refer to the Server-Side Application Layer proxy for the sake of simplicity.
+However, it should be noted that it will indeed satisfy the characteristics of a proxy of this kind.

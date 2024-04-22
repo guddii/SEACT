@@ -14,11 +14,15 @@ asciidoctor-pdf \
     --require asciidoctor-diagram \
     --destination-dir=out \
     --theme docs/resources/themes/basic.yml \
+    --attribute asciidoctor-bibtex-version=$ASCIIDOCTOR_BIBTEX_VERSION \
+    --attribute asciidoctor-diagram-version=$ASCIIDOCTOR_DIAGRAM_VERSION \
+    --attribute asciidoctor-pdf-version=$ASCIIDOCTOR_PDF_VERSION \
     --attribute github-ref=$GITHUB_REF \
     --attribute github-repository=$GITHUB_REPOSITORY \
     --attribute github-run-id=$GITHUB_RUN_ID \
     --attribute github-server-url=$GITHUB_SERVER_URL \
     --attribute github-sha=$GITHUB_SHA \
+    --attribute ostype=$OSTYPE \
     --attribute revdate=$REVDATE \
     --attribute revnumber=$REVNUMBER \
     --backend=pdf \

@@ -4,8 +4,6 @@ hide empty members
 skinparam nodesep 50
 skinparam ranksep 30
 
-mainframe **dm** Logical Data Model
-
 entity  "foaf:PersonalProfileDocument" as WebID_Client << (D,orange) Dataset >> {
 }
 note top: The profile of the any client agent

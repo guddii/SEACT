@@ -1,0 +1,31 @@
+= Research Design
+
+The research will employ two different research methodologies, namely qualitative and quantitative, to address the research objectives and research interests.
+Regarding the qualitative analysis, it is intended to explain how the proposed approach will affect the system design as required by <<QUEST-1>>.
+On the other hand, a quantitative analysis will quantify the expected increase in the network load and the storage requirements in response to <<QUEST-2>> and <<QUEST-3>>.
+
+The identified analyses will be conducted using data and insights collected from an experimental prototype.
+The prototype must satisfy the specified requirements, which are derived from the problem definition.
+
+The sampling will consider the schema values listed in xref:tblSamplingSchema[xrefstyle=short].
+In order to have comparable values, each sample will be taken with and without the considered approach.
+
+.Sampling Schema
+[cols="1,2,2",id="tblSamplingSchema"]
+|===
+|Item | Format | Example
+
+| Timestamp
+| UTC
+| `Tue, 16 Apr 2024 10:38:17 GMT`
+
+| Latency
+| millisecond
+| `37`
+|===
+
+It should be noted that the general proxy functions of delegating and forwarding requests have been excluded from this view.
+There are various implementations of proxies that must not be considered in this research.
+However, the DPC proxy module, which runs before and after the client response and request, has been included.
+
+// Todo: How will the data be analysed?
