@@ -1,0 +1,84 @@
+@startuml
+top to bottom direction
+hide empty members
+skinparam nodesep 60
+skinparam ranksep 30
+skinparam SameClassWidth true
+
+mainframe **dm** Solid Application Interoperability Data Registry with Claim Addition
+
+entity  "foaf:PersonalProfileDocument" as WebID_Client << (D,orange) Dataset >> {
+}
+note top: The profile of the any client agent
+entity "**claim:Verification**" as Verification << (T,orchid) **Thing** >> #line.bold  {
+    **claim:verificationCode**
+}
+entity "foaf:PersonalProfileDocument" as WebID_DPC << (D,orange) Dataset >> {
+    id
+}
+note left: The profile of the DPC agent
+entity "interop:Agent" as SocialAgent << (T,orchid) Thing >> {
+    interop:hasRegistrySet
+}
+entity "Registry Set" as RegistrySet << (D,orange) Dataset >> {
+    **ab674650**
+}
+note left: Hash values must be unique, e.g. the\na SHAKE256 encoded storage URL.
+entity "interop:DataRegistry" as DataRegistry << (T,orchid) Thing >> {
+    interop:hasDataRegistration
+}
+entity "**claim:Registry**" as ClaimRegistry << (T,orchid) **Thing** >> #line.bold {
+    **claim:trustee**
+    **claim:monitoredStorage**
+    **claim:verificationResource**
+    **claim:verificationCode**
+    **claim:claimedData**
+}
+entity "**ldp:Container**" as Container1 << (D,orange) **Dataset** >> #line.bold {
+   **ldp:contains**
+}
+note bottom: Root of all claimed data.
+entity "interop:DataRegistration" as DataRegistration << (D,orange) Dataset >> {
+    interop:registeredShapeTree
+}
+entity "ldp:Container" as Container2 << (D,orange) Dataset >> {
+    ldp:contains
+}
+note bottom: Resource container\nfor all access logs.
+entity "AccessLog" as AccessLog << (D,orange) Dataset >>{
+    ...
+}
+entity "AccessLogRegistrationTree" as AccessLogRegistrationTree << (S,yellow) Shape Tree >> {
+    st:contains
+}
+entity "AccessLogTree" as AccessLogTree << (S,yellow) Shape Tree >> {
+    st:shape
+}
+entity "AccessLogShape" as AccessLogShape << (S,yellow) Shape Expression >> {
+    ...
+}
+entity "AccessLogVocabulary" as AccessLogVocabulary << (D,orange) Dataset >> {
+    ...
+}
+
+WebID_Client                            |o-down-o|          Verification                : > owns
+WebID_DPC::id                           |o-down-o|          SocialAgent                 : Path [1]
+SocialAgent::hasRegistrySet             |o-down-o|          RegistrySet                 : Path [1]
+RegistrySet::ab674650                   }|-down-o|          DataRegistry                : Path [1,1]
+DataRegistry::hasDataRegistration       ||-down-|{          DataRegistration            : Path [1,1,1]
+DataRegistration::registeredShapeTree   |o-down-o|          AccessLogRegistrationTree   : Path [1,1,1], [1,2,1,1]
+AccessLogRegistrationTree::contains     |o-down-o|          AccessLogTree               : Path [1,1,1], [1,2,1,1]
+AccessLogTree::shape                    |o-down-o|          AccessLogShape              : Path [1,1,1], [1,2,1,1]
+AccessLogShape                          |o-down-o|          AccessLogVocabulary         : Path [1,1,1], [1,2,1,1]
+DataRegistry::hasDataRegistration       }|-down-o|          Container2                  : Path [1,1,2]
+Container2::contains                    |o-down-|{          AccessLog                   : Path [1,1,2], [1,2,2]
+RegistrySet::ab674650                   }|-down[bold]-o|    ClaimRegistry               : **Path [1,2]**
+ClaimRegistry::claimedData              |o-down[bold]-o|    Container1                  : **Path [1,2,1]**
+Container1::contains                    |o-down[bold]-|{    DataRegistration            : **Path [1,2,1,1]**
+Container1::contains                    |o-down[bold]-|{    Container2                  : **Path [1,2,2]**
+ClaimRegistry::verificationResource     |o-left[bold]-o|    Verification                : **Path [1,2,2]**
+
+note "The shape will be satisfied" as Note
+AccessLogShape .. Note
+Note .. AccessLog
+@enduml

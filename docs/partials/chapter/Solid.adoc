@@ -6,7 +6,7 @@ The most fundamental specification is the Solid Protocol, also known as core, wh
 
 == Solid Protocol
 
-According to the Mozilla Developer Networkfootnote:[https://developer.mozilla.org/en-US/docs/Glossary/Protocol], a protocol is a set of rules for exchanging data between computers. citenp:[fischer_lexikon_2011(706)] provide additional clarification on this topic.
+According to the citenp:[mozilla_developer_network_protocol_2023], a protocol is a set of rules for exchanging data between computers. citenp:[fischer_lexikon_2011(706)] provide additional clarification on this topic.
 The protocol includes setup, termination, collision prevention or correction, content integrity, and the actual actions within the same layer.
 
 The Solid Protocol is a type of protocol that encapsulates a modified set of new and existing specifications to fit into the ecosystem.

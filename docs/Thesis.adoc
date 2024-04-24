@@ -1,40 +1,33 @@
 = Solid-Based Extended Access Control and Traceability in Data-Driven Web-Based Systems
-// Global Attributes
-include::partials/Attributes.adoc[]
+//Front matter
+include::partials/Front_matter.adoc[]
 
-include::partials/Preface.adoc[]
-
-<<<
+include::partials/Divider.adoc[]
 
 [abstract]
 .Abstract
 --
-An analysis of extending the Solid protocol with a server-side application layer proxy
+The Solid Project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
+The technology is still in development and not yet fully evolved.
+This work proposes an experimental vendor-agnostic approach of extending Solid via a server-side application layer proxy, with the objective of increasing the traceability and access control of requested resources.
+It also considers the impact of this approach on the system design and performance efficiency.
 --
 
-include::partials/Glossary.adoc[]
+include::partials/Divider.adoc[]
 
-include::partials/Acronyms.adoc[]
-
-include::partials/Namespaces.adoc[]
-
-include::partials/Notation.adoc[]
-
-'''
-
-This document is divided into five sections: the Preamble, Theoretical Framework, Design and Implementation, Analysis, and Reflection.
-The <<Preamble>> will refine the research context, the terminology used in this document, and the related work in this research area.
+This document is divided into five sections: the Introduction, Theoretical Framework, Design and Implementation, Analysis, and Reflection.
+The <<Introduction>> will refine the research context, the terminology used in this document, and the related work in this research area.
 Fundamental concepts, such as data sovereignty and recommended quality aspects, will be summarized in the <<Theoretical Framework>>.
 The <<Design and Implementation>> section will explain the system design concept and the technological choices made.
 The <<Analysis>> section will define the experimental conditions and validate them with the quality criteria described in the Theoretical Framework.
-The <<Reflection>> section will discuss the considerations from the Preamble, describe future work, and conclude the overall research.
+The <<Reflection>> section will discuss the considerations from the Introduction, describe future work, and conclude the overall research.
 
-= Preamble
+= Introduction
 
 == Research
 
 The Solid Project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
-The technology is new and not yet fully mature.
+The technology is still in development and not yet fully evolved.
 The current version is missing some essential features required for production environments.
 Ongoing research and development is being conducted to improve the ecosystem, resulting in the regular introduction of new features or Solid providers.
 
@@ -45,8 +38,11 @@ These requests should be processed and made manipulatable to achieve better cont
 All of these achievements should be established in a clear context and communicated through data APIs to ensure safety for new features and potential changes in Solid providers.
 
 include::partials/chapter/Problem_Definition.adoc[leveloffset=+2]
+
 include::partials/chapter/Objectives_and_Research_Interest.adoc[leveloffset=+2]
+
 include::partials/chapter/Research_Design.adoc[leveloffset=+2]
+
 include::partials/chapter/Concept_and_Requirements.adoc[leveloffset=+2]
 
 == Terminology
@@ -55,8 +51,11 @@ This section provides definitions for the central terms used.
 Basic terms will only be included in the abbreviation section or the glossary due to the limited scope of this section.
 
 include::partials/chapter/Solid.adoc[leveloffset=+2]
+
 include::partials/chapter/Monitoring.adoc[leveloffset=+2]
+
 include::partials/chapter/System.adoc[leveloffset=+2]
+
 include::partials/chapter/Proxy.adoc[leveloffset=+2]
 
 == Related Work
@@ -65,16 +64,24 @@ include::partials/chapter/Related_Work.adoc[leveloffset=+2]
 
 = Theoretical Framework
 
+== Solid Ecosystem Extension
+
+include::partials/chapter/Solid_Application_Interoperability.adoc[leveloffset=+2]
+
 == Data Sovereignty
 
 include::partials/chapter/Limits_of_Solid.adoc[leveloffset=+2]
+
 include::partials/chapter/Data_Trustee.adoc[leveloffset=+2]
+
 include::partials/chapter/Data_Capturing_Strategies.adoc[leveloffset=+2]
+
 include::partials/chapter/Ownership_Verification.adoc[leveloffset=+2]
 
 == Quality Model
 
 include::partials/chapter/System_Design_Quality.adoc[leveloffset=+2]
+
 include::partials/chapter/Performance_Efficiency.adoc[leveloffset=+2]
 
 = Design and Implementation
@@ -96,12 +103,15 @@ include::Behavior.adoc[leveloffset=+2,tags=body]
 == Technology
 
 include::partials/chapter/Technology_Stack.adoc[leveloffset=+2]
+
 include::partials/chapter/Limits_of_the_Technology_Stack.adoc[leveloffset=+2]
+
 include::partials/chapter/Deviation_from_Specification.adoc[leveloffset=+2]
 
 = Analysis
 
 include::partials/chapter/Experiments.adoc[leveloffset=+1]
+
 include::partials/chapter/Validation.adoc[leveloffset=+1]
 
 = Reflection
@@ -115,16 +125,6 @@ include::partials/chapter/Validation.adoc[leveloffset=+1]
 Viewing and using requests to the web server was a task that was almost exclusively reserved for the operators or administrators of a service.
 For the first time functions can be viewed and controlled by users, as they own the content or have sufficient rights.
 
-[appendix]
-= Appendix
+include::partials/Appendix.adoc[]
 
-[bibliography]
-= Bibliography
-
-bibliography::[]
-
-[colophon]
-= Colophon
-
-ifdef::backend-html5[Built with Asciidoctor {asciidoctor-version}, Asciidoctor Bibtex {asciidoctor-bibtex-version} and Asciidoctor Diagram {asciidoctor-diagram-version} on {ostype}.]
-ifndef::backend-html5[Built with Asciidoctor PDF {asciidoctor-pdf-version}, Asciidoctor Bibtex {asciidoctor-bibtex-version} and Asciidoctor Diagram {asciidoctor-diagram-version} on {ostype}.]
+include::partials/Back_matter.adoc[]

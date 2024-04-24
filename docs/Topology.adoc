@@ -1,16 +1,8 @@
 = Logical Topology
-// Global Attributes
-include::partials/Attributes.adoc[]
+//Front matter
+include::partials/Front_matter.adoc[]
 
-include::partials/Preface.adoc[]
-
-<<<
-
-include::partials/Glossary.adoc[leveloffset=+1]
-
-include::partials/Acronyms.adoc[leveloffset=+1]
-
-<<<
+include::partials/Divider.adoc[]
 
 // tag::body[]
 The logical topology describes the access, transport, addressing of protocols, and data paths.
@@ -35,7 +27,7 @@ If so, the request module data is appended to a resource container within that s
 [.text-center]
 [plantuml,format=svg,id="Logical_Topology_B"]
 ....
-include::resources/diagrams/Logical_Topology_B.puml[]
+include::resources/diagrams/cmp_Logical_Topology_B.puml[]
 ....
 
 === Trustee as Data Owner
@@ -48,7 +40,7 @@ If applicable, append the request module data to a resource container in the mod
 [.text-center]
 [plantuml,format=svg,id="Logical_Topology_A"]
 ....
-include::resources/diagrams/Logical_Topology_A.puml[]
+include::resources/diagrams/cmp_Logical_Topology_A.puml[]
 ....
 
 Depending on whether the capturing strategy is permanent or registration-based, both approaches may require agent identity verification.
@@ -57,3 +49,5 @@ This requirement is indicated by a dashed arrow between the proxy module and the
 The trustee-as-data-owner approach eliminates the need for ownership verification for every requested resource and avoids potential issues with the module's writing permissions to the client's storage.
 This approach is preferred over the client-as-data-owner approach, where the module relies on enough permissions.
 // end::body[]
+
+include::partials/Back_matter.adoc[]

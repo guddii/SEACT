@@ -118,7 +118,7 @@ Die **Kontrolle** darüber, welche Personen und Anwendungen auf den Pod zugreife
 [.text-center]
 [plantuml,format=svg,id="Logical_Topology_A"]
 ....
-include::resources/diagrams/Logical_Topology_A.puml[]
+include::resources/diagrams/cmp_Logical_Topology_A.puml[]
 ....
 
 === Modell: Logisches Datenmodell
@@ -127,7 +127,7 @@ include::resources/diagrams/Logical_Topology_A.puml[]
 [.text-center]
 [plantuml,format=svg,id="dm_Logical_model"]
 ....
-include::resources/diagrams/dm_Logical_model.puml[]
+include::resources/diagrams/dm_Full.puml[]
 ....
 
 === Technologie und Werkzeuge

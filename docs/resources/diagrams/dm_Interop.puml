@@ -1,0 +1,58 @@
+@startuml
+top to bottom direction
+hide empty members
+skinparam nodesep 60
+skinparam ranksep 30
+skinparam SameClassWidth true
+
+mainframe **dm** Solid Application Interoperability Data Registry
+
+entity "foaf:PersonalProfileDocument" as WebID_DPC << (D,orange) Dataset >> {
+    id
+}
+entity "interop:Agent" as SocialAgent << (T,orchid) Thing >> {
+    interop:hasRegistrySet
+}
+entity "Registry Set" as RegistrySet << (D,orange) Dataset >> {
+}
+entity "interop:DataRegistry" as DataRegistry << (T,orchid) Thing >> {
+    interop:hasDataRegistration
+}
+entity "interop:DataRegistration" as DataRegistration << (D,orange) Dataset >> {
+    interop:registeredShapeTree
+}
+entity "ldp:Container" as Container2 << (D,orange) Dataset >> {
+    ldp:contains
+}
+entity "DataElement" as DataElement << (D,orange) Dataset >>{
+    ...
+}
+entity "DataTypeRegistrationTree" as DataTypeRegistrationTree << (S,yellow) Shape Tree >> {
+    st:contains
+}
+entity "DataTypeTree" as DataTypeTree << (S,yellow) Shape Tree >> {
+    st:shape
+}
+entity "DataTypeShape" as DataTypeShape << (S,yellow) Shape Expression >> {
+    ...
+}
+entity "DataTypeVocabulary" as DataTypeVocabulary << (D,orange) Dataset >> {
+    ...
+}
+
+
+WebID_DPC::id                           |o-down-o|          SocialAgent                 : Path [1]
+SocialAgent::hasRegistrySet             |o-down-o|          RegistrySet                 : Path [1]
+RegistrySet                             }|-down-o|          DataRegistry                : Path [1,1]
+DataRegistry::hasDataRegistration       ||-down-|{          DataRegistration            : Path [1,1,1]
+DataRegistration::registeredShapeTree   |o-down-o|          DataTypeRegistrationTree   : Path [1,1,1], [1,2,1,1]
+DataTypeRegistrationTree::contains      |o-down-o|          DataTypeTree               : Path [1,1,1], [1,2,1,1]
+DataTypeTree::shape                     |o-down-o|          DataTypeShape              : Path [1,1,1], [1,2,1,1]
+DataTypeShape                           |o-down-o|          DataTypeVocabulary         : Path [1,1,1], [1,2,1,1]
+DataRegistry::hasDataRegistration       }|-down-o|          Container2                  : Path [1,1,2]
+Container2::contains                    |o-down-|{          DataElement                   : Path [1,1,2], [1,2,2]
+
+note "The shape will be satisfied" as Note
+DataTypeShape .. Note
+Note .. DataElement
+@enduml

@@ -1,0 +1,52 @@
+@startuml
+top to bottom direction
+hide empty members
+skinparam nodesep 60
+skinparam ranksep 30
+skinparam SameClassWidth true
+
+mainframe **dm** Claim Addition
+
+entity  "foaf:PersonalProfileDocument" as WebID_Client << (D,orange) Dataset >> {
+}
+entity "**claim:Verification**" as Verification << (T,orchid) **Thing** >> #line.bold  {
+    **claim:verificationCode**
+}
+
+entity "Registry Set" as RegistrySet << (D,orange) Dataset >> {
+    **ab674650**
+}
+note left: Hash values must be unique, e.g. the\na SHAKE256 encoded storage URL.
+entity "interop:DataRegistry" as DataRegistry << (T,orchid) Thing >> {
+    interop:hasDataRegistration
+}
+entity "**claim:Registry**" as ClaimRegistry << (T,orchid) **Thing** >> #line.bold {
+    **claim:trustee**
+    **claim:monitoredStorage**
+    **claim:verificationResource**
+    **claim:verificationCode**
+    **claim:claimedData**
+}
+entity "**ldp:Container**" as Container1 << (D,orange) **Dataset** >> #line.bold {
+   **ldp:contains**
+}
+note bottom: Root of all claimed data.
+entity "interop:DataRegistration" as DataRegistration << (D,orange) Dataset >> {
+    interop:registeredShapeTree
+}
+entity "ldp:Container" as Container2 << (D,orange) Dataset >> {
+    ldp:contains
+}
+note bottom: Resource container\nfor all access logs.
+
+WebID_Client                            |o-down-o|          Verification                : > owns
+RegistrySet::ab674650                   }|-down-o|          DataRegistry                : Path [1,1]
+DataRegistry::hasDataRegistration       ||-down-|{          DataRegistration            : Path [1,1,1]
+DataRegistry::hasDataRegistration       }|-down-o|          Container2                  : Path [1,1,2]
+RegistrySet::ab674650                   }|-down[bold]-o|    ClaimRegistry               : **Path [1,2]**
+ClaimRegistry::claimedData              |o-down[bold]-o|    Container1                  : **Path [1,2,1]**
+Container1::contains                    |o-down[bold]-|{    DataRegistration            : **Path [1,2,1,1]**
+Container1::contains                    |o-down[bold]-|{    Container2                  : **Path [1,2,2]**
+ClaimRegistry::verificationResource     |o-left[bold]-o|    Verification                : **Path [1,2,2]**
+
+@enduml

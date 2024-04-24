@@ -1,0 +1,15 @@
+@startuml
+mainframe **cmp** Proxy in a Client-Server Model
+
+agent Client
+cloud Network
+agent Proxy as "Proxy\nServer"
+agent Server as "Remote\nServer"
+
+Client  -> Network
+Network -> Proxy
+Proxy   -> Server
+Server  -> Proxy
+Proxy   -> Network
+Network -> Client
+@enduml

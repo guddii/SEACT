@@ -1,16 +1,6 @@
 = System Behavior
-// Global Attributes
-include::partials/Attributes.adoc[]
-
-include::partials/Preface.adoc[]
-
-<<<
-
-include::partials/Glossary.adoc[leveloffset=+1]
-
-include::partials/Acronyms.adoc[leveloffset=+1]
-
-<<<
+//Front matter
+include::partials/Front_matter.adoc[]
 
 // tag::body[]
 == Entries
@@ -184,3 +174,5 @@ If both verification codes match, the request will be forwarded by the DPC agent
 include::resources/diagrams/sd_Get_claimed_resource.puml[]
 ....
 // end::body[]
+
+include::partials/Back_matter.adoc[]

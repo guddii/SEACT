@@ -7,12 +7,19 @@ Unless otherwise specified, all framed diagrams will use the UML 2.5.1{fn-uml} s
 
 // See https://www.omg.org/spec/UML/2.5.1/PDF#page=726
 [horizontal]
-// act:: activity frames
+// act:: activity diagram
 cmp:: component diagram
-// dep:: deployment frames
+// dep:: deployment diagram
 sd:: interaction diagram
-// pkg:: package frames
-// stm:: state machine frames
-// uc::  use case frames
+// pkg:: package diagram
+// stm:: state machine diagram
+// uc::  use case diagram
+
+In addition to the UML abbreviation, the following abbreviations are used to identify non-UML diagrams:
+
+[horizontal]
+// act:: activity diagram
+dm:: data model diagram; The information structure is entirely based on RDF, thus global <<Namespaces, namespaces>> will be used in these diagrams. The data models are entity-relationship diagrams in Clive Finkelstein’s IE notation, with some additional elements. The text in the double angle brackets will define the entity type (e.g., <<Dataset>>, <<Thing>>, …). The path labels indicate potential routes through the graph structure, while the number within the bracket indicates the branch that has been taken.
+
 
 Notations that are not applicable to the entire document will be described in detail in the relevant section.
