@@ -2,7 +2,8 @@
 //Front matter
 include::partials/Front_matter.adoc[]
 
-include::partials/Divider.adoc[]
+ifdef::backend-html5[''']
+ifndef::backend-html5[<<<]
 
 // tag::body[]
 The logical topology describes the access, transport, addressing of protocols, and data paths.

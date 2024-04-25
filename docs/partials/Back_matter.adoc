@@ -1,12 +1,5 @@
 include::Attributes.adoc[]
 
-[bibliography]
-= Bibliography
+include::Bibliography.adoc[]
 
-bibliography::[]
-
-[colophon]
-= Colophon
-
-ifdef::backend-html5[Built with Asciidoctor {asciidoctor-version}, Asciidoctor Bibtex {asciidoctor-bibtex-version} and Asciidoctor Diagram {asciidoctor-diagram-version} on {ostype}.]
-ifndef::backend-html5[Built with Asciidoctor PDF {asciidoctor-pdf-version}, Asciidoctor Bibtex {asciidoctor-bibtex-version} and Asciidoctor Diagram {asciidoctor-diagram-version} on {ostype}.]
+include::Colophon.adoc[]

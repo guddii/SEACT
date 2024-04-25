@@ -18,17 +18,4 @@ Institute::
 Leipzig University of Applied Sciences
 Faculty::
 Computer Science and Media
-ifdef::github-server-url,github-repository[]
-ifdef::github-ref-name[]
-Repository::
-{github-server-url}/{github-repository}/tree/{github-ref-name}
-endif::github-ref-name[]
-ifdef::github-sha[]
-Revision::
-{github-server-url}/{github-repository}/commit/{github-sha}
-endif::github-sha[]
-ifdef::github-run-id[]
-Build::
-{github-server-url}/{github-repository}/actions/runs/{github-run-id}
-endif::github-run-id[]
-endif::github-server-url,github-repository[]
+

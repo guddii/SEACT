@@ -2,7 +2,8 @@
 //Front matter
 include::partials/Front_matter.adoc[]
 
-include::partials/Divider.adoc[]
+ifdef::backend-html5[''']
+ifndef::backend-html5[<<<]
 
 [abstract]
 .Abstract
@@ -13,7 +14,8 @@ This work proposes an experimental vendor-agnostic approach of extending Solid v
 It also considers the impact of this approach on the system design and performance efficiency.
 --
 
-include::partials/Divider.adoc[]
+ifdef::backend-html5[''']
+ifndef::backend-html5[<<<]
 
 This document is divided into five sections: the Introduction, Theoretical Framework, Design and Implementation, Analysis, and Reflection.
 The <<Introduction>> will refine the research context, the terminology used in this document, and the related work in this research area.
