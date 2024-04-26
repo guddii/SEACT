@@ -13,7 +13,46 @@ The Solid Protocol is a type of protocol that encapsulates a modified set of new
 The Protocol Specification includes additions and adoptions, or references to the original ones cite:[sarven_solid_2022].
 The specifications included here are only representative of a subset of the definitions relevant to this research, primarily focusing on resources, identity, authentication and authorization.
 
-=== Resource (Storage Resource)
+=== Resources
+
+The Solid Protocol employs a variety of resource definitions, which are constructed upon one another in a hierarchical manner.
+These definitions either extend or restrict the previous definition, thereby forming a structured system.
+
+The resources listed below are the most common resources in Solid and in the web in general:
+
+[horizontal]
+[[resource,resource]] resource:: The target of an <<HTTP>> request, identified by a <<URI>> cite:[fielding_rfc7231_2014].
+[[container_resource,container resource]] container resource:: A collection of resources and resource containers, organized in a hierarchical structure cite:[sarven_solid_2022].
+[[root_container,root container]] root container:: The top-level resource within a resource container hierarchy cite:[sarven_solid_2022].
+
+[#storage]
+*Storages* are spaces of URIs that affords agents controlled access to resources.
+The storage resource, however, is the root container for all of its contained resources and is owned by an agent cite:[sarven_solid_2022].
+
+[#storage_resource]
+*Storage resources* are defined by a specific HTTP Link header that is used to mark a given container resource as a storage resource.
+This is achieved by including the `rel` attribute with the value `type`, along with a URI reference that matches `pim:Storage`.
+The owner of this storage can be made available optionally by including the `rel` attribute with the value `solid:owner`.
+This is demonstrated in xref:lst-storage-resource[xrefstyle=short], where additional headers and the response have been omitted in the listening (ibid.).
+
+.Storage resource declaration at http://proxy.localhost:4000/client/
+[source,id="lst-storage-resource",reftext="Listing {counter:listing}"]
+----
+include::../../resources/requests/Storage_resource.txt[lines="1..3"]
+[...]
+include::../../resources/requests/Storage_resource.txt[lines="14"]
+[...]
+----
+
+As the storage resource is a top-level resource in the container resource hierarchy, all containing resources belong to a storage resource.
+The containing storage resource is not directly accessible via an HTTP header or any other means.
+However, the hierarchy can be traversed until the highest level is reached in order to identify the containing storage resource (ibid.).
+
+[#description_resource]
+*Description resources* represent a distinct category of auxiliary resources.
+These resources provide a description of a subject resource, which is referenced by a HTTP Link header.
+The `rel` attribute is used with the value `describedby` to indicate this relationship.
+This is also illustrated in xref:lst-storage-resource[xrefstyle=short] (ibid.).
 
 === Identity (WebID)
 
