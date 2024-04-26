@@ -11,7 +11,27 @@ The protocol includes setup, termination, collision prevention or correction, co
 
 The Solid Protocol is a type of protocol that encapsulates a modified set of new and existing specifications to fit into the ecosystem.
 The Protocol Specification includes additions and adoptions, or references to the original ones cite:[sarven_solid_2022].
-The specifications included here are only representative of a subset of the definitions relevant to this research, primarily focusing on resources, identity, authentication and authorization.
+The specifications included here are only representative of a subset of the definitions relevant to this research, primarily focusing on special http headers, identity, resources, authentication and authorization.
+
+=== HTTP Headers
+
+The Solid Protocol employs a specific model of the relationships between resources on the Web and the types of these relationships.
+These are exposed as HTTP headers, linking to the related resource, as defined by citenp:[nottingham_rfc8288_2017].
+
+[#http_link_header]
+*HTTP Link headers* are conventional HTTP headers, with the header field `Link` and a value separated by a colon.
+Within the header value, the `uri-reference` points to the related resource, while the attribute value pair defines the relation.
+This is demonstrated in xref:lst-http-link-header[xrefstyle=short].
+
+.Syntax of a HTTP Link header
+[source,id="lst-http-link-header",reftext="Listing {counter:listing}"]
+----
+Link: <uri-reference>; attribute="value"
+----
+
+In the event that multiple header values are to be applied, the values may be separated by a comma.
+
+=== Identity (WebID)
 
 === Resources
 
@@ -53,8 +73,6 @@ However, the hierarchy can be traversed until the highest level is reached in or
 These resources provide a description of a subject resource, which is referenced by a HTTP Link header.
 The `rel` attribute is used with the value `describedby` to indicate this relationship.
 This is also illustrated in xref:lst-storage-resource[xrefstyle=short] (ibid.).
-
-=== Identity (WebID)
 
 === Authentication
 

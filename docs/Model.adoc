@@ -97,7 +97,7 @@ The registry set contains an entry for each agent who has claimed data captured 
 This captured data will be referred to as <<Data Registration (Data Model), data registration>>.
 
 The subject of the <<RDF_triple>>, however, must be unique and built based on the claimed subject.
-In this case, it will be the hashed <<storage>> <<URL>>.
+In this case, it will be the hashed storage <<URL>>.
 
 .`interop:DataRegistry` <<Thing>> at http://example.tld/dpc/registries
 [source,turtle]
@@ -105,7 +105,7 @@ In this case, it will be the hashed <<storage>> <<URL>>.
 include::resources/dump/model/dpc/registries$.ttl[lines=3..6]
 ----
 
-<1> The hashed (SHAKE256) <<storage>> <<URL>>.
+<1> The hashed (SHAKE256) storage <<URL>>.
 
 NOTE: Followed Path [1,1]
 
