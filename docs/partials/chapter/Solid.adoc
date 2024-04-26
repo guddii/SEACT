@@ -95,6 +95,20 @@ WebID Profiles:: A WebID Profiles is a Thing that serve to uniquely describe an 
 
 === Authentication
 
+The authentication process in Solid is based on OAuth 2.0 and OpenID Connect Core 1.0, with certain enhancements.
+In order for the resource servers and authorization servers to function, they must have a trust relationship with the identity providers.
+Furthermore, ephemeral clients are intended to be the primary use case cite:[coburn_solid-oidc_2022].
+
+The authentication is mainly expected to be authorized via the Authorization Code Flowfootnote:[https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowSteps].
+However, as it is built on top of OIDC, the Client Credentials Flowfootnote:[https://datatracker.ietf.org/doc/html/rfc6749#section-4.4] is a viable option in the majority of implementations, such as <<CSS>>footnote:[https://communitysolidserver.github.io/CommunitySolidServer/7.x/usage/client-credentials/].
+
+In both cases, an access token will be returned to the authenticating client.
+Which usually is a Bearer Token in OIDC Sessions.
+Solid-OIDC however, depends on DPoP tokens.
+DPoP tokens ensure that third-party web applications can not use the token, as the are protected by a a public and private key pair cite:[coburn_solid-oidc_2022, fett_oauth_2023].
+
+=== Authorization
+
 // TODO: Authenticated and unauthenticated requests
 
 ==== Access Control List
@@ -102,12 +116,6 @@ WebID Profiles:: A WebID Profiles is a Thing that serve to uniquely describe an 
 ==== Web Access Control
 
 ==== Access Control Policy
-
-=== Authorization
-
-==== Solid OpenID Connect
-
-==== Security Token
 
 == Solid Provider
 
