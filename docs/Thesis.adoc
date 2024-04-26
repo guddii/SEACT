@@ -8,10 +8,7 @@ ifndef::backend-html5[<<<]
 [abstract]
 .Abstract
 --
-The Solid Project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
-The technology is still in development and not yet fully evolved.
-This work proposes an experimental vendor-agnostic approach of extending Solid via a server-side application layer proxy, with the objective of increasing the traceability and access control of requested resources.
-It also considers the impact of this approach on the system design and performance efficiency.
+{abstract}
 --
 
 ifdef::backend-html5[''']

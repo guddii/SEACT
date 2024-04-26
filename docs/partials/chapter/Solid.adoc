@@ -76,12 +76,13 @@ This is also illustrated in xref:lst-storage-resource[xrefstyle=short] (ibid.).
 
 The representation of resources is primarily in the form of RDF documents.
 citenp:[bergwinkl_rdfjs_2019] introduced the Dataset specification, which represents the contents of these documents as <<ECMAScript>> objects.
-The Inrupt JavaScript Client Librariesfootnote:[https://docs.inrupt.com/developer-tools/javascript/client-libraries/structured-data/#things-soliddataset-and-containers] refined this further and introduced the terms SolidDataset and Thing.
+The Inrupt JavaScript Client Librariesfootnote:[https://docs.inrupt.com/developer-tools/javascript/client-libraries/structured-data] refined this further and introduced the terms SolidDataset and Thing.
 In order to facilitate the interpretation of the RDF documents, the following definitions will be used, based on the definitions mentioned:
 
 [horizontal]
 Dataset:: A dataset is defined as a set of Things, represented as a RDF resource.
-Thing:: A Thing is a data entity that contains a set of data or properties about the Thing. It is a component of a dataset, which is defined as a set of Things.
+Thing:: A Thing is a data entity that contains a set of data or properties about the Thing.
+It is a component of a dataset, which is defined as a set of Things.
 
 === Identity
 

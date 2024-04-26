@@ -4,9 +4,12 @@
 :authorinitials_1: FG
 :description:
 :keywords:
+:lang: en
+:orgname: Leipzig University of Applied Sciences
+:abstract: The Solid Project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software. The technology is still in development and not yet fully evolved. This work proposes an experimental vendor-agnostic approach of extending Solid via a server-side application layer proxy, with the objective of increasing the traceability and access control of requested resources. It also considers the impact of this approach on the system design and performance efficiency.
 // General Settings:
 :bibtex-style: apa
-:docinfo: shared
+:docinfo: private-head
 :docinfodir: resources/docinfo
 :doctype: book
 :idprefix:
@@ -25,3 +28,12 @@
 :fn-uml: footnote:uml[https://www.omg.org/spec/UML/2.5.1]
 :fn-plantuml: footnote:plantuml[https://plantuml.com]
 :fn-asciidoctor-diagram: footnote:asciidoctor-diagram[https://docs.asciidoctor.org/diagram-extension/latest/]
+// Citation
+:citation_title: {doctitle}
+:citation_date: {revdate}
+:citation_public_url: {url-docs}/Thesis.html
+:citation_abstract: {abstract}
+:citation_language: {lang}
+:citation_authors: {author_1}
+:citation_pdf_url: {url-docs}/Thesis.pdf
+:citation_keywords: {keywords}
