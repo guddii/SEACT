@@ -3,7 +3,7 @@
 :email_1: florian.gudat@guices.com
 :authorinitials_1: FG
 :description:
-:keywords:
+:keywords: extension, solid, proxy, access-control, traceability
 :lang: en
 :orgname: Leipzig University of Applied Sciences
 :abstract: The Solid Project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software. The technology is still in development and not yet fully evolved. This work proposes an experimental vendor-agnostic approach of extending Solid via a server-side application layer proxy, with the objective of increasing the traceability and access control of requested resources. It also considers the impact of this approach on the system design and performance efficiency.

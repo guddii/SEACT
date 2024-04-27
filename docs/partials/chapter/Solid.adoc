@@ -106,17 +106,15 @@ However, as it is built on top of OIDC, the Client Credentials Flowfootnote:[htt
 In both cases, an access token will be returned to the authenticating client.
 Which usually is a Bearer Token in OIDC Sessions.
 Solid-OIDC however, depends on DPoP tokens.
-DPoP tokens ensure that third-party web applications can not use the token, as the are protected by a a public and private key pair cite:[coburn_solid-oidc_2022, fett_oauth_2023].
+DPoP tokens ensure that third-party web applications can not use the token, as the are protected by a a public and private key pair cite:[coburn_solid-oidc_2022,fett_oauth_2023].
 
 === Authorization
 
-// TODO: Authenticated and unauthenticated requests
-
-==== Access Control List
-
-==== Web Access Control
-
-==== Access Control Policy
+Authorization is a fundamental aspect of Solid.
+Each WebID-owned resource must be authorized, with either or both <<WAC>> and <<ACP>> publishing mechanisms as specified.
+This even applies to resources that are publicly accessible and that permit unauthenticated requests.
+Both mechanisms utilize <<ACL>> to grant access to a resource, for a selected agent with defined access privileges.
+The possible privileges for a resource are read, append, and write access, as well as control access, which is used to manage the access privileges cite:[sarven_solid_2022,capadisli_web_2022].
 
 == Solid Provider
 
