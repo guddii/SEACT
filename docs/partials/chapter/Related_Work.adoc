@@ -1,1 +1,26 @@
-// TODO
+Since 2018, the Solid Community Groupfootnote:[https://www.w3.org/community/solid/] has been responsible for the management of the Solid Project.
+Due to the relatively small size of the group and its limited public visibility, the level of activity within the community is correspondingly low.
+Consequently, research sources are limited and related work is almost non-existent.
+However, some work and projects do consider related ideas.
+
+// Proxies
+citenp:[luotonen_world-wide_1994] is one of the earliest works on proxy servers, describing how individuals can access the Internet from closed subnets.
+Proxies were gradually enhanced, and the concept of structuring distributed systems as a set of services or subsystems emerged from this approach, as described by citenp:[shapiro_structure_1986].
+citenp:[tao_extensible_2016] proposed a method for modularizing the structuring of proxies to address the significant number of protocols that they must handle.
+. In addition to the general technological evolution of proxies, citenp:[yan_security_2017] developed the concept of a security web gateway utilizing a proxy, while maintaining the aforementioned characteristics of distributiveness, extensibility, reliability, and high performance.
+
+// Solid and Access Control
+citenp:[esposito_assessing_2023] did consider security concerns, as outlined in the GDPR and other pertinent documents, in order to demonstrate their relevance to the measures in the Solid protocol.
+Security concerns are currently addressed at various levels.
+citenp:[slabbinck_enforcing_2024] did propose a method for limiting access to a resource for a defined period of time, with the aim of gaining control over the exposed data utilizing an automated agent.
+The automated agent mechanism was also employed in the work of citenp:[slabbinck_rule-based_2023], where the agent executes automated background processes to synchronize the state of a smart bulb with a Solid storage.
+The concept of acting on behalf of another individual was also explored in the work of citenp:[schmid_rights_2024], where access privileges can be delegated to another agent via a proxyfootnote:[https://github.com/wintechis/delegation-proxy].
+
+// Projects
+In addition to the research topics, there have been projects in the public sector addressing the issue of data exchange, access control, and transparency.
+_X-Roadsfootnote:[https://x-road.global/]_ is an alternative ecosystem to Solid that offers unified and secure data exchange between organizations.
+It is maintained by the _Nordic Institute for Interoperability Solutionsfootnote:[https://www.niis.org/]_.
+One of its central services is a monitoring system that logs data, as pointed out by citenp:[odonoghue_x-road_2023].
+A project that is already utilizing Solid is _Athumifootnote:[https://athumi.be/]_, which acts as a trust partner for the purpose of strengthening data collaboration between consumers, businesses, and public agencies in _Flanders_.
+citenp:[diederich_xdatenschutzcockpit_2023] describes the conclusion of a prototype period for a data privacy cockpit in Germany.
+This cockpit was developed within an enclosed ecosystem to monitor a newly introduced digital registry, with the objective of achieving transparency for citizens and their data.
