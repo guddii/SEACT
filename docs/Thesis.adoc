@@ -56,8 +56,6 @@ include::partials/chapter/Concept_and_Requirements.adoc[leveloffset=+2]
 This section provides definitions for the central terms used.
 Basic terms will only be included in the abbreviation section or the glossary due to the limited scope of this section.
 
-include::partials/chapter/Solid.adoc[leveloffset=+2]
-
 include::partials/chapter/Access_Control_and_Traceability.adoc[leveloffset=+2]
 
 include::partials/chapter/System.adoc[leveloffset=+2]
@@ -70,13 +68,30 @@ include::partials/chapter/Related_Work.adoc[leveloffset=+2]
 
 = Theoretical Framework
 
-== Solid Ecosystem Extension
+[partintro]
+The theoretical framework is intended to serve as a foundation for the concepts and technologies that are the subject of the research.
+One of the central aspects is the <<Solid Ecosystem>>, which will be explained in the first chapter.
+The ecosystem comprises several elements, and in this chapter, in particular, the Solid Protocol, Solid Provider, Solid Application Interoperability, and its limitations will be presented.
+The second chapter will refer to the concept of <<Data Sovereignty>> within the ecosystem.
+In this context, the concept of data trustees, the strategies for data capturing and the verification of ownership will be explained.
+Finally, the <<Quality Model>> will be demonstrated, which is necessary to perform an analysis of the system design and performance efficiency.
+
+== Solid Ecosystem
+
+The Solid Project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
+The ecosystem comprises a number of specifications and associated technologies, which are primarily listed in the Solid Technical Reports.
+The most fundamental specification is the <<Solid Protocol>>, also known as the core specification.
+In addition to the core specification, the following sections will explain the role of <<Solid Provider,Solid Providers>> in enabling the protocol and the <<Solid Application Interoperability>> specification, which extends the protocol.
+
+include::partials/chapter/Solid_Protocol.adoc[leveloffset=+2]
+
+include::partials/chapter/Solid_Provider.adoc[leveloffset=+2]
 
 include::partials/chapter/Solid_Application_Interoperability.adoc[leveloffset=+2]
 
-== Data Sovereignty
-
 include::partials/chapter/Limits_of_Solid.adoc[leveloffset=+2]
+
+== Data Sovereignty
 
 include::partials/chapter/Data_Trustee.adoc[leveloffset=+2]
 

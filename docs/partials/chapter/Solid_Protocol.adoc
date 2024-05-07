@@ -1,10 +1,4 @@
-= Solid
-
-The Solid Project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
-The ecosystem comprises various specifications and associated technologies, primarily listed in the Solid Technical Reports.
-The most fundamental specification is the Solid Protocol, also known as core, which is listed there.
-
-== Solid Protocol
+= Solid Protocol
 
 According to the citenp:[mozilla_developer_network_protocol_2023], a protocol is a set of rules for exchanging data between computers. citenp:[fischer_lexikon_2011(706)] provide additional clarification on this topic.
 The protocol includes setup, termination, collision prevention or correction, content integrity, and the actual actions within the same layer.
@@ -13,7 +7,7 @@ The Solid Protocol is a type of protocol that encapsulates a modified set of new
 The Protocol Specification includes additions and adoptions, or references to the original ones cite:[sarven_solid_2022].
 The specifications included here are only representative of a subset of the definitions relevant to this research, primarily focusing on special http headers, resources, representation, identity, authentication and authorization.
 
-=== HTTP Headers
+== HTTP Headers
 
 The Solid Protocol employs a specific model of the relationships between resources on the Web and the types of these relationships.
 These are exposed as HTTP headers, linking to the related resource, as defined by citenp:[nottingham_rfc8288_2017].
@@ -31,7 +25,7 @@ Link: <uri-reference>; attribute="value"
 
 In the event that multiple header values are to be applied, the values may be separated by a comma.
 
-=== Resources
+== Resources
 
 The Solid Protocol employs a variety of resource definitions, which are constructed upon one another in a hierarchical manner.
 These definitions either extend or restrict the previous definition, thereby forming a structured system.
@@ -72,7 +66,7 @@ These resources provide a description of a subject resource, which is referenced
 The `rel` attribute is used with the value `describedby` to indicate this relationship.
 This is also illustrated in xref:lst-storage-resource[xrefstyle=short] (ibid.).
 
-=== Representation
+== Representation
 
 The representation of resources is primarily in the form of RDF documents.
 citenp:[bergwinkl_rdfjs_2019] introduced the Dataset specification, which represents the contents of these documents as <<ECMAScript>> objects.
@@ -80,11 +74,11 @@ The Inrupt JavaScript Client Librariesfootnote:[https://docs.inrupt.com/develope
 In order to facilitate the interpretation of the RDF documents, the following definitions will be used, based on the definitions mentioned:
 
 [horizontal]
-Dataset:: A dataset is defined as a set of Things, represented as a RDF resource.
-Thing:: A Thing is a data entity that contains a set of data or properties about the Thing.
+[[Dataset]]Dataset:: A dataset is defined as a set of Things, represented as a RDF resource.
+[[Thing]]Thing:: A Thing is a data entity that contains a set of data or properties about the Thing.
 It is a component of a dataset, which is defined as a set of Things.
 
-=== Identity
+== Identity
 
 In a decentralized platform, it is essential to have identifiable <<agent, agents>>.
 Solid accomplishes this with WebIDs and the WebID Profile, which is associated with it cite:[sambra_webid_2014].
@@ -94,7 +88,7 @@ WebID:: A WebID is a special resource of RDF type foaf:PersonalProfileDocument, 
 When a fragment identifier is contained by the URI, the WebID Profile is denoted (ibid.).
 WebID Profiles:: A WebID Profiles is a Thing that serve to uniquely describe an Agent, as denoted by the WebID (ibid.).
 
-=== Authentication
+== Authentication
 
 The authentication process in Solid is based on OAuth 2.0 and OpenID Connect Core 1.0, with certain enhancements.
 In order for the resource servers and authorization servers to function, they must have a trust relationship with the identity providers.
@@ -108,17 +102,10 @@ Which usually is a Bearer Token in OIDC Sessions.
 Solid-OIDC however, depends on DPoP tokens.
 DPoP tokens ensure that third-party web applications can not use the token, as the are protected by a a public and private key pair cite:[coburn_solid-oidc_2022,fett_oauth_2023].
 
-=== Authorization
+== Authorization
 
 Authorization is a fundamental aspect of Solid.
 Each WebID-owned resource must be authorized, with either or both <<WAC>> and <<ACP>> publishing mechanisms as specified.
 This even applies to resources that are publicly accessible and that permit unauthenticated requests.
 Both mechanisms utilize <<ACL>> to grant access to a resource, for a selected agent with defined access privileges.
 The possible privileges for a resource are read, append, and write access, as well as control access, which is used to manage the access privileges cite:[sarven_solid_2022,capadisli_web_2022].
-
-== Solid Provider
-
-A Solid Provider is a web server that uses the Solid Protocol and provides the specified APIs and functions as a service.
-These services can be hosted on a private server or used from public hosting providers.
-The most common self-hosted implementations are Community Solid Server and Node Solid Server, among othersfootnote:[https://solidproject.org/developers/tutorials/getting-started#own-server].
-Both are available on different public hosting providers, in addition to Inrupt PodSpacesfootnote:[https://ap.inrupt.com], which is only accessible as cloud software.

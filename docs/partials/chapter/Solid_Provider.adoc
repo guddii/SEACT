@@ -1,0 +1,6 @@
+= Solid Provider
+
+A Solid Provider is a web server that uses the Solid Protocol and provides the specified APIs and functions as a service.
+These services can be hosted on a private server or used from public hosting providers.
+The most common self-hosted implementations are Community Solid Server and Node Solid Server, among othersfootnote:[https://solidproject.org/developers/tutorials/getting-started#own-server].
+Both are available on different public hosting providers, in addition to Inrupt PodSpacesfootnote:[https://ap.inrupt.com], which is only accessible as cloud software.
