@@ -95,6 +95,8 @@ include::partials/chapter/Limits_of_Solid.adoc[leveloffset=+2]
 
 include::partials/chapter/Data_Trustee.adoc[leveloffset=+2]
 
+include::partials/chapter/Data_Storage_Structure.adoc[leveloffset=+2]
+
 include::partials/chapter/Data_Capturing_Strategies.adoc[leveloffset=+2]
 
 include::partials/chapter/Ownership_Verification.adoc[leveloffset=+2]
@@ -139,7 +141,22 @@ include::partials/chapter/Validation.adoc[leveloffset=+1]
 
 == Discussion
 
+- Discuss the <<Data Storage Structure>>
+- Discuss the <<Vocabulary>> (alternatives: https://www.w3.org/TR/odrl-model/ or https://w3c.github.io/dpv/dpv/)
+- Discuss the self invocation of the proxy vs forwarding
+- Discuss external storage of logs (see citenp:[esposito_assessing_2023])
+- Any application with the ability to write to the client's storage resource is capable of creating a verification code.
+- Client Credential Flow is not specified as part of the <<Authentication>> process, but mandatory for automated agents.
+- Discuss the use of <<Solid Application Interoperability>> (weak multi user support, active participation in the spec by declaring #id, container definitions are hard to apply with <<CSS>>)
+- Detecting the application name requires to alter the <<Authentication>> process, the effect on requesting a refresh token is unknown and might even result in a memory leak.
+
 == Futur Work
+
+- What are the implications for performance if a storage resource is required to have an owner advised?
+- What are the implications for performance if the status of the outgoing request is logged?
+- What are the implications for the system design and performance if the requests are to be cached, or if application-level caching is to be employed?
+- Does the owner of a storage resource have the ability to influence the requests made to that resource?
+- What are the implications of a system that incorporates multiple proxy modules?
 
 == Conclusion
 

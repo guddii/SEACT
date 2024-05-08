@@ -1,5 +1,17 @@
 = Technology Stack
 
 - Community Solid Server: https://communitysolidserver.github.io/
+** see Community Solid Server configuration generatorfootnote:[https://communitysolidserver.github.io/configuration-generator/v7/]
+*** Data management
+**** Data storage (<<CRUD>>/<<SPARQL>>)
+**** Authorization (<<WAC>>/<<ACP>>)
+**** Locking
+*** Account management
+**** Pod URLs (Suffix/Subdomain)
+**** OpenID provider
+*** Miscellaneous
+**** Notification method (WebSockets/Webhooks)
+**** <<HTTP>>/<<HTTPS>>
 - Inrupt JavaScript Client Libraries: https://docs.inrupt.com/developer-tools/javascript/client-libraries/
 - Docker: https://docs.docker.com/
+** Isolation of the Solid provider from the public accessible network

@@ -56,6 +56,12 @@ Verification:: following path [1,2,2]
 
 The bracketed numbers indicate which branch to follow to access the described data.
 
+== Vocabulary
+
+- Claim
+- AccessLog (Explain why `al:application` can be empty)
+
+
 == Serialized Data Model
 
 Before looking at the serialized model, it is important to understand the structure of the <<HTTP>> endpoints.

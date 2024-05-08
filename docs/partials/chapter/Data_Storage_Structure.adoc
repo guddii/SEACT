@@ -1,0 +1,4 @@
+= Data Storage Structure
+
+- Single storage resource with multiple storage containers (inheritance of <<ACL>> is not unified)
+- Multiple storage resources (no unified API)

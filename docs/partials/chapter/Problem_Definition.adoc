@@ -14,7 +14,7 @@ This results in the following issues that require attention:
 [horizontal,labelwidth=15]
 [[ISSUE-1,ISSUE-1]] ISSUE-1:: The Solid protocol only specifies the ability to grant or deny access.
 It does not track the actual request for a resource.
-[[ISSUE-2,ISSUE-2]] ISSUE-2:: Solid is based on RDF and therefore favors interconnected data, what increased the demand for the stored data.
+[[ISSUE-2,ISSUE-2]] ISSUE-2:: Solid is based on RDF and therefore favors interconnected data, what increased the demand for monitoring the stored data.
 [[ISSUE-3,ISSUE-3]] ISSUE-3:: There may be changes to existing specifications as they need to be improved or are still in the draft stage.
 [[ISSUE-4,ISSUE-4]] ISSUE-4:: The Solid ecosystem will be expanded with newly introduced specifications or APIs.
 [[ISSUE-5,ISSUE-5]] ISSUE-5:: New Solid providers are being introduced because of their increasing popularity.
