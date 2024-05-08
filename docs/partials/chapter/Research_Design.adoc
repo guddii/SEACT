@@ -20,8 +20,8 @@ In order to have comparable values, each sample will be taken with and without t
 | `Tue, 16 Apr 2024 10:38:17 GMT`
 
 | Latency
-| millisecond
-| `37`
+| s
+| `0.037`
 |===
 
 It should be noted that the general proxy functions of delegating and forwarding requests have been excluded from this view.

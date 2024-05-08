@@ -10,3 +10,14 @@ It represents the extent to which a system performs its functions, considering t
 Time behavior:: A system's responsiveness and throughput are measures of its ability to perform the functions it is designed to perform.
 Resource utilization:: The quantity and type of resources utilized by a system to fulfill its operational requirements.
 Capacity:: The maximum limits of storage usage correspond to the system parameters.
+
+The time behavior is of particular importance in this quality model.
+As the software is a web-based system that individuals are operating with, it is crucial to consider usability.
+citenp:[nielsen_usability_1993] identifies three main time limits, which are determined by human perceptual abilities, that should be kept in mind when evaluating the performance of a system.
+
+[horizontal]
+0.1s:: The point at which the user perceives the system to respond instantaneously.
+1s:: The maximum limit may result in a delay in the user's cognitive process, even if the user is aware of the delay.
+10s:: The temporal constraint on the user's ability to maintain their focus on the process.
+
+In the event that the system is unable to provide a response time that is close to instantaneously, it is necessary to employ visual progression, for example, in the form of a percent-done indicator.
