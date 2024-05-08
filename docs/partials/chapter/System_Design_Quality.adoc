@@ -2,15 +2,20 @@
 
 == Design Principles
 
-- Single Responsibility Principle (SRP)
-- Open-Closed Principle (OCP)
-- Liskov Substitutuion Principle (LSP)
-- Interface Segregation Principle (ISP)
-- Dependency Inversion Principle (DIP)
+- Single Responsibility Principle (SRP), see cite:[lano_introduction_2023]
+- Open-Closed Principle (OCP), see cite:[lano_introduction_2023]
+- Liskov Substitutuion Principle (LSP), see cite:[lano_introduction_2023]
+- Interface Segregation Principle (ISP), see cite:[lano_introduction_2023]
+- Dependency Inversion Principle (DIP), see cite:[lano_introduction_2023]
 
 == Component Coupling
 
-- Acyclic Dependencies Principle
-- Top-Down Design
-- Stable Dependencies Principle
-- Stable Abstractions Principle
+The external relationships of a component, namely the connections between one component and another, are referred to as coupling.
+Four principles are relevant to this matter: the Acyclic Dependencies Principle, Top-Down Design, Stable Dependencies Principle, and Stable Abstractions Principle cite:[martin_clean_2018].
+
+[horizontal]
+Acyclic Dependencies Principle:: This principle posits that it is imperative to exercise caution to ensure that no cyclical dependencies exist during the modeling process (ibid.).
+Top-Down Design:: It is imperative to avoid the possibility of a tree-like system structure (ibid.).
+Stable Dependencies Principle:: Components to which dependencies exist should be stable. This is defined as a low frequency of change (ibid.).
+Stable Abstractions Principle:: In addition, a stable component should be abstract (ibid.).
+
