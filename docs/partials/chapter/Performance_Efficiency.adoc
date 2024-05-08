@@ -1,9 +1,12 @@
 = Performance Efficiency
 
-== Time behavior
+<<ISO>>/<<IEC>> 25010 is a quality model for the evaluation of system quality.
+The quality model defines which characteristics are to be considered when a system is developed.
+It considers various aspects of a software system.
+In this case, the characteristics of performance efficiency are the central aspect that is observed.
+It represents the extent to which a system performs its functions, considering the time and throughput necessary, its efficient use of resources, and the capacity used under specified conditions, as listed below:
 
-Latency Boundaries: https://www.nngroup.com/articles/response-times-3-important-limits/
-
-== Resource utilization
-
-== Capacity
+[horizontal]
+Time behavior:: A system's responsiveness and throughput are measures of its ability to perform the functions it is designed to perform.
+Resource utilization:: The quantity and type of resources utilized by a system to fulfill its operational requirements.
+Capacity:: The maximum limits of storage usage correspond to the system parameters.
