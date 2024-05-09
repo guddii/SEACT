@@ -1,21 +1,36 @@
 = System Design Quality
 
+The determination of the quality of systems and software is a complex process that is challenging to verify.
+The specific approach taken may depend on the problem to be solved.
+citenp:[martin_clean_2018] distinguishes between the micro architecture view, which considers low-level details, and the macro architecture view, which addresses quality concerns at an abstract level.
+These concerns can be divided into two categories: <<Design Principles>> and <<Component Coupling>>
+These categories can be used to determine the quality of a system design.
+
 == Design Principles
 
-- Single Responsibility Principle (SRP), see cite:[lano_introduction_2023]
-- Open-Closed Principle (OCP), see cite:[lano_introduction_2023]
-- Liskov Substitutuion Principle (LSP), see cite:[lano_introduction_2023]
-- Interface Segregation Principle (ISP), see cite:[lano_introduction_2023]
-- Dependency Inversion Principle (DIP), see cite:[lano_introduction_2023]
+The following design principles represent general approaches to system design, as defined by citenp:[martin_clean_2018].
+These concepts have become pseudo-standards, as evidenced by their reuse in more recent publications such as citenp:[lano_introduction_2023] and the continued promotion of these concepts by software companies such as Microsoftfootnote:[https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/architectural-principles].
+
+[horizontal]
+[[SRP,SRP]]SRP:: The _Single Responsibility Principle_ requires that each component provide a service for a single actor (ibid.).
+[[OCP,OCP]]OCP:: The _Open-Closed Principle_ posits that a component should be regarded as closed for modifications but open for enhancements (ibid.).
+[[LSP,LSP]]LSP:: The _Liskov Substitution Principle_ posits that all subclass behaviors should align with the superclass definitions (ibid.).
+[[ISP,ISP]]ISP:: The _Interface Segregation Principle_ posits that components and interfaces should not be relied upon if they are not being utilized (ibid.).
+[[DIP,DIP]]DIP:: The _Dependency Inversion Principle_ requires that high-level components not be dependent on low-level components (ibid.).
+
+These principles are intended for object-oriented programming and therefore fall within the spectrum of a microarchitectural view.
+Nevertheless, they are relevant and should be taken into account in cases where software quality matters.
 
 == Component Coupling
 
 The external relationships of a component, namely the connections between one component and another, are referred to as coupling.
-Four principles are relevant to this matter: the Acyclic Dependencies Principle, Top-Down Design, Stable Dependencies Principle, and Stable Abstractions Principle cite:[martin_clean_2018].
+Four principles are relevant to this matter: the _Acyclic Dependencies Principle_, _Top-Down Design_, _Stable Dependencies Principle_, and _Stable Abstractions Principle_ cite:[martin_clean_2018].
 
 [horizontal]
-Acyclic Dependencies Principle:: This principle posits that it is imperative to exercise caution to ensure that no cyclical dependencies exist during the modeling process (ibid.).
-Top-Down Design:: It is imperative to avoid the possibility of a tree-like system structure (ibid.).
-Stable Dependencies Principle:: Components to which dependencies exist should be stable. This is defined as a low frequency of change (ibid.).
-Stable Abstractions Principle:: In addition, a stable component should be abstract (ibid.).
+[[ADP,ADP]]ADP:: The _Acyclic Dependencies Principle_ asserts that it is of vital importance to exercise caution to ensure that no cyclical dependencies exist during the modeling process (ibid.).
+[[TDD,TDD]]TDD:: It is imperative to avoid the possibility of a tree-like system structure, given the _Top-Down Design_ (ibid.).
+[[SDP,SDP]]SDP:: In accordance with the _Stable Dependencies Principle_, components to which dependencies exist should be stable.
+This is defined as a low frequency of change (ibid.).
+[[SAP,SAP]]SAP:: In addition to the SDP, a stable component should be abstract, in accordance with the _Stable Abstractions Principle_ (ibid.).
 
+These principles are relevant to consider when software components are aligned to each other on a top-level view, and therefore in the spectrum of a macroarchitectural view.

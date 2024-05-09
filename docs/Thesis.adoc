@@ -103,6 +103,10 @@ include::partials/chapter/Ownership_Verification.adoc[leveloffset=+2]
 
 == Quality Model
 
+The quality model is a valuable instrument for assessing the quality of a software system.
+The model can be applied to a variety of aspects, depending on the specific quality criteria that are to be observed.
+In this section, the <<System Design Quality>> and the <<Performance Efficiency>> are the aspects that are to be characterized.
+
 include::partials/chapter/System_Design_Quality.adoc[leveloffset=+2]
 
 include::partials/chapter/Performance_Efficiency.adoc[leveloffset=+2]
