@@ -1,0 +1,125 @@
+= Process References
+
+== Authentication with Client Credentials
+
+To obtain the authorization token, send a POST request to the authorization server with the client ID and secret in the authentication header.
+It is also necessary to set the grant type to `client_credentials` and the scope to `webid`.
+The proxy will forward requests as every CRUD request because the authorization server is not directly accessible.
+
+.Sequence diagram of the authentication using client credentials
+[.text-center]
+[plantuml,format=svg]
+....
+include::../../resources/diagrams/sd_Authentication_with_Client_Credentials.puml[]
+....
+
+== Forwarded Request
+
+Request forwarding is quite simple, the proxy receives a CRUD request that is passed through the server.
+The returning server response will take the path back to the original requester.
+Since the requester can be the proxy itself, there needs to be some kind of guard to prevent infinite recursive calls.
+If the requester is someone other than the proxy, the Data Privacy Cockpit middleware can be executed.
+In certain cases, it may be necessary to read and evaluate the server response, which can be done during a response interception step.
+
+.Sequence diagram of the request being forwarded by the proxy
+[.text-center]
+[plantuml,format=svg]
+....
+include::../../resources/diagrams/sd_Forwarded_request.puml[]
+....
+
+== DPC Middleware
+
+The Data Privacy Cockpit is a Solid application that requires a dedicated agent and client credentials.
+The agent must log in before any other actions can be executed.
+If successful, the container resources of the requested resource will be searched until the corresponding storage is found or no more container resources are left to search.
+If a storage is found, access logs will be created or updated.
+
+.Sequence diagram of the Data Privacy Cockpit middleware
+[.text-center]
+[plantuml,format=svg]
+....
+include::../../resources/diagrams/sd_DPC_middleware.puml[]
+....
+
+// TODO
+// == Authentication with Code Flow
+
+== Lookup Claim Data in Registry
+
+The process of retrieving claimed data follows the data discovery outlined in the Solid Application Interoperability specification.
+If the data does not already exist, it will be created.
+Finally, the registry data will be filtered from the set of data and returned.
+
+.Sequence diagram of the claim data lookup
+[.text-center]
+[plantuml,format=svg]
+....
+include::../../resources/diagrams/sd_Lookup_claim_data_in_registry.puml[]
+....
+
+== Create or Update Dataset
+
+The update of a dataset begins with a test to determine if the resource already exists on the server.
+If it does, it will be received as a dataset.
+Otherwise, a new dataset will be created.
+The dataset will be enriched with new data and stored on the server.
+
+.Sequence diagram of an access log resource update
+[.text-center]
+[plantuml,format=svg]
+....
+include::../../resources/diagrams/sd_Create_or_update_dataset.puml[]
+....
+
+== Initialize a Verification Code
+
+To initialize a verification code, start by generating a random key.
+The DPC API will store the verification code, storage, WebID, and additional data in a location accessible to the DPC agent for later verification.
+If the DPC API cannot access the client's storage, the process will terminate without adding data to the DPC storage.
+
+.Sequence diagram of initializing a verification code
+[.text-center]
+[plantuml,format=svg]
+....
+include::../../resources/diagrams/sd_Initialize_a_verification_code.puml[]
+....
+
+== Write Verification Code to Client Storage
+
+Writing the verification code consists of two steps.
+The first step is to write the verification code to the client's storage.
+Since the code must be read by the DPC agent, the second step is to grant read permissions for the agent.
+
+.Sequence diagram of writing a verification code to the clients' storage
+[.text-center]
+[plantuml,format=svg]
+....
+include::../../resources/diagrams/sd_Write_verification_code_to_client_storage.puml[]
+....
+
+== Write Verification Code to DPC Storage
+
+Before writing the verification code to the DPC storage, the agent must first verify their identity.
+After authorization, a new claim containing the verification code and associated storage will be added to the list of claims, along with the storage-related claims in the registry.
+
+.Sequence diagram of writing a verification code to the DPC storage
+[.text-center]
+[plantuml,format=svg]
+....
+include::../../resources/diagrams/sd_Write_verification_code_to_dpc_storage.puml[]
+....
+
+== Get Claimed Resource
+
+The process of obtaining a claimed resource will be managed by the DPC agent.
+The WebID from the active client session will be used to retrieve the claims from the registry, along with the storage and verification code for that claim.
+The DPC agent will then retrieve the verification code from the storage.
+If both verification codes match, the request will be forwarded by the DPC agent.
+
+.Sequence diagram of how to get a claimed resource
+[.text-center]
+[plantuml,format=svg]
+....
+include::../../resources/diagrams/sd_Get_claimed_resource.puml[]
+....

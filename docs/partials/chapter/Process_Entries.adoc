@@ -1,0 +1,44 @@
+= Process Entries
+
+There are three main behaviors that reflect interactions that can be executed directly or indirectly by the client: CRUD requests to a given resource, claiming log data, and discovering this data.
+The reference section defines subsequences that may be used in each of these interactions.
+
+== Authorised CRUD Requests
+
+The process of authorizing a request can be divided into two steps.
+Firstly, an authorization token will be requested using a Client Credentials Flow as defined in https://datatracker.ietf.org/doc/html/rfc6749#section-4.4[RFC 6749], although other authorization processes are also possible.
+Secondly, the CRUD request will be sent with an authorization header and the response will be provided accordingly.
+The key difference is that the request and response will be forwarded by the proxy instance.
+
+.Sequence diagram of an authorized CRUD request
+[.text-center]
+[plantuml,format=svg]
+....
+include::../../resources/diagrams/sd_Request_a_resource.puml[]
+....
+
+== Log Claiming
+
+Network logs are captured by storage, not by WebID, and it is necessary to associate the data with a WebID at some point to make it readable to the owner.
+This is done by a claiming mechanism.
+This requires a Solid application that has access to both the user storage and the DPC storage.
+Both connections are handled by the DPC API server, and when the connections are established, the API initializes an verification code on behalf of the client agent to be verified by the DPC API server when it discovers the logs.
+
+.Sequence diagram of the log claiming process
+[.text-center]
+[plantuml,format=svg]
+....
+include::../../resources/diagrams/sd_Log_claiming.puml[]
+....
+
+== Log Discovery
+
+The logs in the DPC API server are represented as routes.
+These routes will either return an empty turtle file or attempt to resolve the claim and receive the actual files from the claimed storages.
+
+.Sequence diagram of the discovery of logs
+[.text-center]
+[plantuml,format=svg]
+....
+include::../../resources/diagrams/sd_Log_discovery.puml[]
+....

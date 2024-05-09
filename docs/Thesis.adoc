@@ -109,19 +109,35 @@ include::partials/chapter/Performance_Efficiency.adoc[leveloffset=+2]
 
 = Design and Implementation
 
+[partintro]
+The Design and Implementation section provides a technical perspective on the prototype, which has been developed to validate the requirements and quality.
+The <<System Design>> illustrates the abstract concept of software, divided into its <<Logical Topology>>, <<Logical Data Model>>, and <<System Behavior>>.
+In contrast, the <<Technology>> section offers a more detailed examination of the dedicated software.
+
 == System Design
 
 === Logical Topology
 
-include::Topology.adoc[leveloffset=+2,tags=body]
+The logical topology describes the access, transport, addressing of protocols, and data paths.
+The following section illustrates the system components and their connections.
+
+include::partials/chapter/Component_Orchestration.adoc[leveloffset=+3]
 
 === Logical Data Model
 
-include::Model.adoc[leveloffset=+2,tags=body]
+include::partials/chapter/Entity-Relationship_Model.adoc[leveloffset=+3]
+
+include::partials/chapter/Information_Retrieval.adoc[leveloffset=+3]
+
+include::partials/chapter/Vocabulary.adoc[leveloffset=+3]
+
+include::partials/chapter/Serialized_Data_Model.adoc[leveloffset=+3]
 
 === System Behavior
 
-include::Behavior.adoc[leveloffset=+2,tags=body]
+include::partials/chapter/Process_Entries.adoc[leveloffset=+3]
+
+include::partials/chapter/Process_References.adoc[leveloffset=+3]
 
 == Technology
 
