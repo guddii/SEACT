@@ -78,7 +78,7 @@ This command builds and starts the application. If this was successful, the boot
 
 [source,bash]
 ----
-docker run -it --rm --name seact-bootstrap --network=seact -v "$PWD":/usr/src/app -w /usr/src/app node:20-alpine node ./scripts/bootstrap.js
+docker run -it --rm --name seact-bootstrap --network=seact -v "$PWD":/usr/src/app -w /usr/src/app node:22-alpine3.18 node ./scripts/bootstrap.js
 ----
 
 This command completes the missing environment variables in the .env file.
