@@ -1,5 +1,244 @@
 = Experiments
 
-- Explain Test-Environment
-- Parameter: Number of storages
-- Parameter: Number of ShapeTrees
+== Test Environment
+
+Prior to initiating experimentation, it is imperative to specify the test environment.
+All applications will be deployed on containerized nodes on the platform depicted in xref:lst-env[xrefstyle=short].
+
+.System Profile (`system_profiler SPSoftwareDataType SPHardwareDataType`)
+[source,id="lst-env",reftext="Listing {counter:listing}"]
+----
+Software:
+
+    System Software Overview:
+
+      System Version: macOS 12.7.4 (21H1123)
+      Kernel Version: Darwin 21.6.0
+      Boot Volume: Macintosh HD
+      [...]
+
+Hardware:
+
+    Hardware Overview:
+
+      Model Name: MacBook Pro
+      Model Identifier: MacBookPro13,2
+      Processor Name: Dual-Core Intel Core i7
+      Processor Speed: 3,3 GHz
+      Number of Processors: 1
+      Total Number of Cores: 2
+      L2 Cache (per Core): 256 KB
+      L3 Cache: 4 MB
+      Hyper-Threading Technology: Enabled
+      Memory: 16 GB
+      System Firmware Version: 526.0.0.0.0
+      OS Loader Version: 540.120.3~37
+      [...]
+
+----
+
+== Test Parameters
+
+It is important to note that the tested use case only considers <<Authorised CRUD Requests>>, which are designated as <<Process Entries>> for users and any type of agent.
+Consequently, the <<Log Claiming>> and <<Log Discovery>> functionality has not been subjected to a direct examination, as its performance is dependent on the application logic implemented and not on the underlying concept.
+It is essential to subject the parameters of the network APIs and the aspects of the Solid Ecosystem, which are defined by a set of options provided by the test executer, to exhaustive testing.
+All of these test parameters are summarized in a test matrix at the end of this section.
+
+=== Network and Storage Parameters
+
+The scenarios to be tested on this system will cover the <<CRUD>> operation on <<RDF>> resources, as these are the most common for <<ROA,ROAs>>.
+The resources will be tested with a claimed storage resource, activating the <<DPC>> middleware, and non-claimed storage, which will skip the logging process of the middleware.
+Furthermore, an additional scenario will be tested, in which the <<DPC>> middleware is disabled, and the mechanism of <<Forwarded Request,Forwarded Requests>> is utilized.
+The mechanism in question employs a randomized header hash, among other techniques, which is read during the request process in order to disable the <<DPC>> on self-calling.
+This is demonstrated in xref:lst-request-with-proxy-bypass-token[xrefstyle=short].
+
+.Request with Proxy Bypass Token
+[source,httprequest,id="lst-request-with-proxy-bypass-token",reftext="Listing {counter:listing}"]
+----
+GET http://example.tld/client/profile/card#me
+X-Proxy-Bypass-Token: af8649fb
+----
+
+A new environment variable has been introduced, which allows the automatic generation of the hash value to be bypassed and a static value to be used instead.
+This is demonstrated in xref:lst-proxy-bypass-token-env-var[xrefstyle=short].
+
+.Proxy Bypass Token Environment Variable
+[source,dotenv,id="lst-proxy-bypass-token-env-var",reftext="Listing {counter:listing}"]
+----
+PROXY_BYPASS_TOKEN="af8649fb"
+----
+
+=== Solid Ecosystem Parameters
+
+The Solid Protocol and Solid Application Interoperability permit two primary components to scale continuously within a running Solid Provider.
+These components are the number of storages maintained by the Solid Provider and the registered ShapeTrees.
+For the purpose of testing, the storage resources will have an additional number as a suffix.
+The number will be applied to client storages that exceed the initial one (`client` equal to `client1`), resulting in a client storage resource such as `http://example.tld/client42/`.
+When considering a test case where this client has a claimed storage resource, all client storages between the initial one and the current one are considered claimed as well.
+This is necessary to validate the edge cases with a large number of storages.
+The same logic will apply to the ShapeTrees.
+It is therefore necessary to register a greater number of ShapeTrees before the actual required ShapeTree appears in the register.
+
+=== Apache JMeter Parameters
+
+In order to perform the tests, version 5.6.3 of Apache JMeterfootnote:[https://jmeter.apache.org/] was utilized.
+According to citenp:[nevedrov_using_2006], JMeter has three relevant test parameters that are contained by a _thread group_: the _number of threads_, the _ramp-up time_, and the _loop count_.
+
+[horizontal]
+Number of Threads:: The number of threads, represents the number of user, using a web service.
+Ramp-up Period:: The time needed for the creation of the threads is defined by the the ramp-up period
+Loop Count:: The loop count defines the total number of threads to be executed during the test.
+
+In addition to the thread group, there are samplers, which are configurable requests to the server, such as HTTP requests.
+
+=== Test Parameters Matrix
+
+xref:tbl-test-parameters-matrix[xrefstyle=short] presents a summary of the configurable options to be tested for the <<Network and Storage Parameters>>, <<Solid Ecosystem Parameters>>, and <<Apache JMeter Parameters>>.
+
+.Test Parameters Matrix
+[cols="1,1,1,1,1,1,1,1,1,1,1,1,1",id="tbl-test-parameters-matrix"]
+|===
+.2+h| TC
+4+h| Network Parameters
+3+h| Storage Parameters
+2+h| Solid Ecosystem Parameters
+3+h| Apache JMeter Parameters
+
+h| C
+h| R
+h| U
+h| D
+h| Non-Claimed
+h| Claimed
+h| Disabled
+h| Storage Number
+h| ShapeTree Number
+h| Number of Threads
+h| Ramp-up Period
+h| Loop Count
+
+^.^| 1
+^.^| x
+^.^| x
+^.^| x
+^.^| x
+^.^| x
+^.^|
+^.^|
+.3+^.^| 1
+.3+^.^| 1
+.12+^.^| 100
+.12+^.^| 10s
+.12+^.^| 10000
+
+^.^| 2
+^.^| x
+^.^| x
+^.^| x
+^.^| x
+^.^|
+^.^| x
+^.^|
+
+^.^| 3
+^.^| x
+^.^| x
+^.^| x
+^.^| x
+^.^|
+^.^|
+^.^| x
+
+^.^| 4
+^.^| x
+^.^| x
+^.^| x
+^.^| x
+^.^| x
+^.^|
+^.^|
+.3+^.^| 100
+.3+^.^| 1
+
+^.^| 5
+^.^| x
+^.^| x
+^.^| x
+^.^| x
+^.^|
+^.^| x
+^.^|
+
+^.^| 6
+^.^| x
+^.^| x
+^.^| x
+^.^| x
+^.^|
+^.^|
+^.^| x
+
+^.^| 7
+^.^| x
+^.^| x
+^.^| x
+^.^| x
+^.^| x
+^.^|
+^.^|
+.3+^.^| 100
+.3+^.^| 100
+
+^.^| 8
+^.^| x
+^.^| x
+^.^| x
+^.^| x
+^.^|
+^.^| x
+^.^|
+
+^.^| 9
+^.^| x
+^.^| x
+^.^| x
+^.^| x
+^.^|
+^.^|
+^.^| x
+
+^.^| 10
+^.^| x
+^.^| x
+^.^| x
+^.^| x
+^.^| x
+^.^|
+^.^|
+.3+^.^| 1
+.3+^.^| 100
+
+^.^| 11
+^.^| x
+^.^| x
+^.^| x
+^.^| x
+^.^|
+^.^| x
+^.^|
+
+^.^| 12
+^.^| x
+^.^| x
+^.^| x
+^.^| x
+^.^|
+^.^|
+^.^| x
+
+|===
+
+The specific options to be tested are described in detail in the corresponding section, which is referenced in the first table header row.
+Additionally, TC is added as a table header to identify the individual test case.
+The second table header refers to the individual parameters that must be selected, as detailed in the aforementioned section.
+Each cell containing an `x` indicates that the corresponding parameter has been set or executed in the test case.

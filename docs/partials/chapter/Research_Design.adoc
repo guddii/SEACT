@@ -7,11 +7,11 @@ On the other hand, a quantitative analysis will quantify the expected increase i
 The identified analyses will be conducted using data and insights collected from an experimental prototype.
 The prototype must satisfy the specified requirements, which are derived from the problem definition.
 
-The sampling will consider the schema values listed in xref:tblSamplingSchema[xrefstyle=short].
+The sampling will consider the schema values listed in xref:tbl-sampling-schema[xrefstyle=short].
 In order to have comparable values, each sample will be taken with and without the considered approach.
 
 .Sampling Schema
-[cols="1,2,2",id="tblSamplingSchema"]
+[cols="1,2,2",id="tbl-sampling-schema"]
 |===
 |Item | Format | Example
 

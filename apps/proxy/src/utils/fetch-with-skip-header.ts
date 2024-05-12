@@ -2,7 +2,7 @@ import type http from "node:http";
 import type { Request } from "express";
 import { APPS } from "@seact/core";
 
-export const SKIP_REQ_HEADER_KEY = "X-Skip";
+export const SKIP_REQ_HEADER_KEY = "X-Proxy-Bypass-Token";
 export const SKIP_REQ_HEADER_VAL = APPS.PROXY.bypassToken;
 
 export const fetchWithSkipHeader: typeof fetch = async (input, init) => {
