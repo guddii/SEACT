@@ -26,9 +26,11 @@
     "@next/eslint-plugin-next": "^13.4.19",
     "@seact/eslint-config-custom": "workspace:*",
     "@seact/tsconfig": "workspace:*",
+    "@types/n3": "^1.16.4",
     "@types/node": "^20.12.2",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
+    "@types/uuid": "^9.0.8",
     "typescript": "^5.2.2"
   }
 }
