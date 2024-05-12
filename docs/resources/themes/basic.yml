@@ -1,13 +1,5 @@
 # https://docs.asciidoctor.org/pdf-converter/latest/theme/extends/
 extends: base
-# https://docs.asciidoctor.org/pdf-converter/latest/theme/font/
-font:
-  catalog:
-    Noto Serif:
-      normal: GEM_FONTS_DIR/notoserif-regular-subset.ttf
-      bold: GEM_FONTS_DIR/notoserif-bold-subset.ttf
-      italic: GEM_FONTS_DIR/notoserif-italic-subset.ttf
-      bold_italic: GEM_FONTS_DIR/notoserif-bold_italic-subset.ttf
 # https://docs.asciidoctor.org/pdf-converter/latest/theme/page/
 page:
   layout: portrait
@@ -19,10 +11,13 @@ page:
 # https://docs.asciidoctor.org/pdf-converter/latest/theme/base/
 base:
   font-color: #000000
-  font-family: Noto Serif
-  font-size: 10
-  line-height: 1.05
+  font-size: 12
+  line-height: 1.15
+  font-kerning: normal
   text-align: justify
+  hyphens: true
+abstract:
+  font-size: $base-font-size
 # https://docs.asciidoctor.org/pdf-converter/latest/theme/heading/
 heading:
   font-color: #262626
@@ -43,7 +38,7 @@ title-page:
     font-color: #333333
     margin-top: 13.125
   title:
-    line-height: 2
+    line-height: 1.15
   logo:
     image: image:HTWK_Zusatz_en_H_Black_sRGB.svg[pdfwidth=2.5in,align=center]
 # https://docs.asciidoctor.org/pdf-converter/latest/theme/running-content/#footer
@@ -68,9 +63,17 @@ header:
     right:
       content: ""
     left:
-      content: "{document-title}"
+      content: ""
   verso:
     right:
       content: "{part-title}"
     left:
       content: ""
+# https://docs.asciidoctor.org/pdf-converter/latest/theme/block-image/
+image:
+  align: center
+  caption:
+    text-align: center
+# https://docs.asciidoctor.org/pdf-converter/latest/theme/code/
+code:
+  font-size: 11
