@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { clientsAgents, dpcAgents } = require("./config");
 
 const ACCOUNT_URL = "http://proxy.localhost:4000/.account/";
 
@@ -52,10 +53,19 @@ const generateAgentWithCredentials = async ({ name }) => {
 
   const credential = await generateToken({ authorization }, agent);
 
+  console.log(`Client credentials for "${name}" have been generated`);
+
   return {
     ...agent,
     ...credential,
   };
+};
+
+const writeFeatureFlagToEnv = (flag, value) => {
+  const FLAG = flag.toUpperCase();
+  fs.appendFileSync(".env", `\n# Feature Flag: ${FLAG} (generated)\n`);
+  fs.appendFileSync(".env", `FEATURE_FLAG_${flag}="${value}"\n`);
+  console.log(`Feature Flag: ${FLAG} has been added to .env file`);
 };
 
 const writeAgentToEnv = (agents) => {
@@ -66,6 +76,9 @@ const writeAgentToEnv = (agents) => {
     fs.appendFileSync(".env", `${NAME}_STORAGE="${agent.storage}"\n`);
     fs.appendFileSync(".env", `${NAME}_ID="${agent.id}"\n`);
     fs.appendFileSync(".env", `${NAME}_SECRET="${agent.secret}"\n`);
+    console.log(
+      `Client credentials: ${agent.name} has been added to .env file`,
+    );
   }
 };
 
@@ -80,12 +93,25 @@ const writeAgentToPrivateHttpClientEnv = (agents) => {
     "tests/http/http-client.private.env.json",
     JSON.stringify({ dev }, null, 2),
   );
+  console.log(
+    `HTTPClient env has been written to "./tests/http/http-client.private.env.json"`,
+  );
 };
 
 (async () => {
-  const client = await generateAgentWithCredentials({ name: "client" });
-  const dpc = await generateAgentWithCredentials({ name: "dpc" });
+  const client = [];
+  for (const item of [...clientsAgents]) {
+    const result = await generateAgentWithCredentials(item);
+    client.push(result);
+  }
 
-  writeAgentToEnv([dpc]);
-  writeAgentToPrivateHttpClientEnv([client, dpc]);
+  const dpc = [];
+  for (const item of [...dpcAgents]) {
+    const result = await generateAgentWithCredentials(item);
+    dpc.push(result);
+  }
+
+  writeFeatureFlagToEnv("LOGGING", true);
+  writeAgentToEnv(dpc);
+  writeAgentToPrivateHttpClientEnv([...client, ...dpc]);
 })();
