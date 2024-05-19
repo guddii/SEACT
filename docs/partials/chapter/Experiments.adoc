@@ -96,18 +96,15 @@ In addition to the thread group, there are samplers, which are configurable requ
 xref:tbl-test-parameters-matrix[xrefstyle=short] presents a summary of the configurable options to be tested for the <<Network and Storage Parameters>>, <<Solid Ecosystem Parameters>>, and <<Apache JMeter Parameters>>.
 
 .Test Parameters Matrix
-[cols="1,1,1,1,1,1,1,1,1,1,1,1,1",id="tbl-test-parameters-matrix"]
+[cols="1,1,1,1,1,1,1,1,1,1",id="tbl-test-parameters-matrix"]
 |===
 .2+h| TC
-4+h| Network Parameters
+.2+h| Network Parameters
 3+h| Storage Parameters
 2+h| Solid Ecosystem Parameters
 3+h| Apache JMeter Parameters
 
-h| C
-h| R
-h| U
-h| D
+
 h| Non-Claimed
 h| Claimed
 h| Disabled
@@ -118,10 +115,7 @@ h| Ramp-up Period
 h| Loop Count
 
 ^.^| 1
-^.^| x
-^.^| x
-^.^| x
-^.^| x
+.3+^.^| C~0~C~1~C~2~U~0~R~0~C~3~R~2~R~0~C~4~D~4~C~4~U~4~R~3~R~0~U~1~R~3~R~0~R~0~R~3~R~4~R~4~
 ^.^| x
 ^.^|
 ^.^|
@@ -132,28 +126,17 @@ h| Loop Count
 .12+^.^| 10000
 
 ^.^| 2
-^.^| x
-^.^| x
-^.^| x
-^.^| x
 ^.^|
 ^.^| x
 ^.^|
 
 ^.^| 3
-^.^| x
-^.^| x
-^.^| x
-^.^| x
 ^.^|
 ^.^|
 ^.^| x
 
 ^.^| 4
-^.^| x
-^.^| x
-^.^| x
-^.^| x
+.3+^.^| C~0~R~0~U~0~R~0~R~0~U~0~U~0~R~0~R~0~R~0~R~0~R~0~C~1~D~0~D~1~
 ^.^| x
 ^.^|
 ^.^|
@@ -161,28 +144,17 @@ h| Loop Count
 .3+^.^| 1
 
 ^.^| 5
-^.^| x
-^.^| x
-^.^| x
-^.^| x
 ^.^|
 ^.^| x
 ^.^|
 
 ^.^| 6
-^.^| x
-^.^| x
-^.^| x
-^.^| x
 ^.^|
 ^.^|
 ^.^| x
 
 ^.^| 7
-^.^| x
-^.^| x
-^.^| x
-^.^| x
+.3+^.^| C~0~R~0~R~0~R~0~R~0~U~0~R~0~C~1~R~0~R~0~R~1~R~0~U~1~U~1~C~2~D~2~R~1~R~0~R~0~R~0~R~0~
 ^.^| x
 ^.^|
 ^.^|
@@ -190,28 +162,17 @@ h| Loop Count
 .3+^.^| 100
 
 ^.^| 8
-^.^| x
-^.^| x
-^.^| x
-^.^| x
 ^.^|
 ^.^| x
 ^.^|
 
 ^.^| 9
-^.^| x
-^.^| x
-^.^| x
-^.^| x
 ^.^|
 ^.^|
 ^.^| x
 
 ^.^| 10
-^.^| x
-^.^| x
-^.^| x
-^.^| x
+.3+^.^| C~0~R~0~C~1~R~0~R~0~C~2~R~1~U~1~R~2~R~1~R~1~R~2~U~1~R~0~R~0~R~0~R~0~U~2~R~2~R~2~R~1~
 ^.^| x
 ^.^|
 ^.^|
@@ -219,19 +180,11 @@ h| Loop Count
 .3+^.^| 100
 
 ^.^| 11
-^.^| x
-^.^| x
-^.^| x
-^.^| x
 ^.^|
 ^.^| x
 ^.^|
 
 ^.^| 12
-^.^| x
-^.^| x
-^.^| x
-^.^| x
 ^.^|
 ^.^|
 ^.^| x
