@@ -98,96 +98,91 @@ xref:tbl-test-parameters-matrix[xrefstyle=short] presents a summary of the confi
 .Test Parameters Matrix
 [cols="1,1,1,1,1,1,1,1,1,1",id="tbl-test-parameters-matrix"]
 |===
-.2+h| TC
-.2+h| Network Parameters
-3+h| Storage Parameters
+.2+h| ID
+3+h| Network Parameters
+.2+h| Storage Parameters
 2+h| Solid Ecosystem Parameters
 3+h| Apache JMeter Parameters
 
-
-h| Non-Claimed
-h| Claimed
-h| Disabled
+h| CRUD Sequence
+h| Run Mode
+h| Depth
 h| Storage Number
 h| ShapeTree Number
 h| Number of Threads
 h| Ramp-up Period
 h| Loop Count
 
-^.^| 1
-.3+^.^| C~0~C~1~C~2~U~0~R~0~C~3~R~2~R~0~C~4~D~4~C~4~U~4~R~3~R~0~U~1~R~3~R~0~R~0~R~3~R~4~R~4~
-^.^| x
-^.^|
-^.^|
-.3+^.^| 1
-.3+^.^| 1
+^.^| TP1-N-`n`-`m`
+.3+^.^| C~0~ R~0~ U~0~ R~0~ R~0~ R~0~ R~0~ R~0~ D~0~ C~1~ U~1~ R~1~
+.12+^.^| Seq.
+.12+^.^| 0
+^.^| Non-Claimed
+.12+^.^| `n`
+.12+^.^| `m`
 .12+^.^| 100
-.12+^.^| 10s
+.12+^.^| 1s
 .12+^.^| 10000
 
-^.^| 2
-^.^|
-^.^| x
-^.^|
+^.^| TP1-C-`n`-`m`
+^.^| Claimed
 
-^.^| 3
-^.^|
-^.^|
-^.^| x
+^.^| TP1-D-`n`-`m`
+^.^| Disabled
 
-^.^| 4
-.3+^.^| C~0~R~0~U~0~R~0~R~0~U~0~U~0~R~0~R~0~R~0~R~0~R~0~C~1~D~0~D~1~
-^.^| x
-^.^|
-^.^|
-.3+^.^| 100
-.3+^.^| 1
+^.^| TP2-N-`n`-`m`
+.3+^.^| C~0~ C~1~ R~0~ R~1~ R~0~ R~0~ R~1~ U~1~ R~1~ R~0~ R~0~ R~0~ U~1~ R~1~ R~1~ R~1~ R~1~ C~2~ R~2~ R~2~ R~2~
+^.^| Non-Claimed
 
-^.^| 5
-^.^|
-^.^| x
-^.^|
+^.^| TP2-C-`n`-`m`
+^.^| Claimed
 
-^.^| 6
-^.^|
-^.^|
-^.^| x
+^.^| TP2-D-`n`-`m`
+^.^| Disabled
 
-^.^| 7
-.3+^.^| C~0~R~0~R~0~R~0~R~0~U~0~R~0~C~1~R~0~R~0~R~1~R~0~U~1~U~1~C~2~D~2~R~1~R~0~R~0~R~0~R~0~
-^.^| x
-^.^|
-^.^|
-.3+^.^| 100
-.3+^.^| 100
+^.^| TP3-N-`n`-`m`
+.3+^.^| C~0~ D~0~ C~1~ U~1~ R~1~ R~1~ C~0~ R~0~ R~1~ R~1~ U~1~ U~0~ R~1~ R~1~ R~0~ U~0~ R~1~
+^.^| Non-Claimed
 
-^.^| 8
-^.^|
-^.^| x
-^.^|
+^.^| TP3-C-`n`-`m`
+^.^| Claimed
 
-^.^| 9
-^.^|
-^.^|
-^.^| x
+^.^| TPD-N-`n`-`m`
+^.^| Disabled
 
-^.^| 10
-.3+^.^| C~0~R~0~C~1~R~0~R~0~C~2~R~1~U~1~R~2~R~1~R~1~R~2~U~1~R~0~R~0~R~0~R~0~U~2~R~2~R~2~R~1~
-^.^| x
-^.^|
-^.^|
-.3+^.^| 1
-.3+^.^| 100
+^.^| TP4-N-`n`-`m`
+.3+^.^| C~0~ R~0~ U~0~ R~0~ R~0~ R~0~ R~0~ D~0~ C~1~ D~1~
+^.^| Non-Claimed
 
-^.^| 11
-^.^|
-^.^| x
-^.^|
+^.^| TP4-C-`n`-`m`
+^.^| Claimed
 
-^.^| 12
-^.^|
-^.^|
-^.^| x
+^.^| TP4-D-`n`-`m`
+^.^| Disabled
+
+10+^.^h| Edge Cases
+
+^.^| TPE1-C-`n`-`m`
+^.^| C~0~
+^.^| Seq.
+^.^| 994
+^.^| Claimed
+^.^| `n`
+^.^| `m`
+^.^| 100
+^.^| 1s
+^.^| 10000
+
+^.^| TPE2-C-`n`-`m`
+^.^| C~0~ U~0~ U~0~ U~0~ U~0~ U~0~ U~0~ U~0~ U~0~
+^.^| Par.
+^.^| 0
+^.^| Claimed
+^.^| `n`
+^.^| `m`
+^.^| 100
+^.^| 1s
+^.^| 10000
 
 |===
 
