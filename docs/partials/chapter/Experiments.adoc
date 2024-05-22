@@ -72,8 +72,8 @@ PROXY_BYPASS_TOKEN="af8649fb"
 
 The Solid Protocol and Solid Application Interoperability permit two primary components to scale continuously within a running Solid Provider.
 These components are the number of storages maintained by the Solid Provider and the registered ShapeTrees.
-For the purpose of testing, the storage resources will have an additional number as a suffix.
-The number will be applied to client storages that exceed the initial one (`client` equal to `client1`), resulting in a client storage resource such as `http://example.tld/client42/`.
+For the purpose of testing, the client storage resources will have an additional number.
+The number will be applied to client storages (e. g. `client42`), resulting in a client storage resource such as `http://example.tld/client42/`.
 When considering a test case where this client has a claimed storage resource, all client storages between the initial one and the current one are considered claimed as well.
 This is necessary to validate the edge cases with a large number of storages.
 The same logic will apply to the ShapeTrees.

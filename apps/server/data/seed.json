@@ -18,6 +18,15 @@
     ]
   },
   {
+    "email": "client1@example.com",
+    "password": "secret!",
+    "pods": [
+      {
+        "name": "client1"
+      }
+    ]
+  },
+  {
     "email": "client2@example.com",
     "password": "secret!",
     "pods": [
