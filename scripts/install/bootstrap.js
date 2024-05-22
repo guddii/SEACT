@@ -112,6 +112,6 @@ const writeAgentToPrivateHttpClientEnv = (agents) => {
   }
 
   writeFeatureFlagToEnv("LOGGING", true);
-  writeAgentToEnv(dpc);
+  writeAgentToEnv([...client, ...dpc]);
   writeAgentToPrivateHttpClientEnv([...client, ...dpc]);
 })();
