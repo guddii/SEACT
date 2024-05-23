@@ -31,16 +31,6 @@ jobs:
         run: |
           mkdir out
         shell: bash
-      - name: Rename README to index
-        run: |
-          mv ./docs/README.adoc ./docs/index.adoc
-        shell: bash
-      #  Build Asciidoc
-      - name: Build HTML
-        id: build-html
-        uses: tonynv/asciidoctor-action@master
-        with:
-          program: "./scripts/docs/research/html.sh"
       # Build JMeter Reports
       - name: setup-jmeter
         run: |
@@ -61,8 +51,19 @@ jobs:
             out=${source_file_filename_no_ext##*/}
             mkdir ./out/${out}
             $GITHUB_WORKSPACE/apache-jmeter-5.3/bin/./jmeter.sh -g $source_file -o ./out/${out}
+            echo "${out},https://www.guddii.de/SEACT/${out}/" >> ./docs/reports.csv
           done
         shell: bash
+      #  Build Asciidoc
+      - name: Rename README to index
+        run: |
+          mv ./docs/README.adoc ./docs/index.adoc
+        shell: bash
+      - name: Build HTML
+        id: build-html
+        uses: tonynv/asciidoctor-action@master
+        with:
+          program: "./scripts/docs/research/html.sh"
       # Deploy Pages
       - name: Setup Pages
         uses: actions/configure-pages@v3
