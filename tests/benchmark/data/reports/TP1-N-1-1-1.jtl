@@ -1,0 +1,13 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1716484717357,1532,Created 0,201,Created,Thread Group 1-1,,true,,494,903,1,1,http://proxy.localhost:4000/client100/run1716484713262_thread1_loop1_resource0,1524,0,36
+1716484718892,671,Read 0,200,OK,Thread Group 1-1,text,true,,1064,903,1,1,http://proxy.localhost:4000/client100/run1716484713262_thread1_loop1_resource0,671,0,2
+1716484719565,641,Updated 0,205,Reset Content,Thread Group 1-1,,true,,410,903,1,1,http://proxy.localhost:4000/client100/run1716484713262_thread1_loop1_resource0,0,0,1
+1716484720207,657,Read 0,200,OK,Thread Group 1-1,text,true,,1064,903,1,1,http://proxy.localhost:4000/client100/run1716484713262_thread1_loop1_resource0,657,0,1
+1716484720865,629,Read 0,200,OK,Thread Group 1-1,text,true,,1064,903,1,1,http://proxy.localhost:4000/client100/run1716484713262_thread1_loop1_resource0,629,0,0
+1716484721495,870,Read 0,200,OK,Thread Group 1-1,text,true,,1064,903,1,1,http://proxy.localhost:4000/client100/run1716484713262_thread1_loop1_resource0,869,0,1
+1716484722366,1051,Read 0,200,OK,Thread Group 1-1,text,true,,1064,903,1,1,http://proxy.localhost:4000/client100/run1716484713262_thread1_loop1_resource0,1051,0,1
+1716484723418,930,Read 0,200,OK,Thread Group 1-1,text,true,,1064,903,1,1,http://proxy.localhost:4000/client100/run1716484713262_thread1_loop1_resource0,930,0,2
+1716484724349,733,Deleted 0,205,Reset Content,Thread Group 1-1,,true,,410,906,1,1,http://proxy.localhost:4000/client100/run1716484713262_thread1_loop1_resource0,0,0,1
+1716484725083,971,Created 1,201,Created,Thread Group 1-1,,true,,494,903,1,1,http://proxy.localhost:4000/client100/run1716484713262_thread1_loop1_resource1,971,0,1
+1716484726054,910,Updated 1,205,Reset Content,Thread Group 1-1,,true,,410,903,1,1,http://proxy.localhost:4000/client100/run1716484713262_thread1_loop1_resource1,0,0,2
+1716484726965,1107,Read 1,200,OK,Thread Group 1-1,text,true,,1064,903,1,1,http://proxy.localhost:4000/client100/run1716484713262_thread1_loop1_resource1,1107,0,1
