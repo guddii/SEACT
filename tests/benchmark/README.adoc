@@ -22,28 +22,28 @@ turbo run build --filter=@seact/benchmark
 Please use a probabilistic sequence of CRUD requests, which will be executed on the data privacy cockpit middleware instance.
 Alternatively, you may generate your own sequence:
 
-[source]
+[source,bash]
 ----
 node ./tests/benchmark/dist/index.js generate sequence | tee ./tests/benchmark/data/models/TP1.json
 ----
 
 The sequence can be processed for viewing in Asciidoc documents...
 
-[source]
+[source,bash]
 ----
-cat ./tests/benchmark/data/models/TP2.json | node ./tests/benchmark/dist/index.js generate adoc
+cat ./tests/benchmark/data/models/TP1.json | node ./tests/benchmark/dist/index.js generate adoc
 ----
 
 ...or used for the generation of JMeter test plans.
 
-[source]
+[source,bash]
 ----
 cat ./tests/benchmark/data/models/TP1.json | node ./tests/benchmark/dist/index.js generate testplan | tee ./tests/benchmark/data/plans/TP1.jmx
 ----
 
 This test plan can now be run using the following command:
 
-[source]
+[source,bash]
 ----
 pnpm run benchmark
 ----

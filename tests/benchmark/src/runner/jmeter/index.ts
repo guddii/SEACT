@@ -45,6 +45,7 @@ interface RunEachJTLOptions {
   t: string;
   l: string;
   clients: GetAccessTokenResponse[];
+  ncb: "N" | "C" | "B";
   r: number;
 }
 
@@ -56,15 +57,21 @@ function runEachJTL(options: RunEachJTLOptions): Promise<void> {
       `-J${client.name}Name=${client.name}`,
     ]);
 
+    const bypassArgs = [];
+    if (options.ncb.includes("B")) {
+      bypassArgs.push(`-JproxyBypassToken=${process.env.PROXY_BYPASS_TOKEN}`);
+    }
+
     const jmeterArgs = [
       `-Jthreads=${options.r}`,
-      `-Jloops=1`,
+      `-Jloops=100`,
       "-n",
       "-t",
       options.t,
       "-l",
       options.l,
       `-JrunId=${options.runId}`,
+      ...bypassArgs,
       ...jmeterClientCredentialArgs,
     ].flat();
 
@@ -113,7 +120,7 @@ export async function runJmeter(): Promise<void> {
 
   interface ForEachTestPlanOptions {
     file: string;
-    ncd: string;
+    ncb: "N" | "C" | "B";
     p: number;
     q: number;
     r: number;
@@ -130,7 +137,7 @@ export async function runJmeter(): Promise<void> {
     });
 
     const parsedPath = path.parse(t);
-    const testId = `${parsedPath.name}-${options.ncd}-${options.p}-${options.q}-${options.r}`;
+    const testId = `${parsedPath.name}-${options.ncb}-${options.p}-${options.q}-${options.r}`;
 
     const l = path.format({
       root: path.join(parsedPath.dir, "../reports/"),
@@ -147,22 +154,23 @@ export async function runJmeter(): Promise<void> {
       clients,
       t,
       l,
+      ncb: options.ncb,
       r: options.r,
     });
   }
 
-  const storageParameters = ["N"];
-  const storageNumbers = [1, 20, 40, 60];
-  const shapeTreeNumbers = [1, 20, 40, 60];
-  const numberOfThreads = [1, 20, 40, 60];
+  const storageParameters: ("N" | "C" | "B")[] = ["N", "B"];
+  const storageNumbers = [1];
+  const shapeTreeNumbers = [1];
+  const numberOfThreads = [1];
 
   for (const file of files) {
-    for (const ncd of storageParameters) {
+    for (const ncb of storageParameters) {
       for (const p of storageNumbers) {
         for (const q of shapeTreeNumbers) {
           for (const r of numberOfThreads) {
             // eslint-disable-next-line no-await-in-loop -- Enforce sequential runs
-            await forEachTestPlan({ file, ncd, p, q, r });
+            await forEachTestPlan({ file, ncb, p, q, r });
           }
         }
       }

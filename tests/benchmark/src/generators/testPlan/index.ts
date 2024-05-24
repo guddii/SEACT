@@ -121,6 +121,10 @@ export function toHTTPSamplerProxy(sequence: Sequence[]): string {
                 <stringProp name="Header.name">Content-Type</stringProp>
                 <stringProp name="Header.value">\${contentType}</stringProp>
               </elementProp>
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">X-Proxy-Bypass-Token</stringProp>
+                <stringProp name="Header.value">\${__P(proxyBypassToken)}</stringProp>
+              </elementProp>
             </collectionProp>
           </HeaderManager>
           <hashTree/>
