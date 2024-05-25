@@ -125,6 +125,17 @@
           }
         }
       }
+    },
+    {
+      "comment": "The new expiration time for inactive locks, in milliseconds.",
+      "@type": "Override",
+      "overrideInstance": {
+        "@id": "urn:solid-server:default:ResourceLocker"
+      },
+      "overrideParameters": {
+        "@type": "WrappedExpiringReadWriteLocker",
+        "expiration": 86400
+      }
     }
   ]
 }
