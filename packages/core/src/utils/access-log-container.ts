@@ -12,6 +12,7 @@ import type { AccessLogNamespace } from "../namepace/access-log.ts";
 import { INTEROP } from "../vocab/interop.ts";
 import { VOCAB } from "../vocab";
 import { createUrl, toUrlString, updateUrl } from "./url-helper.ts";
+import { createContainerMeta } from "./meta.ts";
 
 export const generateRegisteredShapeTree = (
   accessLogNamespace: AccessLogNamespace,
@@ -30,19 +31,15 @@ export const createAccessLogContainerMeta = async (
   const date = new Date().toISOString();
   const socialAgent = toUrlString(updateUrl("#id", AGENTS.DPC.webId));
 
-  return options.fetch(`${subject}.meta`, {
-    headers: {
-      "Content-Type": "application/sparql-update",
-    },
-    method: "PATCH",
-    body: [
-      `INSERT DATA { <${subject}> a <${INTEROP.DataRegistration}> }`,
-      `INSERT DATA { <${subject}> <${INTEROP.registeredBy}> <${socialAgent}> }`,
-      `INSERT DATA { <${subject}> <${INTEROP.registeredAt}> "${date}"^^<${XSD.dateTime}> }`,
-      // `INSERT DATA { <${subject}> <${INTEROP.updatedAt}> "${date}"^^<${XSD.dateTime}> }`,
-      `INSERT DATA { <${subject}> <${INTEROP.registeredShapeTree}> <${generateRegisteredShapeTree(accessLogNamespace)}> }`,
-    ].join(";"),
-  });
+  const body = [
+    `INSERT DATA { <${subject}> a <${INTEROP.DataRegistration}> }`,
+    `INSERT DATA { <${subject}> <${INTEROP.registeredBy}> <${socialAgent}> }`,
+    `INSERT DATA { <${subject}> <${INTEROP.registeredAt}> "${date}"^^<${XSD.dateTime}> }`,
+    // `INSERT DATA { <${subject}> <${INTEROP.updatedAt}> "${date}"^^<${XSD.dateTime}> }`,
+    `INSERT DATA { <${subject}> <${INTEROP.registeredShapeTree}> <${generateRegisteredShapeTree(accessLogNamespace)}> }`,
+  ];
+
+  return createContainerMeta(subject, body, options);
 };
 
 export const createAccessLogContainer = async (
