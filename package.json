@@ -11,6 +11,7 @@
     "lint": "turbo lint",
     "test": "dotenv -- turbo test",
     "typecheck": "turbo typecheck",
+    "docs:reports:html": "./scripts/docs/reports/html.sh",
     "docs:research:html": "./scripts/docs/with-docker.sh ./scripts/docs/research/html.sh",
     "docs:research:pdf": "./scripts/docs/with-docker.sh ./scripts/docs/research/pdf.sh",
     "docs:slides:html": "./scripts/docs/with-docker.sh ./scripts/docs/slides/html.sh",
