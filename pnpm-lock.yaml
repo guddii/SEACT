@@ -352,9 +352,6 @@ importers:
 
   tests/benchmark:
     dependencies:
-      '@inrupt/solid-client-authn-core':
-        specifier: ^2.0.0
-        version: 2.0.0
       '@seact/core':
         specifier: workspace:*
         version: link:../../packages/core
