@@ -1,0 +1,31 @@
+@prefix interop: <http://www.w3.org/ns/solid/interop#>.
+@prefix claim:   <urn:claim#>.
+
+<#ec7dae2e>
+    a                          claim:Registry, interop:DataRegistry ;
+    claim:trustee              <http://proxy.localhost:4000/client1/profile/card#me> ;
+    claim:monitoredStorage     <http://proxy.localhost:4000/client1/>, <http://proxy.localhost:4000/client1/> ;
+    claim:verificationResource <http://proxy.localhost:4000/client1/dpc#verification> ;
+    claim:verificationCode     "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData          <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/> ;
+    interop:hasDataRegistration
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/d960a5c0-394b-48a2-896a-e12ab3314f48/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/f4635f41-750e-472a-be03-9f7a5243ae01/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/8f058d42-555b-413c-a19f-93c47dd5b3d1/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/0a607739-33d9-49d0-a58e-05f71ec8c56a/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/142dba24-9838-48d4-bda3-66000b90f81a/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/0a3a8a52-99fa-474c-9596-1b453a7f5879/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/a84c429a-2c0e-43f7-8f73-b7da9b8ed7b4/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/c87cc3d9-b0c6-4cbe-b4a8-2b1af864f1c8/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/8ba905aa-0fa0-41db-82ee-eed19997f8cd/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/f33a5fac-41a3-40e5-84bf-82273fe14db3/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/d2351dfe-be64-43d8-b9a0-cd12d5c72623/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/22992c2b-f584-4b96-a302-9737d851d048/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/a31fe299-b86e-4727-8781-7483f38197a0/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/c643e2cf-582c-4d6a-812e-e52a8b642443/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/176c0854-3238-49cf-a46b-e1d48d97e094/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/dd66e340-9a8e-4c14-860e-083dc37a41d5/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/105ca7be-094c-4a08-bcfe-7f6c270d4e3d/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/65d6c3f6-8508-475c-b559-540b2f780592/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/a1720bf9-09f0-48af-8ef8-ae842f3d09bc/>,
+                               <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/AccessLog/> .

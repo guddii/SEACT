@@ -4,7 +4,7 @@ import type { Sequence } from "./generators/sequence";
 import { generateProbabilisticCrudSequence } from "./generators/sequence";
 import { toAsciidoc } from "./generators/adoc";
 import { toTestPlan } from "./generators/testPlan";
-import { runJmeter } from "./runner/jmeter";
+import { runJmeter, runPrepareJmeter } from "./runner/jmeter";
 
 function parseTP(tp: string): Sequence[] {
   return JSON.parse(tp) as Sequence[];
@@ -51,6 +51,10 @@ function generate(argv: string[]): void {
 async function run(argv: string[]): Promise<void> {
   const arg = argv[3].toLocaleLowerCase();
   switch (arg) {
+    case "prepare-jmeter": {
+      await runPrepareJmeter();
+      break;
+    }
     case "jmeter": {
       await runJmeter();
       break;

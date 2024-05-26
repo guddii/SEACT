@@ -1,113 +1,28 @@
 import console from "node:console";
-import { spawn } from "node:child_process";
 import * as process from "node:process";
 import path from "node:path";
 import fs from "node:fs/promises";
+import type { GetAccessTokenResponse } from "../../utils/get-access-token.ts";
+import { getAccessToken } from "../../utils/get-access-token.ts";
+import { generateAgents } from "../../utils/generate-agents.ts";
+import { updateSolidEco } from "../../utils/update-solid-eco.ts";
+import { runJTL } from "./run-jtl.ts";
 
-interface OidcToken {
-  access_token: string;
-  token_type: string;
-  expires_in: number;
-}
+const storageParameters: ("N" | "C" | "B")[] = ["N", "B"];
+const storageNumbers = [1, 10, 20, 30, 50, 80];
+const shapeTreeNumbers = [1, 10, 20, 30, 50, 80];
+const numberOfThreads = [1, 10, 20, 30, 50, 80];
 
-interface GetAccessTokenResponse extends OidcToken {
-  name: string;
-}
-
-async function getAccessToken(
-  name: string | undefined,
-  id: string | undefined,
-  secret: string | undefined,
-): Promise<GetAccessTokenResponse> {
-  if (!name || !id || !secret) {
-    throw new Error("Credentials missing");
-  }
-
-  const authString = `${encodeURIComponent(id)}:${encodeURIComponent(secret)}`;
-
-  const tokenUrl = "http://proxy.localhost:4000/.oidc/token";
-  const response = await fetch(tokenUrl, {
-    method: "POST",
-    headers: {
-      Authorization: `Basic ${Buffer.from(authString).toString("base64")}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: "grant_type=client_credentials&scope=webid",
-  });
-
-  const json = (await response.json()) as OidcToken;
-
-  return { ...json, name };
-}
-
-interface RunEachJTLOptions {
-  runId: number;
-  t: string;
-  l: string;
-  clients: GetAccessTokenResponse[];
+export interface ForEachTestPlanOptions {
+  file: string;
   ncb: "N" | "C" | "B";
+  p: number;
+  q: number;
   r: number;
 }
 
-function runEachJTL(options: RunEachJTLOptions): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const jmeterClientCredentialArgs = options.clients.map((client) => [
-      `-J${client.name}AccessToken=${client.access_token}`,
-      `-J${client.name}TokenType=${client.token_type}`,
-      `-J${client.name}Name=${client.name}`,
-    ]);
-
-    const bypassArgs = [];
-    if (options.ncb.includes("B")) {
-      bypassArgs.push(`-JproxyBypassToken=${process.env.PROXY_BYPASS_TOKEN}`);
-    }
-
-    const jmeterArgs = [
-      `-Jthreads=${options.r}`,
-      `-Jloops=100`,
-      "-n",
-      "-t",
-      options.t,
-      "-l",
-      options.l,
-      `-JrunId=${options.runId}`,
-      ...bypassArgs,
-      ...jmeterClientCredentialArgs,
-    ].flat();
-
-    const jmeter = spawn("jmeter", jmeterArgs);
-
-    jmeter.stdout.on("data", (data) => {
-      console.log(`${data}`);
-    });
-
-    jmeter.on("close", (code) => {
-      resolve();
-      console.log(`child process close all stdio with code ${code}`);
-    });
-
-    jmeter.on("exit", (code) => {
-      console.log(`child process exited with code ${code}`);
-    });
-
-    jmeter.on("error", (err) => {
-      reject(err);
-    });
-  });
-}
-
-const generateAgents = (name: string, amountOfAgents = 1): string[] => {
-  return Array.from({ length: amountOfAgents }, (_, index) => {
-    const patchedIndex = index + 1;
-    return `${name}${patchedIndex}`;
-  });
-};
-
-export async function runJmeter(): Promise<void> {
-  const testFolder = path.join(process.cwd(), "./tests/benchmark/data/plans/");
-  const files = await fs.readdir(testFolder);
-
-  const clients = await Promise.all(
+async function getClients(): Promise<GetAccessTokenResponse[]> {
+  return Promise.all(
     generateAgents("client", 100).map((client) => {
       const CLIENT_N = client.toUpperCase();
       return getAccessToken(
@@ -117,14 +32,12 @@ export async function runJmeter(): Promise<void> {
       );
     }),
   );
+}
 
-  interface ForEachTestPlanOptions {
-    file: string;
-    ncb: "N" | "C" | "B";
-    p: number;
-    q: number;
-    r: number;
-  }
+export async function runJmeter(): Promise<void> {
+  const testFolder = path.join(process.cwd(), "./tests/benchmark/data/plans/");
+  const files = await fs.readdir(testFolder);
+  const clients = await getClients();
 
   async function forEachTestPlan(
     options: ForEachTestPlanOptions,
@@ -149,7 +62,7 @@ export async function runJmeter(): Promise<void> {
     console.log(`Run ${testId}`);
     console.log(`------------------------------------------------------------`);
 
-    await runEachJTL({
+    await runJTL({
       runId,
       clients,
       t,
@@ -159,21 +72,26 @@ export async function runJmeter(): Promise<void> {
     });
   }
 
-  const storageParameters: ("N" | "C" | "B")[] = ["N", "B"];
-  const storageNumbers = [1];
-  const shapeTreeNumbers = [1];
-  const numberOfThreads = [1];
-
   for (const file of files) {
     for (const ncb of storageParameters) {
       for (const p of storageNumbers) {
         for (const q of shapeTreeNumbers) {
           for (const r of numberOfThreads) {
-            // eslint-disable-next-line no-await-in-loop -- Enforce sequential runs
             await forEachTestPlan({ file, ncb, p, q, r });
           }
         }
       }
     }
   }
+}
+
+export async function runPrepareJmeter(): Promise<void> {
+  const clients = await getClients();
+  const dpc = await getAccessToken(
+    "dpc",
+    process.env.DPC_ID,
+    process.env.DPC_SECRET,
+  );
+
+  await updateSolidEco({ storageNumbers, shapeTreeNumbers, clients, dpc });
 }

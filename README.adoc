@@ -53,7 +53,7 @@ To add the missing environment variables, you can start the application for the 
 pnpm run dev
 ----
 
-Execute the bootstrapping script while the application is running:
+Wait until the seeding of the https://communitysolidserver.github.io/CommunitySolidServer/latest/usage/seeding-pods/[Community Solid Server] is finished and execute the bootstrapping script while the application is running:
 
 [source,bash]
 ----
@@ -74,7 +74,8 @@ docker network create seact
 docker compose up --build
 ----
 
-This command builds and starts the application. If this was successful, the bootstrapping can be executed:
+This command builds and starts the application.
+If this was successful, wait until the seeding of the https://communitysolidserver.github.io/CommunitySolidServer/latest/usage/seeding-pods/[Community Solid Server] is finished, and execute the bootstrapping script:
 
 [source,bash]
 ----
@@ -83,7 +84,6 @@ docker run -it --rm --name seact-bootstrap --network=seact -v "$PWD":/usr/src/ap
 
 This command completes the missing environment variables in the .env file.
 The application must be restarted for the environment variables to be loaded.
-
 
 == Usage
 
@@ -107,8 +107,8 @@ The following users are available in development mode:
 |===
 |name |email |password
 
-|client
-|client@example.com
+|client[1...100]
+|client[1...100]@example.com
 |secret!
 
 |dpc

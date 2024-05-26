@@ -1,0 +1,11 @@
+@prefix foaf:  <http://xmlns.com/foaf/0.1/>.
+@prefix solid: <http://www.w3.org/ns/solid/terms#>.
+
+<>
+    a                 foaf:PersonalProfileDocument ;
+    foaf:maker        <http://proxy.localhost:4000/client54/profile/card#me> ;
+    foaf:primaryTopic <http://proxy.localhost:4000/client54/profile/card#me> .
+
+<http://proxy.localhost:4000/client54/profile/card#me>
+    solid:oidcIssuer <http://proxy.localhost:4000/> ;
+    a                foaf:Person .

@@ -15,7 +15,8 @@
     "docs:research:html": "./scripts/docs/with-docker.sh ./scripts/docs/research/html.sh",
     "docs:research:pdf": "./scripts/docs/with-docker.sh ./scripts/docs/research/pdf.sh",
     "docs:slides:html": "./scripts/docs/with-docker.sh ./scripts/docs/slides/html.sh",
-    "benchmark": "dotenv -- node ./tests/benchmark/dist/index.js run jmeter"
+    "benchmark": "dotenv -- node ./tests/benchmark/dist/index.js run jmeter",
+    "prepare:benchmark": "dotenv -- node ./tests/benchmark/dist/index.js run prepare-jmeter"
   },
   "devDependencies": {
     "@types/jest": "^29.5.4",

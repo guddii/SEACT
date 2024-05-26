@@ -13,6 +13,10 @@
   },
   "types": "./dist/index.d.ts",
   "dependencies": {
+    "@inrupt/solid-client": "^2.0.0",
+    "@inrupt/solid-client-authn-core": "^2.0.0",
+    "@inrupt/solid-client-authn-node": "^2.0.0",
+    "@inrupt/vocab-common-rdf": "^1.0.5",
     "@seact/core": "workspace:*",
     "lodash": "^4.17.21",
     "probability-queue": "^0.1.0",
