@@ -38,7 +38,7 @@ jobs:
           ./scripts/docs/reports/setup.sh
       - name: Build JMeter Reports
         run: |
-          # chmod +x ./scripts/docs/reports/setup.sh
+          # chmod +x ./scripts/docs/reports/html.sh
           ./scripts/docs/reports/html.sh
         shell: bash
       #  Build Asciidoc
@@ -51,6 +51,16 @@ jobs:
         uses: tonynv/asciidoctor-action@master
         with:
           program: "./scripts/docs/research/html.sh"
+      - name: Build PDF
+        id: build-pdf
+        uses: tonynv/asciidoctor-action@master
+        with:
+          program: "./scripts/docs/research/pdf.sh"
+      - name: Build Slides
+        id: build-slides
+        uses: tonynv/asciidoctor-action@master
+        with:
+          program: "./scripts/docs/slides/html.sh"
       # Deploy Pages
       - name: Setup Pages
         uses: actions/configure-pages@v3
