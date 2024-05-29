@@ -9,6 +9,7 @@ interface RunJTLOptions {
   l: string;
   clients: GetAccessTokenResponse[];
   ncb: "N" | "C" | "B";
+  p: number;
   r: number;
 }
 
@@ -20,6 +21,12 @@ export function runJTL(options: RunJTLOptions): Promise<void> {
       `-J${client.name}Name=${client.name}`,
     ]);
 
+    jmeterClientCredentialArgs.push([
+      `-JactiveClientAccessToken=${options.clients[options.p - 1].access_token}`,
+      `-JactiveClientTokenType=${options.clients[options.p - 1].token_type}`,
+      `-JactiveClientName=${options.clients[options.p - 1].name}`,
+    ]);
+
     const bypassArgs = [];
     if (options.ncb.includes("B")) {
       bypassArgs.push(`-JproxyBypassToken=${process.env.PROXY_BYPASS_TOKEN}`);
@@ -27,7 +34,7 @@ export function runJTL(options: RunJTLOptions): Promise<void> {
 
     const jmeterArgs = [
       `-Jthreads=${options.r}`,
-      `-Jloops=100`,
+      `-Jloops=10`,
       "-n",
       "-t",
       options.t,

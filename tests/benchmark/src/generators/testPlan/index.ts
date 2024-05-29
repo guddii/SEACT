@@ -91,7 +91,7 @@ export function toHTTPSamplerProxy(sequence: Sequence[]): string {
           <stringProp name="HTTPSampler.port">\${port}</stringProp>
           <stringProp name="HTTPSampler.protocol">\${protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/\${__P(client100Name)}/run\${__P(runId)}_thread\${__threadNum}_loop\${loopCount}_resource${action.resource}</stringProp>
+          <stringProp name="HTTPSampler.path">/\${__P(activeClientName)}/run\${__P(runId)}_thread\${__threadNum}_loop\${loopCount}_resource${action.resource}</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">${toMethod(action.value)}</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -111,7 +111,7 @@ export function toHTTPSamplerProxy(sequence: Sequence[]): string {
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">\${__P(client100TokenType)} \${__P(client100AccessToken)}</stringProp>
+                <stringProp name="Header.value">\${__P(activeClientTokenType)} \${__P(activeClientAccessToken)}</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">User-Agent</stringProp>

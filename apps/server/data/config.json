@@ -115,7 +115,7 @@
             "AccessToken": 3600,
             "AuthorizationCode": 600,
             "BackchannelAuthenticationRequest": 600,
-            "ClientCredentials": 86400,
+            "ClientCredentials": 172800000,
             "DeviceCode": 600,
             "Grant": 1209600,
             "IdToken": 3600,
@@ -134,7 +134,7 @@
       },
       "overrideParameters": {
         "@type": "WrappedExpiringReadWriteLocker",
-        "expiration": 86400
+        "expiration": 172800000
       }
     }
   ]

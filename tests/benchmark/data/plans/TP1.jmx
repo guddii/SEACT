@@ -67,7 +67,7 @@
           <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/${__P(client100Name)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
+          <stringProp name="HTTPSampler.path">/${__P(activeClientName)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">PUT</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -87,7 +87,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">${__P(client100TokenType)} ${__P(client100AccessToken)}</stringProp>
+                <stringProp name="Header.value">${__P(activeClientTokenType)} ${__P(activeClientAccessToken)}</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">User-Agent</stringProp>
@@ -110,7 +110,7 @@
           <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/${__P(client100Name)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
+          <stringProp name="HTTPSampler.path">/${__P(activeClientName)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -130,7 +130,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">${__P(client100TokenType)} ${__P(client100AccessToken)}</stringProp>
+                <stringProp name="Header.value">${__P(activeClientTokenType)} ${__P(activeClientAccessToken)}</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">User-Agent</stringProp>
@@ -153,7 +153,7 @@
           <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/${__P(client100Name)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
+          <stringProp name="HTTPSampler.path">/${__P(activeClientName)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">PUT</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -173,7 +173,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">${__P(client100TokenType)} ${__P(client100AccessToken)}</stringProp>
+                <stringProp name="Header.value">${__P(activeClientTokenType)} ${__P(activeClientAccessToken)}</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">User-Agent</stringProp>
@@ -196,7 +196,7 @@
           <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/${__P(client100Name)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
+          <stringProp name="HTTPSampler.path">/${__P(activeClientName)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -216,7 +216,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">${__P(client100TokenType)} ${__P(client100AccessToken)}</stringProp>
+                <stringProp name="Header.value">${__P(activeClientTokenType)} ${__P(activeClientAccessToken)}</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">User-Agent</stringProp>
@@ -239,7 +239,7 @@
           <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/${__P(client100Name)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
+          <stringProp name="HTTPSampler.path">/${__P(activeClientName)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -259,7 +259,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">${__P(client100TokenType)} ${__P(client100AccessToken)}</stringProp>
+                <stringProp name="Header.value">${__P(activeClientTokenType)} ${__P(activeClientAccessToken)}</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">User-Agent</stringProp>
@@ -282,7 +282,7 @@
           <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/${__P(client100Name)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
+          <stringProp name="HTTPSampler.path">/${__P(activeClientName)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -302,7 +302,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">${__P(client100TokenType)} ${__P(client100AccessToken)}</stringProp>
+                <stringProp name="Header.value">${__P(activeClientTokenType)} ${__P(activeClientAccessToken)}</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">User-Agent</stringProp>
@@ -325,7 +325,7 @@
           <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/${__P(client100Name)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
+          <stringProp name="HTTPSampler.path">/${__P(activeClientName)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -345,7 +345,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">${__P(client100TokenType)} ${__P(client100AccessToken)}</stringProp>
+                <stringProp name="Header.value">${__P(activeClientTokenType)} ${__P(activeClientAccessToken)}</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">User-Agent</stringProp>
@@ -368,7 +368,7 @@
           <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/${__P(client100Name)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
+          <stringProp name="HTTPSampler.path">/${__P(activeClientName)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -388,7 +388,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">${__P(client100TokenType)} ${__P(client100AccessToken)}</stringProp>
+                <stringProp name="Header.value">${__P(activeClientTokenType)} ${__P(activeClientAccessToken)}</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">User-Agent</stringProp>
@@ -411,7 +411,7 @@
           <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/${__P(client100Name)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
+          <stringProp name="HTTPSampler.path">/${__P(activeClientName)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource0</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">DELETE</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -431,7 +431,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">${__P(client100TokenType)} ${__P(client100AccessToken)}</stringProp>
+                <stringProp name="Header.value">${__P(activeClientTokenType)} ${__P(activeClientAccessToken)}</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">User-Agent</stringProp>
@@ -454,7 +454,7 @@
           <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/${__P(client100Name)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource1</stringProp>
+          <stringProp name="HTTPSampler.path">/${__P(activeClientName)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource1</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">PUT</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -474,7 +474,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">${__P(client100TokenType)} ${__P(client100AccessToken)}</stringProp>
+                <stringProp name="Header.value">${__P(activeClientTokenType)} ${__P(activeClientAccessToken)}</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">User-Agent</stringProp>
@@ -497,7 +497,7 @@
           <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/${__P(client100Name)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource1</stringProp>
+          <stringProp name="HTTPSampler.path">/${__P(activeClientName)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource1</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">PUT</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -517,7 +517,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">${__P(client100TokenType)} ${__P(client100AccessToken)}</stringProp>
+                <stringProp name="Header.value">${__P(activeClientTokenType)} ${__P(activeClientAccessToken)}</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">User-Agent</stringProp>
@@ -540,7 +540,7 @@
           <stringProp name="HTTPSampler.port">${port}</stringProp>
           <stringProp name="HTTPSampler.protocol">${protocol}</stringProp>
           <stringProp name="HTTPSampler.contentEncoding">utf-8</stringProp>
-          <stringProp name="HTTPSampler.path">/${__P(client100Name)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource1</stringProp>
+          <stringProp name="HTTPSampler.path">/${__P(activeClientName)}/run${__P(runId)}_thread${__threadNum}_loop${loopCount}_resource1</stringProp>
           <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
           <stringProp name="HTTPSampler.method">GET</stringProp>
           <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
@@ -560,7 +560,7 @@
             <collectionProp name="HeaderManager.headers">
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">Authorization</stringProp>
-                <stringProp name="Header.value">${__P(client100TokenType)} ${__P(client100AccessToken)}</stringProp>
+                <stringProp name="Header.value">${__P(activeClientTokenType)} ${__P(activeClientAccessToken)}</stringProp>
               </elementProp>
               <elementProp name="" elementType="Header">
                 <stringProp name="Header.name">User-Agent</stringProp>
