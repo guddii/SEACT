@@ -61,22 +61,22 @@ entity "AccessLogVocabulary" as AccessLogVocabulary << (D,orange) Dataset >> {
     ...
 }
 
-WebID_Client                            |o-down-o|          Verification                : > owns
-WebID_DPC::id                           |o-down-o|          SocialAgent                 : Path [1]
-SocialAgent::hasRegistrySet             |o-down-o|          RegistrySet                 : Path [1]
-RegistrySet::ab674650                   }|-down-o|          DataRegistry                : Path [1,1]
-DataRegistry::hasDataRegistration       ||-down-|{          DataRegistration            : Path [1,1,1]
-DataRegistration::registeredShapeTree   |o-down-o|          AccessLogRegistrationTree   : Path [1,1,1], [1,2,1,1]
-AccessLogRegistrationTree::contains     |o-down-o|          AccessLogTree               : Path [1,1,1], [1,2,1,1]
-AccessLogTree::shape                    |o-down-o|          AccessLogShape              : Path [1,1,1], [1,2,1,1]
-AccessLogShape                          |o-down-o|          AccessLogVocabulary         : Path [1,1,1], [1,2,1,1]
-DataRegistry::hasDataRegistration       }|-down-o|          Container2                  : Path [1,1,2]
-Container2::contains                    |o-down-|{          AccessLog                   : Path [1,1,2], [1,2,2]
-RegistrySet::ab674650                   }|-down[bold]-o|    ClaimRegistry               : **Path [1,2]**
-ClaimRegistry::claimedData              |o-down[bold]-o|    Container1                  : **Path [1,2,1]**
-Container1::contains                    |o-down[bold]-|{    DataRegistration            : **Path [1,2,1,1]**
-Container1::contains                    |o-down[bold]-|{    Container2                  : **Path [1,2,2]**
-ClaimRegistry::verificationResource     |o-left[bold]-o|    Verification                : **Path [1,2,2]**
+WebID_Client                |o-down-o|          Verification                : > owns
+WebID_DPC                   |o-down-o|          SocialAgent                 : Path [1]
+SocialAgent                 |o-down-o|          RegistrySet                 : Path [1]
+RegistrySet                 }|-down-o|          DataRegistry                : Path [1,1]
+DataRegistry                ||-down-|{          DataRegistration            : Path [1,1,1]
+DataRegistration            |o-down-o|          AccessLogRegistrationTree   : Path [1,1,1], [1,2,1,1]
+AccessLogRegistrationTree   |o-down-o|          AccessLogTree               : Path [1,1,1], [1,2,1,1]
+AccessLogTree               |o-down-o|          AccessLogShape              : Path [1,1,1], [1,2,1,1]
+AccessLogShape              |o-down-o|          AccessLogVocabulary         : Path [1,1,1], [1,2,1,1]
+DataRegistry                }|-down-o|          Container2                  : Path [1,1,2]
+Container2                  |o-down-|{          AccessLog                   : Path [1,1,2], [1,2,2]
+RegistrySet                 }|-down[bold]-o|    ClaimRegistry               : **Path [1,2]**
+ClaimRegistry               |o-down[bold]-o|    Container1                  : **Path [1,2,1]**
+Container1                  |o-down[bold]-|{    DataRegistration            : **Path [1,2,1,1]**
+Container1                  |o-down[bold]-|{    Container2                  : **Path [1,2,2]**
+ClaimRegistry               |o-left[bold]-o|    Verification                : **Path [1,2,2]**
 
 note "The shape will be satisfied" as Note
 AccessLogShape .. Note
