@@ -10,23 +10,23 @@ state "Updated" as U
 state "Deleted" as D
 
 ' Edges Start
-[*]     --> C
+[*]     --> C       : create
 
 ' Edges Create
-C       -right-> R
-C       -left-> U
-C       --> D
+C       --> R       : read
+C       --> U       : update
+C       --> D       : delete
 
 ' Edges  Read
-R       --> R
-R       --> U
-R       --> D
+R       --> R       : read
+R       --> U       : update
+R       --> D       : delete
 
 ' Edges  Update
-U       --> R
-U       --> U
-U       --> D
+U       --> R       : read
+U       --> U       : update
+U       --> D       : delete
 
 ' Edges  Delete
-D       --> C
+D       --> C       : create
 @enduml

@@ -12,6 +12,7 @@ fi
 asciidoctor \
     --require asciidoctor-bibtex \
     --require asciidoctor-diagram \
+    --require asciidoctor-mathematical \
     --destination-dir=out \
     --attribute asciidoctor-bibtex-version=$ASCIIDOCTOR_BIBTEX_VERSION \
     --attribute asciidoctor-diagram-version=$ASCIIDOCTOR_DIAGRAM_VERSION \

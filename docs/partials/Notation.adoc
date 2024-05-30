@@ -3,7 +3,8 @@
 
 The diagrams in this document were generated using Asciidoctor Diagram {asciidoctor-diagram-version}{fn-asciidoctor-diagram} and its bundled PlantUML{fn-plantuml} version.
 
-Unless otherwise specified, all framed diagrams will use the UML 2.5.1{fn-uml} standard, constrained by the limitations of PlantUML. As defined in the standard, the following abbreviations will be utilized to identify the type of UML diagram:
+Unless otherwise specified, all framed diagrams will use the UML 2.5.1{fn-uml} standard, constrained by the limitations of PlantUML.
+As defined in the standard, the following abbreviations will be utilized to identify the type of UML diagram:
 
 // See https://www.omg.org/spec/UML/2.5.1/PDF#page=726
 [horizontal]
@@ -12,7 +13,7 @@ cmp:: component diagram
 // dep:: deployment diagram
 sd:: interaction diagram
 // pkg:: package diagram
-// stm:: state machine diagram
+stm:: state machine diagram
 // uc::  use case diagram
 
 In addition to the UML abbreviation, the following abbreviations are used to identify non-UML diagrams:
