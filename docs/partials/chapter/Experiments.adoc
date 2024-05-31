@@ -68,7 +68,7 @@ To generate a sequence that represents the behavior of an actual agent, a probab
 [.text-center]
 [stem]
 ++++
-P(t)=(t)/(sum_(i=1)^|T| t_i), T={t_1,...,t_(n in NN)}
+P(t)=\frac{t}{\sum_{i=1}^{|T|} t_i}, T=\{t_1,...,t_{n \in \mathbb{N}}\}
 ++++
 
 xref:tbl-curd-probabilities[xrefstyle=short] lists the assumptions for all possible transitions.
@@ -84,7 +84,7 @@ Furthermore, the spreading of probability values occurs with the smallest probab
 ^.^h| 2
 ^.^h| 3
 ^.^h| 4
-.2+^.^h| ∑
+.2+^.^h| stem:[\sum]
 
 ^.^h| Transition
 ^.^h| Create
@@ -322,5 +322,5 @@ h| Apache JMeter Parameters
 |===
 
 The table above employs a condensed format with variables to describe test plans.
-The variable stem:[i] is defined as an element of the set stem:[{B, C, N}].
-Variables stem:[p], stem:[q], and stem:[r] are each defined as elements of the setstem:[{1,10,30}].
+The variable stem:[i] is defined as an element of the set stem:[\{B, C, N\}].
+Variables stem:[p], stem:[q], and stem:[r] are each defined as elements of the set stem:[\{1,10,30\}].

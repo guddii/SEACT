@@ -11,9 +11,10 @@ fi
 
 asciidoctor \
     --require asciidoctor-bibtex \
-    --require asciidoctor-diagram \
     --require asciidoctor-mathematical \
+    --require asciidoctor-diagram \
     --destination-dir=out \
+    --attribute mathematical-format=svg \
     --attribute asciidoctor-bibtex-version=$ASCIIDOCTOR_BIBTEX_VERSION \
     --attribute asciidoctor-diagram-version=$ASCIIDOCTOR_DIAGRAM_VERSION \
     --attribute asciidoctor-version=$ASCIIDOCTOR_VERSION \
@@ -27,3 +28,5 @@ asciidoctor \
     --attribute revnumber=$REVNUMBER \
     --backend=html5 \
     docs/*.adoc
+
+mv docs/stem-*.svg out
