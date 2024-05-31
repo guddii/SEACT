@@ -159,8 +159,6 @@ The analysis is divided into two sections.
 The initial section will exhibit the configuration of the <<Experiments>>, demonstrating how the tests were conducted.
 In the <<Validation>> section, the results of the tests will be presented and analyzed, with techniques and measures introduced in the theoretical framework.
 
-== Experiments
-
 include::partials/chapter/Experiments.adoc[leveloffset=+1]
 
 include::partials/chapter/Validation.adoc[leveloffset=+1]

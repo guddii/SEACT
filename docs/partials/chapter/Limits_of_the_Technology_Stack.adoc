@@ -1,5 +1,23 @@
 = Limits of the Technology Stack
 
-- Inrupt JavaScript Client Libraries: Appending of resources is not a supported operation.
-- Community Solid Server: The locking of resources prohibits the concurrent writing of a resource.
-- (Community Solid Server: Operational stability issues)
+The technology stack has some impact on what is possible within the Solid protocol.
+The limitations mentioned here refer to the essential parts of the stack as listed in the <<Technology Stack>>.
+
+As mentioned earlier, CSS has a locking mechanism.
+Locks are used to prevent concurrent writes to the same resource.
+According to the configuration generator documentation, disabling this mechanism can cause data corruption.
+Changing this mechanism to in-memory locking is not sufficient when multiple worker threads are used.
+Although multiple worker threads are not tested in this analysis, the file system configuration is used to ensure that variations of the tested scenario are allowed in later work.
+Consequently, concurrent writing to a resource is prohibited by the CSS.
+
+The Inrupt JavaScript Client Libraries have limited support for appending RDF triples to an existing resource.
+As shown in the guide for modifying an existing datasetfootnote:[https://docs.inrupt.com/developer-tools/javascript/client-libraries/tutorial/read-write-data/#modify-an-existing-soliddataset], it is recommended to load a resource, modify it, and save it.
+This does, at least in combination with CSS, enforce to run two request (a READ and (RE)CREATE) instead of a single UPDATE request, appending new data to the exsisting resource.
+Appending will result in an `412 Precondition Failed` error response, as explaind in Inrupt's save considerationsfootnote:[https://docs.inrupt.com/developer-tools/javascript/client-libraries/tutorial/read-write-data/#save-considerations].
+The <<System Design>> is effected by this for instance when <<Create or Update Dataset>> operations are executed.
+
+The Inrupt JavaScript Client Libraries offer only limited support for appending RDF triples to an existing resource.
+The guide on modifying an existing datasetfootnote:[https://docs.inrupt.com/developer-tools/javascript/client-libraries/tutorial/read-write-data/#modify-an-existing-soliddataset] illustrates that it is advisable to load a resource, modify it, and then save it.
+This approach results in the execution of a `READ` and `(RE)CREATE` requests, instead of a single UPDATE request.
+The attempt to append data will result in an HTTP 412 Precondition Failed error response, as explained in Inrupt’s save considerationsfootnote:[https://docs.inrupt.com/developer-tools/javascript/client-libraries/tutorial/read-write-data/#save-considerations].
+These considerations are particularly relevant in the context of <<System Design>>, where they influence the system’s behavior, such as the <<Create or Update Dataset, creation or update of a dataset>>.
