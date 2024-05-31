@@ -12,6 +12,7 @@ fi
 asciidoctor-pdf \
     --require asciidoctor-bibtex \
     --require asciidoctor-diagram \
+    --require asciidoctor-mathematical \
     --destination-dir=out \
     --theme docs/resources/themes/basic.yml \
     --attribute asciidoctor-bibtex-version=$ASCIIDOCTOR_BIBTEX_VERSION \

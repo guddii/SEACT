@@ -5,6 +5,42 @@ In general, a system is a combination of interrelated elements that fulfill a co
 In computer science, a system is an arrangement of interacting objects that is limited in scope.
 According to the more concrete definition, a system is the sum of all hardware and software components of a data processing system from the point of view of their interaction.
 
+== Network Interfaces
+
 In the context of a data-driven web-based system, the interaction of the system is further concretized.
 The system must interact via data APIs over the network.
-This is sometimes referred to as <<ROA>>, as defined by citenp:[richardson_restful_2007].
+This is sometimes referred to as <<ROA>>, as defined by citenp:[richardson_restful_2007]. <<ROA, ROAs>> is designed to facilitate the manipulation of resources through four operations: creation, reading, updating, and deletion.
+In this architecture, usually referred to as <<CRUD>>, the operations are mapped to HTTP request methods:
+
+[horizontal]
+CREATE:: The `POST`/`PUT` method transmits an entity to be stored at the specified resource in order to create a record on the server.
+READ:: The `GET` method is used to request a representation of the specified resource in the context of read operations.
+UPDATE:: The `PUT`/`PATCH` method is utilized for updating a resource, whereby modifications are applied in a partial to the resource.
+DELETE:: The `DELETE` method is identical in name to the HTTP request method, which is used to delete the specified resource.
+
+The HTTP/1.1 specifies additional request methods that may be relevant for the individual system, such as `CONNECT`, `HEAD`, `OPTIONS`, and `TRACE` footnote:[https://datatracker.ietf.org/doc/html/rfc7231].
+
+== Resource CRUD Lifecycle
+
+When applying the <<CRUD>> network interfaces to a single resource lifecycle, every achievable state (created, read, updated, and deleted) is reached by an ingoing <<CRUD>> transition.
+The starting state, however, must be the created state in order to have an initial resource to work with.
+Until its deletion, the same resource cannot be created again.
+New resources, however, can be created at any time.
+All other states (read, updated, and deleted) are accessible from the created state as well as the updated and read state, including self-transitions.
+When the deleted state is the current state of the resource, the only possible transition is the recreation of the resource.
+This behavior is displayed in xref:stm_CRUD[xrefstyle=short].
+
+.State machine diagram of the CURD lifecycle of a resource
+[.text-center]
+[plantuml,format=svg,id="stm_CRUD"]
+....
+include::../../resources/diagrams/stm_CRUD.puml[]
+....
+
+It is recommended that a sequence of <<CRUD>> requests, utilising states and transitions as previously described, be executed in a sequential order.
+Certain sequences may allow parallel execution, however, it can lead to errors due to the occurrence of illegal transitions.
+A sequence of only read transitions should be executable in parallel without any issues.
+
+Another scenario to be considered is the utilisation of resources with a deeper hierarchical depth, which are typically designated with a backslash in the <<URL>>.
+In such instances, the resource container can be treated as ordinary resources, with a <<CRUD>> network interface and the corresponding lifecycle.
+However, it is not possible for a resource to exist independently of a parent container resource in the created, updated, or read state.
