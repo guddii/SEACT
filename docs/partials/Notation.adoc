@@ -20,7 +20,10 @@ In addition to the UML abbreviation, the following abbreviations are used to ide
 
 [horizontal]
 // act:: activity diagram
-dm:: data model diagram; The information structure is entirely based on RDF, and will be presented as entity-relationship diagrams in Clive Finkelstein’s IE notation, with some additional elements. The text in the double angle brackets will define the entity type (e.g., <<Dataset>>, <<Thing>>, …). The path labels indicate potential routes through the graph structure, while the number within the bracket indicates the branch that has been taken.
+dm:: data model diagram; The information structure is entirely based on RDF, and will be presented as entity-relationship diagrams in Clive Finkelstein’s IE notation, with some additional elements.
+The text in the double angle brackets will define the entity type (e.g., <<Dataset>>, <<Thing>>, …).
+The path labels indicate potential routes through the graph structure, while the number within the bracket indicates the branch that has been taken.
+wbs:: work breakdown structure; This diagram is decompositional, intended for use in hierarchical structures, originally designed as a project management tool.
+In this context, it is used to illustrate any kind of hierarchical structure.
 
-
-Notations that are not applicable to the entire document will be described in detail in the relevant section.
+// Notations that are not applicable to the entire document will be described in detail in the relevant section.
