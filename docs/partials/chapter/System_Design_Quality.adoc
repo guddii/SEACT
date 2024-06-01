@@ -28,9 +28,11 @@ Four principles are relevant to this matter: the _Acyclic Dependencies Principle
 
 [horizontal]
 [[ADP,ADP]]ADP:: The _Acyclic Dependencies Principle_ asserts that it is of vital importance to exercise caution to ensure that no cyclical dependencies exist during the modeling process (ibid.).
-[[TDD,TDD]]TDD:: It is imperative to avoid the possibility of a tree-like system structure, given the _Top-Down Design_ (ibid.).
+[[TDD,TDD]]TDD:: In order to prevent the breakdown of system components from the top into smaller chunks, it is imperative that a system not be developed in a tree-like structure, in accordance with the principles of _Top-Down Design_ (ibid.).
 [[SDP,SDP]]SDP:: In accordance with the _Stable Dependencies Principle_, components to which dependencies exist should be stable.
-This is defined as a low frequency of change (ibid.).
-[[SAP,SAP]]SAP:: In addition to the SDP, a stable component should be abstract, in accordance with the _Stable Abstractions Principle_ (ibid.).
+Any of these components should not depend on a component that is subject to frequent change.
+Thus, stability is defined as a low frequency of change (ibid.).
+[[SAP,SAP]]SAP:: In addition to the SDP, a stable component should be abstract, in accordance with the _Stable Abstractions Principle_.
+This implies that all high-level policies respectively the application logic of the system should be encapsulated into a stable component (ibid.).
 
 These principles are relevant to consider when software components are aligned to each other on a top-level view, and therefore in the spectrum of a macroarchitectural view.

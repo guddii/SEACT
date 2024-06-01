@@ -1,5 +1,48 @@
 = Validation
 
+This section serves to validate the <<Design and Implementation>> of the proposed system, thereby ensuring that it meets the quality standards set for both design and performance efficiency.
+The <<Quality Model>> should reveal any shortcomings inherent to this approach.
+
 == Design Quality Analysis
 
+The design quality model is divided into two parts, which are to be analyzed in detail.
+The first part concerns the general <<Design Principles>> and recommendations for <<Component Coupling>>.
+
+// ADP
+The <<ADP>> requires that no cyclical dependencies should be part of the system's design.
+However, this is a component coupling principle that is not satisfied with the proposed approach.
+When a <<Forwarded Request>> is used, referred from the proxy as an actor, the proxy will request itself, meaning it has a dependency on itself and thereby a cyclic dependency.
+Even when a proxy is not requesting itself and requests are forwarded using forwarded headers, as illustrated in xref:lst-request-with-forwarded-headers[xrefstyle=short], the server would still have a cyclic dependency.
+This is because the CSS requires the proxy hostname to be the base URL.
+Consequently, when Solid Provider verifies an agent from its own instance, it will still request itself through the proxy, which is then cyclic again.
+
+.Request with Forwarded Headers
+[source,httprequest,id="lst-request-with-forwarded-headers",reftext="Listing {counter:listing}"]
+----
+GET http://server.example.tld/client/profile/card#me
+X-Forwarded-Host: proxy.example.tld
+X-Forwarded-Proto: http
+----
+
+// TDD
+The <<TDD>> proposes that the structural composition of a system cannot be predetermined at its inception.
+Instead, it is expected that this structure will naturally evolve as the system itself progresses.
+This is, in fact, an inherent aspect of proposed system development.
+It appears to be resolvable within the modular framework of a proxy, as illustrated in xref:Logical_Topology_A[xrefstyle=short] and xref:Logical_Topology_B[xrefstyle=short].
+Indeed, new proxy modules, such as the middleware component of the <<DPC>>, are added as additional middlewares, all of which are processed one after another.
+// SDP
+Each variant of the <<Component Orchestration>> fulfills the need <<SDP>>, which requires that every component relies on a stable component.
+Given that the change of data does not affect the change frequency, the Solid Provider subsystem has the lowest change frequency.
+Given the conceptual purpose of the proposed system, all changes, including those made to the <<Solid Protocol>>, are handled in the proxy subsystem.
+Consequently, the changes are delegated to the proxy, which results in the higher change frequency being outsourced to it.
+Consequently, as the proxy is dependent on the server, the stable dependency requirement is satisfied.
+Any potential users of the public endpoint, such as the <<DPC>> application or any other <<HTTP>> client, are reliant on the stable proxy-server construct.
+As they are not responsible for any relevant application logic, they are free to modify their functionality as often as necessary.
+// SAP
+The <<SAP>> is a principle that aims to separate high-level policies from the other functionalities of a system.
+If <<RDF>>, as a basis of <<Solid Ecosystem>>, is taken seriously, this is an inherent concept of it and thereby a satisfiable quality criterion without any additional design considerations.
+This is the case, as the full information structure and thereby the application logic is encapsulated in <<RDF>> data, although the processing needs to be implemented.
+The <<Solid Application Interoperability>> specification unifies a significant portion of this functionality.
+
 == Performance Efficiency Analysis
+
