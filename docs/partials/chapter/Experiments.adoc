@@ -259,7 +259,7 @@ h| ShapeTree Number
 // ^.^| 30
 
 .^| PARAM-SOLID-30-1
-.3+^.^| 30
+.2+^.^| 30
 ^.^| 1
 
 // .^| PARAM-SOLID-30-10
@@ -279,11 +279,11 @@ Given the results of previous testing, the loop count has been set to 10, which 
 Nevertheless, this results in a considerable increase in the duration of the tests when the number of threads is augmented.
 
 .Apache JMeter Parameters Matrix
-[cols="1,1,1,1",id="tbl-apache-jmeter-parameters-matrix"]
+[cols="2,1,1,1",id="tbl-apache-jmeter-parameters-matrix"]
 |===
 h| ID
 h| Number of Threads
-h| Ramp-up Period
+h| Ramp-up Period (in seconds)
 h| Loop Count
 
 .^| PARAM-JMETER-1

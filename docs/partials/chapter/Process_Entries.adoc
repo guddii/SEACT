@@ -6,7 +6,7 @@ The reference section defines subsequences that may be used in each of these int
 == Authorised CRUD Requests
 
 The process of authorizing a request can be divided into two steps.
-Firstly, an authorization token will be requested using a Client Credentials Flow as defined in https://datatracker.ietf.org/doc/html/rfc6749#section-4.4[RFC 6749], although other authorization processes are also possible.
+Firstly, an authorization token will be requested using an <<Authorization Client Credentials Flow>> or an alternative authorization process such as an <<Authorization Code Flow>>.
 Secondly, the CRUD request will be sent with an authorization header and the response will be provided accordingly.
 The key difference is that the request and response will be forwarded by the proxy instance.
 

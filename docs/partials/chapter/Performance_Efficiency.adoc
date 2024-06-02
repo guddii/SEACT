@@ -13,7 +13,7 @@ Capacity:: The maximum limits of storage usage correspond to the system paramete
 
 The time behavior is of particular importance in this quality model.
 As the software is a web-based system that individuals are operating with, it is crucial to consider usability.
-citenp:[nielsen_usability_1993] identifies three main time limits, which are determined by human perceptual abilities, that should be kept in mind when evaluating the performance of a system.
+citenp:[nielsen_usability_1993] identifies three main time limits (in seconds), which are determined by human perceptual abilities, that should be kept in mind when evaluating the performance of a system.
 
 [horizontal]
 0.1s:: The point at which the user perceives the system to respond instantaneously.

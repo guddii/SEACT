@@ -74,9 +74,8 @@ The Inrupt JavaScript Client Librariesfootnote:[https://docs.inrupt.com/develope
 In order to facilitate the interpretation of the RDF documents, the following definitions will be used, based on the definitions mentioned:
 
 [horizontal]
-[[Dataset]]Dataset:: A dataset is defined as a set of Things, represented as a RDF resource.
 [[Thing]]Thing:: A Thing is a data entity that contains a set of data or properties about the Thing.
-It is a component of a dataset, which is defined as a set of Things.
+[[Dataset]]Dataset:: A dataset is defined as a set of Things, represented as a RDF resource.
 
 == Identity
 

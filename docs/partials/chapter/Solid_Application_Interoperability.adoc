@@ -9,6 +9,13 @@ An application only needs to be aware of the profile document and follow the sug
 xref:dm_Interop[xrefstyle=short] illustrates these entities and relations.
 `DataType` and `DataElement` represent a selectable data type and element, respectively.
 
+.<<IE>> diagram of the Solid Application Interoperability Data Registry
+[.text-center]
+[plantuml,format=svg,id="dm_Interop"]
+....
+include::../../resources/diagrams/dm_Interop.puml[]
+....
+
 The entities and relations in xref:dm_Interop[xrefstyle=short] represent a partially implemented data registry component of the citenp:[bingham_solid_2023] Solid Application Interoperability specification.
 As described in the specification, an agent must declare an interop:Agent in the personal profile document to participate in the Solid Application Interoperability Specification.
 From there, one can follow the specified path, starting with the registry set, which is referred from the declared agent.
@@ -19,10 +26,5 @@ The registered ShapeTree defines the shape of the contained resources, by referr
 The Shape will point to a Shape Expression once more.
 The Shape Expression defines the data types of the predicates utilized in the vocabulary.
 
-.<<IE>> diagram of the Solid Application Interoperability Data Registry
-[.text-center]
-[plantuml,format=svg,id="dm_Interop"]
-....
-include::../../resources/diagrams/dm_Interop.puml[]
-....
+
 

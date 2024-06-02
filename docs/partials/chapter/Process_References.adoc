@@ -1,7 +1,8 @@
 = Process References
 
-== Authentication with Client Credentials
+== Authorization Client Credentials Flow
 
+The authorization client credentials flow, is a authorization technique defined in RFC 6749, Section 4.4footnote:[https://datatracker.ietf.org/doc/html/rfc6749#section-4.4].
 To obtain the authorization token, send a POST request to the authorization server with the client ID and secret in the authentication header.
 It is also necessary to set the grant type to `client_credentials` and the scope to `webid`.
 The proxy will forward requests as every CRUD request because the authorization server is not directly accessible.
@@ -12,6 +13,12 @@ The proxy will forward requests as every CRUD request because the authorization 
 ....
 include::../../resources/diagrams/sd_Authentication_with_Client_Credentials.puml[]
 ....
+
+== Authorization Code Flow
+
+Another authorization technique is the authorization code flow, as defined in RFC 6749, Section 4.1footnote:[https://datatracker.ietf.org/doc/html/rfc6749#section-4.1].
+It is important to note that this technique differs from a <<Authorization Client Credentials Flow>>, especially in the way that redirects are part of this flow.
+This means that user inputs are required in this technique and they cannot run automated.
 
 == Forwarded Request
 
