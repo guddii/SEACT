@@ -87,3 +87,219 @@ The <<Solid Application Interoperability>> specification unifies a significant p
 
 == Performance Efficiency Analysis
 
+When performing a performance efficiency analysis, it is necessary to know what tests were run, how many errors occurred in those tests, and how the proposed system affected response time and throughput.
+This provides a comprehensive view of the system's capabilities and limitations, or to identify potential areas for improvement.
+
+The tests that have been executed are
+TP1-B-1-1-1,
+TP1-B-1-1-30,
+TP1-B-1-30-1,
+TP1-B-1-30-30,
+TP1-B-30-1-1,
+TP1-B-30-1-30,
+TP1-B-30-30-1,
+TP1-B-30-30-30,
+TP1-N-1-1-1,
+TP1-N-1-1-30,
+TP1-N-1-30-1,
+TP1-N-1-30-30,
+TP1-N-30-1-1,
+TP1-N-30-1-30,
+TP1-N-30-30-1,
+TP1-N-30-30-30,
+TP1-C-1-1-1,
+TP1-C-1-1-30,
+TP1-C-1-30-1,
+TP1-C-1-30-30,
+TP1-C-30-1-1,
+TP1-C-30-1-30,
+TP1-C-30-30-1, and
+TP1-C-30-30-30].
+The identifier relate to the <<Test Parameters>> described previously.
+The following section will analyze these data sets.
+
+xref:tbl-test-run-summary-errors[xrefstyle=short], xref:tbl-test-run-response-times-average[xrefstyle=short], and xref:tbl-test-run-throughput[xrefstyle=short] summarize of the test runs for TP1-stem:[i]-stem:[p]-stem:[q]-stem:[r], as presented in xref:tbl-test-parameters-matrix[xrefstyle=short] and listed in the previous paragraph.
+They provide an overview of how the system behaves at different loads and configurations.
+The first column of the tables refers to the executed test plan, followed by the stem:[i] value of that test in the next column and the stem:[p], stem:[q], and stem:[r]  values in the same column through the next row.
+Table headers that appear below these variables indicate the configuration of these variables.
+The order of the stem:[i]
+column configuration is sorted according to the increasing complexity of the proposed system.
+
+Test Run Error Summary is presented in xref:tbl-test-run-summary-errors[xrefstyle=short].
+Its shows the percent of failed requests, returning a network status codefootnote:[https://developer.mozilla.org/en-US/docs/Web/HTTP/Status] greater or equals `400`.
+Other requests are considered successful, in a network status code range `100`-`399`.
+
+Upon examination of the values in the table, it appears that the complexity of the application, as defined by the <<Data Privacy Cockpit Parameters>> (stem:[i]), is directly proportional to the number of failed requests.
+When the proxy module is bypassed, there is only one test run that failed: TP1-B-1-30-30. Enabling the module without any registered client storages will result in an increase in the number of failed test runs to three.
+The list of failed test runs, when considering registered client storages, is as follows: TP1-C-1-30-30, TP1-C-30-1-30, and TP1-C-30-1-30, and TP1-C-1-1-30. This results in a total of four erroneous requests.
+A review of their configuration reveals that they have one parameter in common: the stem:[r] value, which is `30` in every configuration.
+This leads to the conclusion that concurrent or parallel processing is an issue in this implementation.
+
+.Test Run Error Summary in Percent
+[cols="1,2,2,2",id="tbl-test-run-summary-errors"]
+|===
+^.^h| TP1
+3+^.^h| stem:[i]
+
+^.^h| stem:[p]-stem:[q]-stem:[r]
+>.^h| B
+>.^h| N
+>.^h| C
+
+^.^h| 1-1-1
+>.^| 0
+>.^| 0
+>.^| 0
+
+^.^h| 1-1-30
+>.^| 0
+>.^| 0
+>.^| 10.67
+
+^.^h| 1-30-1
+>.^| 0
+>.^| 0
+>.^| 0
+
+^.^h| 1-30-30
+>.^| 2.08
+>.^| 0.83
+>.^| 22.67
+
+^.^h| 30-1-1
+>.^| 0
+>.^| 0
+>.^| 0
+
+^.^h| 30-1-30
+>.^| 0
+>.^| 1.14
+>.^| 10.31
+
+^.^h| 30-30-1
+>.^| 0
+>.^| 0
+>.^| 0
+
+^.^h| 30-30-30
+>.^| 0
+>.^| 2.94
+>.^| 1.67
+|===
+
+xref:tbl-test-run-response-times-average[xrefstyle=short] presents the averaged response time in seconds.
+This confirms the results presented in xref:tbl-test-run-summary-errors[xrefstyle=short].
+The test cases with an increased r-value also exhibit the highest values in terms of response time.
+The lowest value is `9.16` seconds for TP1-B-30-1-30, while the highest is `107.65` seconds for TP1-C-30-1-30. The lowest value, which bypasses DPC functionality, represents a considerable magnitude.
+In accordance with citenp:[nielsen_usability_1993] observations, the threshold has nearly been reached with regard to the user's capacity to concentrate on the process.
+In the case of the highest value, this threshold was exceeded by a factor of ten.
+
+.Test Run Average Response Times in Seconds
+[cols="1,2,2,2",id="tbl-test-run-response-times-average"]
+|===
+^.^h| TP1
+3+^.^h| stem:[i]
+
+^.^h| stem:[p]-stem:[q]-stem:[r]
+>.^h| B
+>.^h| N
+>.^h| C
+
+^.^h| 1-1-1
+>.^| 0.51
+>.^| 3.13
+>.^| 7.97
+
+^.^h| 1-1-30
+>.^| 10.57
+>.^| 20.75
+>.^| 39.53
+
+^.^h| 1-30-1
+>.^| 0.69
+>.^| 0.72
+>.^| 1.89
+
+^.^h| 1-30-30
+>.^| 14.58
+>.^| 26.17
+>.^| 44.19
+
+^.^h| 30-1-1
+>.^| 0.39
+>.^| 0.56
+>.^| 0.88
+
+^.^h| 30-1-30
+>.^| 9.16
+>.^| 19.79
+>.^| 107.65
+
+^.^h| 30-30-1
+>.^| 0.70
+>.^| 3.65
+>.^| 4.21
+
+^.^h| 30-30-30
+>.^| 12.01
+>.^| 67.70
+>.^| 32.20
+|===
+
+The overall performance of the proposed system is quantified by the throughput measurements presented in xref:tbl-test-run-throughput[xrefstyle=short].
+The values listed are in transactions per second.
+As observed in the measurements shown in xref:tbl-test-run-summary-errors[xrefstyle=short] and xref:tbl-test-run-response-times-average[xrefstyle=short], the throughput drops significantly when the complexity of the system and the amount of processes in parallel increases.
+In considering the aspects identified by IBM as influencing throughput, namely processing overhead in the software, the degree of parallelism supported by the software, and the types of transactions processed, it appears that these factors may be plausible causes of the issues that have been found.
+
+.Test Run Throughput in Transactions per Second
+[cols="1,2,2,2",id="tbl-test-run-throughput"]
+|===
+^.^h| TP1
+3+^.^h| stem:[i]
+
+^.^h| stem:[p]-stem:[q]-stem:[r]
+>.^h| B
+>.^h| N
+>.^h| C
+
+^.^h| 1-1-1
+>.^| 1.92
+>.^| 0.32
+>.^| 0.13
+
+^.^h| 1-1-30
+>.^| 2.82
+>.^| 1.44
+>.^| 0.15
+
+^.^h| 1-30-1
+>.^| 1.43
+>.^| 1.38
+>.^| 0.10
+
+^.^h| 1-30-30
+>.^| 1.03
+>.^| 0.74
+>.^| 0.08
+
+^.^h| 30-1-1
+>.^| 2.50
+>.^| 1.78
+>.^| 1.13
+
+^.^h| 30-1-30
+>.^| 3.26
+>.^| 0.85
+>.^| 0.13
+
+^.^h| 30-30-1
+>.^| 1.41
+>.^| 0.27
+>.^| 0.16
+
+^.^h| 30-30-30
+>.^| 2.48
+>.^| 0.25
+>.^| 0.74
+|===
+

@@ -21,17 +21,17 @@ h| Example
 | number
 | 1716570602084
 
-// | elapsed
-// |
-// | 230
+| elapsed
+| number
+| 230
 
-// | label
-// |
-// | Created 0
+| label
+| string
+| Created 0
 
-// | responseCode
-// |
-// | 201
+| responseCode
+| number
+| 201
 
 // | responseMessage
 // |
@@ -57,9 +57,9 @@ h| Example
 // |
 // | 494
 
-| sentBytes
-| number
-| 903
+// | sentBytes
+// | number
+// | 903
 
 // | grpThreads
 // |
@@ -73,9 +73,9 @@ h| Example
 | string
 | http://proxy.localhost:4000/client100/run1716570595598_thread1_loop1_resource0
 
-| Latency
-| number
-| 218
+// | Latency
+// | number
+// | 218
 
 // | IdleTime
 // |

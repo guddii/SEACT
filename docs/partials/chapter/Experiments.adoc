@@ -239,31 +239,31 @@ h| Storage Number
 h| ShapeTree Number
 
 .^| PARAM-SOLID-1-1
-.3+^.^| 1
+.2+^.^| 1
 ^.^| 1
 
-.^| PARAM-SOLID-1-10
-^.^| 10
+// .^| PARAM-SOLID-1-10
+// ^.^| 10
 
 .^| PARAM-SOLID-1-30
 ^.^| 30
 
-.^| PARAM-SOLID-10-1
-.3+^.^| 10
-^.^| 1
-
-.^| PARAM-SOLID-10-10
-^.^| 10
-
-.^| PARAM-SOLID-10-30
-^.^| 30
+// .^| PARAM-SOLID-10-1
+// .3+^.^| 10
+// ^.^| 1
+//
+// .^| PARAM-SOLID-10-10
+// ^.^| 10
+//
+// .^| PARAM-SOLID-10-30
+// ^.^| 30
 
 .^| PARAM-SOLID-30-1
 .3+^.^| 30
 ^.^| 1
 
-.^| PARAM-SOLID-30-10
-^.^| 10
+// .^| PARAM-SOLID-30-10
+// ^.^| 10
 
 .^| PARAM-SOLID-30-30
 ^.^| 30
@@ -288,11 +288,11 @@ h| Loop Count
 
 .^| PARAM-JMETER-1
 ^.^| 1
-.3+^.^| 10s
-.3+^.^| 10
+.2+^.^| 10s
+.2+^.^| 10
 
-.^| PARAM-JMETER-10
-^.^| 10
+// .^| PARAM-JMETER-10
+// ^.^| 10
 
 .^| PARAM-JMETER-30
 ^.^| 30
@@ -322,5 +322,5 @@ h| Apache JMeter Parameters
 |===
 
 The table above employs a condensed format with variables to describe test plans.
-The variable stem:[i] is defined as an element of the set stem:[\{B, C, N\}].
-Variables stem:[p], stem:[q], and stem:[r] are each defined as elements of the set stem:[\{1,10,30\}].
+The variable stem:[i] is defined as an element of the set stem:[\{B, N, C\}].
+Variables stem:[p], stem:[q], and stem:[r] are each defined as elements of the set stem:[\{1,30\}].
