@@ -69,7 +69,7 @@ This is also illustrated in xref:lst-storage-resource[xrefstyle=short] (ibid.).
 == Representation
 
 The representation of resources is primarily in the form of RDF documents.
-citenp:[bergwinkl_rdfjs_2019] introduced the Dataset specification, which represents the contents of these documents as <<ECMAScript>> objects.
+citenp:[bergwinkl_rdfjs_2019] introduced the Dataset specification, which represents the contents of these documents as ECMAScript objects.
 The Inrupt JavaScript Client Librariesfootnote:[https://docs.inrupt.com/developer-tools/javascript/client-libraries/structured-data] refined this further and introduced the terms SolidDataset and Thing.
 In order to facilitate the interpretation of the RDF documents, the following definitions will be used, based on the definitions mentioned:
 
@@ -80,7 +80,7 @@ It is a component of a dataset, which is defined as a set of Things.
 
 == Identity
 
-In a decentralized platform, it is essential to have identifiable <<agent, agents>>.
+In a decentralized platform, it is essential to have identifiable.
 Solid accomplishes this with WebIDs and the WebID Profile, which is associated with it cite:[sambra_webid_2014].
 
 [horizontal]

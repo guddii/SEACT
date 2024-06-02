@@ -3,7 +3,7 @@
 Before looking at the serialized model, it is important to understand the structure of the <<HTTP>> endpoints.
 The storage URLs for the <<HTTP>> <<API, APIs>> will begin with a storage identifier added as a suffix to the base <<URL>>.
 xref:wbs_Endpoint_structure[xrefstyle=short] shows the storage <<URL, URLs>> at the second level.
-The data of the corresponding <<agent>> will be represented below this node.
+The data of the corresponding agent will be represented below this node.
 
 .The structure of the <<HTTP>> endpoints
 [.text-center]
@@ -35,10 +35,10 @@ NOTE: Followed Path [1]
 
 == Registry Set (Data Model)
 
-The registry set contains an entry for each agent who has claimed data captured by the <<DPC>> <<agent>>.
+The registry set contains an entry for each agent who has claimed data captured by the <<DPC>> agent.
 This captured data will be referred to as <<Data Registration (Data Model), data registration>>.
 
-The subject of the <<RDF_triple>>, however, must be unique and built based on the claimed subject.
+The subject of the RDF triple, however, must be unique and built based on the claimed subject.
 In this case, it will be the hashed storage <<URL>>.
 
 .`interop:DataRegistry` <<Thing>> at http://example.tld/dpc/registries
@@ -53,7 +53,7 @@ NOTE: Followed Path [1,1]
 
 == Data Registration (Data Model)
 
-The <<Shape_Tree>> data is referenced in the data registration.
+The Shape Tree data is referenced in the data registration.
 As it is a container resource (see <<Container (Access Logs from Data Model)>>), all child resources will satisfy the <<Shape Trees (Data Model), referenced Shape Tree>>.
 
 .`interop:DataRegistration` <<Thing>> at http://example.tld/dpc/data/74242fac/AccessLog/
@@ -62,13 +62,13 @@ As it is a container resource (see <<Container (Access Logs from Data Model)>>),
 include::../../resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=7..11]
 ----
 
-<1> The referenced <<Shape_Tree>>.
+<1> The referenced Shape Tree.
 
 NOTE: Followed Path [1,1,1], [1,2,1,1]
 
 == Shape Trees (Data Model)
 
-Both <<Shape_Tree, Shape Trees>>, `AccessLogRegistrationTree`, and `AccessLogTree` define the contents of the referring <<container_resource>>.
+Both Shape Trees, `AccessLogRegistrationTree`, and `AccessLogTree` define the contents of the referring <<container_resource>>.
 The `AccessLogRegistrationTree` defines the resources that contain Shape Tree Resources in a given shape.
 The <<Shape Expression (Data Model), referenced Shape Expression>> declares the form of the shape.
 
@@ -85,7 +85,7 @@ NOTE: Followed Path [1,1,1], [1,2,1,1]
 
 == Shape Expression (Data Model)
 
-The <<Shape_Expression>> (<<ShEx>>) defines the schema for every literal associated with a predicate of the vocabulary.
+<<ShEx>> defines the schema for every literal associated with a predicate of the vocabulary.
 The RDF vocabulary will not be listed further.
 
 .Shape Expression
