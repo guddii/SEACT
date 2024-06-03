@@ -144,7 +144,7 @@ This leads to the conclusion that concurrent or parallel processing is an issue 
 [cols="1,2,2,2",id="tbl-test-run-summary-errors"]
 |===
 ^.^h| TP1
-3+^.^h| stem:[i]
+3+^.^h| `i`
 
 ^.^h| `p`-`q`-`r`
 >.^h| B
@@ -203,7 +203,7 @@ In the case of the highest value, this threshold was exceeded by a factor of ten
 [cols="1,2,2,2",id="tbl-test-run-response-times-average"]
 |===
 ^.^h| TP1
-3+^.^h| stem:[i]
+3+^.^h| `i`
 
 ^.^h| `p`-`q`-`r`
 >.^h| B
@@ -260,7 +260,7 @@ In considering the aspects identified by IBM as influencing throughput, namely p
 [cols="1,2,2,2",id="tbl-test-run-throughput"]
 |===
 ^.^h| TP1
-3+^.^h| stem:[i]
+3+^.^h| `i`
 
 ^.^h| `p`-`q`-`r`
 >.^h| B
