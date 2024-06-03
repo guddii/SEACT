@@ -314,13 +314,13 @@ h| Data Privacy Cockpit Parameters
 h| Solid Ecosystem Parameters
 h| Apache JMeter Parameters
 
-.^| TP1-stem:[i]-stem:[p]-stem:[q]-stem:[r]
+.^| TP1-`i`-`p`-`q`-`r`
 .^| PARAM-CRUD-1
-.^| PARAM-DPC-stem:[i]
-.^| PARAM-SOLID-stem:[p]-stem:[q]
-.^| PARAM-JMETER-stem:[r]
+.^| PARAM-DPC-`i`
+.^| PARAM-SOLID-`p`-`q`
+.^| PARAM-JMETER-`r`
 |===
 
 The table above employs a condensed format with variables to describe test plans.
-The variable stem:[i] is defined as an element of the set stem:[\{B, N, C\}].
-Variables stem:[p], stem:[q], and stem:[r] are each defined as elements of the set stem:[\{1,30\}].
+The variable `i` is defined as an element of the set `{B,N,C}`.
+Variables `p`, `q`, and `r` are each defined as elements of the set `{1,30}`.
