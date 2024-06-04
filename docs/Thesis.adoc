@@ -165,6 +165,13 @@ include::partials/chapter/Validation.adoc[leveloffset=+1]
 
 = Reflection
 
+[partintro]
+This part serves to reflect upon the subject of the aforementioned work.
+The analysis of decisions is conducted in a critical manner, and alternative options are presented.
+In the <<Discussion>>, the effects of these decisions are identified and, if necessary, justified.
+In the chapter on <<Future Work>>, a number of alternative approaches are presented that represent an interesting continuation of the topic under discussion.
+Finally, a <<Conclusion>> with a comprehensive reflection on the research and the resulting knowledge gained is provided.
+
 == Discussion
 
 - Discuss the <<Data Storage Structure>>
@@ -176,7 +183,7 @@ include::partials/chapter/Validation.adoc[leveloffset=+1]
 - Discuss the use of <<Solid Application Interoperability>> (weak multi user support, active participation in the spec by declaring #id, container definitions are hard to apply with <<CSS>>)
 - Detecting the application name requires to alter the <<Authentication>> process, the effect on requesting a refresh token is unknown and might even result in a memory leak.
 
-== Futur Work
+== Future Work
 
 - What are the implications for performance if a storage resource is required to have an owner advised?
 - What are the implications for performance if the status of the outgoing request is logged?

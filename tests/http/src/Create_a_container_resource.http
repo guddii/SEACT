@@ -1,0 +1,6 @@
+### Create a new container resource
+POST http://proxy.localhost:4000/client/
+Authorization: Bearer {{$auth.token("client")}}
+Content-Type: text/turtle
+Link: <http://www.w3.org/ns/ldp#BasicContainer>; rel="type"
+Slug: new-container

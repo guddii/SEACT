@@ -7,12 +7,13 @@ When a prefix is followed by a colon symbol, the part after the colon can be app
 
 [glossary]
 [horizontal]
-[[claim,claim]] claim:: urn:claim# (custom vocabulary)
-[[foaf,foaf]] foaf:: http://xmlns.com/foaf/0.1/
-[[interop,interop]] interop:: http://www.w3.org/ns/solid/interop#
-[[ldp,ldp]] ldp:: http://www.w3.org/ns/ldp#
-[[pim,pim]] pim:: http://www.w3.org/ns/pim/space#
-[[solid,solid]] solid:: http://www.w3.org/ns/solid/terms#
-[[st,st]] st:: http://www.w3.org/ns/shapetrees#
+acl:: http://www.w3.org/ns/auth/acl#
+claim:: urn:claim# (custom vocabulary)
+foaf:: http://xmlns.com/foaf/0.1/
+interop:: http://www.w3.org/ns/solid/interop#
+ldp:: http://www.w3.org/ns/ldp#
+pim:: http://www.w3.org/ns/pim/space#
+solid:: http://www.w3.org/ns/solid/terms#
+st:: http://www.w3.org/ns/shapetrees#
 
 The prefixes and namespaces enumerated above are applicable to diagrams, listings, and inline listings throughout the entirety of the document.

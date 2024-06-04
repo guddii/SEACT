@@ -1,4 +1,58 @@
 = Data Storage Structure
 
-- Single storage resource with multiple storage containers (inheritance of <<ACL>> is not unified)
-- Multiple storage resources (no unified API)
+In general, data storage structures can be divided into two categories when sharing a set of data with other agents that have been granted access to the data in question.
+The first category is _container-based_, which involves storing the shared data in a single storage resource and dividing it into container resources.
+The second category is _storage-based_, which involves storing the shared data in multiple storage resources, all of which are owned by the same agent.
+
+== Container-Based Storage
+
+In a container-based arrangement, all data pertaining to multiple agents is stored in a single storage resource.
+A mechanism must be in place or established to enable the agent with the requisite privileges to access the data.
+With <<WAC>>, two main options exist for defining an _Access Object_.
+In this context, the `acl:accessTo` option denotes the resource to which access is being granted, whereas the `acl:default` option denotes the container resource whose authorization can be applied to a resource lower in the collection hierarchy.
+Consequently, the location and structure of the storage resource are publicly visible, thereby increasing the risk of information disclosure vulnerabilities.
+The process of creating a new container resource however, is well part of the Solid Protocol and thereby the usage is unified.
+The process of creating a new container resource, however, is a fundamental aspect of the Solid Protocol, thereby ensuring unified usage.
+An illustrative example can be found in xref:lst-create-container[xrefstyle=short] cite:[capadisli_web_2022].
+
+.Request for new container resources
+[source,httprequest,id="lst-create-container",reftext="Listing {counter:listing}"]
+----
+POST http://example.tld/client/
+Content-Type: text/turtle
+Link: <http://www.w3.org/ns/ldp#BasicContainer>; rel="type"
+Slug: new-container
+----
+
+The implementation of custom mechanisms to expose data to associated agents may eliminate information disclosure vulnerabilities.
+However, when bypassing the authorization mechanism provided by Solid, the risk of inadvertently exposing data to an agent that does not have the appropriate permissions increases.
+
+== Storage-Based Storage
+
+A storage-based approach to data storage for agents is a convenient method, as it encapsulates the data for an agent in a data space of their own.
+This approach ensures that no unnecessary information is shown to the public and that the data is stored in a secure context.
+As this is the purpose of a storage container, there is no individual mechanism required to ensure that the data is accidentally exposed to an agent that does not have any privileges to that data.
+The `acl:accessTo` and `acl:default` mechanisms, which have been applicable in a<<Container-Based Storage>> context, can also be applied here.
+However, there is a significant disadvantage to this approach over the <<Container-Based Storage>> approach.
+Namely, there is no unified <<API>> in the specification.
+While the creation of container resources is defined in the Solid Protocol, the creation of storage resources differs for each implementation. <<CSS>> for instance, requests a process in multiple steps, with the final step shown in xref:lst-create-storage-css[xrefstyle=short]footnote:[https://communitysolidserver.github.io/CommunitySolidServer/7.x/usage/account/json-api/#controlsaccountpod].
+
+.Request for new storage resource in <<CSS>> for account `5e647928-b7f0-4357-9927-f54d66a04790`.
+[source,httprequest,id="lst-create-storage-css",reftext="Listing {counter:listing}"]
+----
+POST http://example.tld/.account/account/5e647928-b7f0-4357-9927-f54d66a04790/pod/
+Authorization: CSS-Account-Token a3395e7c-7d3f-40a1-9dff-7fa25b48c1a9
+Content-Type: application/json
+
+{
+  "name": "new-pod"
+}
+----
+
+In contrast, Inrupt’s <<ESS>>, as an alternative Solid Provider, only requires a simple authorized POST request as shown in xref:lst-create-storage-ess[xrefstyle=short]footnote:[https://docs.inrupt.com/ess/2.2/services/service-pod-provision/#create-a-new-pod].
+
+.Request for new storage resource in <<ESS>>
+[source,httprequest,id="lst-create-storage-ess",reftext="Listing {counter:listing}"]
+----
+POST https://provision.inrupt.com/
+----
