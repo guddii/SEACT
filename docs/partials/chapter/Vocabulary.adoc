@@ -1,4 +1,50 @@
-= Vocabulary
+= Custom Vocabulary
 
-- Claim
-- AccessLog (Explain why `al:application` can be empty)
+The vocabulary provided by the <<Solid Ecosystem>> does not cover all the necessary information that has been introduced in the data model and is required for the process.
+An <<RDF>> vocabulary for the claim process and logging of access has been introduced to support this.
+
+== Claim Vocabulary
+
+Besides the <<ACL>> vocabulary, that allows the access granting of resources of a webserver, there are several other model for processing of restricted data.
+The <<ODRL>> Information Modelfootnote:[https://www.w3.org/TR/odrl-model/] for instance, aims to standerize the permission, prohibition, and obligation of general content.
+The <<DPV>>footnote:[https://w3c.github.io/dpv/dpv/] however enables expressing machine-readable metadata about the use and processing of personal data, with focus on the <<GDPR>>footnote:[https://eur-lex.europa.eu/eli/reg/2016/679/oj].
+In order to prevent the creation of another information structure besides the model inherited from the <<Solid Application Interoperability>> and the limited options of integrating these model into the <<Solid Application Interoperability>> a custom vocabulary for the claiming mechanism has been introduced.
+
+.Custom Vocabulary: Claim
+[source,turtle,id="lst-vocabulary-claim",reftext="Listing {counter:listing}"]
+----
+include::../../resources/claim.ttl[lines=10..]
+----
+
+The claiming vocabulary presented in xref:lst-vocabulary-claim[xrefstyle=short], provides an illustrative example of how such a vocabulary might be constructed.
+However, in the implementation, this approach has not been employed in an effective manner.
+For the purposes of mocking, the URL references were sufficient, as the data was not fetched from the vocabulary.
+Nevertheless, the semantics presented in the listing are accurate.
+
+Uses of the <<RDF>> vocabulary are shown in <<Claim Registry (Data Model)>> and <<Verification (Data Model)>>.
+
+== Access Log Vocabulary
+
+The access log vocabulary is a dynamically generated vocabulary from the agent, produced in its own context.
+For instance, the <<DPC>> agent generates it at `http://example.tld/dpc/ns/log`.
+This enables each agent to bring its own vocabulary if necessary.
+The vocabulary is a condensed and human-readable form of the <<HTTP>> Vocabularyfootnote:[https://www.w3.org/TR/HTTP-in-RDF/].
+In order to facilitate comprehension by non-expert users, the vocabulary was introduced in a simplified form, as illustrated in xref:lst-vocabulary-al[xrefstyle=short].
+
+.Custom Vocabulary: Access Log
+[source,turtle,id="lst-vocabulary-al",reftext="Listing {counter:listing}"]
+----
+include::../../resources/dump/model/dpc/ns/log$.ttl[lines=10..]
+----
+
+The relationship between the <<HTTP>> Vocabulary and the data is that the majority of the data originates from a regular request object.
+For instance, `al:resource` matches the `http:absolutePath` property.
+As the vocabulary is custom, additional processing has been introduced. `al:action`, which matches the `http:methodName`, such as `POST`, `GET`, etc., has been converted to <<CRUD>> operations. `al:accessor` is a part of the serialized authorization header, equivalent to `http:RequestHeader`.
+Finally, the `al:application` property is intended to display the application name that appears when a Solid application is requesting data access.
+When granting access, the token is stored and associated with each authorized request.
+However, this technique is only effective when using the <<Authorization Code Flow>> authorization method.
+
+It is also noteworthy that `al:accessor` and `al:application` may be absent in certain instances.
+To illustrate, if a resource is accessible to the general public, there is no authorized request and thus no requesting agent or logged-in Solid application.
+
+The utilization of the <<RDF>> vocabulary is illustrated in <<Access Log (Data Model)>>.

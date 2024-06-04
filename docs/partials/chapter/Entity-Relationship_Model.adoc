@@ -22,14 +22,7 @@ A data registration is a resource container that contains all resources in a giv
 
 As the interoperability specification does not address the handling of multi-agent data or require agents to participate in the specification, some enhancements have been made to the data model.
 In xref:dm_Claim[xrefstyle=short], the highlighted additions (bold) to the model include the requirement that <<Thing, Things>> contained by the registry set must have a unique identifier based on the claimed item, which in this case is the hashed (SHAKE256) storage <<URL>>.
-The <<Thing, Thing's>> type is claim:Registry, a newly introduced <<RDF>> vocabulary.
-This vocabulary includes the following terms:
-
-* Trustee: The WebID reference of the agent requesting access to the claimed data
-* Monitored storage: The observed storage reference
-* Verification resource: The reference to the verification resource in the monitored storage.
-* Verification Code: A random hash
-* Claimed data: The reference to the resource container of all claimed data resources
+The <<Thing, Thing's>> type is claim:Registry, a newly introduced <<Claim Vocabulary>> that will be explained in detail in the <<Custom Vocabulary>> section.
 
 The `claim:Verification` is a resource within the observed storage that serves to verify using a verification code.
 This code must correspond to the verification code within the `claim:Registry` to authorize the trustee's access to the claimed data.

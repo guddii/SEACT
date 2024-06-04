@@ -8,8 +8,10 @@ When a prefix is followed by a colon symbol, the part after the colon can be app
 [glossary]
 [horizontal]
 acl:: http://www.w3.org/ns/auth/acl#
-claim:: urn:claim# (custom vocabulary)
+al:: _dynamic_ (see <<Custom Vocabulary>>)
+claim:: urn:claim# (see <<Custom Vocabulary>>)
 foaf:: http://xmlns.com/foaf/0.1/
+http:: http://www.w3.org/2011/http#
 interop:: http://www.w3.org/ns/solid/interop#
 ldp:: http://www.w3.org/ns/ldp#
 pim:: http://www.w3.org/ns/pim/space#
