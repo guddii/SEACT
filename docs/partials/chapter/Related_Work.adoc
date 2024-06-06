@@ -3,12 +3,6 @@ Due to the relatively small size of the group and its limited public visibility,
 Consequently, research sources are limited and related work is almost non-existent.
 However, some work and projects do consider related ideas.
 
-// Proxies
-citenp:[luotonen_world-wide_1994] is one of the earliest works on proxy servers, describing how individuals can access the Internet from closed subnets.
-Proxies were gradually enhanced, and the concept of structuring distributed systems as a set of services or subsystems emerged from this approach, as described by citenp:[shapiro_structure_1986].
-citenp:[tao_extensible_2016] proposed a method for modularizing the structuring of proxies to address the significant number of protocols that they must handle.
-. In addition to the general technological evolution of proxies, citenp:[yan_security_2017] developed the concept of a security web gateway utilizing a proxy, while maintaining the aforementioned characteristics of distributiveness, extensibility, reliability, and high performance.
-
 // Solid and Access Control
 citenp:[esposito_assessing_2023] did consider security concerns, as outlined in the GDPR and other pertinent documents, in order to demonstrate their relevance to the measures in the Solid protocol.
 Security concerns are currently addressed at various levels.
