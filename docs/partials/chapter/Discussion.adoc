@@ -1,0 +1,27 @@
+= Discussion
+
+This section of the study is devoted to a critical analysis and comparison of the present work with related works.
+Since there are few such works, the focus is on critical reflection.
+
+// System Design
+The system design has various aspects that have a significant impact on the processing of data, and consequently, on the system’s efficiency, particularly in terms of <<Performance Efficiency>>.
+
+// Solid Application Interop
+The most significant impact has been observed in the area of <<Solid Application Interoperability>>, as the application model is based on it.
+In this work, this Protokoll extension has only been implemented to a limited extent, as it is a protocol that should be implemented by the solid provider itself.
+A complete implementation of this protocol in a custom proxy module would require a significant amount of time that is beyond the scope of this work.
+Therefore, a partial implementation was deemed appropriate as it could be integrated seamlessly into the existing <<Solid Ecosystem>> landscape.
+Additionally, alternative variations of <<Solid Application Interoperability>> were considered for the <<System Design>>.
+Some of these variations could potentially make the <<Claim Vocabulary>> obsolete, as they could be implemented through a mechanism inherent to <<Solid Application Interoperability>>.
+If this is indeed a viable option, a dedicated experiment should be conducted to assess its feasibility.
+The specifications appear to have been designed for a single-tent context.
+Nevertheless, all the tested variations resulted in a situation where the accessing agent must declare its participation in the specification, as illustrated in the <<Personal Profile Document (Data Model)>>.
+In the proposed approach, however, only the <<DPC>> agent is required to declare an `interop:Agent` in the <<Personal Profile Document (Data Model)>>.
+As this agent is under the control of the hosting party, no external agents are required to declare anything.
+Consequently, they may continue to utilise the <<Solid Protocol>>, which they are already familiar with.
+One disadvantage of the use of the <<Solid Application Interoperability>> was the <<Deviation from Specification, Deviation from the Specification>> in terms of container resource creation.
+The specification recommends that the <<Shape Trees (Data Model)>> be located in the container resource response.
+In the case of the <<DPC>>, this refers to the access log shape trees.
+However, patching the data associated with a container resource is a vendor-specific process.
+In <<CSS>>, providing data to a container resource necessitates operations on the linked <<#description_resource, Description Resource>>, a rather unconventional mechanism.
+The use of vendor-specific <<API,APIs>> prevents the implementation of a generalistic approach that was attempted.

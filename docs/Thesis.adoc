@@ -172,16 +172,7 @@ In the <<Discussion>>, the effects of these decisions are identified and, if nec
 In the chapter on <<Future Work>>, a number of alternative approaches are presented that represent an interesting continuation of the topic under discussion.
 Finally, a <<Conclusion>> with a comprehensive reflection on the research and the resulting knowledge gained is provided.
 
-== Discussion
-
-- Discuss the <<Data Storage Structure>>
-- Discuss the <<Vocabulary>> (alternatives: https://www.w3.org/TR/odrl-model/ or https://w3c.github.io/dpv/dpv/)
-- Discuss the self invocation of the proxy vs forwarding
-- Discuss external storage of logs (see citenp:[esposito_assessing_2023])
-- Any application with the ability to write to the client's storage resource is capable of creating a verification code.
-- Client Credential Flow is not specified as part of the <<Authentication>> process, but mandatory for automated agents.
-- Discuss the use of <<Solid Application Interoperability>> (weak multi user support, active participation in the spec by declaring #id, container definitions are hard to apply with <<CSS>>)
-- Detecting the application name requires to alter the <<Authentication>> process, the effect on requesting a refresh token is unknown and might even result in a memory leak.
+include::partials/chapter/Discussion.adoc[leveloffset=+1]
 
 == Future Work
 
