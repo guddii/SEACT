@@ -1,13 +1,15 @@
 = Data Capturing Strategies
 
-In considering the optimal method for capturing accessed data, two primary options emerge.
-One approach is to log the access of a resource permanently, in a manner analogous to system logs.
-An alternative is for the agent to opt in to the monitoring of its storage.
+In traditional approaches to data capturing, such as the logging or monitoring of access to resources on a web server, data is typically raised in a task that is executed in the background.
+To illustrate, in the context of Node.jsfootnote:[https://nodejs.org/], this may be accomplished through the use of libraries such as morganfootnote:[https://www.npmjs.com/package/morgan] or winstonfootnote:[https://www.npmjs.com/package/winston], which can be mounted as middlewares in a web server.
+In the context of the proposed application, it is necessary to distinguish between requests based on their storage resource, for instance, through the use of a registry.
+This presents an opportunity for an agent to opt in for monitoring.
+This leads to two methods that are applicable in the context of how access logs can be captured.
 
 [horizontal]
 Permanent:: A system of permanent access logs would continuously observe and record every route traversed within the network.
 Opt-In:: The implementation of opt-in access logging would require the agent to register at some stage, thus enabling the system to monitor the relevant pathways.
 
-Both options represent legitimate strategies to consider.
-However, the permanent strategy is more restrictive and is suitable for administrative logging.
-In contrast, the opt-in strategy is more suitable for a user scenario where the user actively chooses what should happen with their data (tbd.).
+Both options represent viable strategies for consideration.
+However, the permanent strategy is more restrictive and may not be optimal in this context.
+In contrast, the opt-in strategy requires an agent to actively initiate access logging, which aligns with the concept of consent, a significant strength of the <<Solid Ecosystem>>.

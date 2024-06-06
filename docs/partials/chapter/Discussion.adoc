@@ -40,3 +40,18 @@ The apparent trade-off between control and flexibility proved to be illusory in 
 Whenever a request was initiated, whether by the proxy or the server, there was a significant risk that the filtering mechanism would fail to exclude it, resulting in an infinite loop of recursive calls.
 Although this could be stabilized for the purposes of this test, updates to the <<Solid Provider>> are particularly risky, especially if they involve protocol changes that might necessitate the submission of new requests that are not part of the filtering mechanism.
 A generic approach, such as overwriting the fetcher globally, in the context of the proxy and the server, might be a viable solution that could limit these risks.
+
+// Data capturing strategies
+<<Authentication>> is a primary concern, particularly in the context of sensitive data such as access logs.
+In <<Data Capturing Strategies>>, an opt-in option has been introduced, which has been used for the <<System Design>>.
+Although the mechanism of consent aligns with the ideas of the <<Solid Ecosystem>>, it may have an impact on the data security that has not been considered in this work.
+The method of <<Ownership Verification>>, as proposed, necessitates the writing of a resource for verification, as presented in <<Write Verification Code to Client Storage>>.
+One potential risk is that, when an agent is logging in to any web application, the application acts on behalf of the agent.
+Consequently, this means that the application has complete access rights to the storage resource, and thereby to the verification resource, which is part of the storage.
+In the event that the application is malicious, it may gain access to the logged data.
+Another potential attack scenario, which is specific to <<CSS>>, is to simply temporarily or permanently delete the `.meta` resource at the storage resource level.
+This description resource marks a container as a storage resource by adding `http://www.w3.org/ns/pim/space#Storage` as the link header.
+Upon the removal of the resource, the lookup in the <<DPC Middleware>> will not be disrupted, thus allowing for unlogged access.
+The root of both attack scenarios lies in the sharing of privileges to web applications, which is a general problem of the <<Solid Protocol>>.
+However, for the purpose of access logging, an opt-in approach may not be as suitable as the <<Data Capturing Strategies, Data Capturing Strategy>>, due to the allowed absence of observed resource paths.
+A more suitable approach might be to consider a permanent approach, as every path will be observed at any time.
