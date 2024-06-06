@@ -8,7 +8,7 @@ The system design has various aspects that have a significant impact on the proc
 
 // Solid Application Interop
 The most significant impact has been observed in the area of <<Solid Application Interoperability>>, as the application model is based on it.
-In this work, this Protokoll extension has only been implemented to a limited extent, as it is a protocol that should be implemented by the solid provider itself.
+In this work, this Protokoll extension has only been implemented to a limited extent, as it is a protocol that should be implemented by the <<Solid Provider>> itself.
 A complete implementation of this protocol in a custom proxy module would require a significant amount of time that is beyond the scope of this work.
 Therefore, a partial implementation was deemed appropriate as it could be integrated seamlessly into the existing <<Solid Ecosystem>> landscape.
 Additionally, alternative variations of <<Solid Application Interoperability>> were considered for the <<System Design>>.
@@ -25,3 +25,18 @@ In the case of the <<DPC>>, this refers to the access log shape trees.
 However, patching the data associated with a container resource is a vendor-specific process.
 In <<CSS>>, providing data to a container resource necessitates operations on the linked <<#description_resource, Description Resource>>, a rather unconventional mechanism.
 The use of vendor-specific <<API,APIs>> prevents the implementation of a generalistic approach that was attempted.
+
+// Forwarding requests
+Another crucial decision was to utilise self-invocation for <<Forwarded Request, Forwarded Requests>> from the proxy to the <<Solid Provider>>.
+Instead, the requests could have been forwarded directly to the server, as illustrated in xref:lst-request-with-forwarded-headers[xrefstyle=short].
+This approach would have avoided proxying the requests, while simultaneously enabling the middleware to initiate new requests to the server and process the messages before returning them to the original requester.
+This serialization step would be a necessity, as the <<Solid Provider>> would return references to a server that is not publicly accessible within its headers and the body.
+This pattern was rejected, as it is very difficult to maintain, as every request format must be processible and adjusted on an individual format level.
+When using the self-invoking technique with the proxy set as `baseUrl` footnote:[https://communitysolidserver.github.io/CommunitySolidServer/latest/usage/starting-server/#configuring-the-server] within the <<Solid Provider>>, the correct references are used immediately.
+The disadvantage of this approach is that internal requests must be filtered and excluded to prevent recursive requests.
+There are several options for doing so, including the use of a randomized token to bypass the proxy, as shown in xref:lst-request-with-proxy-bypass-token[xrefstyle=short], as well as the exclusion of selected paths from logging.
+However, this approach violates design paradigms, particularly the prevention of cyclic dependencies, as discussed in the <<ADP Analysis>>.
+The apparent trade-off between control and flexibility proved to be illusory in the context of the prototype.
+Whenever a request was initiated, whether by the proxy or the server, there was a significant risk that the filtering mechanism would fail to exclude it, resulting in an infinite loop of recursive calls.
+Although this could be stabilized for the purposes of this test, updates to the <<Solid Provider>> are particularly risky, especially if they involve protocol changes that might necessitate the submission of new requests that are not part of the filtering mechanism.
+A generic approach, such as overwriting the fetcher globally, in the context of the proxy and the server, might be a viable solution that could limit these risks.
