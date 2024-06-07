@@ -174,13 +174,7 @@ Finally, a <<Conclusion>> with a comprehensive reflection on the research and th
 
 include::partials/chapter/Discussion.adoc[leveloffset=+1]
 
-== Future Work
-
-- What are the implications for performance if a storage resource is required to have an owner advised?
-- What are the implications for performance if the status of the outgoing request is logged?
-- What are the implications for the system design and performance if the requests are to be cached, or if application-level caching is to be employed?
-- Does the owner of a storage resource have the ability to influence the requests made to that resource?
-- What are the implications of a system that incorporates multiple proxy modules?
+include::partials/chapter/Future_Work.adoc[leveloffset=+1]
 
 == Conclusion
 
