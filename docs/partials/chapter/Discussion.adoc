@@ -4,7 +4,12 @@ This section of the study is devoted to a critical analysis and comparison of th
 Since there are few such works, the focus is on critical reflection.
 
 // System Design
-The system design has various aspects that have a significant impact on the processing of data, and consequently, on the system’s efficiency, particularly in terms of <<Performance Efficiency>>.
+The <<System Design>> encompasses various aspects that significantly impact the processing of data, and consequently, the system’s efficiency, particularly in terms of <<Performance Efficiency>>.
+It is important to note that the individual aspects are not distinct decisions that are made in isolation.
+Each of the individual options encourages or enforces a <<Logical Topology>>, with either the <<Client as Data Owner>> or a <<Trustee as Data Owner>>.
+Finally, it is crucial to identify the approach that aligns most closely with the system's requirements, even if it involves trade-offs.
+This will ensure that the system design achieves the desired quality, tailored to the specific needs of the system.
+In this context, the <<Trustee as Data Owner>> approach appeared to offer the most promising results.
 
 // Solid Application Interop
 The most significant impact has been observed in the area of <<Solid Application Interoperability>>, as the application model is based on it.
@@ -55,3 +60,11 @@ Upon the removal of the resource, the lookup in the <<DPC Middleware>> will not 
 The root of both attack scenarios lies in the sharing of privileges to web applications, which is a general problem of the <<Solid Protocol>>.
 However, for the purpose of access logging, an opt-in approach may not be as suitable as the <<Data Capturing Strategies, Data Capturing Strategy>>, due to the allowed absence of observed resource paths.
 A more suitable approach might be to consider a permanent approach, as every path will be observed at any time.
+
+One aspect of data storage that is contingent upon the <<Logical Topology>> selected is the <<Data Storage Structure>>.
+The arrangement of the data that is tracked must be organized when stored in the client storage.
+When the data is stored at the site of the <<Data Trustee>>, it is crucial that the data be grouped in a way that only authorized agents are able to access it.
+This is a challenging issue, as the creation of a storage resource per agent seems a convenient solution.
+However, this isolated data space is not part of a defined workflow in the <<Solid Protocol>>.
+The creation of container resources does have a unified <<API>>, although <<CSS>> does this in a non-compliant way.
+// TODO external storage of logs (see citenp:[esposito_assessing_2023])
