@@ -76,3 +76,15 @@ In considering this, it is recommended that the proposed approach for system des
 Another significant consideration is that the access log employs a vocabulary that has already been established, such as the <<HTTP>> Vocabularyfootnote:[https://www.w3.org/TR/HTTP-in-RDF/].
 This process can be implemented within the individual application.
 By doing so, it is possible to utilize an established vocabulary while maintaining human readability, at least at the presentation layer.
+
+As previously mentioned, <<Authentication>> is one of the primary solutions provided by the <<Solid Ecosystem>>.
+It is important to note that the <<Authorization Client Credentials Flow, Client Credential Flow>>, which has been used to login the <<DPC>> agent, is not part of the Solid-<<OIDC>> specification, as defined by citenp:[coburn_solid-oidc_2022].
+Instead, a <<Authorization Code Flow>> (Basic Flow) is provided, which does require interaction by the login party.
+This presents a challenge for automated agents.
+While the majority of Solid Providers do support the <<Authorization Client Credentials Flow>>, this is not guaranteed, and therefore represents an unacceptably high level of risk when establishing a general approach.
+
+// TODO
+//It is necessary for the DPC application to alter the OIDC login process in order to receive the name of the application that requires data from a private storage resource.
+//In the suggested scenario, tokens are stored in the runtime memory, which may be vulnerable to data loss.
+//The effect of this mechanism is also unclear, especially when a session is expired and a fresh token is requested.
+
