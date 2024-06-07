@@ -68,3 +68,11 @@ This is a challenging issue, as the creation of a storage resource per agent see
 However, this isolated data space is not part of a defined workflow in the <<Solid Protocol>>.
 The creation of container resources does have a unified <<API>>, although <<CSS>> does this in a non-compliant way.
 // TODO external storage of logs (see citenp:[esposito_assessing_2023])
+
+The introduction of a <<Custom Vocabulary>> for this work is also open to debate.
+While it is legitimate to introduce a custom vocabulary, RDF-based systems benefit the most if the vocabulary is a common or at least publicly known vocabulary.
+The application of one of the aforementioned vocabularies, namely the <<ODRL>> Information Modelfootnote:[https://www.w3.org/TR/odrl-model/] or the <<DPV>>footnote:[https://w3c.github.io/dpv/dpv/], would effect the <<System Design>>, potentially leading to increased fetches and, consequently, an impact on <<Performance Efficiency>>.
+In considering this, it is recommended that the proposed approach for system design involves the adaptation to an established vocabulary, with the aim of ensuring compatibility and reducing the potential for issues.
+Another significant consideration is that the access log employs a vocabulary that has already been established, such as the <<HTTP>> Vocabularyfootnote:[https://www.w3.org/TR/HTTP-in-RDF/].
+This process can be implemented within the individual application.
+By doing so, it is possible to utilize an established vocabulary while maintaining human readability, at least at the presentation layer.
