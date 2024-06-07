@@ -40,7 +40,7 @@ Ongoing research and development is being conducted to improve the ecosystem, re
 This thesis aims to develop and analyze a Solid-based application that aligns with the Solid ecosystem without enforcing it.
 The application will enhance data privacy concerns, specifically in terms of data traceability and access control.
 The goal is to increase visibility and track requested resources from parties within and beyond the ecosystem through logs and their representation.
-These requests should be processed and made manipulatable to achieve better control over the exposed data.
+These requests should be processed and logged to achieve better control over the exposed data, by monitoring them.
 All of these achievements should be established in a clear context and communicated through data APIs to ensure safety for new features and potential changes in Solid providers.
 
 include::partials/chapter/Problem_Definition.adoc[leveloffset=+2]

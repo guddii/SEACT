@@ -7,7 +7,7 @@ Since they are tied to the specific context in which they are used, the idea of 
 When applying the concept to the solid context, two fundamental software components can be identified to solve the problems under the given premises:
 
 [horizontal]
-DPC Proxy:: A server-side proxy at the application level monitors data traffic and creates logs if necessary.
+DPC Middleware:: A server-side proxy module at the application level monitors data traffic and creates logs if necessary.
 DPC Client:: The traffic data from the reverse proxy is displayed and managed by the client.
 
 The concept idea's data capturing unit will be implemented as a proxy to meet the requirements of vendor-agnostic software that is secure from updates, as criticized in <<ISSUE-3>>, <<ISSUE-4>>, and <<ISSUE-5>>.
@@ -23,7 +23,7 @@ The following list outlines the minimum functions that the prototype must have i
 
 [horizontal,labelwidth=15]
 [[REQ-F1,REQ-F1]] REQ-F1:: Access logs with different views depending on the mandate.
-[[REQ-F2,REQ-F2]] REQ-F2:: Transmission logs with the specific content of the transmitted resource.
+[[REQ-F2,REQ-F2]] REQ-F2:: Access logs with the specific content of the transmitted resource.
 // [[REQ-F3,REQ-F3]] REQ-F3:: Rule-based filtering of network requests by the owner of the resource.
 
 == Non-Functional Requirements
