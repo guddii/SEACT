@@ -4,7 +4,7 @@
 <#ec7dae2e>
     a                          claim:Registry, interop:DataRegistry ;
     claim:trustee              <http://proxy.localhost:4000/client1/profile/card#me> ;
-    claim:monitoredStorage     <http://proxy.localhost:4000/client1/>, <http://proxy.localhost:4000/client1/> ;
+    claim:monitoredStorage     <http://proxy.localhost:4000/client1/> ;
     claim:verificationResource <http://proxy.localhost:4000/client1/dpc#verification> ;
     claim:verificationCode     "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
     claim:claimedData          <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/> ;
