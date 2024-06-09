@@ -4,7 +4,7 @@ In the context of further work on this project, it is important to consider a nu
 
 It is assumed that the access logs are only accessible to the owner of a storage resource.
 However, in a default configuration of <<CSS>>, this information is unknown when receiving an arbitrary resource from a storage resource.
-This particular solid provider does provide a visibility optionfootnote:[https://communitysolidserver.github.io/CommunitySolidServer/latest/usage/account/json-api/#controlsaccountpod] to assign a <<Identity>> to a storage resource.
+This particular solid provider does provide a visibility optionfootnote:[https://communitysolidserver.github.io/CommunitySolidServer/7.x/usage/account/json-api/] to assign a <<Identity>> to a storage resource.
 If activated, the reference is contained as a link header in the response, as demonstrated in xref:lst-referenced-webid-in-response-header[xrefstyle=short].
 This may potentially make the entire claiming mechanism obsolete, which would be an interesting topic for further investigation.
 

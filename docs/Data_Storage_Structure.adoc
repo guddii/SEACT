@@ -35,7 +35,7 @@ As this is the purpose of a storage container, there is no individual mechanism 
 The `acl:accessTo` and `acl:default` mechanisms, which have been applicable in a <<Container-Based Storage>> context, can also be applied here.
 However, there is a significant disadvantage to this approach over the <<Container-Based Storage>> approach.
 Namely, there is no unified <<API>> in the specification.
-While the creation of container resources is defined in the Solid Protocol, the creation of storage resources differs for each implementation. <<CSS>> for instance, requests a process in multiple steps, with the final step shown in xref:lst-create-storage-css[xrefstyle=short]footnote:[https://communitysolidserver.github.io/CommunitySolidServer/7.x/usage/account/json-api/#controlsaccountpod].
+While the creation of container resources is defined in the Solid Protocol, the creation of storage resources differs for each implementation. <<CSS>> for instance, requests a process in multiple steps, with the final step shown in xref:lst-create-storage-css[xrefstyle=short]footnote:[https://communitysolidserver.github.io/CommunitySolidServer/7.x/usage/account/json-api/].
 
 .Request for new storage resource in <<CSS>> for account `5e647928-b7f0-4357-9927-f54d66a04790`.
 [source,httprequest,id="lst-create-storage-css",reftext="Listing {counter:listing}"]

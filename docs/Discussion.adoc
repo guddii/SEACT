@@ -37,7 +37,7 @@ Instead, the requests could have been forwarded directly to the server, as illus
 This approach would have avoided proxying the requests, while simultaneously enabling the middleware to initiate new requests to the server and process the messages before returning them to the original requester.
 This serialization step would be a necessity, as the <<Solid Provider>> would return references to a server that is not publicly accessible within its headers and the body.
 This pattern was rejected, as it is very difficult to maintain, as every request format must be processible and adjusted on an individual format level.
-When using the self-invoking technique with the proxy set as `baseUrl` footnote:[https://communitysolidserver.github.io/CommunitySolidServer/latest/usage/starting-server/#configuring-the-server] within the <<Solid Provider>>, the correct references are used immediately.
+When using the self-invoking technique with the proxy set as `baseUrl` footnote:[https://communitysolidserver.github.io/CommunitySolidServer/latest/usage/starting-server/] within the <<Solid Provider>>, the correct references are used immediately.
 The disadvantage of this approach is that internal requests must be filtered and excluded to prevent recursive requests.
 There are several options for doing so, including the use of a randomized token to bypass the proxy, as shown in xref:lst-request-with-proxy-bypass-token[xrefstyle=short], as well as the exclusion of selected paths from logging.
 However, this approach violates design paradigms, particularly the prevention of cyclic dependencies, as discussed in the <<ADP Analysis>>.
