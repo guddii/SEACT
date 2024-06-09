@@ -166,5 +166,5 @@ NOTE: Followed Path [1,2,2]
 
 Each of the mentioned resources must have a corresponding <<ACL>>.
 The lists have been intentionally omitted for simplicity.
-The <<DPC>> <<agent, agent>> requires read and write access to all of these resources.
+The <<DPC>> agent requires read and write access to all of these resources.
 The only exception is the <<Verification (Data Model), verification resource>>, which only needs to be read.
