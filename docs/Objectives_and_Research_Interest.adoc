@@ -1,16 +1,16 @@
 = Objectives and Research Interest
 
-The research has two primary goals that align with the listed problems.
+The research has two primary objectives that align with the listed problems.
 The first goal is to achieve transparency regarding which data has been accessed and by whom.
 This would significantly increase control over one's own data.
 The second objective is to find a solution that can handle the fast-moving Solid ecosystem.
 
-The goals described leads to the following *key research question* this paper aims to address:
+The objectives described leads to the following *key research question* this paper aims to address:
 
 > Is there a Solid-based system design that enables increased transparency and access control for requested personal data?
 > Can the system use the network interface in a vendor-agnostic way without a significant decrease in performance?
 
-As answering this question in one go is difficult, it will be divided into three sub-questions:
+As answering this question in one go is difficult, it will be divided into multiple sub-questions:
 
 [horizontal,labelwidth=15]
 [[QUEST-1]] QUEST-1:: Can a Solid-based system meet both <<Functional Requirements,functional>> and <<Non-Functional Requirements, non-functional requirements>> without compromising system design?

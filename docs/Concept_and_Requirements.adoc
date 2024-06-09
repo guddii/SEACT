@@ -1,5 +1,10 @@
 = Concept and Requirements
 
+This section will address the general conceptual idea and subsequent refinements to the idea.
+Based on the aforementioned idea, the requirements for the prototype will be established in order to achieve the desired outcomes.
+
+== Concept
+
 The concept is inspired by existing software solutions in the field of e-governance, such as _X-Road_ from Estonia and _XDatenschutzcockpit_, which is currently being developed in Germany for access control of citizen data.
 Both systems have an embedded logging system that monitors access data.
 Since they are tied to the specific context in which they are used, the idea of a *Data Privacy Cockpit* will be ported to the Solid ecosystem.
@@ -10,14 +15,26 @@ When applying the concept to the solid context, two fundamental software compone
 DPC Middleware:: A server-side proxy module at the application level monitors data traffic and creates logs if necessary.
 DPC Client:: The traffic data from the reverse proxy is displayed and managed by the client.
 
-The concept idea's data capturing unit will be implemented as a proxy to meet the requirements of vendor-agnostic software that is secure from updates, as criticized in <<ISSUE-3>>, <<ISSUE-4>>, and <<ISSUE-5>>.
-However, this requires the application to be a Solid app, as it communicates over HTTP APIs with the actual Solid provider.
+The concept idea's data capturing unit, the DPC Middleware, will be implemented as a proxy to meet the requirements of vendor-agnostic software that is secure from updates, as criticized in <<ISSUE-3>>, <<ISSUE-4>>, and <<ISSUE-5>>.
+However, this requires the application to be a Solid application, as it communicates over HTTP APIs with the actual Solid provider.
 Since every request passes through the reverse proxy, there is a high risk of resulting in an inefficient software solution.
+
+=== Refinement
+
+Upon reflection on the prototype, two central issues of the concept emerge instantly.
+The first is the manner in which the data is captured by the DPC Middleware.
+The second is the means by which the DPC Client is aware of the owner or potential accessor of the data captured.
+
+include::Data_Capturing_Strategies.adoc[leveloffset=+3]
+
+include::Ownership_Verification.adoc[leveloffset=+3]
+
+== Requirements
 
 The tension between vendor-agnostic software and efficiency is a key consideration for the solution's requirements, particularly in non-functional requirements.
 However, the functional requirements are straightforward.
 
-== Functional Requirements
+=== Functional Requirements
 
 The following list outlines the minimum functions that the prototype must have in order to answer the questions.
 
@@ -26,7 +43,7 @@ The following list outlines the minimum functions that the prototype must have i
 [[REQ-F2,REQ-F2]] REQ-F2:: Access logs with the specific content of the transmitted resource.
 // [[REQ-F3,REQ-F3]] REQ-F3:: Rule-based filtering of network requests by the owner of the resource.
 
-== Non-Functional Requirements
+=== Non-Functional Requirements
 
 In comparison to the functional requirements, establishing the following non-functional requirements is more challenging.
 However, they are even more important as they verify the general conceptual idea.

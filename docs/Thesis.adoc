@@ -54,7 +54,6 @@ include::Concept_and_Requirements.adoc[leveloffset=+2]
 == Terminology
 
 This section provides definitions for the central terms used.
-Basic terms will only be included in the abbreviation section or the glossary due to the limited scope of this section.
 
 include::Access_Control_and_Traceability.adoc[leveloffset=+2]
 
@@ -96,10 +95,6 @@ include::Limits_of_Solid.adoc[leveloffset=+2]
 include::Data_Trustee.adoc[leveloffset=+2]
 
 include::Data_Storage_Structure.adoc[leveloffset=+2]
-
-include::Data_Capturing_Strategies.adoc[leveloffset=+2]
-
-include::Ownership_Verification.adoc[leveloffset=+2]
 
 == Quality Model
 
