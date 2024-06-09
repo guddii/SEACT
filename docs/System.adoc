@@ -9,8 +9,8 @@ According to the more concrete definition, a system is the sum of all hardware a
 
 In the context of a data-driven web-based system, the interaction of the system is further concretized.
 The system must interact via data APIs over the network.
-This is sometimes referred to as <<ROA>>, as defined by citenp:[richardson_restful_2007]. <<ROA, ROAs>> is designed to facilitate the manipulation of resources through four operations: creation, reading, updating, and deletion.
-In this architecture, usually referred to as <<CRUD>>, the operations are mapped to HTTP request methods:
+This is sometimes referred to as <<ROA>>, as defined by citenp:[richardson_restful_2007]. <<ROA, ROAs>> is designed to facilitate the manipulation of resources through four operations: creation, reading, updating, and deletion (<<CRUD>>).
+In this architecture, the <<CRUD>> operations are mapped to the following HTTP request methods:
 
 [horizontal]
 CREATE:: The `POST`/`PUT` method transmits an entity to be stored at the specified resource in order to create a record on the server.
@@ -39,8 +39,14 @@ include::resources/diagrams/stm_CRUD.puml[]
 
 It is recommended that a sequence of <<CRUD>> requests, utilising states and transitions as previously described, be executed in a sequential order.
 Certain sequences may allow parallel execution, however, it can lead to errors due to the occurrence of illegal transitions.
-A sequence of only read transitions should be executable in parallel without any issues.
+An illustrative example of transitions that are executable in parallel is a sequence of only read transitions on an existing resource.
+These transitions should be executable in parallel without any issues, as a situation where a resource is attempted to be read before its creation cannot occur.
 
 Another scenario to be considered is the utilisation of resources with a deeper hierarchical depth, which are typically designated with a backslash in the <<URL>>.
 In such instances, the resource container can be treated as ordinary resources, with a <<CRUD>> network interface and the corresponding lifecycle.
 However, it is not possible for a resource to exist independently of a parent container resource in the created, updated, or read state.
+
+It is important to note that each state of the state machine can be a final state with regard to the process that is the focus of this work.
+The transitions in this context are translated with different frequencies.
+For instance, `read` transitions appear more often than others.
+This segmentation is represented as a probability in this work.
