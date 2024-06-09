@@ -32,7 +32,7 @@ However, when bypassing the authorization mechanism provided by Solid, the risk 
 A storage-based approach to data storage for agents is a convenient method, as it encapsulates the data for an agent in a data space of their own.
 This approach ensures that no unnecessary information is shown to the public and that the data is stored in a secure context.
 As this is the purpose of a storage container, there is no individual mechanism required to ensure that the data is accidentally exposed to an agent that does not have any privileges to that data.
-The `acl:accessTo` and `acl:default` mechanisms, which have been applicable in a<<Container-Based Storage>> context, can also be applied here.
+The `acl:accessTo` and `acl:default` mechanisms, which have been applicable in a <<Container-Based Storage>> context, can also be applied here.
 However, there is a significant disadvantage to this approach over the <<Container-Based Storage>> approach.
 Namely, there is no unified <<API>> in the specification.
 While the creation of container resources is defined in the Solid Protocol, the creation of storage resources differs for each implementation. <<CSS>> for instance, requests a process in multiple steps, with the final step shown in xref:lst-create-storage-css[xrefstyle=short]footnote:[https://communitysolidserver.github.io/CommunitySolidServer/7.x/usage/account/json-api/#controlsaccountpod].
