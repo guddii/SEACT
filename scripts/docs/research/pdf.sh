@@ -28,6 +28,6 @@ asciidoctor-pdf \
     --attribute revdate=$REVDATE \
     --attribute revnumber=$REVNUMBER \
     --backend=pdf \
-    docs/*.adoc
+    docs/Thesis.adoc
 
 mv docs/stem-*.svg out

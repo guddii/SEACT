@@ -20,7 +20,7 @@ The `./tests/http` directory contains simple HTTP test files, which are used for
 [.text-center]
 [plantuml,format=svg,id="wbs-project-structure"]
 ....
-include::../../resources/diagrams/wbs_Project_structure.puml[]
+include::resources/diagrams/wbs_Project_structure.puml[]
 ....
 
 The Node.js packages contained in the `./packages` folder are generic source code fragments utilized in the `./apps` packages.

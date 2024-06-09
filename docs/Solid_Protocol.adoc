@@ -50,9 +50,9 @@ This is demonstrated in xref:lst-storage-resource[xrefstyle=short], where additi
 .Storage resource declaration at http://proxy.localhost:4000/client/
 [source,id="lst-storage-resource",reftext="Listing {counter:listing}"]
 ----
-include::../../resources/requests/Storage_resource.txt[lines="1..3"]
+include::resources/requests/Storage_resource.txt[lines="1..3"]
 [...]
-include::../../resources/requests/Storage_resource.txt[lines="14"]
+include::resources/requests/Storage_resource.txt[lines="14"]
 [...]
 ----
 

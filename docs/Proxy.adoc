@@ -21,7 +21,7 @@ When referring to a server-side proxy, isolation of the server is described, as 
 [.text-center]
 [plantuml,format=svg,id="Proxy"]
 ....
-include::../../resources/diagrams/cmp_Proxy.puml[]
+include::resources/diagrams/cmp_Proxy.puml[]
 ....
 
 == Application Layer Proxy

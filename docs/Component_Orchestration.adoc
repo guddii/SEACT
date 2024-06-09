@@ -17,7 +17,7 @@ If so, the request module data is appended to a resource container within that s
 [.text-center]
 [plantuml,format=svg,id="Logical_Topology_B"]
 ....
-include::../../resources/diagrams/cmp_Logical_Topology_B.puml[]
+include::resources/diagrams/cmp_Logical_Topology_B.puml[]
 ....
 
 == Trustee as Data Owner
@@ -30,7 +30,7 @@ If applicable, append the request module data to a resource container in the mod
 [.text-center]
 [plantuml,format=svg,id="Logical_Topology_A"]
 ....
-include::../../resources/diagrams/cmp_Logical_Topology_A.puml[]
+include::resources/diagrams/cmp_Logical_Topology_A.puml[]
 ....
 
 Depending on whether the capturing strategy is permanent or registration-based, both approaches may require agent identity verification.

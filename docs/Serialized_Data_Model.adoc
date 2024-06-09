@@ -9,7 +9,7 @@ The data of the corresponding agent will be represented below this node.
 [.text-center]
 [plantuml,format=svg,id="wbs_Endpoint_structure"]
 ....
-include::../../resources/diagrams/wbs_Endpoint_structure.puml[]
+include::resources/diagrams/wbs_Endpoint_structure.puml[]
 ....
 
 The two most commonly used serialization formats for <<RDF>>-based data in data-driven web-based systems are `text/turtle` and `application/ld+json`.
@@ -25,7 +25,7 @@ The node will refer to the <<Registry Set (Data Model), registry set>> that cont
 .`interop:Agent` <<Thing>> at http://example.tld/dpc/profile/card
 [source,turtle]
 ----
-include::../../resources/dump/model/dpc/profile/card$.ttl[lines=14..17]
+include::resources/dump/model/dpc/profile/card$.ttl[lines=14..17]
 ----
 
 <1> Declaration as `interop:Agent`.
@@ -44,7 +44,7 @@ In this case, it will be the hashed storage <<URL>>.
 .`interop:DataRegistry` <<Thing>> at http://example.tld/dpc/registries
 [source,turtle]
 ----
-include::../../resources/dump/model/dpc/registries$.ttl[lines=3..6]
+include::resources/dump/model/dpc/registries$.ttl[lines=3..6]
 ----
 
 <1> The hashed (SHAKE256) storage <<URL>>.
@@ -59,7 +59,7 @@ As it is a container resource (see <<Container (Access Logs from Data Model)>>),
 .`interop:DataRegistration` <<Thing>> at http://example.tld/dpc/data/74242fac/AccessLog/
 [source,turtle]
 ----
-include::../../resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=7..11]
+include::resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=7..11]
 ----
 
 <1> The referenced Shape Tree.
@@ -75,7 +75,7 @@ The <<Shape Expression (Data Model), referenced Shape Expression>> declares the 
 .Shape Tree at http://example.tld/dpc/ns/log.tree
 [source]
 ----
-include::../../resources/dump/model/dpc/ns/log.tree[]
+include::resources/dump/model/dpc/ns/log.tree[]
 ----
 
 <1> The internal reference to `AccessLogTree`
@@ -91,7 +91,7 @@ The RDF vocabulary will not be listed further.
 .Shape Expression
 [source]
 ----
-include::../../resources/dump/model/dpc/ns/log.shex[]
+include::resources/dump/model/dpc/ns/log.shex[]
 ----
 
 NOTE: Followed Path [1,1,1], [1,2,1,1]
@@ -105,8 +105,8 @@ For example, the file dated 2024-04-02 will be referred to as <<Access Log (Data
 .`ldp:Container` <<Thing>> at http://example.tld/dpc/data/74242fac/AccessLog/
 [source,turtle]
 ----
-include::../../resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=13..14]
-include::../../resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=23..23]
+include::resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=13..14]
+include::resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=23..23]
 ----
 
 NOTE: Followed Path [1,1,2], [1,2,2]
@@ -118,7 +118,7 @@ The access log is a resource that contains the actual data and satisfies the sha
 .`ldp:Container` <<Thing>> at http://example.tld/dpc/data/74242fac/AccessLog/2024-04-02
 [source,turtle]
 ----
-include::../../resources/dump/model/dpc/data/74242fac/AccessLog/2024-04-02$.ttl[]
+include::resources/dump/model/dpc/data/74242fac/AccessLog/2024-04-02$.ttl[]
 ----
 
 NOTE: Followed Path [1,1,2], [1,2,2]
@@ -131,7 +131,7 @@ It refers to the root container for <<Container (Claimed Data from Data Model), 
 .`claim:Registry` <<Thing>> in at http://example.tld/dpc/registries
 [source,turtle]
 ----
-include::../../resources/dump/model/dpc/registries$.ttl[lines=7..14]
+include::resources/dump/model/dpc/registries$.ttl[lines=7..14]
 ----
 
 NOTE: Followed Path [1,2]
@@ -144,8 +144,8 @@ When using the Solid Application Interoperability Specification, it primarily re
 .`ldp:Container` <<Thing>> at http://example.tld/dpc/data/74242fac/
 [source,turtle]
 ----
-include::../../resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=13..14]
-include::../../resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=23..23]
+include::resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=13..14]
+include::resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=23..23]
 ----
 
 NOTE: Followed Path [1,2,1]
@@ -159,7 +159,7 @@ If they are equivalent, access to the <<Container (Claimed Data from Data Model)
 .`claim:Verification` <<Thing>> at at http://example.tld/client/dpc
 [source,turtle]
 ----
-include::../../resources/dump/model/client/dpc$.ttl[]
+include::resources/dump/model/client/dpc$.ttl[]
 ----
 
 NOTE: Followed Path [1,2,2]

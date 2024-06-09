@@ -13,7 +13,7 @@ In order to prevent the creation of another information structure besides the mo
 .Custom Vocabulary: Claim
 [source,turtle,id="lst-vocabulary-claim",reftext="Listing {counter:listing}"]
 ----
-include::../../resources/claim.ttl[lines=10..]
+include::resources/claim.ttl[lines=10..]
 ----
 
 The claiming vocabulary presented in xref:lst-vocabulary-claim[xrefstyle=short], provides an illustrative example of how such a vocabulary might be constructed.
@@ -34,7 +34,7 @@ In order to facilitate comprehension by non-expert users, the vocabulary was int
 .Custom Vocabulary: Access Log
 [source,turtle,id="lst-vocabulary-al",reftext="Listing {counter:listing}"]
 ----
-include::../../resources/dump/model/dpc/ns/log$.ttl[lines=10..]
+include::resources/dump/model/dpc/ns/log$.ttl[lines=10..]
 ----
 
 The relationship between the <<HTTP>> Vocabulary and the data is that the majority of the data originates from a regular request object.

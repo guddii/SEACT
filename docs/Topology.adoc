@@ -5,6 +5,6 @@ include::partials/Front_matter.adoc[]
 ifdef::backend-html5[''']
 ifndef::backend-html5[<<<]
 
-include::partials/chapter/Component_Orchestration.adoc[leveloffset=+1]
+include::Component_Orchestration.adoc[leveloffset=+1]
 
 include::partials/Back_matter.adoc[]

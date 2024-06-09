@@ -27,6 +27,9 @@ asciidoctor \
     --attribute revdate=$REVDATE \
     --attribute revnumber=$REVNUMBER \
     --backend=html5 \
-    docs/*.adoc
+    docs/Thesis.adoc
 
 mv docs/stem-*.svg out
+
+mkdir out/resources/
+cp -r docs/resources/views out/resources/

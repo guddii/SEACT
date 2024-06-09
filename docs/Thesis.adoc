@@ -43,28 +43,28 @@ The goal is to increase visibility and track requested resources from parties wi
 These requests should be processed and logged to achieve better control over the exposed data, by monitoring them.
 All of these achievements should be established in a clear context and communicated through data APIs to ensure safety for new features and potential changes in Solid providers.
 
-include::partials/chapter/Problem_Definition.adoc[leveloffset=+2]
+include::Problem_Definition.adoc[leveloffset=+2]
 
-include::partials/chapter/Objectives_and_Research_Interest.adoc[leveloffset=+2]
+include::Objectives_and_Research_Interest.adoc[leveloffset=+2]
 
-include::partials/chapter/Research_Design.adoc[leveloffset=+2]
+include::Research_Design.adoc[leveloffset=+2]
 
-include::partials/chapter/Concept_and_Requirements.adoc[leveloffset=+2]
+include::Concept_and_Requirements.adoc[leveloffset=+2]
 
 == Terminology
 
 This section provides definitions for the central terms used.
 Basic terms will only be included in the abbreviation section or the glossary due to the limited scope of this section.
 
-include::partials/chapter/Access_Control_and_Traceability.adoc[leveloffset=+2]
+include::Access_Control_and_Traceability.adoc[leveloffset=+2]
 
-include::partials/chapter/System.adoc[leveloffset=+2]
+include::System.adoc[leveloffset=+2]
 
-include::partials/chapter/Proxy.adoc[leveloffset=+2]
+include::Proxy.adoc[leveloffset=+2]
 
 == Related Work
 
-include::partials/chapter/Related_Work.adoc[leveloffset=+2]
+include::Related_Work.adoc[leveloffset=+2]
 
 = Theoretical Framework
 
@@ -83,23 +83,23 @@ The ecosystem comprises a number of specifications and associated technologies, 
 The most fundamental specification is the <<Solid Protocol>>, also known as the core specification.
 In addition to the core specification, the following sections will explain the role of <<Solid Provider,Solid Providers>> in enabling the protocol and the <<Solid Application Interoperability>> specification, which extends the protocol.
 
-include::partials/chapter/Solid_Protocol.adoc[leveloffset=+2]
+include::Solid_Protocol.adoc[leveloffset=+2]
 
-include::partials/chapter/Solid_Provider.adoc[leveloffset=+2]
+include::Solid_Provider.adoc[leveloffset=+2]
 
-include::partials/chapter/Solid_Application_Interoperability.adoc[leveloffset=+2]
+include::Solid_Application_Interoperability.adoc[leveloffset=+2]
 
-include::partials/chapter/Limits_of_Solid.adoc[leveloffset=+2]
+include::Limits_of_Solid.adoc[leveloffset=+2]
 
 == Data Sovereignty
 
-include::partials/chapter/Data_Trustee.adoc[leveloffset=+2]
+include::Data_Trustee.adoc[leveloffset=+2]
 
-include::partials/chapter/Data_Storage_Structure.adoc[leveloffset=+2]
+include::Data_Storage_Structure.adoc[leveloffset=+2]
 
-include::partials/chapter/Data_Capturing_Strategies.adoc[leveloffset=+2]
+include::Data_Capturing_Strategies.adoc[leveloffset=+2]
 
-include::partials/chapter/Ownership_Verification.adoc[leveloffset=+2]
+include::Ownership_Verification.adoc[leveloffset=+2]
 
 == Quality Model
 
@@ -107,9 +107,9 @@ The quality model is a valuable instrument for assessing the quality of a softwa
 The model can be applied to a variety of aspects, depending on the specific quality criteria that are to be observed.
 In this section, the <<System Design Quality>> and the <<Performance Efficiency>> are the aspects that are to be characterized.
 
-include::partials/chapter/System_Design_Quality.adoc[leveloffset=+2]
+include::System_Design_Quality.adoc[leveloffset=+2]
 
-include::partials/chapter/Performance_Efficiency.adoc[leveloffset=+2]
+include::Performance_Efficiency.adoc[leveloffset=+2]
 
 = Design and Implementation
 
@@ -125,31 +125,31 @@ In contrast, the <<Technology>> section offers a more detailed examination of th
 The logical topology describes the access, transport, addressing of protocols, and data paths.
 The following section illustrates the system components and their connections.
 
-include::partials/chapter/Component_Orchestration.adoc[leveloffset=+3]
+include::Component_Orchestration.adoc[leveloffset=+3]
 
 === Logical Data Model
 
-include::partials/chapter/Entity-Relationship_Model.adoc[leveloffset=+3]
+include::Entity-Relationship_Model.adoc[leveloffset=+3]
 
-include::partials/chapter/Vocabulary.adoc[leveloffset=+3]
+include::Vocabulary.adoc[leveloffset=+3]
 
-include::partials/chapter/Information_Retrieval.adoc[leveloffset=+3]
+include::Information_Retrieval.adoc[leveloffset=+3]
 
-include::partials/chapter/Serialized_Data_Model.adoc[leveloffset=+3]
+include::Serialized_Data_Model.adoc[leveloffset=+3]
 
 === System Behavior
 
-include::partials/chapter/Process_Entries.adoc[leveloffset=+3]
+include::Process_Entries.adoc[leveloffset=+3]
 
-include::partials/chapter/Process_References.adoc[leveloffset=+3]
+include::Process_References.adoc[leveloffset=+3]
 
 == Technology
 
-include::partials/chapter/Technology_Stack.adoc[leveloffset=+2]
+include::Technology_Stack.adoc[leveloffset=+2]
 
-include::partials/chapter/Limits_of_the_Technology_Stack.adoc[leveloffset=+2]
+include::Limits_of_the_Technology_Stack.adoc[leveloffset=+2]
 
-include::partials/chapter/Deviation_from_Specification.adoc[leveloffset=+2]
+include::Deviation_from_Specification.adoc[leveloffset=+2]
 
 = Analysis
 
@@ -159,9 +159,9 @@ The analysis is divided into two sections.
 The initial section will exhibit the configuration of the <<Experiments>>, demonstrating how the tests were conducted.
 In the <<Validation>> section, the results of the tests will be presented and analyzed, with techniques and measures introduced in the theoretical framework.
 
-include::partials/chapter/Experiments.adoc[leveloffset=+1]
+include::Experiments.adoc[leveloffset=+1]
 
-include::partials/chapter/Validation.adoc[leveloffset=+1]
+include::Validation.adoc[leveloffset=+1]
 
 = Reflection
 
@@ -172,15 +172,15 @@ In the <<Discussion>>, the effects of these decisions are identified and, if nec
 In the chapter on <<Future Work>>, a number of alternative approaches are presented that represent an interesting continuation of the topic under discussion.
 Finally, a <<Conclusion>> with a comprehensive reflection on the research and the resulting knowledge gained is provided.
 
-include::partials/chapter/Discussion.adoc[leveloffset=+1]
+include::Discussion.adoc[leveloffset=+1]
 
-include::partials/chapter/Future_Work.adoc[leveloffset=+1]
+include::Future_Work.adoc[leveloffset=+1]
 
 == Conclusion
 
 Viewing and using requests to the web server was a task that was almost exclusively reserved for the operators or administrators of a service.
 For the first time functions can be viewed and controlled by users, as they own the content or have sufficient rights.
 
-include::partials/Appendix.adoc[]
+include::Appendix.adoc[]
 
 include::partials/Back_matter.adoc[]

@@ -13,7 +13,7 @@ xref:dm_Interop[xrefstyle=short] illustrates these entities and relations.
 [.text-center]
 [plantuml,format=svg,id="dm_Interop"]
 ....
-include::../../resources/diagrams/dm_Interop.puml[]
+include::resources/diagrams/dm_Interop.puml[]
 ....
 
 The entities and relations in xref:dm_Interop[xrefstyle=short] represent a partially implemented data registry component of the citenp:[bingham_solid_2023] Solid Application Interoperability specification.

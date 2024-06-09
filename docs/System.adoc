@@ -34,7 +34,7 @@ This behavior is displayed in xref:stm_CRUD[xrefstyle=short].
 [.text-center]
 [plantuml,format=svg,id="stm_CRUD"]
 ....
-include::../../resources/diagrams/stm_CRUD.puml[]
+include::resources/diagrams/stm_CRUD.puml[]
 ....
 
 It is recommended that a sequence of <<CRUD>> requests, utilising states and transitions as previously described, be executed in a sequential order.

@@ -14,14 +14,14 @@ The key difference is that the request and response will be forwarded by the pro
 [.text-center]
 [plantuml,format=svg]
 ....
-include::../../resources/diagrams/sd_Request_a_resource.puml[]
+include::resources/diagrams/sd_Request_a_resource.puml[]
 ....
 
 All requests can be executed with any HTTP client that supports the Solid Protocol. To demonstrate this, a simple web HTTP client has been introduced in this project, as shown in xref:ui-crud[xrefstyle=short].
 
 .Screenshot of a Solid HTTP Client <<UI>>.
 [#ui-crud,.text-center]
-image::../../resources/views/UI_Authorised_CRUD_Requests.png[]
+image::resources/views/UI_Authorised_CRUD_Requests.png[]
 
 == Log Claiming
 
@@ -34,14 +34,14 @@ Both connections are handled by the DPC API server, and when the connections are
 [.text-center]
 [plantuml,format=svg]
 ....
-include::../../resources/diagrams/sd_Log_claiming.puml[]
+include::resources/diagrams/sd_Log_claiming.puml[]
 ....
 
 The process of claiming access logs is relatively straightforward, requiring only a single form input in the <<UI>>. When an agent is logged in, the related storage can be detected automatically. If not, the input field allows custom <<URL>> input. Upon submission, the rest of the process occurs in the background. xref:ui-claiming[xrefstyle=short] presents a screenshot of this <<UI>>.
 
 .Screenshot of a DPC Client <<UI>> while claiming the access logs.
 [#ui-claiming,.text-center]
-image::../../resources/views/UI_Log_Claiming.png[]
+image::resources/views/UI_Log_Claiming.png[]
 
 == Log Discovery
 
@@ -52,11 +52,11 @@ These routes will either return an empty turtle file or attempt to resolve the c
 [.text-center]
 [plantuml,format=svg]
 ....
-include::../../resources/diagrams/sd_Log_discovery.puml[]
+include::resources/diagrams/sd_Log_discovery.puml[]
 ....
 
 Upon successful claiming of an access log container, the agent is presented with a view of the logged entries. This view is represented by a table, as illustrated in xref:ui-discovery[xrefstyle=short].
 
 .Screenshot of a DPC Client <<UI>> listing the access logs.
 [#ui-discovery,.text-center]
-image::../../resources/views/UI_Log_Discovery.png[]
+image::resources/views/UI_Log_Discovery.png[]

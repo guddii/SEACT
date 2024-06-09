@@ -11,7 +11,7 @@ The proxy will forward requests as every CRUD request because the authorization 
 [.text-center]
 [plantuml,format=svg]
 ....
-include::../../resources/diagrams/sd_Authentication_with_Client_Credentials.puml[]
+include::resources/diagrams/sd_Authentication_with_Client_Credentials.puml[]
 ....
 
 == Authorization Code Flow
@@ -32,7 +32,7 @@ In certain cases, it may be necessary to read and evaluate the server response, 
 [.text-center]
 [plantuml,format=svg]
 ....
-include::../../resources/diagrams/sd_Forwarded_request.puml[]
+include::resources/diagrams/sd_Forwarded_request.puml[]
 ....
 
 == DPC Middleware
@@ -46,7 +46,7 @@ If a storage is found, access logs will be created or updated.
 [.text-center]
 [plantuml,format=svg]
 ....
-include::../../resources/diagrams/sd_DPC_middleware.puml[]
+include::resources/diagrams/sd_DPC_middleware.puml[]
 ....
 
 // TODO
@@ -62,7 +62,7 @@ Finally, the registry data will be filtered from the set of data and returned.
 [.text-center]
 [plantuml,format=svg]
 ....
-include::../../resources/diagrams/sd_Lookup_claim_data_in_registry.puml[]
+include::resources/diagrams/sd_Lookup_claim_data_in_registry.puml[]
 ....
 
 == Create or Update Dataset
@@ -76,7 +76,7 @@ The dataset will be enriched with new data and stored on the server.
 [.text-center]
 [plantuml,format=svg]
 ....
-include::../../resources/diagrams/sd_Create_or_update_dataset.puml[]
+include::resources/diagrams/sd_Create_or_update_dataset.puml[]
 ....
 
 == Initialize a Verification Code
@@ -89,7 +89,7 @@ If the DPC API cannot access the client's storage, the process will terminate wi
 [.text-center]
 [plantuml,format=svg]
 ....
-include::../../resources/diagrams/sd_Initialize_a_verification_code.puml[]
+include::resources/diagrams/sd_Initialize_a_verification_code.puml[]
 ....
 
 == Write Verification Code to Client Storage
@@ -102,7 +102,7 @@ Since the code must be read by the DPC agent, the second step is to grant read p
 [.text-center]
 [plantuml,format=svg]
 ....
-include::../../resources/diagrams/sd_Write_verification_code_to_client_storage.puml[]
+include::resources/diagrams/sd_Write_verification_code_to_client_storage.puml[]
 ....
 
 == Write Verification Code to DPC Storage
@@ -114,7 +114,7 @@ After authorization, a new claim containing the verification code and associated
 [.text-center]
 [plantuml,format=svg]
 ....
-include::../../resources/diagrams/sd_Write_verification_code_to_dpc_storage.puml[]
+include::resources/diagrams/sd_Write_verification_code_to_dpc_storage.puml[]
 ....
 
 == Get Claimed Resource
@@ -128,5 +128,5 @@ If both verification codes match, the request will be forwarded by the DPC agent
 [.text-center]
 [plantuml,format=svg]
 ....
-include::../../resources/diagrams/sd_Get_claimed_resource.puml[]
+include::resources/diagrams/sd_Get_claimed_resource.puml[]
 ....

@@ -2,15 +2,15 @@
 //Front matter
 include::partials/Front_matter.adoc[]
 
-include::partials/chapter/Solid_Application_Interoperability.adoc[leveloffset=+1]
+include::Solid_Application_Interoperability.adoc[leveloffset=+1]
 
-include::partials/chapter/Entity-Relationship_Model.adoc[leveloffset=+1]
+include::Entity-Relationship_Model.adoc[leveloffset=+1]
 
-include::partials/chapter/Information_Retrieval.adoc[leveloffset=+1]
+include::Information_Retrieval.adoc[leveloffset=+1]
 
-include::partials/chapter/Vocabulary.adoc[leveloffset=+1]
+include::Vocabulary.adoc[leveloffset=+1]
 
-include::partials/chapter/Serialized_Data_Model.adoc[leveloffset=+1]
+include::Serialized_Data_Model.adoc[leveloffset=+1]
 
 include::partials/Appendix.adoc[]
 

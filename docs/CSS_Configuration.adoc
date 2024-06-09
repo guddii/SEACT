@@ -3,5 +3,5 @@
 .Community Solid Server Configuration
 [source,json,id="lst-css-config",reftext="Listing {counter:listing}"]
 ----
-include::../../../apps/server/data/config.json[]
+include::../apps/server/data/config.json[]
 ----

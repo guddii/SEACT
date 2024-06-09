@@ -10,7 +10,7 @@ The full model can be found in xref:full_logical_data_model[xrefstyle=short].
 [.text-center]
 [plantuml,format=svg,id="dm_Claim"]
 ....
-include::../../resources/diagrams/dm_Claim.puml[]
+include::resources/diagrams/dm_Claim.puml[]
 ....
 
 The model meets the requirements of the Solid Application Interoperability Specification, which is omitted in xref:dm_Claim[xrefstyle=short].

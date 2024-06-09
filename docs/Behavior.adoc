@@ -2,8 +2,8 @@
 //Front matter
 include::partials/Front_matter.adoc[]
 
-include::partials/chapter/Process_Entries.adoc[leveloffset=+1]
+include::Process_Entries.adoc[leveloffset=+1]
 
-include::partials/chapter/Process_References.adoc[leveloffset=+1]
+include::Process_References.adoc[leveloffset=+1]
 
 include::partials/Back_matter.adoc[]
