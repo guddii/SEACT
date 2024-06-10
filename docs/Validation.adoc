@@ -100,10 +100,29 @@ Parameters:: All test plans were executed with the variable `i` assigned to each
 The variables `p`, `q`, and `r` were selected from the set `{1, 10, 30}`.
 Total Reports:: 82
 Reports:: TP1.1-B-1-1-1, TP1.1-B-1-1-10, TP1.1-B-1-1-30, TP1.1-B-1-10-1, TP1.1-B-1-10-10, TP1.1-B-1-10-30, TP1.1-B-1-30-1, TP1.1-B-1-30-10, TP1.1-B-1-30-30, TP1.1-B-10-1-1, TP1.1-B-10-1-10, TP1.1-B-10-1-30, TP1.1-B-10-10-1, TP1.1-B-10-10-10, TP1.1-B-10-10-30, TP1.1-B-10-30-1, TP1.1-B-10-30-10, TP1.1-B-10-30-30, TP1.1-B-30-1-1, TP1.1-B-30-1-10, TP1.1-B-30-1-30, TP1.1-B-30-10-1, TP1.1-B-30-10-10, TP1.1-B-30-10-30, TP1.1-B-30-30-1, TP1.1-B-30-30-10, TP1.1-B-30-30-30, TP1.1-N-1-1-1, TP1.1-N-1-1-10, TP1.1-N-1-1-30, TP1.1-N-1-10-1, TP1.1-N-1-10-10, TP1.1-N-1-10-30, TP1.1-N-1-30-1, TP1.1-N-1-30-10, TP1.1-N-1-30-30, TP1.1-N-10-1-1, TP1.1-N-10-1-10, TP1.1-N-10-1-30, TP1.1-N-10-10-1, TP1.1-N-10-10-10, TP1.1-N-10-10-30, TP1.1-N-10-30-1, TP1.1-N-10-30-10, TP1.1-N-10-30-30, TP1.1-N-30-1-1, TP1.1-N-30-1-10, TP1.1-N-30-1-30, TP1.1-N-30-10-1, TP1.1-N-30-10-10, TP1.1-N-30-10-30, TP1.1-N-30-30-1, TP1.1-N-30-30-10, TP1.1-N-30-30-30, TP1.1-C-1-1-1, TP1.1-C-1-1-10, TP1.1-C-1-1-30, TP1.1-C-1-10-1, TP1.1-C-1-10-10, TP1.1-C-1-10-30, TP1.1-C-1-30-1, TP1.1-C-1-30-10, TP1.1-C-1-30-30, TP1.1-C-10-1-1, TP1.1-C-10-1-10, TP1.1-C-10-1-30, TP1.1-C-10-10-1, TP1.1-C-10-10-10, TP1.1-C-10-10-30, TP1.1-C-10-30-1, TP1.1-C-10-30-10, TP1.1-C-10-30-30, TP1.1-C-30-1-1, TP1.1-C-30-1-10, TP1.1-C-30-1-30footnote:[https://www.guddii.de/SEACT/TP1.1-C-30-1-30/], TP1.1-C-30-10-1, TP1.1-C-30-10-10, TP1.1-C-30-10-30, TP1.1-C-30-30-1, TP1.1-C-30-30-10, and TP1.1-C-30-30-30footnote:[https://www.guddii.de/SEACT/TP1.1-C-30-30-30/].
-Outcome:: The tests were conducted within an approximate one-week period, including the occurrence of application errors.
+Outcome:: The tests were conducted over a period of approximately seven days, including the occurrence of application errors.
 On restarting the application, the tests could be continued from that point onwards.
 Upon analysis of the state of the application, it was found that the `.meta` resources in the tested storage resources were missing.
 These resources, however, are conceptually relevant, as they are flagging a storage resource as such.
 This is a crucial step in the <<DPC Middleware>> to continue with any kind of logging.
 As the precise time of the resource deletion could not be determined, all tests with `i` in `{N, C}` are considered invalid, as they might not have executed the logging procedure.
 This may also explain the occurrence of results that appear unreasonable, such as TP1.1-C-30-30-30, which has a lower average response time (32.20s) than TP1.1-30-1-30 (107.65s), despite the necessity of traversing a greater number of ShapeTrees (`q`).
+
+Further analysis of the performance efficiency has been omitted due to the invalidity of the test reports that were created.
+
+=== Attempt 2
+
+The second attempt was planed with the same intend as the initial attempt, with a smaller scope, that only tackles the edge cases and brings less reports to analyse.
+The primary concern however was to get valid results and to overcome the error that has been found in the first attempt.
+
+[horizontal]
+Parameters:: All test plans were executed with the variable `i` assigned to each element of the set `{B, N, C}`.
+The variables `p`, `q`, and `r` were selected from the set `{1, 30}`.
+Total Reports:: 25
+Reports:: TP1.2-B-1-1-1,
+TP1.2-B-1-1-30, TP1.2-B-1-30-1, TP1.2-B-1-30-30, TP1.2-B-30-1-1, TP1.2-B-30-1-30, TP1.2-B-30-30-1, TP1.2-B-30-30-30, TP1.2-N-1-1-1, TP1.2-N-1-1-30, TP1.2-N-1-30-1, TP1.2-N-1-30-30, TP1.2-N-30-1-1, TP1.2-N-30-1-30, TP1.2-N-30-30-1, TP1.2-N-30-30-30, TP1.2-C-1-1-1, TP1.2-C-1-1-30, TP1.2-C-1-30-1, TP1.2-C-1-30-30, TP1.2-C-30-1-1, TP1.2-C-30-1-30, TP1.2-C-30-30-1, and TP1.2-C-30-30-30.
+Outcome:: The tests were conducted over a period of approximately three days, including the occurrence of application errors.
+It appeared that the application was failing again, resulting in invalid results.
+The reason for this failure was the same as the error that occurred in attempt 1.
+
+Further analysis of the performance efficiency has been omitted due to the invalidity of the test reports that were created.
