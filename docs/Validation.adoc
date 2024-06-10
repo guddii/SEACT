@@ -90,7 +90,7 @@ The <<Solid Application Interoperability>> specification unifies a significant p
 Due to several errors that occurred during the execution of the performance efficiency analysis tests, the tests were divided into several attempts.
 In order to obtain reliable results, each attempt had different test parameters and outcomes.
 
-=== Attempt 1 (Performance Efficiency Analysis)
+=== Attempt 1
 
 The initial attempt was designed to provide an overview of a greater number of tests, with parameters that were not intended to create a critical load on the system.
 The objective was to identify potential areas of heavy load and to produce detailed insight based on these initial results.
@@ -99,7 +99,7 @@ The objective was to identify potential areas of heavy load and to produce detai
 Parameters:: All test plans were executed with the variable `i` assigned to each element of the set `{B, N, C}`.
 The variables `p`, `q`, and `r` were selected from the set `{1, 10, 30}`.
 Total Reports:: 82
-Reports:: TP1.1-B-1-1-1, TP1.1-B-1-1-10, TP1.1-B-1-1-30, TP1.1-B-1-10-1, TP1.1-B-1-10-10, TP1.1-B-1-10-30, TP1.1-B-1-30-1, TP1.1-B-1-30-10, TP1.1-B-1-30-30, TP1.1-B-10-1-1, TP1.1-B-10-1-10, TP1.1-B-10-1-30, TP1.1-B-10-10-1, TP1.1-B-10-10-10, TP1.1-B-10-10-30, TP1.1-B-10-30-1, TP1.1-B-10-30-10, TP1.1-B-10-30-30, TP1.1-B-30-1-1, TP1.1-B-30-1-10, TP1.1-B-30-1-30, TP1.1-B-30-10-1, TP1.1-B-30-10-10, TP1.1-B-30-10-30, TP1.1-B-30-30-1, TP1.1-B-30-30-10, TP1.1-B-30-30-30, TP1.1-N-1-1-1, TP1.1-N-1-1-10, TP1.1-N-1-1-30, TP1.1-N-1-10-1, TP1.1-N-1-10-10, TP1.1-N-1-10-30, TP1.1-N-1-30-1, TP1.1-N-1-30-10, TP1.1-N-1-30-30, TP1.1-N-10-1-1, TP1.1-N-10-1-10, TP1.1-N-10-1-30, TP1.1-N-10-10-1, TP1.1-N-10-10-10, TP1.1-N-10-10-30, TP1.1-N-10-30-1, TP1.1-N-10-30-10, TP1.1-N-10-30-30, TP1.1-N-30-1-1, TP1.1-N-30-1-10, TP1.1-N-30-1-30, TP1.1-N-30-10-1, TP1.1-N-30-10-10, TP1.1-N-30-10-30, TP1.1-N-30-30-1, TP1.1-N-30-30-10, TP1.1-N-30-30-30, TP1.1-C-1-1-1, TP1.1-C-1-1-10, TP1.1-C-1-1-30, TP1.1-C-1-10-1, TP1.1-C-1-10-10, TP1.1-C-1-10-30, TP1.1-C-1-30-1, TP1.1-C-1-30-10, TP1.1-C-1-30-30, TP1.1-C-10-1-1, TP1.1-C-10-1-10, TP1.1-C-10-1-30, TP1.1-C-10-10-1, TP1.1-C-10-10-10, TP1.1-C-10-10-30, TP1.1-C-10-30-1, TP1.1-C-10-30-10, TP1.1-C-10-30-30, TP1.1-C-30-1-1, TP1.1-C-30-1-10, TP1.1-C-30-1-30footnote:[https://www.guddii.de/SEACT/TP1.1-C-30-1-30/], TP1.1-C-30-10-1, TP1.1-C-30-10-10, TP1.1-C-30-10-30, TP1.1-C-30-30-1, TP1.1-C-30-30-10, and TP1.1-C-30-30-30footnote:[https://www.guddii.de/SEACT/TP1.1-C-30-30-30/].
+Reports:: TP1.1-B-1-1-1, TP1.1-B-1-1-10, TP1.1-B-1-1-30, TP1.1-B-1-10-1, TP1.1-B-1-10-10, TP1.1-B-1-10-30, TP1.1-B-1-30-1, TP1.1-B-1-30-10, TP1.1-B-1-30-30, TP1.1-B-10-1-1, TP1.1-B-10-1-10, TP1.1-B-10-1-30, TP1.1-B-10-10-1, TP1.1-B-10-10-10, TP1.1-B-10-10-30, TP1.1-B-10-30-1, TP1.1-B-10-30-10, TP1.1-B-10-30-30, TP1.1-B-30-1-1, TP1.1-B-30-1-10, TP1.1-B-30-1-30, TP1.1-B-30-10-1, TP1.1-B-30-10-10, TP1.1-B-30-10-30, TP1.1-B-30-30-1, TP1.1-B-30-30-10, TP1.1-B-30-30-30, TP1.1-N-1-1-1, TP1.1-N-1-1-10, TP1.1-N-1-1-30, TP1.1-N-1-10-1, TP1.1-N-1-10-10, TP1.1-N-1-10-30, TP1.1-N-1-30-1, TP1.1-N-1-30-10, TP1.1-N-1-30-30, TP1.1-N-10-1-1, TP1.1-N-10-1-10, TP1.1-N-10-1-30, TP1.1-N-10-10-1, TP1.1-N-10-10-10, TP1.1-N-10-10-30, TP1.1-N-10-30-1, TP1.1-N-10-30-10, TP1.1-N-10-30-30, TP1.1-N-30-1-1, TP1.1-N-30-1-10, TP1.1-N-30-1-30, TP1.1-N-30-10-1, TP1.1-N-30-10-10, TP1.1-N-30-10-30, TP1.1-N-30-30-1, TP1.1-N-30-30-10, TP1.1-N-30-30-30, TP1.1-C-1-1-1, TP1.1-C-1-1-10, TP1.1-C-1-1-30, TP1.1-C-1-10-1, TP1.1-C-1-10-10, TP1.1-C-1-10-30, TP1.1-C-1-30-1, TP1.1-C-1-30-10, TP1.1-C-1-30-30, TP1.1-C-10-1-1, TP1.1-C-10-1-10, TP1.1-C-10-1-30, TP1.1-C-10-10-1, TP1.1-C-10-10-10, TP1.1-C-10-10-30, TP1.1-C-10-30-1, TP1.1-C-10-30-10, TP1.1-C-10-30-30, TP1.1-C-30-1-1, TP1.1-C-30-1-10, TP1.1-C-30-1-30footnote:[https://www.guddii.de/SEACT/TP1.1-C-30-1-30/], TP1.1-C-30-10-1, TP1.1-C-30-10-10, TP1.1-C-30-10-30, TP1.1-C-30-30-1, TP1.1-C-30-30-10, and TP1.1-C-30-30-30footnote:[https://www.guddii.de/SEACT/TP1.1-C-30-30-30/]
 Outcome:: The tests were conducted over a period of approximately seven days, including the occurrence of application errors.
 On restarting the application, the tests could be continued from that point onwards.
 Upon analysis of the state of the application, it was found that the `.meta` resources in the tested storage resources were missing.
@@ -110,7 +110,7 @@ This may also explain the occurrence of results that appear unreasonable, such a
 
 Further analysis of the performance efficiency has been omitted due to the invalidity of the test reports that were created.
 
-=== Attempt 2 (Performance Efficiency Analysis)
+=== Attempt 2
 
 The second attempt was planed with the same intend as the initial attempt, with a smaller scope, that only tackles the edge cases and brings less reports to analyse.
 The primary concern however was to get valid results and to overcome the error that has been found in the first attempt.
@@ -120,26 +120,26 @@ Parameters:: All test plans were executed with the variable `i` assigned to each
 The variables `p`, `q`, and `r` were selected from the set `{1, 30}`.
 Total Reports:: 25
 Reports:: TP1.2-B-1-1-1,
-TP1.2-B-1-1-30, TP1.2-B-1-30-1, TP1.2-B-1-30-30, TP1.2-B-30-1-1, TP1.2-B-30-1-30, TP1.2-B-30-30-1, TP1.2-B-30-30-30, TP1.2-N-1-1-1, TP1.2-N-1-1-30, TP1.2-N-1-30-1, TP1.2-N-1-30-30, TP1.2-N-30-1-1, TP1.2-N-30-1-30, TP1.2-N-30-30-1, TP1.2-N-30-30-30, TP1.2-C-1-1-1, TP1.2-C-1-1-30, TP1.2-C-1-30-1, TP1.2-C-1-30-30, TP1.2-C-30-1-1, TP1.2-C-30-1-30, TP1.2-C-30-30-1, and TP1.2-C-30-30-30.
+TP1.2-B-1-1-30, TP1.2-B-1-30-1, TP1.2-B-1-30-30, TP1.2-B-30-1-1, TP1.2-B-30-1-30, TP1.2-B-30-30-1, TP1.2-B-30-30-30, TP1.2-N-1-1-1, TP1.2-N-1-1-30, TP1.2-N-1-30-1, TP1.2-N-1-30-30, TP1.2-N-30-1-1, TP1.2-N-30-1-30, TP1.2-N-30-30-1, TP1.2-N-30-30-30, TP1.2-C-1-1-1, TP1.2-C-1-1-30, TP1.2-C-1-30-1, TP1.2-C-1-30-30, TP1.2-C-30-1-1, TP1.2-C-30-1-30, TP1.2-C-30-30-1, and TP1.2-C-30-30-30
 Outcome:: The tests were conducted over a period of approximately three days, including the occurrence of application errors.
 It appeared that the application was failing again, resulting in invalid results.
 The reason for this failure was the same as the error that occurred in attempt 1.
 
 Further analysis of the performance efficiency has been omitted due to the invalidity of the test reports that were created.
 
-=== Attempt 3 (Performance Efficiency Analysis)
+=== Attempt 3
 
-The erroneous behavior observed in <<Attempt 1 (Performance Efficiency Analysis), Attempt 1>> was not accidental, as verified in <<Attempt 2 (Performance Efficiency Analysis), Attempt 2>>.
+The erroneous behavior observed in <<Attempt 1>> was not accidental, as verified in <<Attempt 2>>.
 Consequently, the third attempt was conducted under the assumption that an error would occur at some point, resulting in the loss of relevant data.
 To further investigate this error, individual tests were run to examine the specific edge cases that led to these critical errors.
 In the event of any error in the console, all tests were terminated immediately.
 
 [horizontal]
-Parameters:: All test plans were executed with the variable `i` pinned to `C`, which represents the most exhaustive <<DPC>> configuration.
+Parameters:: All test plans were executed with the variable `i` fixed at `C`, which represents the most exhaustive <<DPC>> configuration.
 The variables `p`, `q`, and `r` were selected individually from the set `{1, 10, 30}`.
 Total Reports:: 7
 Reports:: TP1.3-1-1-30,
-TP1.3-1-1-10, TP1.3-30-30-10, TP1.3-30-10-10, TP1.3-10-10-10, TP1.3-10-1-10, and TP1.3-1-10-10.
+TP1.3-1-1-10, TP1.3-30-30-10, TP1.3-30-10-10, TP1.3-10-10-10, TP1.3-10-1-10, and TP1.3-1-10-10
 Outcome:: The only tests that completed without error were TP1.3-1-1-10. All other tests resulted in one of two erroneous situations.
 TP1.3-1-1-30, TP1.3-10-1-10, and TP1.3-1-10-10 had errors, as demonstrated in xref:lst-err-perf-1[xrefstyle=short].
 The second error, as demonstrated in xref:lst-err-perf-2[xrefstyle=short], was thrown in TP1.3-30-30-10, TP1.3-30-10-10, and TP1.3-10-10-10.
@@ -171,11 +171,11 @@ ELIFECYCLE Command failed with exit code 1.
 ----
 
 Tests conducted with p and/or q values that were higher than those of other tests resulted in a fetch exception when attempting to locate storage resources.
-This aligns with the results observed in <<Attempt 1 (Performance Efficiency Analysis), Attempt 1>> and <<Attempt 1 (Performance Efficiency Analysis), 2>>.
+This aligns with the results observed in <<Attempt 1>> and <<Attempt 2, 2>>.
 An example of this error is shown in xref:lst-err-perf-2[xrefstyle=short].
 
 .Proxy Console Error
-[source,httprequest,id="lst-err-perf-2",reftext="Listing {counter:listing}"]
+[source,id="lst-err-perf-2",reftext="Listing {counter:listing}"]
 ----
 TypeError: fetch failed
     at node:internal/deps/undici/undici:12502:13
@@ -184,4 +184,27 @@ TypeError: fetch failed
     at async createLog (/SEACT/apps/proxy/dist/index.js:303:47)
 ----
 
+=== Attempt 4
 
+The initial test scenarios were designed with considerably elevated numeric test parameters. Upon consideration of the assumptions presented in <<Attempt 3>>, it becomes evident that a solution to the deletion of the `.meta` resource, as outlined in <<Attempt 1>>, is necessary. The most trivial solution for that is to create the required files with a user with more privileges. As the files are persisted as files, these files are replaced by the same files created with a `sudo` user. This effectively prohibits the application, which is executed with current user privileges only, from deleting the resource.
+
+[horizontal]
+Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
+The variables `p`, `q`, and `r` were fixed at a relatively high value of `10`, in comparison to previous attempts.
+Total Reports:: 1
+Reports:: TP1.4-10-10-10
+Outcome:: The test plan could not be executed, due to a critical internal server error, as shown in xref:lst-err-perf-3[xrefstyle=short].
+
+The error message displayed in xref:lst-err-perf-3[xrefstyle=short] indicates that the Solid Provider lacks the necessary permissions to access the relevant resources. The intention was to prevent the deletion of this resource. However, the actual result was that the server process lacked sufficient privileges for read-only purposes.
+
+.Server Network Error
+[source,json,id="lst-err-perf-3",reftext="Listing {counter:listing}"]
+----
+{
+  "name": "InternalServerError",
+  "message": "Received unexpected non-HttpError: EACCES: permission denied, open '/SEACT/apps/server/data/storage/client10/.meta'",
+  "statusCode": 500,
+  "errorCode": "H500",
+  "details": {}
+}
+----
