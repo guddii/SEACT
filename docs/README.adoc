@@ -11,8 +11,35 @@ include::partials/Attributes.adoc[]
 |Item |HTML |PDF
 
 |Thesis
-|xref:{url-docs}/Thesis.html[window=_blank]
-|xref:{url-docs}/Thesis.pdf[window=_blank]
+|xref:{url-docs}/Thesis.research.html[window=_blank]
+|xref:{url-docs}/Thesis.research.pdf[window=_blank]
+
+|Exposé
+|xref:{url-docs}/Exposé.research.html[window=_blank]
+|xref:{url-docs}/Exposé.research.pdf[window=_blank]
+
+|Brainstorming
+|xref:{url-docs}/Brainstorming.research.html[window=_blank]
+|xref:{url-docs}/Brainstorming.research.pdf[window=_blank]
+|===
+
+== Development
+
+[cols="2,3,3"]
+|===
+|Item |HTML |PDF
+
+|Logical Topology
+|xref:{url-docs}/Topology.dev.html[window=_blank]
+|xref:{url-docs}/Topology.dev.pdf[window=_blank]
+
+|Logical Data Model
+|xref:{url-docs}/Model.dev.html[window=_blank]
+|xref:{url-docs}/Model.dev.pdf[window=_blank]
+
+|System Behavior
+|xref:{url-docs}/Behavior.dev.html[window=_blank]
+|xref:{url-docs}/Behavior.dev.pdf[window=_blank]
 |===
 
 == Reports
