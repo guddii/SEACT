@@ -299,28 +299,28 @@ h| Loop Count
 |===
 
 xref:tbl-test-parameters-matrix[xrefstyle=short] presents the aggregation of configurable options to be tested as test plans.
-The ID column serves as a unique identifier for this parameter set.
+The schema column serves as a generic identifier for all parameterized test plans.
+The attempt column denotes the attempt in which a test plan was executed.
+The value of that cell is an incrementing natural number, starting at `1`.
 The <<Network Parameters>> column refers to the ID column of xref:tbl-network-parameters-matrix[xrefstyle=short].
 The <<Data Privacy Cockpit Parameters>> column refers to the ID column of xref:tbl-dpc-parameters-matrix[xrefstyle=short].
 The <<Solid Ecosystem Parameters>> column refers to the ID column of xref:tbl-solid-ecosystem-parameters-matrix[xrefstyle=short].
 The <<Apache JMeter Parameters>> column refers to the ID column of xref:tbl-apache-jmeter-parameters-matrix[xrefstyle=short].
 
 .Test Plan Matrix
-[cols="1,1,1,1,1",id="tbl-test-parameters-matrix"]
+[cols="1,1,1,1,1,1",id="tbl-test-parameters-matrix"]
 |===
-h| ID
+h| Schema
+h| Attempt
 h| Network Parameters
 h| Data Privacy Cockpit Parameters
 h| Solid Ecosystem Parameters
 h| Apache JMeter Parameters
 
-.^| TP1-`i`-`p`-`q`-`r`
+.^| TP1.`a`-`i`-`p`-`q`-`r`
+.^| `a`
 .^| PARAM-CRUD-1
 .^| PARAM-DPC-`i`
 .^| PARAM-SOLID-`p`-`q`
 .^| PARAM-JMETER-`r`
 |===
-
-The table above employs a condensed format with variables to describe test plans.
-The variable `i` is defined as an element of the set `{B,N,C}`.
-Variables `p`, `q`, and `r` are each defined as elements of the set `{1,30}`.
