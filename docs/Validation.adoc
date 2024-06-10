@@ -90,7 +90,7 @@ The <<Solid Application Interoperability>> specification unifies a significant p
 Due to several errors that occurred during the execution of the performance efficiency analysis tests, the tests were divided into several attempts.
 In order to obtain reliable results, each attempt had different test parameters and outcomes.
 
-=== Attempt 1
+=== Attempt 1 (Performance Efficiency Analysis)
 
 The initial attempt was designed to provide an overview of a greater number of tests, with parameters that were not intended to create a critical load on the system.
 The objective was to identify potential areas of heavy load and to produce detailed insight based on these initial results.
@@ -110,7 +110,7 @@ This may also explain the occurrence of results that appear unreasonable, such a
 
 Further analysis of the performance efficiency has been omitted due to the invalidity of the test reports that were created.
 
-=== Attempt 2
+=== Attempt 2 (Performance Efficiency Analysis)
 
 The second attempt was planed with the same intend as the initial attempt, with a smaller scope, that only tackles the edge cases and brings less reports to analyse.
 The primary concern however was to get valid results and to overcome the error that has been found in the first attempt.
@@ -126,3 +126,62 @@ It appeared that the application was failing again, resulting in invalid results
 The reason for this failure was the same as the error that occurred in attempt 1.
 
 Further analysis of the performance efficiency has been omitted due to the invalidity of the test reports that were created.
+
+=== Attempt 3 (Performance Efficiency Analysis)
+
+The erroneous behavior observed in <<Attempt 1 (Performance Efficiency Analysis), Attempt 1>> was not accidental, as verified in <<Attempt 2 (Performance Efficiency Analysis), Attempt 2>>.
+Consequently, the third attempt was conducted under the assumption that an error would occur at some point, resulting in the loss of relevant data.
+To further investigate this error, individual tests were run to examine the specific edge cases that led to these critical errors.
+In the event of any error in the console, all tests were terminated immediately.
+
+[horizontal]
+Parameters:: All test plans were executed with the variable `i` pinned to `C`, which represents the most exhaustive <<DPC>> configuration.
+The variables `p`, `q`, and `r` were selected individually from the set `{1, 10, 30}`.
+Total Reports:: 7
+Reports:: TP1.3-1-1-30,
+TP1.3-1-1-10, TP1.3-30-30-10, TP1.3-30-10-10, TP1.3-10-10-10, TP1.3-10-1-10, and TP1.3-1-10-10.
+Outcome:: The only tests that completed without error were TP1.3-1-1-10. All other tests resulted in one of two erroneous situations.
+TP1.3-1-1-30, TP1.3-10-1-10, and TP1.3-1-10-10 had errors, as demonstrated in xref:lst-err-perf-1[xrefstyle=short].
+The second error, as demonstrated in xref:lst-err-perf-2[xrefstyle=short], was thrown in TP1.3-30-30-10, TP1.3-30-10-10, and TP1.3-10-10-10.
+
+A detailed analysis reveals two errors that occur internally while processing requests.
+The most significant differences relate to the storage number (`p`) and the number of ShapeTrees (`q`).
+However, a strict behavior could not be determined.
+It appears that test plans executed with lower values for `p` and/or `q` than those used in other tests within this attempt result in an error message indicating that a file for the locking system of the solid provider is requested that does not exist.
+This is a unique function of the <<CSS>> as described in <<Third-Party Software>>.
+The corresponding error message is shown in Listing 1.
+
+.Server Console Error
+[source,id="lst-err-perf-1",reftext="Listing {counter:listing}"]
+----
+Process is halting due to an uncaughtException with error ENOENT: no such file or directory, stat '/SEACT/apps/server/data/storage/.internal/locks/00169a735ca3f756b7e8d18151283856'
+/SEACT/node_modules/.pnpm/@solid+community-server@7.0.4/node_modules/@solid/community-server/dist/util/locking/FileSystemResourceLocker.js:152
+            throw err;
+            ^
+@seact/server:start:
+[Error: ENOENT: no such file or directory, stat '/SEACT/apps/server/data/storage/.internal/locks/00169a735ca3f756b7e8d18151283856'] {
+  errno: -2,
+  code: 'ECOMPROMISED',
+  syscall: 'stat',
+  path: '/SEACT/apps/server/data/storage/.internal/locks/00169a735ca3f756b7e8d18151283856'
+}
+
+Node.js v22.1.0
+ELIFECYCLE Command failed with exit code 1.
+----
+
+Tests conducted with p and/or q values that were higher than those of other tests resulted in a fetch exception when attempting to locate storage resources.
+This aligns with the results observed in <<Attempt 1 (Performance Efficiency Analysis), Attempt 1>> and <<Attempt 1 (Performance Efficiency Analysis), 2>>.
+An example of this error is shown in xref:lst-err-perf-2[xrefstyle=short].
+
+.Proxy Console Error
+[source,httprequest,id="lst-err-perf-2",reftext="Listing {counter:listing}"]
+----
+TypeError: fetch failed
+    at node:internal/deps/undici/undici:12502:13
+    at async findStorage (/SEACT/packages/core/dist/index.js:617:29)
+    at async findDataRegistrationsInClaimContainer (/SEACT/packages/core/dist/index.js:726:19)
+    at async createLog (/SEACT/apps/proxy/dist/index.js:303:47)
+----
+
+
