@@ -1,0 +1,73 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1717932388780,54226,Created 0,500,Internal Server Error,Thread Group 1-1,text,false,,1020,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread1_loop1_resource0,54218,0,41
+1717932388808,54199,Created 0,500,Internal Server Error,Thread Group 1-2,text,false,,1020,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread2_loop1_resource0,54193,0,14
+1717932388974,113454,Created 0,401,Unauthorized,Thread Group 1-3,text,false,,583,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread3_loop1_resource0,113452,0,1
+1717932389303,113125,Created 0,401,Unauthorized,Thread Group 1-5,text,false,,583,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread5_loop1_resource0,113124,0,1
+1717932443013,63685,Read 0,404,Not Found,Thread Group 1-1,text,false,,615,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread1_loop1_resource0,63685,0,0
+1717932389137,117599,Created 0,201,Created,Thread Group 1-4,,true,,493,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread4_loop1_resource0,117599,0,1
+1717932389474,118445,Created 0,201,Created,Thread Group 1-6,,true,,493,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread6_loop1_resource0,118445,0,1
+1717932502430,69309,Read 0,500,Internal Server Error,Thread Group 1-3,text,false,,1020,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread3_loop1_resource0,69309,0,10
+1717932502431,69310,Read 0,500,Internal Server Error,Thread Group 1-5,text,false,,1020,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread5_loop1_resource0,69310,0,10
+1717932506737,65758,Read 0,200,OK,Thread Group 1-4,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread4_loop1_resource0,65758,0,1
+1717932506699,68128,Updated 0,201,Created,Thread Group 1-1,,true,,493,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread1_loop1_resource0,68128,0,1
+1717932443013,132655,Read 0,404,Not Found,Thread Group 1-2,text,false,,615,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread2_loop1_resource0,132655,0,0
+1717932507920,68391,Read 0,200,OK,Thread Group 1-6,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread6_loop1_resource0,68391,0,1
+1717932571741,69891,Updated 0,500,Internal Server Error,Thread Group 1-5,text,false,,1020,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread5_loop1_resource0,69890,0,8
+1717932572497,71414,Updated 0,205,Reset Content,Thread Group 1-4,,true,,410,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread4_loop1_resource0,0,0,1
+1717932575670,70505,Updated 0,201,Created,Thread Group 1-2,,true,,493,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread2_loop1_resource0,70505,0,1
+1717932571742,75313,Updated 0,201,Created,Thread Group 1-3,,true,,493,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread3_loop1_resource0,75313,0,9
+1717932576312,71748,Updated 0,205,Reset Content,Thread Group 1-6,,true,,410,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread6_loop1_resource0,0,0,7
+1717932574829,74142,Read 0,200,OK,Thread Group 1-1,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread1_loop1_resource0,74142,0,0
+1717932647056,61628,Read 0,500,Internal Server Error,Thread Group 1-3,text,false,,880,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread3_loop1_resource0,61628,0,1
+1717932643912,64772,Read 0,500,Internal Server Error,Thread Group 1-4,text,false,,1020,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread4_loop1_resource0,64772,0,3
+1717932641633,125047,Read 0,401,Unauthorized,Thread Group 1-5,text,false,,583,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread5_loop1_resource0,125047,0,10
+1717932648060,123853,Read 0,200,OK,Thread Group 1-6,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread6_loop1_resource0,123853,0,1
+1717932648972,123765,Read 0,200,OK,Thread Group 1-1,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread1_loop1_resource0,123765,0,0
+1717932646176,128635,Read 0,200,OK,Thread Group 1-2,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread2_loop1_resource0,128635,0,1
+1717932766682,67816,Read 0,500,Internal Server Error,Thread Group 1-5,text,false,,1020,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread5_loop1_resource0,67816,0,3
+1717932772739,62744,Read 0,200,OK,Thread Group 1-1,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread1_loop1_resource0,62744,0,1
+1717932708690,128187,Read 0,200,OK,Thread Group 1-4,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread4_loop1_resource0,128187,0,2
+1717932708686,129276,Read 0,200,OK,Thread Group 1-3,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread3_loop1_resource0,129276,0,6
+1717932774814,63189,Read 0,200,OK,Thread Group 1-2,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread2_loop1_resource0,63189,0,1
+1717932771914,67650,Read 0,200,OK,Thread Group 1-6,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread6_loop1_resource0,67650,0,1
+1717932835485,66779,Read 0,500,Internal Server Error,Thread Group 1-1,text,false,,1020,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread1_loop1_resource0,66779,0,1
+1717932834499,67766,Read 0,500,Internal Server Error,Thread Group 1-5,text,false,,1020,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread5_loop1_resource0,67765,0,10
+1717932836878,65389,Read 0,500,Internal Server Error,Thread Group 1-4,text,false,,880,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread4_loop1_resource0,65389,0,1
+1717932839566,64593,Read 0,200,OK,Thread Group 1-6,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread6_loop1_resource0,64593,0,0
+1717932838004,67144,Read 0,200,OK,Thread Group 1-2,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread2_loop1_resource0,67144,0,1
+1717932837963,67941,Read 0,200,OK,Thread Group 1-3,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread3_loop1_resource0,67941,0,1
+1717932902267,58501,Read 0,500,Internal Server Error,Thread Group 1-1,text,false,,880,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread1_loop1_resource0,58501,0,17
+1717932904161,119744,Read 0,401,Unauthorized,Thread Group 1-6,text,false,,583,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread6_loop1_resource0,119744,0,0
+1717932905905,121501,Read 0,200,OK,Thread Group 1-3,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread3_loop1_resource0,121501,0,1
+1717932902266,125178,Read 0,404,Not Found,Thread Group 1-5,text,false,,615,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread5_loop1_resource0,125178,0,18
+1717932902268,127722,Read 0,200,OK,Thread Group 1-4,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread4_loop1_resource0,127722,0,17
+1717932960770,70038,Deleted 0,205,Reset Content,Thread Group 1-1,,true,,410,897,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread1_loop1_resource0,0,0,0
+1717932905150,128005,Read 0,200,OK,Thread Group 1-2,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread2_loop1_resource0,128005,0,1
+1717933027406,65610,Read 0,500,Internal Server Error,Thread Group 1-3,text,false,,1020,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread3_loop1_resource0,65610,0,1
+1717933027444,65574,Read 0,500,Internal Server Error,Thread Group 1-5,text,false,,880,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread5_loop1_resource0,65574,0,2
+1717933023908,70202,Read 0,200,OK,Thread Group 1-6,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread6_loop1_resource0,70202,0,9
+1717933029991,64679,Read 0,200,OK,Thread Group 1-4,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread4_loop1_resource0,64679,0,1
+1717933030809,65357,Created 1,201,Created,Thread Group 1-1,,true,,493,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread1_loop1_resource1,65357,0,1
+1717933033156,63834,Read 0,200,OK,Thread Group 1-2,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread2_loop1_resource0,63834,0,1
+1717933092991,63538,Deleted 0,500,Internal Server Error,Thread Group 1-5,text,false,,1020,897,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread5_loop1_resource0,63538,0,11
+1717933094079,62447,Deleted 0,500,Internal Server Error,Thread Group 1-6,text,false,,880,897,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread6_loop1_resource0,62447,0,0
+1717933096959,124617,Deleted 0,205,Reset Content,Thread Group 1-2,,true,,410,897,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread2_loop1_resource0,0,0,1
+1717933096135,125781,Updated 1,205,Reset Content,Thread Group 1-1,,true,,410,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread1_loop1_resource1,0,0,1
+1717933156514,66551,Created 1,201,Created,Thread Group 1-5,,true,,493,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread5_loop1_resource1,66551,0,8
+1717933094639,130730,Deleted 0,205,Reset Content,Thread Group 1-4,,true,,410,897,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread4_loop1_resource0,0,0,1
+1717933092990,132975,Deleted 0,205,Reset Content,Thread Group 1-3,,true,,410,897,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread3_loop1_resource0,0,0,8
+1717933156515,69926,Created 1,201,Created,Thread Group 1-6,,true,,493,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread6_loop1_resource1,69926,0,8
+1717933221566,64139,Created 1,500,Internal Server Error,Thread Group 1-2,text,false,,1020,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread2_loop1_resource1,64139,0,2
+1717933225951,61493,Created 1,201,Created,Thread Group 1-3,,true,,493,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread3_loop1_resource1,61493,0,0
+1717933226441,61259,Updated 1,205,Reset Content,Thread Group 1-6,,true,,410,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread6_loop1_resource1,0,0,1
+1717933221906,66631,Read 1,200,OK,Thread Group 1-1,text,true,,1061,894,6,6,http://proxy.localhost:4000/client10/run1717932385955_thread1_loop1_resource1,66631,0,0
+1717933225359,64639,Created 1,201,Created,Thread Group 1-4,,true,,493,894,5,5,http://proxy.localhost:4000/client10/run1717932385955_thread4_loop1_resource1,64639,0,0
+1717933223066,67330,Updated 1,205,Reset Content,Thread Group 1-5,,true,,410,894,5,5,http://proxy.localhost:4000/client10/run1717932385955_thread5_loop1_resource1,0,0,0
+1717933287700,57219,Read 1,500,Internal Server Error,Thread Group 1-6,text,false,,880,894,5,5,http://proxy.localhost:4000/client10/run1717932385955_thread6_loop1_resource1,57219,0,1
+1717933285706,106421,Updated 1,201,Created,Thread Group 1-2,,true,,493,894,4,4,http://proxy.localhost:4000/client10/run1717932385955_thread2_loop1_resource1,106421,0,19
+1717933289999,102175,Updated 1,205,Reset Content,Thread Group 1-4,,true,,410,894,4,4,http://proxy.localhost:4000/client10/run1717932385955_thread4_loop1_resource1,0,0,0
+1717933287444,105288,Updated 1,205,Reset Content,Thread Group 1-3,,true,,410,894,4,4,http://proxy.localhost:4000/client10/run1717932385955_thread3_loop1_resource1,0,0,1
+1717933290398,102863,Read 1,200,OK,Thread Group 1-5,text,true,,1061,894,4,4,http://proxy.localhost:4000/client10/run1717932385955_thread5_loop1_resource1,102863,0,1
+1717933392174,34278,Read 1,200,OK,Thread Group 1-4,text,true,,1061,894,3,3,http://proxy.localhost:4000/client10/run1717932385955_thread4_loop1_resource1,34278,0,1
+1717933392733,34236,Read 1,200,OK,Thread Group 1-3,text,true,,1061,894,2,2,http://proxy.localhost:4000/client10/run1717932385955_thread3_loop1_resource1,34236,0,1
+1717933392127,34874,Read 1,200,OK,Thread Group 1-2,text,true,,1061,894,1,1,http://proxy.localhost:4000/client10/run1717932385955_thread2_loop1_resource1,34873,0,2
