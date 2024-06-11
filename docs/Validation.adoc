@@ -98,7 +98,7 @@ The objective was to identify potential areas of heavy load and to produce detai
 [horizontal]
 Parameters:: All test plans were executed with the variable `i` assigned to each element of the set `{B, N, C}`.
 The variables `p`, `q`, and `r` were selected from the set `{1, 10, 30}`.
-Total Reports:: 82
+Total Reports:: 81
 Reports:: TP1.1-B-1-1-1, TP1.1-B-1-1-10, TP1.1-B-1-1-30, TP1.1-B-1-10-1, TP1.1-B-1-10-10, TP1.1-B-1-10-30, TP1.1-B-1-30-1, TP1.1-B-1-30-10, TP1.1-B-1-30-30, TP1.1-B-10-1-1, TP1.1-B-10-1-10, TP1.1-B-10-1-30, TP1.1-B-10-10-1, TP1.1-B-10-10-10, TP1.1-B-10-10-30, TP1.1-B-10-30-1, TP1.1-B-10-30-10, TP1.1-B-10-30-30, TP1.1-B-30-1-1, TP1.1-B-30-1-10, TP1.1-B-30-1-30, TP1.1-B-30-10-1, TP1.1-B-30-10-10, TP1.1-B-30-10-30, TP1.1-B-30-30-1, TP1.1-B-30-30-10, TP1.1-B-30-30-30, TP1.1-N-1-1-1, TP1.1-N-1-1-10, TP1.1-N-1-1-30, TP1.1-N-1-10-1, TP1.1-N-1-10-10, TP1.1-N-1-10-30, TP1.1-N-1-30-1, TP1.1-N-1-30-10, TP1.1-N-1-30-30, TP1.1-N-10-1-1, TP1.1-N-10-1-10, TP1.1-N-10-1-30, TP1.1-N-10-10-1, TP1.1-N-10-10-10, TP1.1-N-10-10-30, TP1.1-N-10-30-1, TP1.1-N-10-30-10, TP1.1-N-10-30-30, TP1.1-N-30-1-1, TP1.1-N-30-1-10, TP1.1-N-30-1-30, TP1.1-N-30-10-1, TP1.1-N-30-10-10, TP1.1-N-30-10-30, TP1.1-N-30-30-1, TP1.1-N-30-30-10, TP1.1-N-30-30-30, TP1.1-C-1-1-1, TP1.1-C-1-1-10, TP1.1-C-1-1-30, TP1.1-C-1-10-1, TP1.1-C-1-10-10, TP1.1-C-1-10-30, TP1.1-C-1-30-1, TP1.1-C-1-30-10, TP1.1-C-1-30-30, TP1.1-C-10-1-1, TP1.1-C-10-1-10, TP1.1-C-10-1-30, TP1.1-C-10-10-1, TP1.1-C-10-10-10, TP1.1-C-10-10-30, TP1.1-C-10-30-1, TP1.1-C-10-30-10, TP1.1-C-10-30-30, TP1.1-C-30-1-1, TP1.1-C-30-1-10, TP1.1-C-30-1-30footnote:[https://www.guddii.de/SEACT/TP1.1-C-30-1-30/], TP1.1-C-30-10-1, TP1.1-C-30-10-10, TP1.1-C-30-10-30, TP1.1-C-30-30-1, TP1.1-C-30-30-10, and TP1.1-C-30-30-30footnote:[https://www.guddii.de/SEACT/TP1.1-C-30-30-30/]
 Outcome:: The tests were conducted over a period of approximately seven days, including the occurrence of application errors.
 On restarting the application, the tests could be continued from that point onwards.
@@ -118,7 +118,7 @@ The primary concern however was to get valid results and to overcome the error t
 [horizontal]
 Parameters:: All test plans were executed with the variable `i` assigned to each element of the set `{B, N, C}`.
 The variables `p`, `q`, and `r` were selected from the set `{1, 30}`.
-Total Reports:: 25
+Total Reports:: 24
 Reports:: TP1.2-B-1-1-1,
 TP1.2-B-1-1-30, TP1.2-B-1-30-1, TP1.2-B-1-30-30, TP1.2-B-30-1-1, TP1.2-B-30-1-30, TP1.2-B-30-30-1, TP1.2-B-30-30-30, TP1.2-N-1-1-1, TP1.2-N-1-1-30, TP1.2-N-1-30-1, TP1.2-N-1-30-30, TP1.2-N-30-1-1, TP1.2-N-30-1-30, TP1.2-N-30-30-1, TP1.2-N-30-30-30, TP1.2-C-1-1-1, TP1.2-C-1-1-30, TP1.2-C-1-30-1, TP1.2-C-1-30-30, TP1.2-C-30-1-1, TP1.2-C-30-1-30, TP1.2-C-30-30-1, and TP1.2-C-30-30-30
 Outcome:: The tests were conducted over a period of approximately three days, including the occurrence of application errors.
@@ -273,7 +273,8 @@ This leads to the conclusion that the greatest impact is derived from the number
 In <<Attempt 8>>, the limitations of the `r` value, which represents the number of threads, are examined based on the assumptions of <<Attempt 7>>.
 These assumptions posit that concurrency represents a significant challenge for the proposed approach.
 The value was incremented until the first error occurred, with the step width set to 1, starting at 1. This process was repeated until an erroneous test run was observed.
-In order to extend the runtime, the loop count, as part of the <<Apache JMeter Parameters>>, has been set to 1. Furthermore, the modifications to the application introduced in <<Attempt 7>> have also been applied in this attempt.
+In order to extend the runtime, the loop count, as part of the <<Apache JMeter Parameters>>, has been set to 1.
+Furthermore, the modifications to the application introduced in <<Attempt 7>> have also been applied in this attempt.
 
 [horizontal]
 Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
@@ -288,6 +289,7 @@ It is noteworthy that the test with an `r` value of `7` was successful, despite 
 
 The objective of this attempt was to determine whether the observed behavior in <<Attempt 8>> would also manifest with a loop count of `10`.
 In this attempt, the number of threads was limited to `7`.
+Furthermore, the modifications to the application introduced in <<Attempt 7>> have also been applied in this attempt.
 
 [horizontal]
 Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
@@ -296,3 +298,93 @@ The `r` value was incremented until the first error occurred.
 Total Reports:: 3
 Reports:: TP1.9-C-10-10-1, TP1.9-C-10-10-2, and TP1.9-C-10-10-3
 Outcome:: The first failure occurred with `3` threads, resulting in the remaining selection of threads being `2`.
+
+=== Attempt 10
+
+The 10th an final attempt was intended to run in a greater context, to receive comparable results within the limits discovered in previous attempts.
+Furthermore, the modifications to the application introduced in <<Attempt 7>> have also been applied in this attempt.
+
+=== Attempt 1
+
+The initial attempt was designed to provide an overview of a greater number of tests, with parameters that were not intended to create a critical load on the system.
+The objective was to identify potential areas of heavy load and to produce detailed insight based on these initial results.
+
+[horizontal]
+Parameters:: All test plans were executed with the variable `i` assigned to each element of the set `{B, N, C}`.
+The variables `p` and `q` were selected from the set `{1, 10}`.
+The `r` variable selected from the set `{1, 2}`.
+Total Reports:: 24
+Reports:: TP1.10-B-1-1-1, TP1.10-B-1-1-2, TP1.10-B-1-10-1, TP1.10-B-1-10-2, TP1.10-B-10-1-1, TP1.10-B-10-1-2, TP1.10-B-10-10-1footnote:[https://www.guddii.de/SEACT/TP1.10-B-10-10-1/], TP1.10-B-10-10-2footnote:[https://www.guddii.de/SEACT/TP1.10-B-10-10-2/], TP1.10-N-1-1-1, TP1.10-N-1-1-2, TP1.10-N-1-10-1, TP1.10-N-1-10-2, TP1.10-N-10-1-1, TP1.10-N-10-1-2, TP1.10-N-10-10-1, TP1.10-N-10-10-2, TP1.10-C-1-1-1, TP1.10-C-1-1-2, TP1.10-C-1-10-1, TP1.10-C-1-10-2, TP1.10-C-10-1-1, TP1.10-C-10-1-2, TP1.10-C-10-10-1footnote:[https://www.guddii.de/SEACT/TP1.10-C-10-10-1/], and TP1.10-C-10-10-2footnote:[https://www.guddii.de/SEACT/TP1.10-C-10-10-2/]
+Outcome:: Tests with a `p` or `q` value of `1` were invalid, as the `.meta` resource was deleted again. The same behavior occurred with `i` values set to `N`. Regardless of the number of repetitions, the outcome remained unchanged.
+
+
+xref:tbl-test-run-summary-errors[xrefstyle=short], xref:tbl-test-run-response-times-average[xrefstyle=short], and xref:tbl-test-run-throughput[xrefstyle=short] summarize of the test runs for TP1.10-`i`-10-10-`r`, with `i` in `{B, C}` and `r` in `{1, 2}`.
+They provide an overview of how the system behaves at different loads and configurations.
+The first column of the tables refers to the test plan that was carried out, followed by the `i` value of this test. The next column contains the corresponding `p`, `q`, and `r` values.
+Table headers that appear below these variables indicate the configuration of these variables.
+
+The Test Run Error Summary is presented in xref:tbl-test-run-summary-errors[xrefstyle=short].
+Its shows the percent of failed requests, returning a network status codefootnote:[https://developer.mozilla.org/en-US/docs/Web/HTTP/Status] greater or equals `400`.
+Other requests are considered successful, in a network status code range `100`-`399`.
+
+.Test Run Error Summary in Percent
+[cols="1,2,2",id="tbl-test-run-summary-errors"]
+|===
+^.^h| TP1.10
+2+^.^h| `i`
+
+^.^h| `p`-`q`-`r`
+>.^h| B
+>.^h| C
+
+^.^h| 10-10-1
+>.^| 0.00 %
+>.^| 2.50 %
+
+^.^h| 10-10-2
+>.^| 0.83 %
+>.^| 4.17 %
+|===
+
+xref:tbl-test-run-response-times-average[xrefstyle=short] presents the averaged response time in seconds.
+
+.Test Run Average Response Times in Seconds
+[cols="1,2,2",id="tbl-test-run-response-times-average"]
+|===
+^.^h| TP1.10
+2+^.^h| `i`
+
+^.^h| `p`-`q`-`r`
+>.^h| B
+>.^h| C
+
+^.^h| 10-10-1
+>.^|  0.03703 s
+>.^| 41.20696 s
+
+^.^h| 10-10-2
+>.^|  0.67065 s
+>.^| 52.32733 s
+|===
+
+The overall performance of the proposed system is quantified by the throughput measurements presented in xref:tbl-test-run-throughput[xrefstyle=short].
+The values listed are in transactions per second.
+
+.Test Run Throughput in Transactions per Second
+[cols="1,2,2",id="tbl-test-run-throughput"]
+|===
+^.^h| TP1.10
+2+^.^h| `i`
+
+^.^h| `p`-`q`-`r`
+>.^h| B
+>.^h| C
+
+^.^h| 10-10-1
+>.^| 26.41 Transactions/s
+>.^|  0.01 Transactions/s
+
+^.^h| 10-10-2
+>.^| 0.20 Transactions/s
+>.^| 0.02 Transactions/s
+|===
