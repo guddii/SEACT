@@ -193,6 +193,17 @@ The error did not result in the immediate termination of the process.
 
 === Attempt 4
 
+This attempt attempted to cope with the locking issue found in <<Attempt 3>>. As previously stated in the <<Test Environment>> section, for testing purposes, the lifetime of locks has been increased to 172800 seconds, in order to be capable of handling long-running requests. In order to verify that this is not a miss configuration, the configuration has been reset to its default for this attempt.
+
+[horizontal]
+Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
+The variables `p`, `q`, and `r` were fixed at a relatively high value of `10`, in comparison to previous attempts.
+Total Reports:: 1
+Reports:: TP1.4-10-10-10
+Outcome:: The test terminated almost instantaneously, thus confirming the necessity for longer lock lifetimes.
+
+=== Attempt 5
+
 The initial test scenarios were designed with considerably elevated numeric test parameters.
 Upon consideration of the assumptions presented in <<Attempt 3>>, it becomes evident that a solution to the deletion of the `.meta` resource, as outlined in <<Attempt 1>>, is necessary.
 The most trivial solution for that is to create the required files with a user with more privileges.
@@ -203,7 +214,7 @@ This effectively prohibits the application, which is executed with current user 
 Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
 The variables `p`, `q`, and `r` were fixed at a relatively high value of `10`, in comparison to previous attempts.
 Total Reports:: 1
-Reports:: TP1.4-10-10-10
+Reports:: TP1.5-10-10-10
 Outcome:: The test plan could not be executed, due to a critical internal server error, as shown in xref:lst-err-perf-3[xrefstyle=short].
 
 The error message displayed in xref:lst-err-perf-3[xrefstyle=short] indicates that the Solid Provider lacks the necessary permissions to access the relevant resources.
@@ -222,9 +233,9 @@ However, the actual result was that the server process lacked sufficient privile
 }
 ----
 
-=== Attempt 5
+=== Attempt 6
 
-As an alternative to <<Attempt 4>>, the objective of this attempt was to address the third issue identified in <<Attempt 3>>.
+As an alternative to <<Attempt 4>> and <<Attempt 5>>, the objective of this attempt was to address the third issue identified in <<Attempt 3>>.
 This was achieved by deactivating the `selfHandleResponse` and `responseInterceptor` properties in the proxy.
 By doing so, all post-processing of requests from the proxy to the server was handled by the proxy library.
 This should prevent any manipulation of the response object, as the response has already been sent.
@@ -233,7 +244,7 @@ This should prevent any manipulation of the response object, as the response has
 Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
 The variables `p`, `q`, and `r` were fixed at a relatively high value of `10`, in comparison to previous attempts.
 Total Reports:: 1
-Reports:: TP1.5-10-10-10
+Reports:: TP1.6-10-10-10
 Outcome:: The tests were conducted for approximately four hours before being terminated.
 The process ended with the error message `Error: socket hang up`, accompanied by the error code `ECONNRESET`.
 This may be indicative of any premature connection termination event, as documented in the Node.js <<HTTP>>footnote:[https://nodejs.org/api/http.html] module documentation.

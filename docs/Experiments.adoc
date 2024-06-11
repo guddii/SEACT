@@ -49,7 +49,7 @@ v22.1.0
 
 In order to run the tests, certain adjustments had to be made to the Solid Provider as part of the <<Technology Stack>>.
 It was necessary to extend the <<OIDC>> session (client credential expiration time) and lock lifetimes.
-The default lifetime of a client credential token is 0.6 seconds, which has been increased to 1.72800 milliseconds (equivalent to two days).
+The default lifetime of a client credential token is 0.6 seconds, which has been increased to 172800 seconds (equivalent to two days).
 The lifetime of locks has been increased by the same amount.
 
 == Test Parameters
