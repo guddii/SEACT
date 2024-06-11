@@ -283,3 +283,16 @@ Total Reports:: 8
 Reports:: TP1.8-C-10-10-1, TP1.8-C-10-10-2, TP1.8-C-10-10-3, TP1.8-C-10-10-4, TP1.8-C-10-10-5, TP1.8-C-10-10-6, TP1.8-C-10-10-7, and TP1.8-C-10-10-8
 Outcome:: The first test run that was prematurely terminated was the test with an `r` value of `8`.
 It is noteworthy that the test with an `r` value of `7` was successful, despite 46.43% of its requests failing.
+
+=== Attempt 9
+
+The objective of this attempt was to determine whether the observed behavior in <<Attempt 8>> would also manifest with a loop count of `10`.
+In this attempt, the number of threads was limited to `7`.
+
+[horizontal]
+Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
+The variables `p` and `q` were fixed at a value of `10`.
+The `r` value was incremented until the first error occurred.
+Total Reports:: 3
+Reports:: TP1.9-C-10-10-1, TP1.9-C-10-10-2, and TP1.9-C-10-10-3
+Outcome:: The first failure occurred with `3` threads, resulting in the remaining selection of threads being `2`.
