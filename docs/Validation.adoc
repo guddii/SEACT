@@ -132,7 +132,6 @@ Further analysis of the performance efficiency has been omitted due to the inval
 The erroneous behavior observed in <<Attempt 1>> was not accidental, as verified in <<Attempt 2>>.
 Consequently, the third attempt was conducted under the assumption that an error would occur at some point, resulting in the loss of relevant data.
 To further investigate this error, individual tests were run to examine the specific edge cases that led to these critical errors.
-In the event of any error in the console, all tests were terminated immediately.
 
 [horizontal]
 Parameters:: All test plans were executed with the variable `i` fixed at `C`, which represents the most exhaustive <<DPC>> configuration.
@@ -140,14 +139,17 @@ The variables `p`, `q`, and `r` were selected individually from the set `{1, 10,
 Total Reports:: 7
 Reports:: TP1.3-1-1-30,
 TP1.3-1-1-10, TP1.3-30-30-10, TP1.3-30-10-10, TP1.3-10-10-10, TP1.3-10-1-10, and TP1.3-1-10-10
-Outcome:: The only tests that completed without error were TP1.3-1-1-10. All other tests resulted in one of two erroneous situations.
+Outcome:: The only tests that completed without error were TP1.3-1-1-10. All other tests resulted in one of three erroneous situations.
 TP1.3-1-1-30, TP1.3-10-1-10, and TP1.3-1-10-10 had errors, as demonstrated in xref:lst-err-perf-1[xrefstyle=short].
 The second error, as demonstrated in xref:lst-err-perf-2[xrefstyle=short], was thrown in TP1.3-30-30-10, TP1.3-30-10-10, and TP1.3-10-10-10.
+In each of the aforementioned test reports, the server returns an error message indicating that a header has already been sent.
+This error is occasionally observed, in the proxy console.
 
-A detailed analysis reveals two errors that occur internally while processing requests.
+A detailed analysis reveals three errors that occur internally while processing requests.
 The most significant differences relate to the storage number (`p`) and the number of ShapeTrees (`q`).
 However, a strict behavior could not be determined.
 It appears that test plans executed with lower values for `p` and/or `q` than those used in other tests within this attempt result in an error message indicating that a file for the locking system of the solid provider is requested that does not exist.
+This error resulted in the immediate termination of the process (exit code 1).
 This is a unique function of the <<CSS>> as described in <<Third-Party Software>>.
 The corresponding error message is shown in Listing 1.
 
@@ -170,9 +172,10 @@ Node.js v22.1.0
 ELIFECYCLE Command failed with exit code 1.
 ----
 
-Tests conducted with p and/or q values that were higher than those of other tests resulted in a fetch exception when attempting to locate storage resources.
+Tests conducted with `p` and/or `q` values that were higher than those of other tests resulted in a fetch exception when attempting to locate storage resources.
 This aligns with the results observed in <<Attempt 1>> and <<Attempt 2, 2>>.
 An example of this error is shown in xref:lst-err-perf-2[xrefstyle=short].
+The error did not result in the immediate termination of the process.
 
 .Proxy Console Error
 [source,id="lst-err-perf-2",reftext="Listing {counter:listing}"]
@@ -184,9 +187,17 @@ TypeError: fetch failed
     at async createLog (/SEACT/apps/proxy/dist/index.js:303:47)
 ----
 
+The third error, which occurred during the processing of the requests, was a "header has already been sent" error.
+In such a case, the `responseInterceptor`, which is employed in the context of <<Forwarded Request, Forwarded Requests>>, attempts to modify the response object before returning it to the original requester.
+The error did not result in the immediate termination of the process.
+
 === Attempt 4
 
-The initial test scenarios were designed with considerably elevated numeric test parameters. Upon consideration of the assumptions presented in <<Attempt 3>>, it becomes evident that a solution to the deletion of the `.meta` resource, as outlined in <<Attempt 1>>, is necessary. The most trivial solution for that is to create the required files with a user with more privileges. As the files are persisted as files, these files are replaced by the same files created with a `sudo` user. This effectively prohibits the application, which is executed with current user privileges only, from deleting the resource.
+The initial test scenarios were designed with considerably elevated numeric test parameters.
+Upon consideration of the assumptions presented in <<Attempt 3>>, it becomes evident that a solution to the deletion of the `.meta` resource, as outlined in <<Attempt 1>>, is necessary.
+The most trivial solution for that is to create the required files with a user with more privileges.
+As the files are persisted as files, these files are replaced by the same files created with a `sudo` user.
+This effectively prohibits the application, which is executed with current user privileges only, from deleting the resource.
 
 [horizontal]
 Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
@@ -195,7 +206,9 @@ Total Reports:: 1
 Reports:: TP1.4-10-10-10
 Outcome:: The test plan could not be executed, due to a critical internal server error, as shown in xref:lst-err-perf-3[xrefstyle=short].
 
-The error message displayed in xref:lst-err-perf-3[xrefstyle=short] indicates that the Solid Provider lacks the necessary permissions to access the relevant resources. The intention was to prevent the deletion of this resource. However, the actual result was that the server process lacked sufficient privileges for read-only purposes.
+The error message displayed in xref:lst-err-perf-3[xrefstyle=short] indicates that the Solid Provider lacks the necessary permissions to access the relevant resources.
+The intention was to prevent the deletion of this resource.
+However, the actual result was that the server process lacked sufficient privileges for read-only purposes.
 
 .Server Network Error
 [source,json,id="lst-err-perf-3",reftext="Listing {counter:listing}"]
@@ -208,3 +221,19 @@ The error message displayed in xref:lst-err-perf-3[xrefstyle=short] indicates th
   "details": {}
 }
 ----
+
+=== Attempt 5
+
+As an alternative to <<Attempt 4>>, the objective of this attempt was to address the third issue identified in <<Attempt 3>>.
+This was achieved by deactivating the `selfHandleResponse` and `responseInterceptor` properties in the proxy.
+By doing so, all post-processing of requests from the proxy to the server was handled by the proxy library.
+This should prevent any manipulation of the response object, as the response has already been sent.
+
+[horizontal]
+Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
+The variables `p`, `q`, and `r` were fixed at a relatively high value of `10`, in comparison to previous attempts.
+Total Reports:: 1
+Reports:: TP1.5-10-10-10
+Outcome:: The tests were conducted for approximately four hours before being terminated.
+The process ended with the error message `Error: socket hang up`, accompanied by the error code `ECONNRESET`.
+This may be indicative of any premature connection termination event, as documented in the Node.js <<HTTP>>footnote:[https://nodejs.org/api/http.html] module documentation.

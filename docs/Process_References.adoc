@@ -26,7 +26,7 @@ Request forwarding is quite simple, the proxy receives a CRUD request that is pa
 The returning server response will take the path back to the original requester.
 Since the requester can be the proxy itself, there needs to be some kind of guard to prevent infinite recursive calls.
 If the requester is someone other than the proxy, the Data Privacy Cockpit middleware can be executed.
-In certain cases, it may be necessary to read and evaluate the server response, which can be done during a response interception step.
+In certain cases, it may be necessary to read and evaluate the server response, which can be done during a response interceptionfootnote:[https://github.com/chimurai/http-proxy-middleware/blob/master/recipes/response-interceptor.md] step.
 
 .Sequence diagram of the request being forwarded by the proxy
 [.text-center]
