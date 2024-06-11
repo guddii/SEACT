@@ -20,6 +20,7 @@ ref over Proxy, Server  : Forwarded Request
     end
 opt existAccessLogContainerUrl
 ||5||
+ref over Proxy, Server : Create Dynamic Namespace
 ref over Proxy, Server : Create or Update Dataset ( "/yyyy-mm-dd" , accessLogData )
 end
 end

@@ -65,6 +65,12 @@ Finally, the registry data will be filtered from the set of data and returned.
 include::resources/diagrams/sd_Lookup_claim_data_in_registry.puml[]
 ....
 
+== Create Dynamic Namespace
+
+A process will be initiated to create the <<Access Log Vocabulary>> and related ShapeTree and <<ShEx>> resources on the server in a dynamic manner during runtime.
+This process will occur within the individual storage resource of the module agent.
+Furthermore, the <<ACL>> resources will be added with access privileges set to public accessibility.
+
 == Create or Update Dataset
 
 The update of a dataset begins with a test to determine if the resource already exists on the server.

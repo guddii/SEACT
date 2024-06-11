@@ -193,7 +193,9 @@ The error did not result in the immediate termination of the process.
 
 === Attempt 4
 
-This attempt attempted to cope with the locking issue found in <<Attempt 3>>. As previously stated in the <<Test Environment>> section, for testing purposes, the lifetime of locks has been increased to 172800 seconds, in order to be capable of handling long-running requests. In order to verify that this is not a miss configuration, the configuration has been reset to its default for this attempt.
+This attempt attempted to cope with the locking issue found in <<Attempt 3>>.
+As previously stated in the <<Test Environment>> section, for testing purposes, the lifetime of locks has been increased to 172800 seconds, in order to be capable of handling long-running requests.
+In order to verify that this is not a miss configuration, the configuration has been reset to its default for this attempt.
 
 [horizontal]
 Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
@@ -248,3 +250,20 @@ Reports:: TP1.6-10-10-10
 Outcome:: The tests were conducted for approximately four hours before being terminated.
 The process ended with the error message `Error: socket hang up`, accompanied by the error code `ECONNRESET`.
 This may be indicative of any premature connection termination event, as documented in the Node.js <<HTTP>>footnote:[https://nodejs.org/api/http.html] module documentation.
+
+=== Attempt 7
+
+The straightforward solutions proposed in <<Attempt 4, Attempts 4>>, <<Attempt 5, 5>>, and <<Attempt 6, 6>> did not result in any improvement in the errors identified in Attempt 3. Consequently, modifications to the applications have been implemented in order to address the aforementioned errors.
+The errors that have been identified thus far suggest that the proxy module is unable to handle the volume of requests it receives without causing errors.
+In particular, the issue of writing to the same file appears to be problematic, potentially leading to the locking issue.
+The <<DPC Middleware>> is configured to write logs on a daily basis, which means that a single file will be written in every request.
+This modification was implemented in this attempt with the intention of ensuring that a new log is written per request.
+Furthermore, the <<Create Dynamic Namespace>> process has been replaced with static paths, as this could also be handled in a bootstrapping step, which might lead to unnecessary requests.
+
+[horizontal]
+Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
+The variables `p`, `q`, and `r` have been set to `10`, one after another, in order to identify the first breaking test.
+Total Reports:: 3
+Reports:: TP1.7-10-1-1, TP1.7-10-10-1, and TP1.7-10-10-10
+Outcome:: While the tests TP1.7-10-1-1 and TP1.7-10-10-1 were successfully completed, TP1.7-10-10-10 was unsuccessful.
+This leads to the conclusion that the greatest impact is derived from the number of threads executed in parallel.
