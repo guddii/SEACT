@@ -267,3 +267,19 @@ Total Reports:: 3
 Reports:: TP1.7-10-1-1, TP1.7-10-10-1, and TP1.7-10-10-10
 Outcome:: While the tests TP1.7-10-1-1 and TP1.7-10-10-1 were successfully completed, TP1.7-10-10-10 was unsuccessful.
 This leads to the conclusion that the greatest impact is derived from the number of threads executed in parallel.
+
+=== Attempt 8
+
+In <<Attempt 8>>, the limitations of the `r` value, which represents the number of threads, are examined based on the assumptions of <<Attempt 7>>.
+These assumptions posit that concurrency represents a significant challenge for the proposed approach.
+The value was incremented until the first error occurred, with the step width set to 1, starting at 1. This process was repeated until an erroneous test run was observed.
+In order to extend the runtime, the loop count, as part of the <<Apache JMeter Parameters>>, has been set to 1. Furthermore, the modifications to the application introduced in <<Attempt 7>> have also been applied in this attempt.
+
+[horizontal]
+Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
+The variables `p` and `q` were fixed at a value of `10`.
+The `r` value was incremented until the first error occurred.
+Total Reports:: 8
+Reports:: TP1.8-C-10-10-1, TP1.8-C-10-10-2, TP1.8-C-10-10-3, TP1.8-C-10-10-4, TP1.8-C-10-10-5, TP1.8-C-10-10-6, TP1.8-C-10-10-7, and TP1.8-C-10-10-8
+Outcome:: The first test run that was prematurely terminated was the test with an `r` value of `8`.
+It is noteworthy that the test with an `r` value of `7` was successful, despite 46.43% of its requests failing.
