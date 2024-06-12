@@ -304,11 +304,6 @@ Outcome:: The first failure occurred with `3` threads, resulting in the remainin
 The 10th an final attempt was intended to run in a greater context, to receive comparable results within the limits discovered in previous attempts.
 Furthermore, the modifications to the application introduced in <<Attempt 7>> have also been applied in this attempt.
 
-=== Attempt 1
-
-The initial attempt was designed to provide an overview of a greater number of tests, with parameters that were not intended to create a critical load on the system.
-The objective was to identify potential areas of heavy load and to produce detailed insight based on these initial results.
-
 [horizontal]
 Parameters:: All test plans were executed with the variable `i` assigned to each element of the set `{B, N, C}`.
 The variables `p` and `q` were selected from the set `{1, 10}`.
