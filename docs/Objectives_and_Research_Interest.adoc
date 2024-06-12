@@ -15,6 +15,7 @@ As answering this question in one go is difficult, it will be divided into multi
 [horizontal,labelwidth=15]
 [[QUEST-1]] QUEST-1:: Can a Solid-based system meet both <<Functional Requirements,functional>> and <<Non-Functional Requirements, non-functional requirements>> without compromising system design?
 [[QUEST-2]] QUEST-2:: To what extent does the process contribute to the increase in network load?
+[[QUEST-3]] QUEST-3:: Which system and test parameters influence the executed test cases? How does the influence of the parameters manifest itself?
 
 The listed questions cannot definitively determine whether the proposed approach is suitable for use in productive environments.
 However, they can reveal the vulnerable aspects of this concept to determine whether this approach should be pursued in principle.
