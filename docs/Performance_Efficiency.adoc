@@ -22,7 +22,7 @@ citenp:[nielsen_usability_1993] identifies three main time limits (in seconds), 
 
 In the event that the system is unable to provide a response time that is close to instantaneously, it is necessary to employ visual progression, for example, in the form of a percent-done indicator.
 
-In terms of throughput—one of the key time-behavior aspects—IBMfootnote:[https://www.ibm.com/docs/en/informix-servers/14.10?topic=performance-throughput] has identified a range of influential factors that affect the throughput of a system in their solution.
+In terms of throughput—one of the key time-behavior aspects—<<IBM>>footnote:[https://www.ibm.com/docs/en/informix-servers/14.10?topic=performance-throughput] has identified a range of influential factors that affect the throughput of a system in their solution.
 These include the specifications of the host computer, the software processing overhead, the data layout on the hard disk, the degree of hardware and software parallelism, and the types of transactions processed.
 
 Resource utilization and capacity are also crucial considerations when evaluating performance efficiency.

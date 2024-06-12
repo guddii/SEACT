@@ -315,17 +315,24 @@ The variables `p` and `q` were selected from the set `{1, 10}`.
 The `r` variable selected from the set `{1, 2}`.
 Total Reports:: 24
 Reports:: TP1.10-B-1-1-1, TP1.10-B-1-1-2, TP1.10-B-1-10-1, TP1.10-B-1-10-2, TP1.10-B-10-1-1, TP1.10-B-10-1-2, TP1.10-B-10-10-1footnote:[https://www.guddii.de/SEACT/TP1.10-B-10-10-1/], TP1.10-B-10-10-2footnote:[https://www.guddii.de/SEACT/TP1.10-B-10-10-2/], TP1.10-N-1-1-1, TP1.10-N-1-1-2, TP1.10-N-1-10-1, TP1.10-N-1-10-2, TP1.10-N-10-1-1, TP1.10-N-10-1-2, TP1.10-N-10-10-1, TP1.10-N-10-10-2, TP1.10-C-1-1-1, TP1.10-C-1-1-2, TP1.10-C-1-10-1, TP1.10-C-1-10-2, TP1.10-C-10-1-1, TP1.10-C-10-1-2, TP1.10-C-10-10-1footnote:[https://www.guddii.de/SEACT/TP1.10-C-10-10-1/], and TP1.10-C-10-10-2footnote:[https://www.guddii.de/SEACT/TP1.10-C-10-10-2/]
-Outcome:: Tests with a `p` or `q` value of `1` were invalid, as the `.meta` resource was deleted again. The same behavior occurred with `i` values set to `N`. Regardless of the number of repetitions, the outcome remained unchanged.
-
+Outcome:: Tests with a `p` or `q` value of `1` were invalid, as the `.meta` resource was deleted again.
+The same behavior occurred with `i` values set to `N`.
+Regardless of the number of repetitions, the outcome remained unchanged.
 
 xref:tbl-test-run-summary-errors[xrefstyle=short], xref:tbl-test-run-response-times-average[xrefstyle=short], and xref:tbl-test-run-throughput[xrefstyle=short] summarize of the test runs for TP1.10-`i`-10-10-`r`, with `i` in `{B, C}` and `r` in `{1, 2}`.
 They provide an overview of how the system behaves at different loads and configurations.
-The first column of the tables refers to the test plan that was carried out, followed by the `i` value of this test. The next column contains the corresponding `p`, `q`, and `r` values.
+The first column of the tables refers to the test plan that was carried out, followed by the `i` value of this test.
+The next column contains the corresponding `p`, `q`, and `r` values.
 Table headers that appear below these variables indicate the configuration of these variables.
 
 The Test Run Error Summary is presented in xref:tbl-test-run-summary-errors[xrefstyle=short].
 Its shows the percent of failed requests, returning a network status codefootnote:[https://developer.mozilla.org/en-US/docs/Web/HTTP/Status] greater or equals `400`.
 Other requests are considered successful, in a network status code range `100`-`399`.
+
+It can be observed that the complexity of the test run is directly proportional to the number of failed requests, even with a limited number of results.
+When the <<Data Privacy Cockpit Parameters>> are set to `C`, the failed requests are on average 2.92% higher than when the proxy module is bypassed `B`.
+Furthermore, the erroneous requests also increase when the number of threads (`r`) is increased.
+It is noteworthy that the number of errors also increases in bypassed cases, despite the original request not triggering any subprocesses.
 
 .Test Run Error Summary in Percent
 [cols="1,2,2",id="tbl-test-run-summary-errors"]
@@ -346,7 +353,14 @@ Other requests are considered successful, in a network status code range `100`-`
 >.^| 4.17 %
 |===
 
-xref:tbl-test-run-response-times-average[xrefstyle=short] presents the averaged response time in seconds.
+xref:tbl-test-run-response-times-average[xrefstyle=short] presents the averaged response time in seconds, rounded to two decimals.
+The standard deviation of B is 0,31681 s, the standard deviation of C is 5,560185 s.
+
+The values presented are consistent with the results presented in xref:tbl-test-run-summary-errors[xrefstyle=short].
+A higher complexity results in a higher average reaction time.
+The values of the `B` column are still below 1 second, which is the maximum limit that can cause a delay in the user's cognitive process.
+The `C` column, on the other hand, dramatically increases the amount of time a potential user can focus on a process.
+Based on the observations of citenp:[nielsen_usability_1993], the value is limited to 10 seconds, which is exceeded by about 4 times even with the lowest possible `r` value of 1. With this value set to 2, it is exceeded by about 5 times the recommended limit.
 
 .Test Run Average Response Times in Seconds
 [cols="1,2,2",id="tbl-test-run-response-times-average"]
@@ -359,16 +373,20 @@ xref:tbl-test-run-response-times-average[xrefstyle=short] presents the averaged 
 >.^h| C
 
 ^.^h| 10-10-1
->.^|  0.03703 s
->.^| 41.20696 s
+>.^|  0.04 s
+>.^| 41.21 s
 
 ^.^h| 10-10-2
->.^|  0.67065 s
->.^| 52.32733 s
+>.^|  0.67 s
+>.^| 52.33 s
 |===
 
 The overall performance of the proposed system is quantified by the throughput measurements presented in xref:tbl-test-run-throughput[xrefstyle=short].
 The values listed are in transactions per second.
+The standard deviation of B is 12,87 Transactions/s, the standard deviation of C is 0,005 Transactions/s.
+
+As observed in the measurements shown in xref:tbl-test-run-summary-errors[xrefstyle=short] and xref:tbl-test-run-response-times-average[xrefstyle=short], the throughput drops significantly when the complexity of the system and the amount of threads increases.
+In considering the aspects identified by <<IBM>> as influencing throughput, namely processing overhead in the software, the degree of parallelism supported by the software, and the types of transactions processed, it appears that these factors may be plausible causes of the issues that have been found.
 
 .Test Run Throughput in Transactions per Second
 [cols="1,2,2",id="tbl-test-run-throughput"]
@@ -388,3 +406,5 @@ The values listed are in transactions per second.
 >.^| 0.20 Transactions/s
 >.^| 0.02 Transactions/s
 |===
+
+
