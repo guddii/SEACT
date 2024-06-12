@@ -2,6 +2,14 @@
 
 In the context of further work on this project, it is important to consider a number of additional factors that could potentially enhance the <<System Design>> and the <<Performance Efficiency>>.
 
+As previously discussed, the most crucial objective is to identify a method for stabilizing and optimizing this approach.
+Otherwise, any attempt to enhance this technique will inevitably lead to performance or load issues.
+It would be beneficial to initiate future work with this issue in mind, beginning with a test of the Solid Provider and continuing with a proxy and all other participating system components.
+This will enable an evaluation of the performance of each component, such as <<CSS>>, in relation to the approach in question.
+Ultimately, a test of the specific configuration must be conducted in order to achieve optimal efficiency.
+This may include the number of workersfootnote:[https://communitysolidserver.github.io/CommunitySolidServer/7.x/usage/starting-server/] for multithreaded mode.
+An alternative would be to consider a different server, such as the Manas solid serverfootnote:[https://manomayam.github.io/manas/], which focuses on robustness and concurrency.
+
 It is assumed that the access logs are only accessible to the owner of a storage resource.
 However, in a default configuration of <<CSS>>, this information is unknown when receiving an arbitrary resource from a storage resource.
 This particular solid provider does provide a visibility optionfootnote:[https://communitysolidserver.github.io/CommunitySolidServer/7.x/usage/account/json-api/] to assign a <<Identity>> to a storage resource.

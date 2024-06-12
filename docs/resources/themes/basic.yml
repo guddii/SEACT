@@ -37,6 +37,7 @@ heading:
   kerning: 5
 # https://docs.asciidoctor.org/pdf-converter/latest/theme/link/
 link:
+  hyphens: true
   font-color: $base-font-color
 # https://docs.asciidoctor.org/pdf-converter/latest/theme/list/
 list:

@@ -31,5 +31,5 @@ asciidoctor \
 
 mv docs/stem-*.svg out
 
-mkdir out/resources/
+mkdir -p out/resources/
 cp -r docs/resources/views out/resources/

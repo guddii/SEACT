@@ -27,6 +27,7 @@ asciidoctor-pdf \
     --attribute ostype=$OSTYPE \
     --attribute revdate=$REVDATE \
     --attribute revnumber=$REVNUMBER \
+    --attribute toclevels=1 \
     --backend=pdf \
     docs/*.research.adoc docs/*.dev.adoc
 
