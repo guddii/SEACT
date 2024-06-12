@@ -4,12 +4,12 @@ This section of the study is devoted to a critical analysis and comparison of th
 Since there are few such works, the focus is on critical reflection.
 
 // System Design
-The <<System Design>> encompasses various aspects that significantly impact the processing of data, and consequently, the system’s efficiency, particularly in terms of <<Performance Efficiency>>.
+The <<System Design>> encompasses a multitude of elements that have a significant impact on the processing of data, particularly in terms of <<Performance Efficiency>>.
 It is important to note that the individual aspects are not distinct decisions that are made in isolation.
 Each of the individual options encourages or enforces a <<Logical Topology>>, with either the <<Client as Data Owner>> or a <<Trustee as Data Owner>>.
 Finally, it is crucial to identify the approach that aligns most closely with the system's requirements, even if it involves trade-offs.
 This will ensure that the system design achieves the desired quality, tailored to the specific needs of the system.
-In this context, the <<Trustee as Data Owner>> approach appeared to offer the most promising results.
+In this context, the <<Trustee as Data Owner>>, with an <<Opt-In>> as <<Data Capturing Strategies,Data Capturing Strategy>> was chosen, as this approach appeared to offer the most promising results. However, subsequent analysis has revealed that this decision may not be the optimal choice in terms of system reliability. As evidenced by the findings of the <<Performance Efficiency Analysis>>, the logging of access can be easily disabled while still serving data.
 
 // Solid Application Interop
 The most significant impact has been observed in the area of <<Solid Application Interoperability>>, as the application model is based on it.

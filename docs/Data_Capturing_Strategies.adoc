@@ -7,8 +7,8 @@ This presents an opportunity for an agent to opt in for monitoring.
 This leads to two methods that are applicable in the context of how access logs can be captured.
 
 [horizontal]
-Permanent:: A system of permanent access logs would continuously observe and record every route traversed within the network.
-Opt-In:: The implementation of opt-in access logging would require the agent to register at some stage, thus enabling the system to monitor the relevant pathways.
+[[Permanent]] Permanent:: A system of permanent access logs would continuously observe and record every route traversed within the network.
+[[Opt-In]] Opt-In:: The implementation of opt-in access logging would require the agent to register at some stage, thus enabling the system to monitor the relevant pathways.
 
 Both options represent viable strategies for consideration.
 However, the permanent strategy is more restrictive and may not be optimal in this context.
