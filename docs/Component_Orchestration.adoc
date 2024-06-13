@@ -2,8 +2,8 @@
 
 The system components consist of three main parts: the client, the proxy, and the Solid provider as the server.
 The client does not require any concept-specific logic and will be omitted from the system component view.
-Clients can access the public endpoint without any changes to the API.
-The Solid provider should also remain unaffected and only be accessed through its HTTP APIs.
+Clients can access the public endpoint without any changes to the <<API>>.
+The Solid provider should also remain unaffected and only be accessed through its <<HTTP>> <<API,APIs>>.
 When accessing the storages that exist in the Solid provider, it is important to divide them by ownership.
 This approach results in two different orchestrations of the system components: one where the captured data is held in trust, and another where the data is owned by the client.
 

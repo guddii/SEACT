@@ -90,6 +90,6 @@ h| Example
 
 It should be noted that the general proxy functions of delegating and forwarding requests have been excluded from this view.
 There are various implementations of proxies that must not be considered in this research.
-However, the DPC proxy module, which runs before and after the client response and request, has been included.
+However, the <<DPC>> proxy module, which runs before and after the client response and request, has been included.
 
 // Todo: How will the data be analysed?

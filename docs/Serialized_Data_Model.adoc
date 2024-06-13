@@ -1,7 +1,7 @@
 = Serialized Data Model
 
 Before looking at the serialized model, it is important to understand the structure of the <<HTTP>> endpoints.
-The storage URLs for the <<HTTP>> <<API, APIs>> will begin with a storage identifier added as a suffix to the base <<URL>>.
+The storage URLs for the <<HTTP>> <<API,APIs>> will begin with a storage identifier added as a suffix to the base <<URL>>.
 xref:wbs_Endpoint_structure[xrefstyle=short] shows the storage <<URL, URLs>> at the second level.
 The data of the corresponding agent will be represented below this node.
 
@@ -14,7 +14,7 @@ include::resources/diagrams/wbs_Endpoint_structure.puml[]
 
 The two most commonly used serialization formats for <<RDF>>-based data in data-driven web-based systems are `text/turtle` and `application/ld+json`.
 This inspection does not focus on data storage, as the Solid provider is considered replaceable.
-However, <<HTTP>> <<API, APIs>> use Turtle as the exchange format for communication, which will be displayed below.
+However, <<HTTP>> <<API,APIs>> use Turtle as the exchange format for communication, which will be displayed below.
 As part of the structural hierarchy shown in xref:wbs_Endpoint_structure[xrefstyle=short], all resources and listings refer to the data model shown in xref:dm_Claim[xrefstyle=short].
 
 == Personal Profile Document (Data Model)
@@ -38,7 +38,7 @@ NOTE: Followed Path [1]
 The registry set contains an entry for each agent who has claimed data captured by the <<DPC>> agent.
 This captured data will be referred to as <<Data Registration (Data Model), data registration>>.
 
-The subject of the RDF triple, however, must be unique and built based on the claimed subject.
+The subject of the <<RDF>> triple, however, must be unique and built based on the claimed subject.
 In this case, it will be the hashed storage <<URL>>.
 
 .`interop:DataRegistry` <<Thing>> at http://example.tld/dpc/registries
@@ -86,7 +86,7 @@ NOTE: Followed Path [1,1,1], [1,2,1,1]
 == Shape Expression (Data Model)
 
 <<ShEx>> defines the schema for every literal associated with a predicate of the vocabulary.
-The RDF vocabulary will not be listed further.
+The <<RDF>> vocabulary will not be listed further.
 
 .Shape Expression
 [source]

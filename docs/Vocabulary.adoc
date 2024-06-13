@@ -18,7 +18,7 @@ include::resources/claim.ttl[lines=10..]
 
 The claiming vocabulary presented in xref:lst-vocabulary-claim[xrefstyle=short], provides an illustrative example of how such a vocabulary might be constructed.
 However, in the implementation, this approach has not been employed in an effective manner.
-For the purposes of mocking, the URL references were sufficient, as the data was not fetched from the vocabulary.
+For the purposes of mocking, the <<URL>> references were sufficient, as the data was not fetched from the vocabulary.
 Nevertheless, the semantics presented in the listing are accurate.
 
 Uses of the <<RDF>> vocabulary are shown in <<Claim Registry (Data Model)>> and <<Verification (Data Model)>>.

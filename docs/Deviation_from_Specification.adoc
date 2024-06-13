@@ -13,7 +13,7 @@ The application logic behind this condition is comprised of three distinct tests
 One such test is that of a request header, which may or may not include a hash value.
 This value is applied to requests originating from the same web instance.
 Should the hash value in question align with the expected value, the request in question will not be monitored.
-Another filter for self-requests is the test to determine if the request URL matches the <<OIDC>> configuration path.
+Another filter for self-requests is the test to determine if the request <<URL>> matches the <<OIDC>> configuration path.
 This path is typically `/.well-known/openid-configuration`.
 In the case of <<CSS>>, this could be enhanced to include all internal data, as all internal <<URL>> paths begin with `/.`, but this technique is limited to <<CSS>> and is not a standard pattern.
 Finally, all agent WebIDs, which are utilized in middleware, are to be disregarded.

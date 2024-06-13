@@ -2,7 +2,7 @@
 
 The backbone of the Solid project is the Solid Protocol.
 The protocol specifies how agents store their data securely in decentralized data storages, also known as Pods.
-These storage systems can be compared to secure, personal web servers for data, such as Dropbox, ownCloud, Nextcloud, or similar software, but with a specified public API.
+These storage systems can be compared to secure, personal web servers for data, such as Dropbox, ownCloud, Nextcloud, or similar software, but with a specified public <<API>>.
 This interface utilizes WebIDs to identify the agents within the system.
 As the storage owner has control over which agents can access it, they can choose to restrict access to only WebIDs, completely restrict access, or make it publicly accessible.
 
@@ -15,7 +15,7 @@ This results in the following issues that require attention:
 It does not track the actual request for a resource.
 [[ISSUE-2,ISSUE-2]] ISSUE-2:: Solid is based on <<RDF>> and therefore favors interconnected data, what increased the demand for monitoring the stored data.
 [[ISSUE-3,ISSUE-3]] ISSUE-3:: There may be changes to existing specifications as they need to be improved or are still in the draft stage.
-[[ISSUE-4,ISSUE-4]] ISSUE-4:: The Solid ecosystem will be expanded with newly introduced specifications or APIs.
+[[ISSUE-4,ISSUE-4]] ISSUE-4:: The Solid ecosystem will be expanded with newly introduced specifications or <<API,APIs>>.
 [[ISSUE-5,ISSUE-5]] ISSUE-5:: New Solid providers are being introduced because of their increasing popularity.
 
 The first and second issues describe the need for traceability to control access to one's own data.

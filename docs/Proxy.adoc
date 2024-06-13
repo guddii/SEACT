@@ -26,7 +26,7 @@ include::resources/diagrams/cmp_Proxy.puml[]
 
 == Application Layer Proxy
 
-In addition to its position within the network, the Proxy can also have a position in the OSI model.
+In addition to its position within the network, the Proxy can also have a position in the <<OSI>> model.
 The model describes how data will be transported in seven layers, each with different functions.
 Every layer can only communicate with its closest layer, starting with the physical layer that transmits a raw bitstream over a physical medium, up to the seventh layer, the application layer.
 This is the human interaction layer, through which applications can access network services.

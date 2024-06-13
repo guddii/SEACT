@@ -1,6 +1,6 @@
 = Limits of Solid
 
 One challenge in monitoring storage resources is that the ownership of a resource is not necessarily linked to the requested resource within the storage resource.
-As previously mentioned in the <<storage_resource, storage resource>> section, the path of a URI can be reduced, path segment by path segment, to identify the containing storage.
+As previously mentioned in the <<storage_resource, storage resource>> section, the path of a <<URI>> can be reduced, path segment by path segment, to identify the containing storage.
 However, the storage is owned by at least one owner due to the specification.
 This piece of information is not mandatory, which limits the reliability of identification to the storage resource cite:[sarven_solid_2022].

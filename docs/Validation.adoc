@@ -25,7 +25,7 @@ According to the <<CCP>>, each component must change for the same reasons and at
 However, this is not feasible with the system design.
 For example, if the <<RDF>> vocabulary changes, every subsystem of the proposed system is affected, including the Solid Provider, the <<DPC>> middleware, and the <<DPC>> application.
 The Solid Provider must update the already persisted data structure if it is changed to an incompatible vocabulary.
-The DPC middleware produces new data in the form of the changed vocabulary, and the DPC application must be able to interpret and display the new data format if it requires custom view logic.
+The <<DPC>> middleware produces new data in the form of the changed vocabulary, and the <<DPC>> application must be able to interpret and display the new data format if it requires custom view logic.
 Considering the related requirements of the _Single Responsibility Principle_, which states that each component should provide a service to a single actor, this appears to be a feasible solution.
 This is a satisfactory concern for both the <<DPC>> application and the middleware, since actors are defined as a group of one or more users.
 In this case, all Solid Provider users are grouped as an actor.
@@ -49,7 +49,7 @@ The <<ADP>> requires that no cyclical dependencies should be part of the system'
 However, this is a component coupling principle that is not satisfied with the proposed approach.
 When a <<Forwarded Request>> is used, referred from the proxy as an actor, the proxy will request itself, meaning it has a dependency on itself and thereby a cyclic dependency.
 Even when a proxy is not requesting itself and requests are forwarded using forwarded headers, as illustrated in xref:lst-request-with-forwarded-headers[xrefstyle=short], the server would still have a cyclic dependency.
-This is because the CSS requires the proxy hostname to be the base URL.
+This is because the <<CSS>> requires the proxy hostname to be the base <<URL>>.
 Consequently, when Solid Provider verifies an agent from its own instance, it will still request itself through the proxy, which is then cyclic again.
 
 .Request with Forwarded Headers
@@ -148,7 +148,7 @@ This error is occasionally observed, in the proxy console.
 A detailed analysis reveals three errors that occur internally while processing requests.
 The most significant differences relate to the storage number (`p`) and the number of ShapeTrees (`q`).
 However, a strict behavior could not be determined.
-It appears that test plans executed with lower values for `p` and/or `q` than those used in other tests within this attempt result in an error message indicating that a file for the locking system of the solid provider is requested that does not exist.
+It appears that test plans executed with lower values for `p` and/or `q` than those used in other tests within this attempt result in an error message indicating that a file for the locking system of the <<Solid Provider>> is requested that does not exist.
 This error resulted in the immediate termination of the process (exit code 1).
 This is a unique function of the <<CSS>> as described in <<Third-Party Software>>.
 The corresponding error message is shown in Listing 1.

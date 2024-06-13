@@ -14,7 +14,7 @@ Node child packages are stored in the `./apps` directory, the `./packages` direc
 These directories contain the source code for the experimental prototype.
 The `./docs` directory contains all documents related to the research.
 The `./scripts` directory contains custom build scripts that are used to produce the project's artifacts.
-The `./tests/http` directory contains simple HTTP test files, which are used for singular tests.
+The `./tests/http` directory contains simple <<HTTP>> test files, which are used for singular tests.
 
 .Structure diagram of the first two levels of the project directory.
 [.text-center]
@@ -41,12 +41,12 @@ The configuration options that have a particular influence on the tested scenari
 The data storage component of data management is configured as the file system by default, which may have an impact on performance due to the necessity of writing files to the hard drive.
 Similarly, locks are stored in the file system and are used to prevent simultaneous write operations on the same resource.
 The default authorization mechanism is <<WAC>>.
-With regard to account management, it is important to note that suffixes are used as storage container URLs, rather than subdomains.
+With regard to account management, it is important to note that suffixes are used as storage container <<URL,URLs>>, rather than subdomains.
 Furthermore, account management includes the identity provider, which uses <<OIDC>>.
 The complete configuration file can be accessed in xref:css_configuration[xrefstyle=short].
 
-At the client side, the *Inrupt JavaScript Client Library* is used to access RDF resources in a uniformed way.
-Consequently, it is almost impossible to use <<CSS>> vendor <<API, APIs>>.
+At the client side, the *Inrupt JavaScript Client Library* is used to access <<RDF>> resources in a uniformed way.
+Consequently, it is almost impossible to use <<CSS>> vendor <<API,APIs>>.
 
 The network protocol <<HTTP>> is employed for all operations in this research.
 Security measures such as <<HTTPS>> are not considered in this analysis.

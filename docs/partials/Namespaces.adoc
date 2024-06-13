@@ -2,8 +2,8 @@
 = Namespaces
 
 This enumeration lists the prefixes and the associated namespace.
-It will be used as the standard syntax for RDF prefixes.
-When a prefix is followed by a colon symbol, the part after the colon can be appended to the namespace URI, thereby creating a new URI.
+It will be used as the standard syntax for <<RDF>> prefixes.
+When a prefix is followed by a colon symbol, the part after the colon can be appended to the namespace <<URI>>, thereby creating a new <<URI>>.
 
 [glossary]
 [horizontal]

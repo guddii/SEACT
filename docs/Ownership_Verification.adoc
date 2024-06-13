@@ -1,7 +1,7 @@
 = Ownership Verification
 
 In decentralized systems, it appears that a resource cannot be directly associated with an owner.
-This is also the case in solid-based systems.
+This is also the case in Solid-based systems.
 Despite the necessity for the system to know the ownership of the individual resource, it may not be exposed to the public.
 One solution to this problem is to write a randomized verification token in the space associated with the owner.
 This approach will be used within the prototype developed.

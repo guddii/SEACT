@@ -27,12 +27,12 @@ The <<Reflection>> section will discuss the considerations from the Introduction
 The introduction will define the research, introduce the terminology used, and demonstrate related work on this topic.
 The <<Research, research>> chapter will begin with a motivating problem and objectives that define the interest in this research.
 This chapter will also define the design of this research and the concept, including the requirements.
-The <<Terminology, terminology>> chapter will explain general solid terms, the understanding of access monitoring, the system definitions, and the proxy design pattern.
+The <<Terminology, terminology>> chapter will explain general Solid terms, the understanding of access monitoring, the system definitions, and the proxy design pattern.
 A summary of the state of the art will be provided in the chapter on <<Related Work, related work>>.
 
 == Research
 
-The Solid Project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
+The Solid Project is an <<RDF>>-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
 The technology is still in development and not yet fully evolved.
 The current version is missing some essential features required for production environments.
 Ongoing research and development is being conducted to improve the ecosystem, resulting in the regular introduction of new features or Solid providers.
@@ -41,7 +41,7 @@ This thesis aims to develop and analyze a Solid-based application that aligns wi
 The application will enhance data privacy concerns, specifically in terms of data traceability and access control.
 The goal is to increase visibility and track requested resources from parties within and beyond the ecosystem through logs and their representation.
 These requests should be processed and logged to achieve better control over the exposed data, by monitoring them.
-All of these achievements should be established in a clear context and communicated through data APIs to ensure safety for new features and potential changes in Solid providers.
+All of these achievements should be established in a clear context and communicated through data <<API,APIs>> to ensure safety for new features and potential changes in Solid providers.
 
 include::Problem_Definition.adoc[leveloffset=+2]
 
@@ -77,7 +77,7 @@ Finally, the <<Quality Model>> will be demonstrated, which is necessary to perfo
 
 == Solid Ecosystem
 
-The Solid Project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
+The Solid Project is an <<RDF>>-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
 The ecosystem comprises a number of specifications and associated technologies, which are primarily listed in the Solid Technical Reportsfootnote:[https://solidproject.org/TR/].
 The most fundamental specification is the <<Solid Protocol>>, also known as the core specification.
 In addition to the core specification, the following sections will explain the role of <<Solid Provider,Solid Providers>> in enabling the protocol and the <<Solid Application Interoperability>> specification, which extends the protocol.

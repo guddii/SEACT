@@ -56,13 +56,13 @@ The lifetime of locks has been increased by the same amount.
 
 It is important to note that the tested use case only considers <<Authorised CRUD Requests>>, which are designated as <<Process Entries>> for users and any type of agent.
 Consequently, the <<Log Claiming>> and <<Log Discovery>> functionality has not been subjected to a direct examination, as its performance is dependent on the application logic implemented and not on the underlying concept.
-It is essential to subject the parameters of the network APIs and the aspects of the Solid Ecosystem, which are defined by a set of options provided by the test executer, to exhaustive testing.
+It is essential to subject the parameters of the network <<API,APIs>> and the aspects of the Solid Ecosystem, which are defined by a set of options provided by the test executer, to exhaustive testing.
 All of these test parameters are summarized in a test matrix at the end of this section.
 
 === Network Parameters
 
 The scenarios to be tested on this system will cover <<CRUD>> operations on <<RDF>> resources, as these are the most common for <<ROA, ROAs>> and Solid applications, respectively.
-As suggested in the <<System>> section, a <<CRUD>> sequence will be built based on the CRUD resource lifecycle state machine described there.
+As suggested in the <<System>> section, a <<CRUD>> sequence will be built based on the <<CRUD>> resource lifecycle state machine described there.
 To generate a sequence that represents the behavior of an actual agent, a probability stem:[P] must be applied to all possible transitions stem:[T]:
 
 [.text-center]
@@ -172,7 +172,7 @@ In order to enforce a sequential run, independent of the execution time, thread 
 http://example.tld/client/run1716802767389_thread3_loop1_resource0
 ----
 
-The body of the HTTP request is a minimal RDF triple (`<ex:s> <ex:p> <ex:o>.`), which is relevant for the creation and updating of resources utilizing the `PUT` method.
+The body of the <<HTTP>> request is a minimal <<RDF>> triple (`<ex:s> <ex:p> <ex:o>.`), which is relevant for the creation and updating of resources utilizing the `PUT` method.
 
 === Test Parameters Matrix
 
@@ -181,13 +181,13 @@ The aggregation of each parameter into a test plan is summarized in xref:tbl-tes
 
 Each execution of a test plan involves a preparation phase, which precedes the actual execution of the test plan.
 A general preparation step is to seed all client storage containers into the <<Solid Provider>> before executing the test plan.
-Similarly, DPC registries, claim data containers, and ShapeTrees are preproduced.
-Prior to each test run, the registry corresponding to the test case will be patched in the DPC social agent.
+Similarly, <<DPC>> registries, claim data containers, and ShapeTrees are preproduced.
+Prior to each test run, the registry corresponding to the test case will be patched in the <<DPC>> social agent.
 The authorization will also occur outside of the actual execution of the test plan.
 
 xref:tbl-network-parameters-matrix[xrefstyle=short] presents the selection of <<Network Parameters>> utilized in the test plans, as detailed in xref:tbl-test-parameters-matrix[xrefstyle=short].
 The ID column serves as a unique identifier for this parameter set.
-The CRUD sequence column indicates the CRUD operations that are executed during the test run.
+The <<CRUD>> sequence column indicates the <<CRUD>> operations that are executed during the test run.
 The run mode determines the order in which the operations are executed, either sequentially or in parallel.
 The hierarchical depth column indicates the depth of the resource container in which the operations are executed.
 
