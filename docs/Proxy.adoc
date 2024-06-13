@@ -2,11 +2,11 @@
 
 A proxy is a structural design pattern in software development that serves as a placeholder for another object to access or control.
 This improves efficiency and reduces complexity.
-In this case, the accessed object is the Solid Provider.
+In this case, the accessed object is the Solid Provider cite:[gamma_design_2011].
 
 Proxies can be classified into a variety of groups.
-In this study, we focus on web proxies, as the communication between the proxy and the Solid Provider will use HTTP APIs.
-The subsequent categorization of this research is based on the position within the client-server model, as well as the OSI layer in which it is operational.
+In this study, we focus on web proxies, as the communication between the proxy and the Solid Provider will use <<HTTP>> <<API,APIs>>.
+The categorization of proxies is based on the position within the client-server model, as well as the <<OSI>> layer in which it is operational.
 
 == Server-Side Proxy
 
@@ -32,5 +32,5 @@ Every layer can only communicate with its closest layer, starting with the physi
 This is the human interaction layer, through which applications can access network services.
 An Application Layer Proxy operates within this layer.
 
-In the following text, the term "Proxy" will be used to refer to the Server-Side Application Layer proxy for the sake of simplicity.
-However, it should be noted that it will indeed satisfy the characteristics of a proxy of this kind.
+For the sake of simplicity, the term "proxy" will be used in the following text.
+Despite the abbreviated term, all properties of a server-side application layer proxy will be fulfilled.

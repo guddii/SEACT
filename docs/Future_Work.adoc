@@ -17,7 +17,7 @@ If activated, the reference is contained as a link header in the response, as de
 This may potentially make the entire claiming mechanism obsolete, which would be an interesting topic for further investigation.
 
 .Referenced WebID in Response Header.
-[source,id="lst-referenced-webid-in-response-header",reftext="Listing {counter:listing}"]
+[source,id="lst-referenced-webid-in-response-header"]
 ----
 link: <http://example-tld/client/profile/card#me>; rel="http://www.w3.org/ns/solid/terms#owner"
 ----
@@ -34,7 +34,7 @@ There may be other scenarios that emerge as a result of further research on this
 
 Should the proposed <<System Design>> be retained, with a file located in the client's storage resource being read from the <<DPC>> agent, new possibilities emerge.
 Clients may restrict or manipulate access from their individual storage resources without modifying the code.
-Currently, this resource contains only the `claim:Verification` thing.
+Currently, this resource contains only the `claim:Verification` <<Thing>>.
 However, it could also contain filtering rules for requests, which, for instance, limit access by specific patterns.
 A research program in this direction could lead to a significant increase in control over data privacy, based on the transparency benefits achieved here.
 

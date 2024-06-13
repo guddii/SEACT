@@ -16,7 +16,7 @@ The process of creating a new container resource, however, is a fundamental aspe
 An illustrative example can be found in xref:lst-create-container[xrefstyle=short] cite:[capadisli_web_2022].
 
 .Request for new container resources
-[source,httprequest,id="lst-create-container",reftext="Listing {counter:listing}"]
+[source,httprequest,id="lst-create-container"]
 ----
 POST http://example.tld/client/
 Content-Type: text/turtle
@@ -38,7 +38,7 @@ Namely, there is no unified <<API>> in the specification.
 While the creation of container resources is defined in the Solid Protocol, the creation of storage resources differs for each implementation. <<CSS>> for instance, requests a process in multiple steps, with the final step shown in xref:lst-create-storage-css[xrefstyle=short]footnote:[https://communitysolidserver.github.io/CommunitySolidServer/7.x/usage/account/json-api/].
 
 .Request for new storage resource in <<CSS>> for account `5e647928-b7f0-4357-9927-f54d66a04790`.
-[source,httprequest,id="lst-create-storage-css",reftext="Listing {counter:listing}"]
+[source,httprequest,id="lst-create-storage-css"]
 ----
 POST http://example.tld/.account/account/5e647928-b7f0-4357-9927-f54d66a04790/pod/
 Authorization: CSS-Account-Token a3395e7c-7d3f-40a1-9dff-7fa25b48c1a9
@@ -52,7 +52,7 @@ Content-Type: application/json
 In contrast, Inrupt’s <<ESS>>, as an alternative Solid Provider, only requires a simple authorized POST request as shown in xref:lst-create-storage-ess[xrefstyle=short]footnote:[https://docs.inrupt.com/ess/2.2/services/service-pod-provision/#create-a-new-pod].
 
 .Request for new storage resource in <<ESS>>
-[source,httprequest,id="lst-create-storage-ess",reftext="Listing {counter:listing}"]
+[source,httprequest,id="lst-create-storage-ess"]
 ----
 POST https://provision.inrupt.com/
 ----

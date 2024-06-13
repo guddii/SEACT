@@ -6,7 +6,7 @@ Prior to initiating experimentation, it is imperative to specify the test enviro
 The server and proxy applications will be build and run the platform depicted in xref:lst-env-profile[xrefstyle=short].
 
 .System Profile
-[source,id="lst-env-profile",reftext="Listing {counter:listing}"]
+[source,id="lst-env-profile"]
 ----
 $ system_profiler SPSoftwareDataType SPHardwareDataType
 
@@ -41,7 +41,7 @@ Hardware:
 The installed version of Node.js is that described in xref:lst-env-node[xrefstyle=short].
 
 .Node.js Version
-[source,id="lst-env-node",reftext="Listing {counter:listing}"]
+[source,id="lst-env-node"]
 ----
 $ node -v
 v22.1.0
@@ -124,17 +124,17 @@ The mechanism in adds a randomized header hash to the request, which is read dur
 This is demonstrated in xref:lst-request-with-proxy-bypass-token[xrefstyle=short].
 
 .Request with Proxy Bypass Token
-[source,httprequest,id="lst-request-with-proxy-bypass-token",reftext="Listing {counter:listing}"]
+[source,httprequest,id="lst-request-with-proxy-bypass-token"]
 ----
 GET http://example.tld/client/profile/card#me
 X-Proxy-Bypass-Token: af8649fb
 ----
 
-A new environment variable has been introduced for testing purposes, which allows the automatic generation of the hash value to bea static value to be used instead.
+A new environment variable has been introduced for testing purposes, which allows the automatic generation of the hash value to be static value to be used instead.
 This is demonstrated in xref:lst-proxy-bypass-token-env-var[xrefstyle=short].
 
 .Proxy Bypass Token Environment Variable
-[source,dotenv,id="lst-proxy-bypass-token-env-var",reftext="Listing {counter:listing}"]
+[source,dotenv,id="lst-proxy-bypass-token-env-var"]
 ----
 PROXY_BYPASS_TOKEN="af8649fb"
 ----
@@ -167,7 +167,7 @@ Specifically, C~i~ is mapped to a `PUT`, R~i~ to a `GET`, U~i~ to a `PUT`, and D
 In order to enforce a sequential run, independent of the execution time, thread group and loop, these values are applied to the resource name, as shown in xref:lst-resource-name[xrefstyle=short].
 
 .Structure of created resources.
-[source,id="lst-resource-name",reftext="Listing {counter:listing}"]
+[source,id="lst-resource-name"]
 ----
 http://example.tld/client/run1716802767389_thread3_loop1_resource0
 ----
@@ -180,7 +180,7 @@ This section presents a comprehensive list of selected test parameters, organize
 The aggregation of each parameter into a test plan is summarized in xref:tbl-test-parameters-matrix[xrefstyle=short] at the end of this section.
 
 Each execution of a test plan involves a preparation phase, which precedes the actual execution of the test plan.
-A general preparation step is to seed all client storage containers into the solid provider before executing the test plan.
+A general preparation step is to seed all client storage containers into the <<Solid Provider>> before executing the test plan.
 Similarly, DPC registries, claim data containers, and ShapeTrees are preproduced.
 Prior to each test run, the registry corresponding to the test case will be patched in the DPC social agent.
 The authorization will also occur outside of the actual execution of the test plan.

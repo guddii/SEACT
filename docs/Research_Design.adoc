@@ -6,8 +6,10 @@ A quantitative analysis will quantify the expected increase in the network load 
 
 The identified analyses will be conducted using data and insights collected from an experimental prototype.
 The prototype must satisfy the specified requirements, which are derived from the problem definition.
-
-The sampling will consider the schema values listed in xref:tbl-sampling-schema[xrefstyle=short].
+The data set contains the `timeStamp` of the sample and the `elapsed` time until the test concluded.
+As a sequence of network operations is tested, a `label` for the individual action must be set.
+In addition, the `responseCode` of the <<HTTP>> request will indicate whether the operation was successful or erroneous.
+The <<URL>> is necessary in case further insights into the individual <<HTTP>> request are required.
 In order to have comparable values, each sample will be taken with and without the considered approach.
 
 .Sampling Schema

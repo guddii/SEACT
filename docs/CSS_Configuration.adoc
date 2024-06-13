@@ -1,7 +1,7 @@
 = Community Solid Server Configuration
 
 .Community Solid Server Configuration
-[source,json,id="lst-css-config",reftext="Listing {counter:listing}"]
+[source,json,id="lst-css-config"]
 ----
 include::../apps/server/data/config.json[]
 ----

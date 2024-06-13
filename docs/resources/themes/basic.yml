@@ -29,9 +29,7 @@ abstract:
   font-size: $base-font-size
 # https://docs.asciidoctor.org/pdf-converter/latest/theme/heading/
 heading:
-  font-color: #262626
   font-size: 12
-  font-style: normal
   line-height: 1.05
   margin-bottom: 10
   kerning: 5
@@ -57,7 +55,7 @@ footer:
   line-height: 3
   recto:
     right:
-      content: ""
+      content: "{page-number} of {page-count}"
     left:
       content: ""
   verso:

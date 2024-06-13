@@ -1,6 +1,6 @@
 = Validation
 
-This section serves to validate the <<Design and Implementation>> of the proposed system, thereby ensuring that it meets the quality standards set for both design and performance efficiency.
+This chapter serves to validate the <<Design and Implementation>> of the proposed system, thereby ensuring that it meets the quality standards set for both design and performance efficiency.
 The <<Quality Model>> should reveal any shortcomings inherent to this approach.
 
 == Design Quality Analysis
@@ -53,7 +53,7 @@ This is because the CSS requires the proxy hostname to be the base URL.
 Consequently, when Solid Provider verifies an agent from its own instance, it will still request itself through the proxy, which is then cyclic again.
 
 .Request with Forwarded Headers
-[source,httprequest,id="lst-request-with-forwarded-headers",reftext="Listing {counter:listing}"]
+[source,httprequest,id="lst-request-with-forwarded-headers"]
 ----
 GET http://server.example.tld/client/profile/card#me
 X-Forwarded-Host: proxy.example.tld
@@ -154,7 +154,7 @@ This is a unique function of the <<CSS>> as described in <<Third-Party Software>
 The corresponding error message is shown in Listing 1.
 
 .Server Console Error
-[source,id="lst-err-perf-1",reftext="Listing {counter:listing}"]
+[source,id="lst-err-perf-1"]
 ----
 Process is halting due to an uncaughtException with error ENOENT: no such file or directory, stat '/SEACT/apps/server/data/storage/.internal/locks/00169a735ca3f756b7e8d18151283856'
 /SEACT/node_modules/.pnpm/@solid+community-server@7.0.4/node_modules/@solid/community-server/dist/util/locking/FileSystemResourceLocker.js:152
@@ -178,7 +178,7 @@ An example of this error is shown in xref:lst-err-perf-2[xrefstyle=short].
 The error did not result in the immediate termination of the process.
 
 .Proxy Console Error
-[source,id="lst-err-perf-2",reftext="Listing {counter:listing}"]
+[source,id="lst-err-perf-2"]
 ----
 TypeError: fetch failed
     at node:internal/deps/undici/undici:12502:13
@@ -193,7 +193,7 @@ The error did not result in the immediate termination of the process.
 
 === Attempt 4
 
-This attempt attempted to cope with the locking issue found in <<Attempt 3>>.
+This attempt aimed to tackle the locking issue found in <<Attempt 3>>.
 As previously stated in the <<Test Environment>> section, for testing purposes, the lifetime of locks has been increased to 172800 seconds, in order to be capable of handling long-running requests.
 In order to verify that this is not a miss configuration, the configuration has been reset to its default for this attempt.
 
@@ -224,7 +224,7 @@ The intention was to prevent the deletion of this resource.
 However, the actual result was that the server process lacked sufficient privileges for read-only purposes.
 
 .Server Network Error
-[source,json,id="lst-err-perf-3",reftext="Listing {counter:listing}"]
+[source,json,id="lst-err-perf-3"]
 ----
 {
   "name": "InternalServerError",

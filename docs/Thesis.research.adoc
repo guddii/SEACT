@@ -69,7 +69,7 @@ include::Related_Work.adoc[leveloffset=+2]
 
 [partintro]
 The theoretical framework is intended to serve as a foundation for the concepts and technologies that are the subject of the research.
-One of the central aspects is the <<Solid Ecosystem>>, which will be explained in the first chapter.
+One of the central aspects is the <<Solid Ecosystem>>, which will be explained in chapter four.
 The ecosystem comprises several elements, and in this chapter, in particular, the Solid Protocol, Solid Provider, Solid Application Interoperability, and its limitations will be presented.
 The second chapter will refer to the concept of <<Data Sovereignty>> within the ecosystem.
 In this context, the concept of data trustees, the strategies for data capturing and the verification of ownership will be explained.
@@ -78,7 +78,7 @@ Finally, the <<Quality Model>> will be demonstrated, which is necessary to perfo
 == Solid Ecosystem
 
 The Solid Project is an RDF-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
-The ecosystem comprises a number of specifications and associated technologies, which are primarily listed in the Solid Technical Reports.
+The ecosystem comprises a number of specifications and associated technologies, which are primarily listed in the Solid Technical Reportsfootnote:[https://solidproject.org/TR/].
 The most fundamental specification is the <<Solid Protocol>>, also known as the core specification.
 In addition to the core specification, the following sections will explain the role of <<Solid Provider,Solid Providers>> in enabling the protocol and the <<Solid Application Interoperability>> specification, which extends the protocol.
 
@@ -151,8 +151,8 @@ include::Deviation_from_Specification.adoc[leveloffset=+2]
 [partintro]
 The analysis will integrate the theoretical framework and the implementation in order to generate reliable results regarding the system's performance in various scenarios.
 The analysis is divided into two sections.
-The initial section will exhibit the configuration of the <<Experiments>>, demonstrating how the tests were conducted.
-In the <<Validation>> section, the results of the tests will be presented and analyzed, with techniques and measures introduced in the theoretical framework.
+The 9th chapter will exhibit the configuration of the <<Experiments>>, demonstrating how the tests were conducted.
+In the subsequent chapter on <<Validation>>, the results of the tests will be presented and analyzed, with techniques and measures introduced in the theoretical framework.
 
 include::Experiments.adoc[leveloffset=+1]
 

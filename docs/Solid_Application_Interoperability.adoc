@@ -1,7 +1,7 @@
 = Solid Application Interoperability
 
 The Solid Specification outlines the overall framework of the system-wide data model.
-Additionally, the Solid Application Interoperability Specificationfootnote:[https://solid.github.io/data-interoperability-panel/specification/], an extension to the Solid ecosystem, will be utilised to achieve an application-independent design and a uniform mechanism for data discovery.
+Additionally, the Solid Application Interoperability Specificationfootnote:[https://solid.github.io/data-interoperability-panel/specification/], an extension to the Solid ecosystem, addresses application-independent design and a uniform mechanism for data discovery.
 It should be noted that the Specification has not yet been fully matured or implemented by any Solid Provider.
 However, it can be used in part without a full implementation of the Solid extension.
 The Editor's Draft of November 7th, 2023 introduces a mechanism for discovering registered data without requiring knowledge of the physical structure of the file system or <<HTTP>> endpoints.
@@ -16,7 +16,7 @@ xref:dm_Interop[xrefstyle=short] illustrates these entities and relations.
 include::resources/diagrams/dm_Interop.puml[]
 ....
 
-The entities and relations in xref:dm_Interop[xrefstyle=short] represent a partially implemented data registry component of the citenp:[bingham_solid_2023] Solid Application Interoperability specification.
+The entities and relations in xref:dm_Interop[xrefstyle=short] represent a partially implemented data registry component of the Solid Application Interoperability specification by citenp:[bingham_solid_2023].
 As described in the specification, an agent must declare an interop:Agent in the personal profile document to participate in the Solid Application Interoperability Specification.
 From there, one can follow the specified path, starting with the registry set, which is referred from the declared agent.
 The registry set contains an `interop:DataRegistry`, which refers to an `interop:DataRegistraion`.

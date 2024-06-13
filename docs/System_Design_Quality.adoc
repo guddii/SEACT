@@ -10,7 +10,7 @@ These categories can be used to determine the quality of a system design, in the
 
 The component cohesion represent general approaches to system design, as defined by citenp:[martin_clean_2018].
 It is used to specifiy components that are ment to be gouped in one package or service.
-In order to accive that three principles are needed to be satisfied by the system, the _Reuse / Release Equivalence Principle_, the _Common Closure Principle_, and the _Common Reuse Principle_.
+In order to accive that three principles are needed to be satisfied by the system, the _Reuse/Release Equivalence Principle_, the _Common Closure Principle_, and the _Common Reuse Principle_.
 
 [horizontal]
 [[RRP,RRP]]RRP:: In essence, the _Reuse/Release Equivalence Principle_ proposes that the granularity of reuse is identical to that of release.

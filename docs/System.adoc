@@ -9,7 +9,8 @@ According to the more concrete definition, a system is the sum of all hardware a
 
 In the context of a data-driven web-based system, the interaction of the system is further concretized.
 The system must interact via data APIs over the network.
-This is sometimes referred to as <<ROA>>, as defined by citenp:[richardson_restful_2007]. <<ROA, ROAs>> is designed to facilitate the manipulation of resources through four operations: creation, reading, updating, and deletion (<<CRUD>>).
+This is sometimes referred to as Resource-Oriented Architecture (<<ROA>>), as defined by citenp:[richardson_restful_2007].
+<<ROA, ROAs>> are designed to facilitate the manipulation of resources through four operations: creation, reading, updating, and deletion (<<CRUD>>).
 In this architecture, the <<CRUD>> operations are mapped to the following HTTP request methods:
 
 [horizontal]
@@ -46,7 +47,7 @@ Another scenario to be considered is the utilisation of resources with a deeper 
 In such instances, the resource container can be treated as ordinary resources, with a <<CRUD>> network interface and the corresponding lifecycle.
 However, it is not possible for a resource to exist independently of a parent container resource in the created, updated, or read state.
 
-It is important to note that each state of the state machine can be a final state with regard to the process that is the focus of this work.
+It is important to note that each state of the state machine can be a final state.
 The transitions in this context are translated with different frequencies.
 For instance, `read` transitions appear more often than others.
 This segmentation is represented as a probability in this work.

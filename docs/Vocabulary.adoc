@@ -11,7 +11,7 @@ The <<DPV>>footnote:[https://w3c.github.io/dpv/dpv/] however enables expressing 
 In order to prevent the creation of another information structure besides the model inherited from the <<Solid Application Interoperability>> and the limited options of integrating these model into the <<Solid Application Interoperability>> a custom vocabulary for the claiming mechanism has been introduced.
 
 .Custom Vocabulary: Claim
-[source,turtle,id="lst-vocabulary-claim",reftext="Listing {counter:listing}"]
+[source,turtle,id="lst-vocabulary-claim"]
 ----
 include::resources/claim.ttl[lines=10..]
 ----
@@ -32,7 +32,7 @@ The vocabulary is a condensed and human-readable form of the <<HTTP>> Vocabulary
 In order to facilitate comprehension by non-expert users, the vocabulary was introduced in a simplified form, as illustrated in xref:lst-vocabulary-al[xrefstyle=short].
 
 .Custom Vocabulary: Access Log
-[source,turtle,id="lst-vocabulary-al",reftext="Listing {counter:listing}"]
+[source,turtle,id="lst-vocabulary-al"]
 ----
 include::resources/dump/model/dpc/ns/log$.ttl[lines=10..]
 ----

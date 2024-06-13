@@ -1,6 +1,6 @@
 = Entity-Relationship Model
 
-The Entity-Relationship Model is based on the <<Solid Application Interoperability>> specification.
+The Entity-Relationship Model is based on the <<Solid Application Interoperability>> specification and describes the logical arrangement of the system's data.
 This selected part of the specification can be used without further modification while the specification is still a draft.
 However, the current state of the specification does not fully satisfy the needs of a claiming mechanism.
 xref:dm_Claim[xrefstyle=short] illustrates the additions to the model that are necessary to enable this mechanism.
