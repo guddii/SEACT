@@ -7,7 +7,7 @@ Based on the aforementioned idea, the requirements for the prototype will be est
 
 The concept is inspired by existing software solutions in the field of e-governance, such as _X-Road_ from Estonia and _XDatenschutzcockpit_, which is currently being developed in Germany for access control of citizen data.
 Both systems have an embedded logging system that monitors access data.
-Since they are tied to the specific context in which they are used, the idea of a *Data Privacy Cockpit* will be ported to the Solid ecosystem.
+Since they are tied to the specific context in which they are used, the idea of a *Data Privacy Cockpit* (<<DPC>>) will be ported to the Solid ecosystem.
 
 When applying the concept to the Solid context, two fundamental software components can be identified to solve the problems under the given premises:
 

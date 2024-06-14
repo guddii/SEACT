@@ -1,0 +1,29 @@
+= Conclusion
+
+This thesis builds upon the prototypical implementation of the Data Privacy Cockpit (<<DPC>>) to explore the general possibility of extending <<Access Control and Traceability>>.
+The DPC was designed for data-driven web-based systems with a vendor-agnostic approach over a web interface, with Solid as a technical foundation.
+The ability to view actual requests to private resources on the web server represents a novel task within the <<Solid Ecosystem>>.
+For the first time, it is possible to ascertain which agents have been granted access to specific resources.
+However, these capabilities come with a drawback that has been extensively investigated.
+On the one hand, the impact on the <<System Design>> design has been considered, and on the other hand, the loss of <<Performance Efficiency>> has been evaluated.
+
+The analysis of the <<System Design Quality>> revealed that no critical violations of common design principles could be identified.
+The majority of the violations identified relate to the orchestration of system components and are part of the <<Component Cohesion>> principles.
+The only <<Component Coupling>> principle that was found to be violated is the <<ADP>>, which prohibits cyclic dependencies.
+As previously noted in the <<ADP Analysis>>, this is, like the Component Cohesion principles, a violation that is not by design.
+In this context, these principles have been discarded due to their maintenance benefits.
+
+The findings of the <<Performance Efficiency Analysis>> are cause for concern.
+The proposed approach resulted in a notable decline in <<Performance Efficiency>>, as evidenced by an increase in average response time and throughput.
+However, the most significant drawback is the rise in error rate.
+This, in turn, has the potential to either result in the complete failure of the system or to cause it to skip the logging process.
+Even if executed correctly, the error rate, average response time, and throughput will increase significantly, effectively rendering the system inaccessible to users.
+The quantity of parallel threads describing the interaction of a single user is the most evident aspect influencing this.
+
+When planning the <<Objectives and Research Interest,Objectives and Research Interests>> of this thesis, it became evident that this examination could not encompass all aspects of the proposed approach.
+However, it was intended to identify the vulnerable aspects of this concept in order to determine whether this approach should be pursued in principle.
+When only considering the <<Analysis>> conducted, this approach appears to have no future.
+However, as previously discussed in the <<Discussion>>, the erroneous behavior may not be solely attributed to this approach, as the other system components cannot be definitively excluded as a cause.
+While there have been other concerns discussed, such as potential security risks related to the <<Authentication>> and claiming mechanism, this approach remains a promising one due to its flexibility and various implementation options.
+For the time being, no general recommendation or objection can be made.
+However, a caveat regarding the potential for high loads should be noted.

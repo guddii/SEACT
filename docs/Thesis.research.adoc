@@ -169,10 +169,7 @@ include::Discussion.adoc[leveloffset=+1]
 
 include::Future_Work.adoc[leveloffset=+1]
 
-== Conclusion
-
-Viewing and using requests to the web server was a task that was almost exclusively reserved for the operators or administrators of a service.
-For the first time functions can be viewed and controlled by users, as they own the content or have sufficient rights.
+include::Conclusion.adoc[leveloffset=+1]
 
 include::Appendix.adoc[]
 
