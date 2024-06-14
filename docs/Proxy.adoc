@@ -17,7 +17,7 @@ The response is then forwarded to the requesting party.
 However, this offers the opportunity for a proxy to isolate either the client or the server from the network.
 When referring to a server-side proxy, isolation of the server is described, as shown in xref:Proxy[xrefstyle=short] cite:[luotonen_world-wide_1994].
 
-.Component Diagram of the Client-Server model utilizing a Proxy
+.Component Diagram of the Client-Server model utilizing a Proxy. Source: Based on citenp:[luotonen_world-wide_1994].
 [.text-center]
 [plantuml,format=svg,id="Proxy"]
 ....
