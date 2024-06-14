@@ -239,31 +239,31 @@ h| Storage Number
 h| ShapeTree Number
 
 .^| PARAM-SOLID-1-1
-.2+^.^| 1
+.3+^.^| 1
 ^.^| 1
 
-// .^| PARAM-SOLID-1-10
-// ^.^| 10
+.^| PARAM-SOLID-1-10
+^.^| 10
 
 .^| PARAM-SOLID-1-30
 ^.^| 30
 
-// .^| PARAM-SOLID-10-1
-// .3+^.^| 10
-// ^.^| 1
-//
-// .^| PARAM-SOLID-10-10
-// ^.^| 10
-//
-// .^| PARAM-SOLID-10-30
-// ^.^| 30
-
-.^| PARAM-SOLID-30-1
-.2+^.^| 30
+.^| PARAM-SOLID-10-1
+.3+^.^| 10
 ^.^| 1
 
-// .^| PARAM-SOLID-30-10
-// ^.^| 10
+.^| PARAM-SOLID-10-10
+^.^| 10
+
+.^| PARAM-SOLID-10-30
+^.^| 30
+
+.^| PARAM-SOLID-30-1
+.3+^.^| 30
+^.^| 1
+
+.^| PARAM-SOLID-30-10
+^.^| 10
 
 .^| PARAM-SOLID-30-30
 ^.^| 30
@@ -288,11 +288,32 @@ h| Loop Count
 
 .^| PARAM-JMETER-1
 ^.^| 1
-.2+^.^| 10s
-.2+^.^| 10
+.10+^.^| 10s
+.10+^.^| 10
 
-// .^| PARAM-JMETER-10
-// ^.^| 10
+.^| PARAM-JMETER-2
+^.^| 2
+
+.^| PARAM-JMETER-3
+^.^| 3
+
+.^| PARAM-JMETER-4
+^.^| 4
+
+.^| PARAM-JMETER-5
+^.^| 5
+
+.^| PARAM-JMETER-6
+^.^| 6
+
+.^| PARAM-JMETER-7
+^.^| 7
+
+.^| PARAM-JMETER-8
+^.^| 8
+
+.^| PARAM-JMETER-10
+^.^| 10
 
 .^| PARAM-JMETER-30
 ^.^| 30
@@ -308,7 +329,7 @@ The <<Solid Ecosystem Parameters>> column refers to the ID column of xref:tbl-so
 The <<Apache JMeter Parameters>> column refers to the ID column of xref:tbl-apache-jmeter-parameters-matrix[xrefstyle=short].
 
 .Test Plan Matrix
-[cols="1,1,1,1,1,1",id="tbl-test-parameters-matrix"]
+[cols="3,2,2,2,2,2",id="tbl-test-parameters-matrix"]
 |===
 h| Schema
 h| Attempt
@@ -318,7 +339,7 @@ h| Solid Ecosystem Parameters
 h| Apache JMeter Parameters
 
 .^| TP1.`a`-`i`-`p`-`q`-`r`
-.^| `a`
+^.^| `a` in stem:[\mathbb{N}]
 .^| PARAM-CRUD-1
 .^| PARAM-DPC-`i`
 .^| PARAM-SOLID-`p`-`q`

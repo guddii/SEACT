@@ -253,12 +253,15 @@ This may be indicative of any premature connection termination event, as documen
 
 === Attempt 7
 
-The straightforward solutions proposed in <<Attempt 4, Attempts 4>>, <<Attempt 5, 5>>, and <<Attempt 6, 6>> did not result in any improvement in the errors identified in Attempt 3. Consequently, modifications to the applications have been implemented in order to address the aforementioned errors.
+The straightforward solutions proposed in <<Attempt 4, Attempts 4>>, <<Attempt 5, 5>>, and <<Attempt 6, 6>> did not result in any improvement in the errors identified in <<Attempt 3>>.
+Consequently, patchesfootnote:[{github-server-url}/{github-repository}/tree/{github-ref-name}/patches] to the applications have been implemented in order to address the aforementioned errors.
 The errors that have been identified thus far suggest that the proxy module is unable to handle the volume of requests it receives without causing errors.
 In particular, the issue of writing to the same file appears to be problematic, potentially leading to the locking issue.
 The <<DPC Middleware>> is configured to write logs on a daily basis, which means that a single file will be written in every request.
 This modification was implemented in this attempt with the intention of ensuring that a new log is written per request.
 Furthermore, the <<Create Dynamic Namespace>> process has been replaced with static paths, as this could also be handled in a bootstrapping step, which might lead to unnecessary requests.
+At last, the version of the Node.js <<Test Environment>> has been reduced to 20.14.0, the current <<LTS>> version.
+This was done as it is the preferred version of the oidc-providerfootnote:[https://github.com/panva/node-oidc-provider], a <<CSS>> inherent modulefootnote:[https://github.com/CommunitySolidServer/CommunitySolidServer/blob/v7.0.4/package.json#L125].
 
 [horizontal]
 Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
