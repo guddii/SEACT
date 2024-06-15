@@ -13,7 +13,7 @@ include::resources/diagrams/wbs_Endpoint_structure.puml[]
 ....
 
 The two most commonly used serialization formats for <<RDF>>-based data in data-driven web-based systems are `text/turtle` and `application/ld+json`.
-This inspection does not focus on data storage, as the Solid provider is considered replaceable.
+This inspection does not focus on data storage, as the <<Solid Provider>> is considered replaceable.
 However, <<HTTP>> <<API,APIs>> use Turtle as the exchange format for communication, which will be displayed below.
 As part of the structural hierarchy shown in xref:wbs_Endpoint_structure[xrefstyle=short], all resources and listings refer to the data model shown in xref:dm_Claim[xrefstyle=short].
 

@@ -16,7 +16,7 @@ DPC Middleware:: A server-side proxy module at the application level monitors da
 DPC Client:: The traffic data from the reverse proxy is displayed and managed by the client.
 
 The concept idea's data capturing unit, the <<DPC>> Middleware, will be implemented as a proxy to meet the requirements of vendor-agnostic software that is secure from updates, as criticized in <<ISSUE-3>>, <<ISSUE-4>>, and <<ISSUE-5>>.
-However, this requires the application to be a Solid application, as it communicates over <<HTTP>> <<API,APIs>> with the actual Solid provider.
+However, this requires the application to be a Solid application, as it communicates over <<HTTP>> <<API,APIs>> with the actual <<Solid Provider>>.
 Since every request passes through the reverse proxy, there is a high risk of resulting in an inefficient software solution.
 
 Upon reflection on the prototype, two central issues of the concept emerge instantly.

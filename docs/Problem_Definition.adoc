@@ -16,7 +16,7 @@ It does not track the actual request for a resource.
 [[ISSUE-2,ISSUE-2]] ISSUE-2:: Solid is based on <<RDF>> and therefore favors interconnected data, what increased the demand for monitoring the stored data.
 [[ISSUE-3,ISSUE-3]] ISSUE-3:: There may be changes to existing specifications as they need to be improved or are still in the draft stage.
 [[ISSUE-4,ISSUE-4]] ISSUE-4:: The Solid ecosystem will be expanded with newly introduced specifications or <<API,APIs>>.
-[[ISSUE-5,ISSUE-5]] ISSUE-5:: New Solid providers are being introduced because of their increasing popularity.
+[[ISSUE-5,ISSUE-5]] ISSUE-5:: New Solid Providers are being introduced because of their increasing popularity.
 
 The first and second issues describe the need for traceability to control access to one's own data.
 A general problem with updates is addressed by the third through fifth issues.

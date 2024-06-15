@@ -35,13 +35,13 @@ A summary of the state of the art will be provided in the chapter on <<Related W
 The Solid Project is an <<RDF>>-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
 The technology is still in development and not yet fully evolved.
 The current version is missing some essential features required for production environments.
-Ongoing research and development is being conducted to improve the ecosystem, resulting in the regular introduction of new features or Solid providers.
+Ongoing research and development is being conducted to improve the ecosystem, resulting in the regular introduction of new features or <<Solid Provider>>s.
 
 This thesis aims to develop and analyze a Solid-based application that aligns with the Solid ecosystem without enforcing it.
 The application will enhance data privacy concerns, specifically in terms of data traceability and access control.
 The goal is to increase visibility and track requested resources from parties within and beyond the ecosystem through logs and their representation.
 These requests should be processed and logged to achieve better control over the exposed data, by monitoring them.
-All of these achievements should be established in a clear context and communicated through data <<API,APIs>> to ensure safety for new features and potential changes in Solid providers.
+All of these achievements should be established in a clear context and communicated through data <<API,APIs>> to ensure safety for new features and potential changes in <<Solid Provider>>s.
 
 include::Problem_Definition.adoc[leveloffset=+2]
 

@@ -50,5 +50,5 @@ Consequently, it is almost impossible to use <<CSS>> vendor <<API,APIs>>.
 
 The network protocol <<HTTP>> is employed for all operations in this research.
 Security measures such as <<HTTPS>> are not considered in this analysis.
-Similarly, the Solid provider has not been tested in an isolated network with a proxy, which must be the only public-accessible instance for a secure run in production environments.
+Similarly, the <<Solid Provider>> has not been tested in an isolated network with a proxy, which must be the only public-accessible instance for a secure run in production environments.
 This potential issue has been tested with Dockerfootnote:[https://docs.docker.com/], but it did not affect the research scenario.
