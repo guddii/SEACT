@@ -11,7 +11,7 @@ Therefore, it may lack some features that are highly recommended in productive e
 This results in the following issues that require attention:
 
 [horizontal,labelwidth=15]
-[[ISSUE-1,ISSUE-1]] ISSUE-1:: The Solid protocol only specifies the ability to grant or deny access.
+[[ISSUE-1,ISSUE-1]] ISSUE-1:: The Solid Protocol only specifies the ability to grant or deny access.
 It does not track the actual request for a resource.
 [[ISSUE-2,ISSUE-2]] ISSUE-2:: Solid is based on <<RDF>> and therefore favors interconnected data, what increased the demand for monitoring the stored data.
 [[ISSUE-3,ISSUE-3]] ISSUE-3:: There may be changes to existing specifications as they need to be improved or are still in the draft stage.

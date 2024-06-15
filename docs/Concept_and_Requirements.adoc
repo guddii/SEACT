@@ -48,7 +48,7 @@ However, they are even more important as they verify the general conceptual idea
 
 [horizontal,labelwidth=15]
 [[REQ-NF1]] REQ-NF1:: Metadata that could be extracted from the request should be analysed and logs should be enhanced accordingly.
-[[REQ-NF2]] REQ-NF2:: Ensuring compatibility with the current version of the Solid protocol.
+[[REQ-NF2]] REQ-NF2:: Ensuring compatibility with the current version of the Solid Protocol.
 [[REQ-NF3]] REQ-NF3:: Efficiency in terms of response times must be appropriate.
 // [[REQ-NF4]] REQ-NF4:: Conformity with the general properties of a proxy must be guaranteed.
 

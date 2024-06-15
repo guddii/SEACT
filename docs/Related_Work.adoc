@@ -4,7 +4,7 @@ Consequently, research sources are limited and related work is almost non-existe
 However, some work and projects do consider related ideas.
 
 // Solid and Access Control
-citenp:[esposito_assessing_2023] did consider security concerns, as outlined in the GDPR and other pertinent documents, in order to demonstrate their relevance to the measures in the Solid protocol.
+citenp:[esposito_assessing_2023] did consider security concerns, as outlined in the GDPR and other pertinent documents, in order to demonstrate their relevance to the measures in the <<Solid Protocol>>.
 Security concerns are currently addressed at various levels.
 citenp:[slabbinck_enforcing_2024] did propose a method for limiting access to a resource for a defined period of time, with the aim of gaining control over the exposed data utilizing an automated agent.
 The automated agent mechanism was also employed in the work of citenp:[slabbinck_rule-based_2023], where the agent executes automated background processes to synchronize the state of a smart bulb with a Solid storage.

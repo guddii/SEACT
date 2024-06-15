@@ -4,7 +4,7 @@ include::partials/Attributes.adoc[]
 
 include::partials/Preface.adoc[]
 
-The Solid protocol enables secure storage of data in a decentralised environment, which can then be shared with others, such as individuals, organisations, or applications via the Internet.
+The <<Solid Protocol>> enables secure storage of data in a decentralised environment, which can then be shared with others, such as individuals, organisations, or applications via the Internet.
 The data is decentralised and so is the access control information.
 The owner of the data and access control information is responsible for managing these contents.
 
@@ -15,7 +15,7 @@ The main problem here is that all this technology is quite new and not yet widel
 There are few implementations of the protocol and the technology is not yet mature.
 As a result, there are many open questions and issues that need to be addressed.
 
-citenp:[esposito_assessing_2023(18)] summarized the current state of the Solid protocol when it comes to security and privacy obligations.
+citenp:[esposito_assessing_2023(18)] summarized the current state of the <<Solid Protocol>> when it comes to security and privacy obligations.
 One of his requirements is the need for tamper-proof access logs with different views depending on their mandate.
 Due to his research, new measures are necessary to meet security and privacy obligations.
 
@@ -23,8 +23,8 @@ Access monitoring in distributed systems has also been recognised as critical by
 The _XDatenschutzcockpit_ project aims to increase transparency for citizens by offering a national data protection cockpit that monitors access to their data and allows them to assess what data has been exchanged between authorities, as well as the timing and purpose of such exchanges.
 The pilot phase was completed in September 2022, leading to the creation of the specification, which is tied to e-government services. cite:[diederich_xdatenschutzcockpit_2023]
 
-The combination of both ideas leads to the approach of applying the data protection cockpit specification to the Solid protocol, as the Solid protocol represents a promising approach that is independent of the business logic.
-It is proposed to use the Solid protocol as the technical basis for the data protection cockpit.
+The combination of both ideas leads to the approach of applying the data protection cockpit specification to the <<Solid Protocol>>, as the <<Solid Protocol>> represents a promising approach that is independent of the business logic.
+It is proposed to use the <<Solid Protocol>> as the technical basis for the data protection cockpit.
 This is supplemented by the findings from the _XData Protection Cockpit_ specification.
 
 == Objectives and research interest
@@ -33,7 +33,7 @@ citenp:[tao_extensible_2016] noted the existence of multiple protocols, with new
 In response, they developed a universal method for augmenting the supported protocols of a server, using a server-side application layer proxy.
 When a new protocol is introduced, a module specific to that protocol is included in the set of modules managed by the application layer proxy.
 The module will solve the specific problem of the protocol, or throw an error if unable to do so.
-This method is adaptable and may be utilised with the Solid protocol.
+This method is adaptable and may be utilised with the <<Solid Protocol>>.
 Further division may be accomplished by implementing dedicated modules to handle specific concerns of the data privacy cockpit, as defined by citenp:[diederich_xdatenschutzcockpit_2023].
 By doing this, new features can be added to the data privacy cockpit without the need to change the basic infrastructure.
 
@@ -41,26 +41,26 @@ In addition, citenp:[yan_security_2017(233-235)] proposed a gateway mechanism wi
 This approach, especially when the rules and configurations are under the control of the data owners, could significantly improve the ability of the data privacy cockpit to detect and prevent data theft.
 
 The aim of this thesis is to determine how to achieve logical topologies that allow the use of a data privacy cockpit through a server-side application layer proxy.
-Furthermore, it is necessary to identify the circumstances that allow the retrieval of information while ensuring the compatibility with the Solid protocol and the general properties of the proxy cite:[shapiro_structure_1986(9)].
+Furthermore, it is necessary to identify the circumstances that allow the retrieval of information while ensuring the compatibility with the <<Solid Protocol>> and the general properties of the proxy cite:[shapiro_structure_1986(9)].
 
 .Architectural sketch of the logical topology
 [.text-center]
 plantuml::resources/diagrams/Sketch.puml[]
 
 As the figure above shows, prototypes of a server-side application layer proxy and a data privacy cockpit have to be developed.
-The prototypes need to enhance the Solid protocol's capabilities while ensuring extensibility and decoupling from the underlying infrastructure.
+The prototypes need to enhance the <<Solid Protocol>>'s capabilities while ensuring extensibility and decoupling from the underlying infrastructure.
 
 == Research Concept
 
 The following key research question is to be answered in this Master's thesis:
 
-- What requirements must a server-side proxy of the application layer fulfill to extend the capabilities of the Solid protocol while ensuring extensibility and decoupling from the underlying infrastructure?
+- What requirements must a server-side proxy of the application layer fulfill to extend the capabilities of the <<Solid Protocol>> while ensuring extensibility and decoupling from the underlying infrastructure?
 
 Derived from this key research question, the following sub-questions are to be answered:
 
 - What effects do different logical topologies, such as changes in access, transport, addressing, protocols and data paths, have on the availability of information within the application layer proxy?
-- In which use cases can server-side application layer proxies be used, and where are the limits if conformity with the Solid protocol is to be guaranteed?
-- How high is the system resource load during filtering and modification by a server-side proxy of the application layer using the Solid protocol?
+- In which use cases can server-side application layer proxies be used, and where are the limits if conformity with the <<Solid Protocol>> is to be guaranteed?
+- How high is the system resource load during filtering and modification by a server-side proxy of the application layer using the <<Solid Protocol>>?
 
 For the analysis, a data privacy cockpit is developed as a Solid app that manages the information collected by the server-side application level proxy.
 It is assumed that the range of functions can be extended variably, and that the possibilities of the various logical topologies can therefore be utilised.
