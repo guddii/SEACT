@@ -199,6 +199,11 @@ h| CRUD Sequence
 h| Run Mode
 h|Hierarchical Depth
 
+| PARAM-CRUD-0
+| C~0~
+| sequential
+| 0
+
 | PARAM-CRUD-1
 | C~0~ R~0~ U~0~ R~0~ R~0~ R~0~ R~0~ R~0~ D~0~ C~1~ U~1~ R~1~
 | sequential
@@ -337,6 +342,13 @@ h| Network Parameters
 h| Data Privacy Cockpit Parameters
 h| Solid Ecosystem Parameters
 h| Apache JMeter Parameters
+
+.^| PRE1.`a`
+^.^| `a` in stem:[\mathbb{N}]
+.^| PARAM-CRUD-0
+.^| PARAM-DPC-C
+.^| PARAM-SOLID-1-1
+.^| <<NA>>
 
 .^| TP1.`a`-`i`-`p`-`q`-`r`
 ^.^| `a` in stem:[\mathbb{N}]

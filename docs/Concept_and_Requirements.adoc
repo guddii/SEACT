@@ -37,8 +37,8 @@ However, the functional requirements are straightforward.
 The following list outlines the minimum functions that the prototype must have in order to answer the questions.
 
 [horizontal,labelwidth=15]
-[[REQ-F1,REQ-F1]] REQ-F1:: Access logs with different views depending on the mandate.
-[[REQ-F2,REQ-F2]] REQ-F2:: Access logs with the specific content of the transmitted resource.
+[[REQ-F1]] REQ-F1:: Present access logs with different views depending on the mandate.
+[[REQ-F2]] REQ-F2:: Capture access logs with the specific content of the requested resource and the requesting party.
 // [[REQ-F3,REQ-F3]] REQ-F3:: Rule-based filtering of network requests by the owner of the resource.
 
 === Non-Functional Requirements
@@ -47,10 +47,10 @@ In comparison to the functional requirements, establishing the following non-fun
 However, they are even more important as they verify the general conceptual idea.
 
 [horizontal,labelwidth=15]
-[[REQ-NF1,REQ-NF1]] REQ-NF1:: Ensuring compatibility with the current version of the Solid protocol.
-[[REQ-NF2,REQ-NF2]] REQ-NF2:: Conformity with the general properties of a proxy must be guaranteed.
-[[REQ-NF3,REQ-NF3]] REQ-NF3:: Efficiency in terms of response times and resource consumption must be appropriate.
-[[REQ-NF4,REQ-NF4]] REQ-NF4:: Metadata that could be extracted from the request should be analysed and logs should be enhanced accordingly.
+[[REQ-NF1]] REQ-NF1:: Metadata that could be extracted from the request should be analysed and logs should be enhanced accordingly.
+[[REQ-NF2]] REQ-NF2:: Ensuring compatibility with the current version of the Solid protocol.
+[[REQ-NF3]] REQ-NF3:: Efficiency in terms of response times must be appropriate.
+// [[REQ-NF4]] REQ-NF4:: Conformity with the general properties of a proxy must be guaranteed.
 
 The proposed solution is based on both functional and non-functional aspects.
 The objective is to develop a prototype that meets the client’s requirement for traceability of accessed resources while operating accurately within a Solid ecosystem.

@@ -87,8 +87,89 @@ The <<Solid Application Interoperability>> specification unifies a significant p
 
 == Performance Efficiency Analysis
 
-Due to several errors that occurred during the execution of the performance efficiency analysis tests, the tests were divided into several attempts.
-In order to obtain reliable results, each attempt had different test parameters and outcomes.
+Due to a series of errors that occurred during the execution of the performance efficiency analysis tests, the tests were divided into several attempts.
+In order to obtain reliable results, each attempt was executed with different test parameters and outcomes.
+Prior to executing the individual attempts, a pretest was conducted to gain insights into how a single request effectively influences the system.
+
+=== Pretest
+
+The pretest is a single <<Authorised CRUD Requests,Authorised CRUD Request>>, which creates a resource on the webserver as this will always be the first request of a <<Resource CRUD Lifecycle>> . It will demonstrate how a request will effectively influence the overall system, particularly in terms of the multiplication of requests.
+A behavior that comes with the vendor-agnostic approach of the <<DPC Middleware>> when the <<Data Privacy Cockpit Parameters,Data Privacy Cockpit Parameter>> is set to `C`.
+The <<Solid Ecosystem Parameters>> are set to `1`.
+The corresponding request to the pretest is presented in xref:lst-pretest-request[xrefstyle=short].
+
+.A single request to create a resource.
+[source,httprequest,id="lst-pretest-request"]
+----
+PUT http://proxy.localhost:4000/client/resource.ttl
+Authorization: Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6ImF0K2p3dCIsImtpZCI6ImdwVU5qcWV3VlN0cX...
+Content-Type: text/turtle
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<ex:s> <ex:p> <ex:o>.
+----
+
+The first run of the pretest is PRE1.1 as shown in xref:tbl-test-parameters-matrix[xrefstyle=short].
+It uses the request shown in xref:lst-pretest-request[xrefstyle=short].
+The corresponding console output when the request is executed is shown in xref:lst-pretest-console[xrefstyle=short].
+As can be seen in the output, the proxy receives a total of 30 requests, all of which are triggered by the <<DPC Middleware>>.
+
+.Proxy Console Output
+[source,id="lst-pretest-console"]
+----
+GET /.well-known/openid-configuration 200 869.917 ms - 1628
+POST /.oidc/token 200 355.897 ms - 689
+GET /dpc/profile/card 200 41.793 ms - 455
+GET /.well-known/openid-configuration 200 5.183 ms - 1628
+GET /.well-known/openid-configuration 200 11.725 ms - 1628
+GET /.oidc/jwks 200 28.389 ms - 215
+HEAD /client/ 200 1308.392 ms - -
+GET /dpc/profile/card 200 328.853 ms - 455
+GET /dpc/profile/card 200 357.867 ms - 455
+GET /dpc/registries 200 423.300 ms - 748
+GET /dpc/ns/log 200 445.733 ms - 879
+GET /dpc/ns/log.shex 200 194.348 ms - 489
+GET /dpc/ns/log.tree 200 34.588 ms - 331
+GET /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/ 200 1104.491 ms - 4920
+GET /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/2024-06-15 404 193.933 ms - 106
+PUT /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/2024-06-15 201 478.769 ms - -
+HEAD /client/ 200 1218.440 ms - -
+GET /dpc/profile/card 200 259.182 ms - 455
+GET /dpc/profile/card 200 444.497 ms - 455
+GET /dpc/registries 200 441.340 ms - 748
+GET /dpc/ns/log 200 451.397 ms - 879
+GET /dpc/ns/log.shex 200 498.059 ms - 489
+GET /dpc/ns/log.tree 200 51.325 ms - 331
+GET /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/ 200 1066.895 ms - 5140
+GET /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/2024-06-15 200 497.765 ms - 444
+PATCH /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/2024-06-15 205 1205.967 ms - -
+GET /.well-known/openid-configuration 200 10.385 ms - 1628
+GET /client/profile/card 200 6839.827 ms - 451
+GET /.well-known/openid-configuration 200 14.058 ms - 1628
+PUT /client/resource.ttl 201 14371.603 ms - -
+----
+
+Follow-up requests (PRE1.2) have significantly fewer total requests.
+A total of 12.
+It is less because the <<DPC>> agent running in the <<DPC Middleware>> has already established a session, which only needs to be done once.
+
+.Proxy Console Output
+[source,id="lst-pretest-console-2"]
+----
+HEAD /client/ 200 144.839 ms - -
+GET /dpc/profile/card 200 128.599 ms - 455
+GET /dpc/profile/card 200 300.807 ms - 455
+GET /dpc/registries 200 525.531 ms - 748
+GET /dpc/ns/log 200 61.741 ms - 879
+GET /dpc/ns/log.shex 200 492.467 ms - 489
+GET /dpc/ns/log.tree 200 52.425 ms - 331
+GET /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/ 200 702.389 ms - 5140
+GET /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/2024-06-15 200 435.568 ms - 542
+PATCH /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/2024-06-15 205 97.043 ms - -
+GET /.well-known/openid-configuration 200 8.759 ms - 1628
+PUT /client/resource.ttl 205 4004.135 ms - -
+----
 
 === Attempt 1
 
@@ -385,6 +466,8 @@ The standard deviation of B is 12,87 Transactions/s, the standard deviation of C
 
 As observed in the measurements shown in xref:tbl-test-run-summary-errors[xrefstyle=short] and xref:tbl-test-run-response-times-average[xrefstyle=short], the throughput drops significantly when the complexity of the system and the amount of threads increases.
 In considering the aspects identified by <<IBM>> as influencing throughput, namely processing overhead in the software, the degree of parallelism supported by the software, and the types of transactions processed, it appears that these factors may be plausible causes of the issues that have been found.
+
+((26,41-0,01)+(0,20-0,02))/2 = 13.29
 
 .Test Run Throughput in Transactions per Second
 [cols="1,2,2",id="tbl-test-run-throughput"]
