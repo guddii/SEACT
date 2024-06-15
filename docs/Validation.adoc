@@ -113,7 +113,7 @@ Accept: */*
 The first run of the pretest is PRE1.1 as shown in xref:tbl-test-parameters-matrix[xrefstyle=short].
 It uses the request shown in xref:lst-pretest-request[xrefstyle=short].
 The corresponding console output when the request is executed is shown in xref:lst-pretest-console[xrefstyle=short].
-As can be seen in the output, the proxy receives a total of 30 requests, all of which are triggered by the <<DPC Middleware>>.
+As can be seen in the output, the proxy receives a total of 30 requests, all of which are triggered by the <<DPC Middleware>> or the <<Solid Provider>>.
 
 .Proxy Console Output
 [source,id="lst-pretest-console"]
@@ -153,6 +153,7 @@ PUT /client/resource.ttl 201 14371.603 ms - -
 Follow-up requests (PRE1.2) have significantly fewer total requests.
 A total of 12.
 It is less because the <<DPC>> agent running in the <<DPC Middleware>> has already established a session, which only needs to be done once.
+The same applies to the <<Authorization>> of the requesting agent, which in both cases is the owner of the storage resource.
 
 .Proxy Console Output
 [source,id="lst-pretest-console-2"]
