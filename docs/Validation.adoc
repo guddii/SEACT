@@ -87,9 +87,9 @@ The <<Solid Application Interoperability>> specification unifies a significant p
 
 == Performance Efficiency Analysis
 
-Due to a series of errors that occurred during the execution of the performance efficiency analysis tests, the tests were divided into several attempts.
-In order to obtain reliable results, each attempt was executed with different test parameters and outcomes.
-Prior to executing the individual attempts, a pretest was conducted to gain insights into how a single request effectively influences the system.
+Due to a series of errors that occurred during the execution of the performance efficiency analysis tests, the tests were divided into several experiments.
+In order to obtain reliable results, each experiment was executed with different test parameters and outcomes.
+Prior to executing the individual experiments, a pretest was conducted to gain insights into how a single request effectively influences the system.
 
 === Pretest
 
@@ -102,7 +102,7 @@ The corresponding request to the pretest is presented in xref:lst-pretest-reques
 [source,httprequest,id="lst-pretest-request"]
 ----
 PUT http://proxy.localhost:4000/client/resource.ttl
-Authorization: Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6ImF0K2p3dCIsImtpZCI6ImdwVU5qcWV3VlN0cX...
+Authorization: Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6ImF0K2p3dCIsImtpZCI6...
 Content-Type: text/turtle
 Accept-Encoding: br, deflate, gzip, x-gzip
 Accept: */*
@@ -131,9 +131,9 @@ GET /dpc/registries 200 423.300 ms - 748
 GET /dpc/ns/log 200 445.733 ms - 879
 GET /dpc/ns/log.shex 200 194.348 ms - 489
 GET /dpc/ns/log.tree 200 34.588 ms - 331
-GET /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/ 200 1104.491 ms - 4920
-GET /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/2024-06-15 404 193.933 ms - 106
-PUT /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/2024-06-15 201 478.769 ms - -
+GET /dpc/data/2acf59fe.../AccessLog/ 200 1104.491 ms - 4920
+GET /dpc/data/2acf59fe.../AccessLog/2024-06-15 404 193.933 ms - 106
+PUT /dpc/data/2acf59fe.../AccessLog/2024-06-15 201 478.769 ms - -
 HEAD /client/ 200 1218.440 ms - -
 GET /dpc/profile/card 200 259.182 ms - 455
 GET /dpc/profile/card 200 444.497 ms - 455
@@ -141,9 +141,9 @@ GET /dpc/registries 200 441.340 ms - 748
 GET /dpc/ns/log 200 451.397 ms - 879
 GET /dpc/ns/log.shex 200 498.059 ms - 489
 GET /dpc/ns/log.tree 200 51.325 ms - 331
-GET /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/ 200 1066.895 ms - 5140
-GET /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/2024-06-15 200 497.765 ms - 444
-PATCH /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/2024-06-15 205 1205.967 ms - -
+GET /dpc/data/2acf59fe.../AccessLog/ 200 1066.895 ms - 5140
+GET /dpc/data/2acf59fe.../AccessLog/2024-06-15 200 497.765 ms - 444
+PATCH /dpc/data/2acf59fe.../AccessLog/2024-06-15 205 1205.967 ms - -
 GET /.well-known/openid-configuration 200 10.385 ms - 1628
 GET /client/profile/card 200 6839.827 ms - 451
 GET /.well-known/openid-configuration 200 14.058 ms - 1628
@@ -165,16 +165,16 @@ GET /dpc/registries 200 525.531 ms - 748
 GET /dpc/ns/log 200 61.741 ms - 879
 GET /dpc/ns/log.shex 200 492.467 ms - 489
 GET /dpc/ns/log.tree 200 52.425 ms - 331
-GET /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/ 200 702.389 ms - 5140
-GET /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/2024-06-15 200 435.568 ms - 542
-PATCH /dpc/data/2acf59fe-31d4-4122-9b88-c007af26caa5/AccessLog/2024-06-15 205 97.043 ms - -
+GET /dpc/data/2acf59fe.../AccessLog/ 200 702.389 ms - 5140
+GET /dpc/data/2acf59fe.../AccessLog/2024-06-15 200 435.568 ms - 542
+PATCH /dpc/data/2acf59fe.../AccessLog/2024-06-15 205 97.043 ms - -
 GET /.well-known/openid-configuration 200 8.759 ms - 1628
 PUT /client/resource.ttl 205 4004.135 ms - -
 ----
 
-=== Attempt 1
+=== Experiment 1
 
-The initial attempt was designed to provide an overview of a greater number of tests, with parameters that were not intended to create a critical load on the system.
+The initial experiment was designed to provide an overview of a greater number of tests, with parameters that were not intended to create a critical load on the system.
 The objective was to identify potential areas of heavy load and to produce detailed insight based on these initial results.
 
 [horizontal]
@@ -192,10 +192,10 @@ This may also explain the occurrence of results that appear unreasonable, such a
 
 Further analysis of the performance efficiency has been omitted due to the invalidity of the test reports that were created.
 
-=== Attempt 2
+=== Experiment 2
 
-The second attempt was planed with the same intend as the initial attempt, with a smaller scope, that only tackles the edge cases and brings less reports to analyse.
-The primary concern however was to get valid results and to overcome the error that has been found in the first attempt.
+The second experiment was planed with the same intend as the initial experiment, with a smaller scope, that only tackles the edge cases and brings less reports to analyse.
+The primary concern however was to get valid results and to overcome the error that has been found in the first experiment.
 
 [horizontal]
 Parameters:: All test plans were executed with the variable `i` assigned to each element of the set `{B, N, C}`.
@@ -205,14 +205,14 @@ Reports:: TP1.2-B-1-1-1,
 TP1.2-B-1-1-30, TP1.2-B-1-30-1, TP1.2-B-1-30-30, TP1.2-B-30-1-1, TP1.2-B-30-1-30, TP1.2-B-30-30-1, TP1.2-B-30-30-30, TP1.2-N-1-1-1, TP1.2-N-1-1-30, TP1.2-N-1-30-1, TP1.2-N-1-30-30, TP1.2-N-30-1-1, TP1.2-N-30-1-30, TP1.2-N-30-30-1, TP1.2-N-30-30-30, TP1.2-C-1-1-1, TP1.2-C-1-1-30, TP1.2-C-1-30-1, TP1.2-C-1-30-30, TP1.2-C-30-1-1, TP1.2-C-30-1-30, TP1.2-C-30-30-1, and TP1.2-C-30-30-30
 Outcome:: The tests were conducted over a period of approximately three days, including the occurrence of application errors.
 It appeared that the application was failing again, resulting in invalid results.
-The reason for this failure was the same as the error that occurred in attempt 1.
+The reason for this failure was the same as the error that occurred in <<Experiment 1>>.
 
 Further analysis of the performance efficiency has been omitted due to the invalidity of the test reports that were created.
 
-=== Attempt 3
+=== Experiment 3
 
-The erroneous behavior observed in <<Attempt 1>> was not accidental, as verified in <<Attempt 2>>.
-Consequently, the third attempt was conducted under the assumption that an error would occur at some point, resulting in the loss of relevant data.
+The erroneous behavior observed in <<Experiment 1>> was not accidental, as verified in <<Experiment 2>>.
+Consequently, the third experiment was conducted under the assumption that an error would occur at some point, resulting in the loss of relevant data.
 To further investigate this error, individual tests were run to examine the specific edge cases that led to these critical errors.
 
 [horizontal]
@@ -230,7 +230,7 @@ This error is occasionally observed, in the proxy console.
 A detailed analysis reveals three errors that occur internally while processing requests.
 The most significant differences relate to the storage number (`p`) and the number of ShapeTrees (`q`).
 However, a strict behavior could not be determined.
-It appears that test plans executed with lower values for `p` and/or `q` than those used in other tests within this attempt result in an error message indicating that a file for the locking system of the <<Solid Provider>> is requested that does not exist.
+It appears that test plans executed with lower values for `p` and/or `q` than those used in other tests within this experiment result in an error message indicating that a file for the locking system of the <<Solid Provider>> is requested that does not exist.
 This error resulted in the immediate termination of the process (exit code 1).
 This is a unique function of the <<CSS>> as described in <<Third-Party Software>>.
 The corresponding error message is shown in Listing 1.
@@ -255,7 +255,7 @@ ELIFECYCLE Command failed with exit code 1.
 ----
 
 Tests conducted with `p` and/or `q` values that were higher than those of other tests resulted in a fetch exception when attempting to locate storage resources.
-This aligns with the results observed in <<Attempt 1>> and <<Attempt 2, 2>>.
+This aligns with the results observed in <<Experiment 1>> and <<Experiment 2, 2>>.
 An example of this error is shown in xref:lst-err-perf-2[xrefstyle=short].
 The error did not result in the immediate termination of the process.
 
@@ -273,30 +273,30 @@ The third error, which occurred during the processing of the requests, was a "he
 In such a case, the `responseInterceptor`, which is employed in the context of <<Forwarded Request, Forwarded Requests>>, attempts to modify the response object before returning it to the original requester.
 The error did not result in the immediate termination of the process.
 
-=== Attempt 4
+=== Experiment 4
 
-This attempt aimed to tackle the locking issue found in <<Attempt 3>>.
+This experiment aimed to tackle the locking issue found in <<Experiment 3>>.
 As previously stated in the <<Test Environment>> section, for testing purposes, the lifetime of locks has been increased to 172800 seconds, in order to be capable of handling long-running requests.
-In order to verify that this is not a miss configuration, the configuration has been reset to its default for this attempt.
+In order to verify that this is not a miss configuration, the configuration has been reset to its default for this experiment.
 
 [horizontal]
 Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
-The variables `p`, `q`, and `r` were fixed at a relatively high value of `10`, in comparison to previous attempts.
+The variables `p`, `q`, and `r` were fixed at a relatively high value of `10`, in comparison to previous experiments.
 Total Reports:: 1
 Reports:: TP1.4-10-10-10
 Outcome:: The test terminated almost instantaneously, thus confirming the necessity for longer lock lifetimes.
 
-=== Attempt 5
+=== Experiment 5
 
 The initial test scenarios were designed with considerably elevated numeric test parameters.
-Upon consideration of the assumptions presented in <<Attempt 3>>, it becomes evident that a solution to the deletion of the `.meta` resource, as outlined in <<Attempt 1>>, is necessary.
+Upon consideration of the assumptions presented in <<Experiment 3>>, it becomes evident that a solution to the deletion of the `.meta` resource, as outlined in <<Experiment 1>>, is necessary.
 The most trivial solution for that is to create the required files with a user with more privileges.
 As the files are persisted as files, these files are replaced by the same files created with a `sudo` user.
 This effectively prohibits the application, which is executed with current user privileges only, from deleting the resource.
 
 [horizontal]
 Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
-The variables `p`, `q`, and `r` were fixed at a relatively high value of `10`, in comparison to previous attempts.
+The variables `p`, `q`, and `r` were fixed at a relatively high value of `10`, in comparison to previous experiments.
 Total Reports:: 1
 Reports:: TP1.5-10-10-10
 Outcome:: The test plan could not be executed, due to a critical internal server error, as shown in xref:lst-err-perf-3[xrefstyle=short].
@@ -317,30 +317,30 @@ However, the actual result was that the server process lacked sufficient privile
 }
 ----
 
-=== Attempt 6
+=== Experiment 6
 
-As an alternative to <<Attempt 4>> and <<Attempt 5>>, the objective of this attempt was to address the third issue identified in <<Attempt 3>>.
+As an alternative to <<Experiment 4>> and <<Experiment 5>>, the objective of this experiment was to address the third issue identified in <<Experiment 3>>.
 This was achieved by deactivating the `selfHandleResponse` and `responseInterceptor` properties in the proxy.
 By doing so, all post-processing of requests from the proxy to the server was handled by the proxy library.
 This should prevent any manipulation of the response object, as the response has already been sent.
 
 [horizontal]
 Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
-The variables `p`, `q`, and `r` were fixed at a relatively high value of `10`, in comparison to previous attempts.
+The variables `p`, `q`, and `r` were fixed at a relatively high value of `10`, in comparison to previous experiments.
 Total Reports:: 1
 Reports:: TP1.6-10-10-10
 Outcome:: The tests were conducted for approximately four hours before being terminated.
 The process ended with the error message `Error: socket hang up`, accompanied by the error code `ECONNRESET`.
 This may be indicative of any premature connection termination event, as documented in the Node.js <<HTTP>>footnote:[https://nodejs.org/api/http.html] module documentation.
 
-=== Attempt 7
+=== Experiment 7
 
-The straightforward solutions proposed in <<Attempt 4, Attempts 4>>, <<Attempt 5, 5>>, and <<Attempt 6, 6>> did not result in any improvement in the errors identified in <<Attempt 3>>.
+The straightforward solutions proposed in <<Experiment 4, Experiments 4>>, <<Experiment 5, 5>>, and <<Experiment 6, 6>> did not result in any improvement in the errors identified in <<Experiment 3>>.
 Consequently, patchesfootnote:[{github-server-url}/{github-repository}/tree/{github-ref-name}/patches] to the applications have been implemented in order to address the aforementioned errors.
 The errors that have been identified thus far suggest that the proxy module is unable to handle the volume of requests it receives without causing errors.
 In particular, the issue of writing to the same file appears to be problematic, potentially leading to the locking issue.
 The <<DPC Middleware>> is configured to write logs on a daily basis, which means that a single file will be written in every request.
-This modification was implemented in this attempt with the intention of ensuring that a new log is written per request.
+This modification was implemented in this experiment with the intention of ensuring that a new log is written per request.
 Furthermore, the <<Create Dynamic Namespace>> process has been replaced with static paths, as this could also be handled in a bootstrapping step, which might lead to unnecessary requests.
 At last, the version of the Node.js <<Test Environment>> has been reduced to 20.14.0, the current <<LTS>> version.
 This was done as it is the preferred version of the oidc-providerfootnote:[https://github.com/panva/node-oidc-provider], a <<CSS>> inherent modulefootnote:[https://github.com/CommunitySolidServer/CommunitySolidServer/blob/v7.0.4/package.json#L125].
@@ -353,13 +353,13 @@ Reports:: TP1.7-10-1-1, TP1.7-10-10-1, and TP1.7-10-10-10
 Outcome:: While the tests TP1.7-10-1-1 and TP1.7-10-10-1 were successfully completed, TP1.7-10-10-10 was unsuccessful.
 This leads to the conclusion that the greatest impact is derived from the number of threads executed in parallel.
 
-=== Attempt 8
+=== Experiment 8
 
-In <<Attempt 8>>, the limitations of the `r` value, which represents the number of threads, are examined based on the assumptions of <<Attempt 7>>.
+In <<Experiment 8>>, the limitations of the `r` value, which represents the number of threads, are examined based on the assumptions of <<Experiment 7>>.
 These assumptions posit that concurrency represents a significant challenge for the proposed approach.
 The value was incremented until the first error occurred, with the step width set to 1, starting at 1. This process was repeated until an erroneous test run was observed.
 In order to extend the runtime, the loop count, as part of the <<Apache JMeter Parameters>>, has been set to 1.
-Furthermore, the modifications to the application introduced in <<Attempt 7>> have also been applied in this attempt.
+Furthermore, the modifications to the application introduced in <<Experiment 7>> have also been applied in this experiment.
 
 [horizontal]
 Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
@@ -370,11 +370,11 @@ Reports:: TP1.8-C-10-10-1, TP1.8-C-10-10-2, TP1.8-C-10-10-3, TP1.8-C-10-10-4, TP
 Outcome:: The first test run that was prematurely terminated was the test with an `r` value of `8`.
 It is noteworthy that the test with an `r` value of `7` was successful, despite 46.43% of its requests failing.
 
-=== Attempt 9
+=== Experiment 9
 
-The objective of this attempt was to determine whether the observed behavior in <<Attempt 8>> would also manifest with a loop count of `10`.
-In this attempt, the number of threads was limited to `7`.
-Furthermore, the modifications to the application introduced in <<Attempt 7>> have also been applied in this attempt.
+The objective of this experiment was to determine whether the observed behavior in <<Experiment 8>> would also manifest with a loop count of `10`.
+In this experiment, the number of threads was limited to `7`.
+Furthermore, the modifications to the application introduced in <<Experiment 7>> have also been applied in this experiment.
 
 [horizontal]
 Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
@@ -384,10 +384,10 @@ Total Reports:: 3
 Reports:: TP1.9-C-10-10-1, TP1.9-C-10-10-2, and TP1.9-C-10-10-3
 Outcome:: The first failure occurred with `3` threads, resulting in the remaining selection of threads being `2`.
 
-=== Attempt 10
+=== Experiment 10
 
-The 10th an final attempt was intended to run in a greater context, to receive comparable results within the limits discovered in previous attempts.
-Furthermore, the modifications to the application introduced in <<Attempt 7>> have also been applied in this attempt.
+The 10th and final experiment was intended to run in a larger context, to receive comparable results within the limits discovered in previous experiments.
+Furthermore, the modifications to the application introduced in <<Experiment 7>> have also been applied in this experiment.
 
 [horizontal]
 Parameters:: All test plans were executed with the variable `i` assigned to each element of the set `{B, N, C}`.

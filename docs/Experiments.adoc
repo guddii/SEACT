@@ -326,7 +326,7 @@ h| Loop Count
 
 xref:tbl-test-parameters-matrix[xrefstyle=short] presents the aggregation of configurable options to be tested as test plans.
 The schema column serves as a generic identifier for all parameterized test plans.
-The attempt column denotes the attempt in which a test plan was executed.
+The experiment column denotes the experiment in which a test plan was executed.
 The value of that cell is an incrementing natural number, starting at `1`.
 The <<Network Parameters>> column refers to the ID column of xref:tbl-network-parameters-matrix[xrefstyle=short].
 The <<Data Privacy Cockpit Parameters>> column refers to the ID column of xref:tbl-dpc-parameters-matrix[xrefstyle=short].
@@ -337,7 +337,7 @@ The <<Apache JMeter Parameters>> column refers to the ID column of xref:tbl-apac
 [cols="3,2,2,2,2,2",id="tbl-test-parameters-matrix"]
 |===
 h| Schema
-h| Attempt
+h| Experiment
 h| Network Parameters
 h| Data Privacy Cockpit Parameters
 h| Solid Ecosystem Parameters

@@ -92,10 +92,10 @@ While the majority of Solid Providers do support the <<Authorization Client Cred
 
 The most obvious shortcoming of the proposed approach is the lack of a stable and reliable use.
 Even if this approach is not implemented in its most optimal manner, the impact on the system's performance is significant, as evidenced by the <<Performance Efficiency Analysis>>.
-Despite the implementation of ten attempts, 20 of the 24 test runs remained unanalyzable due to errors or invalid results.
+Despite the implementation of ten experiments, 20 of the 24 test runs remained unanalyzable due to errors or invalid results.
 All previous considerations are obsolete in the event that the stability cannot be brought to a reasonable level.
 Following the examination of the tested scenario, there remain numerous potential causes for the observed instability.
-In <<Attempt 10>>, the observed increase in average response times was 0.63 seconds, as shown in column `B` of xref:tbl-test-run-response-times-average[xrefstyle=short].
+In <<Experiment 10>>, the observed increase in average response times was 0.63 seconds, as shown in column `B` of xref:tbl-test-run-response-times-average[xrefstyle=short].
 This appears to be a notable phenomenon, particularly given that the threads are only incremented by one.
 It is noteworthy that the <<DPC>> logic is bypassed in this scenario, which leads to the assumption that the erroneous behavior may be caused by another system component.
 In this scenario, the source of the problem may be the proxy, the server, or even the client itself.

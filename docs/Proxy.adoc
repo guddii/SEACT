@@ -1,8 +1,8 @@
 = Proxy
 
-A proxy is a structural design pattern in software development that serves as a placeholder for another object to access or control.
+citenp:[gamma_design_2011] defines a proxy as a structural design pattern in software development that serves as a placeholder for another object to access or control.
 This improves efficiency and reduces complexity.
-In this case, the accessed object is the Solid Provider cite:[gamma_design_2011].
+In this case, the accessed object is the Solid Provider.
 
 Proxies can be classified into a variety of groups.
 In this study, we focus on web proxies, as the communication between the proxy and the Solid Provider will use <<HTTP>> <<API,APIs>>.

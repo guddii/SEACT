@@ -31,7 +31,7 @@ All other states (read, updated, and deleted) are accessible from the created st
 When the deleted state is the current state of the resource, the only possible transition is the recreation of the resource.
 This behavior is displayed in xref:stm_CRUD[xrefstyle=short].
 
-.State machine diagram of the CURD lifecycle of a resource
+.State machine diagram of the <<CRUD>> lifecycle of a resource
 [.text-center]
 [plantuml,format=svg,id="stm_CRUD"]
 ....
