@@ -3,7 +3,7 @@ left to right direction
 skinparam linetype ortho
 skinparam nodesep 30
 skinparam ranksep 30
-mainframe **cmp** Logical Topology (B)
+mainframe **cmp** Logical Topology (Client)
 interface "Public Endpoint" as PE
 component "Proxy" as proxy <<subsystem>>{
     component "Proxy Module Manager" as MM
