@@ -151,7 +151,7 @@ PUT /client/resource.ttl 201 14371.603 ms - -
 ----
 
 Follow-up requests (PRE1.2) have significantly fewer total requests.
-A total of 12.
+A total of 12, as presented in xref:lst-pretest-console-2[xrefstyle=short].
 It is less because the <<DPC>> agent running in the <<DPC Middleware>> has already established a session, which only needs to be done once.
 The same applies to the <<Authorization>> of the requesting agent, which in both cases is the owner of the storage resource.
 
