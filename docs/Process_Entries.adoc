@@ -9,9 +9,10 @@ The process of authorizing a request can be divided into two steps.
 Firstly, an authorization token will be requested using an <<Authorization Client Credentials Flow>> or an alternative authorization process such as an <<Authorization Code Flow>>.
 Secondly, the <<CRUD>> request will be sent with an authorization header and the response will be provided accordingly.
 The key difference is that the request and response will be forwarded by the proxy instance.
+xref:behavior-1[xrefstyle=short] provides an illustration of this process.
 
 .Sequence diagram of an authorized CRUD request
-[.text-center]
+[.text-center,id="behavior-1"]
 [plantuml,format=svg]
 ....
 include::resources/diagrams/sd_Request_a_resource.puml[]
@@ -29,9 +30,10 @@ Network logs are captured by storage, not by WebID, and it is necessary to assoc
 This is done by a claiming mechanism.
 This requires a Solid application that has access to both the user storage and the <<DPC>> storage.
 Both connections are handled by the <<DPC>> <<API>> server, and when the connections are established, the <<API>> initializes an verification code on behalf of the client agent to be verified by the <<DPC>> <<API>> server when it discovers the logs.
+xref:behavior-2[xrefstyle=short] provides an illustration of this process.
 
 .Sequence diagram of the log claiming process
-[.text-center]
+[.text-center,id="behavior-2"]
 [plantuml,format=svg]
 ....
 include::resources/diagrams/sd_Log_claiming.puml[]
@@ -47,9 +49,10 @@ image::resources/views/UI_Log_Claiming.png[]
 
 The logs in the <<DPC>> <<API>> server are represented as routes.
 These routes will either return an empty turtle file or attempt to resolve the claim and receive the actual files from the claimed storages.
+xref:behavior-3[xrefstyle=short] provides an illustration of this process.
 
 .Sequence diagram of the discovery of logs
-[.text-center]
+[.text-center,id="behavior-3"]
 [plantuml,format=svg]
 ....
 include::resources/diagrams/sd_Log_discovery.puml[]
