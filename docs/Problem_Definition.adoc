@@ -2,7 +2,8 @@
 
 The backbone of the Solid project is the Solid Protocol.
 The protocol specifies how agents store their data securely in decentralized data storages, also known as Pods.
-These storage systems can be compared to secure, personal web servers for data, such as Dropbox, ownCloud, Nextcloud, or similar software, but with a specified public <<API>>.
+These storage systems can be compared to secure, personal web servers for data, such as Dropbox, ownCloud, Nextcloud, or similar software.
+However, they differ in that they have a standardized and unified public <<API>>.
 This interface utilizes WebIDs to identify the agents within the system.
 As the storage owner has control over which agents can access it, they can choose to restrict access to only WebIDs, completely restrict access, or make it publicly accessible.
 
