@@ -121,6 +121,8 @@ One state is that of a claimed storage container, which monitors the correspondi
 In contrast, the second state is that of a non-claimed storage container, which will not monitor any requests to the storage.
 However, this state still needs to determine if it is in the list of storage containers to be tracked.
 The third state is that of a configuration that bypasses the proxy module and skips the logging process of the middleware.
+This is necessary because there is no existing benchmark against which the <<DPC>> configuration can be compared.
+In order to ascertain the extent of the increase in network load, it is essential to measure the bypassed scenario, which will serve as a reference value against which the other <<DPC>> configurations can be compared.
 
 The bypass scenario utilizes the bypass mechanism of <<Forwarded Request,Forwarded Requests>>, which is used for internal self requests.
 The mechanism in adds a randomized header hash to the request, which is read during the request process in order to disable the <<DPC>> on self-calling.
