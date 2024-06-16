@@ -23,7 +23,7 @@ The quantity of parallel threads describing the interaction of a single user is 
 When planning the <<Objectives and Research Interest,Objectives and Research Interests>> of this thesis, it became evident that this examination could not encompass all aspects of the proposed approach.
 However, it was intended to identify the vulnerable aspects of this concept in order to determine whether this approach should be pursued in principle.
 When only considering the <<Analysis>> conducted, this approach appears to have no future.
-However, as previously discussed in the <<Discussion>>, the erroneous behavior may not be solely attributed to this approach, as the other system components cannot be definitively excluded as a cause.
+However, as previously discussed in xref:Discussion[xrefstyle=short], the erroneous behavior may not be solely attributed to this approach, as the other system components cannot be definitively excluded as a cause.
 While there have been other concerns discussed, such as potential security risks related to the <<Authentication>> and claiming mechanism, this approach remains a promising one due to its flexibility and various implementation options.
 For the time being, no general recommendation or objection can be made.
 However, a caveat regarding the potential for high loads should be noted.
@@ -60,11 +60,11 @@ However, the number of parallel requests, referred to as the number of threads o
 The number of threads represents the number of users using a service in parallel and has been limited to two users when a storage resource is claimed.
 The amount of storages, as well as the amount of ShapeTrees in the successfully tested scenario, was limited to 10.
 The loops in this test were also limited to 10, reducing them showed that up to 7 threads could be run.
-Both <<Apache JMeter Parameters>> affected the total number of requests made to the system, which is limited to a relatively small number if the [DPC Middleware] is to run without errors.
+Both <<Apache JMeter Parameters>> affected the total number of requests made to the system, which is limited to a relatively small number if the <<DPC Middleware>> is to run without errors.
 
 Finally, the answer to the key research question is that there was a <<System Design>> that could be used to increase transparency and access control.
 The answer of <<QUEST-1>> proves that these goals, denoted as <<Functional Requirements>>, could be satisfied, even if the feasibility is questionable.
-However, the [Non-Functional Requirements] could not be fully satisfied.
+However, the <<Non-Functional Requirements>> could not be fully satisfied.
 The most important part regarding the research question is that the compatibility with the <<Solid Protocol>> could not be fully implemented, and thus is not fully vendor-agnostic.
 The most important part, however, is the performance decrease, the cause of which could not be conclusively determined.
 In this particular experiment, however, it was too high and erroneous to consider this a reasonable approach.
