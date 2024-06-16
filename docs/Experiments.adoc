@@ -169,6 +169,7 @@ Loop Count:: The loop count defines the total number of threads to be executed d
 In addition to the thread group, there are samplers, which are configurable requests to the server, such as <<HTTP>> requests.
 Each of these <<HTTP>> samplers represents a transition in the <<CRUD>> sequence.
 Specifically, C~i~ is mapped to a `PUT`, R~i~ to a `GET`, U~i~ to a `PUT`, and D~i~ to a `DELETE` method in the request.
+The `POST` <<API>>, as an alternative to C~i~, was not considered in the tested scenarios.
 In order to enforce a sequential run, independent of the execution time, thread group and loop, these values are applied to the resource name, as shown in xref:lst-resource-name[xrefstyle=short].
 
 .Structure of created resources.
