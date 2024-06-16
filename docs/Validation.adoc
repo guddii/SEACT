@@ -182,8 +182,8 @@ Parameters:: All test plans were executed with the variable `i` assigned to each
 The variables `p`, `q`, and `r` were selected from the set `{1, 10, 30}`.
 Total Reports:: 81
 Reports:: TP1.1-B-1-1-1, TP1.1-B-1-1-10, TP1.1-B-1-1-30, TP1.1-B-1-10-1, TP1.1-B-1-10-10, TP1.1-B-1-10-30, TP1.1-B-1-30-1, TP1.1-B-1-30-10, TP1.1-B-1-30-30, TP1.1-B-10-1-1, TP1.1-B-10-1-10, TP1.1-B-10-1-30, TP1.1-B-10-10-1, TP1.1-B-10-10-10, TP1.1-B-10-10-30, TP1.1-B-10-30-1, TP1.1-B-10-30-10, TP1.1-B-10-30-30, TP1.1-B-30-1-1, TP1.1-B-30-1-10, TP1.1-B-30-1-30, TP1.1-B-30-10-1, TP1.1-B-30-10-10, TP1.1-B-30-10-30, TP1.1-B-30-30-1, TP1.1-B-30-30-10, TP1.1-B-30-30-30, TP1.1-N-1-1-1, TP1.1-N-1-1-10, TP1.1-N-1-1-30, TP1.1-N-1-10-1, TP1.1-N-1-10-10, TP1.1-N-1-10-30, TP1.1-N-1-30-1, TP1.1-N-1-30-10, TP1.1-N-1-30-30, TP1.1-N-10-1-1, TP1.1-N-10-1-10, TP1.1-N-10-1-30, TP1.1-N-10-10-1, TP1.1-N-10-10-10, TP1.1-N-10-10-30, TP1.1-N-10-30-1, TP1.1-N-10-30-10, TP1.1-N-10-30-30, TP1.1-N-30-1-1, TP1.1-N-30-1-10, TP1.1-N-30-1-30, TP1.1-N-30-10-1, TP1.1-N-30-10-10, TP1.1-N-30-10-30, TP1.1-N-30-30-1, TP1.1-N-30-30-10, TP1.1-N-30-30-30, TP1.1-C-1-1-1, TP1.1-C-1-1-10, TP1.1-C-1-1-30, TP1.1-C-1-10-1, TP1.1-C-1-10-10, TP1.1-C-1-10-30, TP1.1-C-1-30-1, TP1.1-C-1-30-10, TP1.1-C-1-30-30, TP1.1-C-10-1-1, TP1.1-C-10-1-10, TP1.1-C-10-1-30, TP1.1-C-10-10-1, TP1.1-C-10-10-10, TP1.1-C-10-10-30, TP1.1-C-10-30-1, TP1.1-C-10-30-10, TP1.1-C-10-30-30, TP1.1-C-30-1-1, TP1.1-C-30-1-10, TP1.1-C-30-1-30footnote:[https://www.guddii.de/SEACT/TP1.1-C-30-1-30/], TP1.1-C-30-10-1, TP1.1-C-30-10-10, TP1.1-C-30-10-30, TP1.1-C-30-30-1, TP1.1-C-30-30-10, and TP1.1-C-30-30-30footnote:[https://www.guddii.de/SEACT/TP1.1-C-30-30-30/]
-Outcome:: The tests were conducted over a period of approximately seven days, including the occurrence of application errors.
-On restarting the application, the tests could be continued from that point onwards.
+Outcome:: The tests were conducted over a period of approximately seven days, including the occurrence of errors in the proposed system.
+On restarting the applications of the system, the tests could be continued from that point onwards.
 Upon analysis of the state of the application, it was found that the `.meta` resources in the tested storage resources were missing.
 These resources, however, are conceptually relevant, as they are flagging a storage resource as such.
 This is a crucial step in the <<DPC Middleware>> to continue with any kind of logging.
@@ -191,6 +191,7 @@ As the precise time of the resource deletion could not be determined, all tests 
 This may also explain the occurrence of results that appear unreasonable, such as TP1.1-C-30-30-30, which has a lower average response time (32.20s) than TP1.1-30-1-30 (107.65s), despite the necessity of traversing a greater amount of ShapeTrees (`q`).
 
 Further analysis of the performance efficiency has been omitted due to the invalidity of the test reports that were created.
+Despite the completion of the experiment, all tests have been flagged as invalid due to the inability to determine the exact time of occurrence of errors in the proposed system.
 
 === Experiment 2
 
@@ -208,6 +209,7 @@ It appeared that the application was failing again, resulting in invalid results
 The reason for this failure was the same as the error that occurred in <<Experiment 1>>.
 
 Further analysis of the performance efficiency has been omitted due to the invalidity of the test reports that were created.
+Despite the completion of the experiment, all tests have been flagged as invalid due to the inability to determine the exact time of occurrence of errors in the proposed system.
 
 === Experiment 3
 
@@ -222,8 +224,9 @@ Total Reports:: 7
 Reports:: TP1.3-1-1-30,
 TP1.3-1-1-10, TP1.3-30-30-10, TP1.3-30-10-10, TP1.3-10-10-10, TP1.3-10-1-10, and TP1.3-1-10-10
 Outcome:: The only tests that completed without error were TP1.3-1-1-10. All other tests resulted in one of three erroneous situations.
-TP1.3-1-1-30, TP1.3-10-1-10, and TP1.3-1-10-10 had errors, as demonstrated in xref:lst-err-perf-1[xrefstyle=short].
+TP1.3-1-1-30, TP1.3-10-1-10, and TP1.3-1-10-10  exhibited critical system errors, resulting in immediate cessation of the application, as illustrated in xref:lst-err-perf-1[xrefstyle=short].
 The second error, as demonstrated in xref:lst-err-perf-2[xrefstyle=short], was thrown in TP1.3-30-30-10, TP1.3-30-10-10, and TP1.3-10-10-10.
+The error in question was a network error, which did not stop the application from functioning. The processing continued as normal.
 In each of the aforementioned test reports, the server returns an error message indicating that a header has already been sent.
 This error is occasionally observed, in the proxy console.
 
@@ -466,9 +469,8 @@ The values listed are in transactions per second.
 The standard deviation of B is 12,87 Transactions/s, the standard deviation of C is 0,005 Transactions/s.
 
 As observed in the measurements shown in xref:tbl-test-run-summary-errors[xrefstyle=short] and xref:tbl-test-run-response-times-average[xrefstyle=short], the throughput drops significantly when the complexity of the system and the amount of threads increases.
+The average decline in transactions per second is 13.29.
 In considering the aspects identified by <<IBM>> as influencing throughput, namely processing overhead in the software, the degree of parallelism supported by the software, and the types of transactions processed, it appears that these factors may be plausible causes of the issues that have been found.
-
-((26,41-0,01)+(0,20-0,02))/2 = 13.29
 
 .Test Run Throughput in Transactions per Second
 [cols="1,2,2",id="tbl-test-run-throughput"]

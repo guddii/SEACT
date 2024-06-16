@@ -10,6 +10,7 @@ When a prefix is followed by a colon symbol, the part after the colon can be app
 acl:: http://www.w3.org/ns/auth/acl#
 al:: _dynamic_ (see <<Custom Vocabulary>>)
 claim:: urn:claim# (see <<Custom Vocabulary>>)
+ex:: _example_
 foaf:: http://xmlns.com/foaf/0.1/
 http:: http://www.w3.org/2011/http#
 interop:: http://www.w3.org/ns/solid/interop#
