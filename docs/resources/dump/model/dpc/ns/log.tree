@@ -1,5 +1,5 @@
 PREFIX st: <http://www.w3.org/ns/shapetrees#> .
-PREFIX log-shex: <http://example.tld/dpc/ns/log.shex#>.
+PREFIX log-shex: <http://proxy.localhost:4000/dpc/ns/log.shex#>.
 
 <#AccessLogRegistrationTree>
   a st:ShapeTree ;

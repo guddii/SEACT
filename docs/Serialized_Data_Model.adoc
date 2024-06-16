@@ -23,7 +23,7 @@ To participate in the Solid Application Interoperability Specification, an `inte
 The node will refer to the <<Registry Set (Data Model), registry set>> that contains the references to the registered data.
 xref:lst-model-1[xrefstyle=short] presents the corresponding <<RDF>> fragment.
 
-.`interop:Agent` <<Thing>> at http://example.tld/dpc/profile/card
+.`interop:Agent` <<Thing>> at http://proxy.localhost:4000/dpc/profile/card
 [source,turtle,id="lst-model-1"]
 ----
 include::resources/dump/model/dpc/profile/card$.ttl[lines=14..17]
@@ -42,7 +42,7 @@ The subject of the <<RDF>> triple, however, must be unique and built based on th
 In this case, it will be the hashed storage <<URL>>.
 xref:lst-model-2[xrefstyle=short] presents the corresponding <<RDF>> fragment.
 
-.`interop:DataRegistry` <<Thing>> at http://example.tld/dpc/registries
+.`interop:DataRegistry` <<Thing>> at http://proxy.localhost:4000/dpc/registries
 [source,turtle,id="lst-model-2"]
 ----
 include::resources/dump/model/dpc/registries$.ttl[lines=3..6]
@@ -58,7 +58,7 @@ The Shape Tree data is referenced in the data registration.
 As it is a container resource (see <<Container (Access Logs from Data Model)>>), all child resources will satisfy the <<Shape Trees (Data Model), referenced Shape Tree>>.
 xref:lst-model-3[xrefstyle=short] presents the corresponding <<RDF>> fragment.
 
-.`interop:DataRegistration` <<Thing>> at http://example.tld/dpc/data/74242fac/AccessLog/
+.`interop:DataRegistration` <<Thing>> at http://proxy.localhost:4000/dpc/data/74242fac/AccessLog/
 [source,turtle,id="lst-model-3"]
 ----
 include::resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=7..11]
@@ -75,7 +75,7 @@ The `AccessLogRegistrationTree` defines the resources that contain Shape Tree Re
 The <<Shape Expression (Data Model), referenced Shape Expression>> declares the form of the shape.
 xref:lst-model-4[xrefstyle=short] presents the corresponding ShapeTree fragment.
 
-.Shape Tree at http://example.tld/dpc/ns/log.tree
+.Shape Tree at http://proxy.localhost:4000/dpc/ns/log.tree
 [source,id="lst-model-4"]
 ----
 include::resources/dump/model/dpc/ns/log.tree[]
@@ -107,7 +107,7 @@ The files contained within it meet the specified definitions.
 For example, the file dated 2024-04-02 will be referred to as <<Access Log (Data Model)>>, matching the <<Shape Expression (Data Model)>>.
 xref:lst-model-6[xrefstyle=short] presents the corresponding <<RDF>> fragment.
 
-.`ldp:Container` <<Thing>> at http://example.tld/dpc/data/74242fac/AccessLog/
+.`ldp:Container` <<Thing>> at http://proxy.localhost:4000/dpc/data/74242fac/AccessLog/
 [source,turtle,id="lst-model-6"]
 ----
 include::resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=13..14]
@@ -121,7 +121,7 @@ NOTE: Followed Path [1,1,2], [1,2,2]
 The access log is a resource that contains the actual data and satisfies the shape as defined in the <<Shape Expression (Data Model)>>.
 xref:lst-model-7[xrefstyle=short] presents the corresponding <<RDF>> fragment.
 
-.`ldp:Container` <<Thing>> at http://example.tld/dpc/data/74242fac/AccessLog/2024-04-02
+.`ldp:Container` <<Thing>> at http://proxy.localhost:4000/dpc/data/74242fac/AccessLog/2024-04-02
 [source,turtle,id="lst-model-7"]
 ----
 include::resources/dump/model/dpc/data/74242fac/AccessLog/2024-04-02$.ttl[]
@@ -135,7 +135,7 @@ The claim registry is an custom extension of the `interorp:DataRegistry` within 
 It refers to the root container for <<Container (Claimed Data from Data Model), claimed data>> and the <<Verification (Data Model), verification resource>>.
 xref:lst-model-8[xrefstyle=short] presents the corresponding <<RDF>> fragment.
 
-.`claim:Registry` <<Thing>> in at http://example.tld/dpc/registries
+.`claim:Registry` <<Thing>> at http://proxy.localhost:4000/dpc/registries
 [source,turtle,id="lst-model-8"]
 ----
 include::resources/dump/model/dpc/registries$.ttl[lines=7..14]
@@ -149,7 +149,7 @@ This resource contains all claimed data.
 When using the Solid Application Interoperability Specification, it primarily refers to <<Data Registration (Data Model), data registrations>> and their corresponding <<Container (Access Logs from Data Model), containers>>.
 xref:lst-model-9[xrefstyle=short] presents the corresponding <<RDF>> fragment.
 
-.`ldp:Container` <<Thing>> at http://example.tld/dpc/data/74242fac/
+.`ldp:Container` <<Thing>> at http://proxy.localhost:4000/dpc/data/74242fac/
 [source,turtle,id="lst-model-9"]
 ----
 include::resources/dump/model/dpc/data/74242fac/AccessLog/index.ttl[lines=13..14]
@@ -165,7 +165,7 @@ The verification code will be compared to the verification code of the <<Claim R
 If they are equivalent, access to the <<Container (Claimed Data from Data Model), claimed data>> will be granted.
 xref:lst-model-10[xrefstyle=short] presents the corresponding <<RDF>> fragment.
 
-.`claim:Verification` <<Thing>> at at http://example.tld/client/dpc
+.`claim:Verification` <<Thing>> at at http://proxy.localhost:4000/client/dpc
 [source,turtle,id="lst-model-10"]
 ----
 include::resources/dump/model/client/dpc$.ttl[]

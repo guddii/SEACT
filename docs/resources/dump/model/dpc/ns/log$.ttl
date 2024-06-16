@@ -3,7 +3,7 @@
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 
-<http://example.tld/dpc/ns/log>
+<http://proxy.localhost:4000/dpc/ns/log>
     dcterms:issued   "2024-04-02Z"^^xsd:date ;
     dcterms:modified "2024-04-02Z"^^xsd:date ;
     rdfs:label       "Access log vocabulary"@en .

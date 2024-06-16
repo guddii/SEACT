@@ -134,7 +134,7 @@ This is demonstrated in xref:lst-request-with-proxy-bypass-token[xrefstyle=short
 .Request with Proxy Bypass Token
 [source,httprequest,id="lst-request-with-proxy-bypass-token"]
 ----
-GET http://example.tld/client/profile/card#me
+GET http://proxy.localhost:4000/client/profile/card#me
 X-Proxy-Bypass-Token: af8649fb
 ----
 
@@ -152,7 +152,7 @@ PROXY_BYPASS_TOKEN="af8649fb"
 The Solid Protocol and Solid Application Interoperability permit two primary components to scale continuously within a running and growing Solid Provider.
 These components are the amount of storages managed by the Solid Provider and the registered ShapeTrees.
 For the purpose of mass testing, the client storage resources will have an additional amount.
-The amount will be applied to client storages (e.g., `client42`), resulting in a client storage resource such as `http://example.tld/client42/`.
+The amount will be applied to client storages (e.g., `client42`), resulting in a client storage resource such as `http://proxy.localhost:4000/client42/`.
 In the context of a test case where this client has a claimed storage resource, all client storages between client1 and the given index are considered claimed as well.
 The index also determines the storage container in which the <<CRUD>> operations will be executed.
 This is necessary to validate the edge cases with a large amount of storages.
@@ -179,7 +179,7 @@ In order to enforce a sequential run, independent of the execution time, thread 
 .Structure of created resources.
 [source,id="lst-resource-name"]
 ----
-http://example.tld/client/run1716802767389_thread3_loop1_resource0
+http://proxy.localhost:4000/client/run1716802767389_thread3_loop1_resource0
 ----
 
 The body of the <<HTTP>> request is a minimal <<RDF>> triple (`<ex:s> <ex:p> <ex:o>.`), which is relevant for the creation and updating of resources utilizing the `PUT` method.

@@ -1,6 +1,6 @@
 @startwbs
 mainframe **wbs** Server Container Hierarchy
-+ http://example.tld\n      (Base URL)
++ http://proxy.localhost:4000\n(Base URL)
 ++ /client
 +++_ /dpc
 ++ /dpc

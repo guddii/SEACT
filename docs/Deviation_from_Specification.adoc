@@ -22,8 +22,8 @@ The filters for the <<OIDC>> configuration path, as well as the WebID of the mid
 In the absence of control over the fetcher, as is the case here, the request header hash mechanism cannot be employed.
 
 Another issue that was identified was the necessity of writing data to container resources.
-With a fundamental understanding of the <<CRUD>> operations, it would be relatively straightforward to perform a `POST`/`PUT` or `PATCH` request to the resource in question, for example: `PUT http://example.tld/client/data/`.
+With a fundamental understanding of the <<CRUD>> operations, it would be relatively straightforward to perform a `POST`/`PUT` or `PATCH` request to the resource in question, for example: `PUT http://proxy.localhost:4000/client/data/`.
 However, this is not the case with <<CSS>>, as writing to container resources involves writing metadata.
 Metadata refers to the <<#description_resource,Description Resources>> mechanism, where a resource is linked as illustrated in xref:lst-storage-resource[xrefstyle=short].
-With the used version of <<CSS>>, only `PATCH` methods are permitted, resulting in a request such as `PATCH http://example.tld/client/data/.meta` for the creation of data and `GET http://example.tld/client/data/` if the data is read.
+With the used version of <<CSS>>, only `PATCH` methods are permitted, resulting in a request such as `PATCH http://proxy.localhost:4000/client/data/.meta` for the creation of data and `GET http://proxy.localhost:4000/client/data/` if the data is read.
 This behavior is exclusive to <<CSS>>, yet a fundamental <<API>> to employ when <<Solid Application Interoperability>> is implemented, as the ShapeTrees are read from the resources containers, thereby inheriting the shape to the child resources.

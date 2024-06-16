@@ -55,8 +55,8 @@ Consequently, when Solid Provider verifies an agent from its own instance, it wi
 .Request with Forwarded Headers
 [source,httprequest,id="lst-request-with-forwarded-headers"]
 ----
-GET http://server.example.tld/client/profile/card#me
-X-Forwarded-Host: proxy.example.tld
+GET http://server.localhost:3000/client/profile/card#me
+X-Forwarded-Host: proxy.localhost:4000
 X-Forwarded-Proto: http
 ----
 

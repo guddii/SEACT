@@ -26,7 +26,7 @@ Uses of the <<RDF>> vocabulary are shown in <<Claim Registry (Data Model)>> and 
 == Access Log Vocabulary
 
 The access log vocabulary is a dynamically generated vocabulary from the agent, produced in its own context.
-For instance, the <<DPC>> agent generates it at `http://example.tld/dpc/ns/log`.
+For instance, the <<DPC>> agent generates it at `http://proxy.localhost:4000/dpc/ns/log`.
 This enables each agent to bring its own vocabulary if necessary.
 The vocabulary is a condensed and human-readable form of the <<HTTP>> Vocabularyfootnote:[https://www.w3.org/TR/HTTP-in-RDF/].
 In order to facilitate comprehension by non-expert users, the vocabulary was introduced in a simplified form, as illustrated in xref:lst-vocabulary-al[xrefstyle=short].

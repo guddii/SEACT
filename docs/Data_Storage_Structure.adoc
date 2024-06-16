@@ -18,7 +18,7 @@ An illustrative example can be found in xref:lst-create-container[xrefstyle=shor
 .Request for new container resources
 [source,httprequest,id="lst-create-container"]
 ----
-POST http://example.tld/client/
+POST http://proxy.localhost:4000/client/
 Content-Type: text/turtle
 Link: <http://www.w3.org/ns/ldp#BasicContainer>; rel="type"
 Slug: new-container
@@ -40,7 +40,7 @@ While the creation of container resources is defined in the Solid Protocol, the 
 .Request for new storage resource in <<CSS>> for account `5e647928-b7f0-4357-9927-f54d66a04790`.
 [source,httprequest,id="lst-create-storage-css"]
 ----
-POST http://example.tld/.account/account/5e647928-b7f0-4357-9927-f54d66a04790/pod/
+POST http://proxy.localhost:4000/.account/account/5e647928-b7f0-4357-9927-f54d66a04790/pod/
 Authorization: CSS-Account-Token a3395e7c-7d3f-40a1-9dff-7fa25b48c1a9
 Content-Type: application/json
 

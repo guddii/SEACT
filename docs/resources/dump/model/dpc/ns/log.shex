@@ -3,7 +3,7 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xml: <http://www.w3.org/XML/1998/namespace>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX shx: <http://www.w3.org/ns/shex#>
-PREFIX log: <http://example.tld/dpc/ns/log#>
+PREFIX log: <http://proxy.localhost:4000/dpc/ns/log#>
 
 <#AccessLogShape> {
   log:date xsd:dateTime ;
