@@ -107,9 +107,12 @@ Furthermore, the spreading of probability values occurs with the smallest probab
 
 The create transition can only be applied to deleted resources and to new resources.
 When a create transition is determined, another probability process will delegate it equally to the deleted resources or create a new resource.
-To determine which resource is affected by the <<CRUD>> operation, a subscript index is applied to the transition identifier, e.g: C~0~ R~1~ U~0~ D~0~.
+In order to ascertain which resource is affected by the <<CRUD>> operation, a subscript index is applied to the transition identifier.
+For example, the following notation is used: C~0~ R~1~ U~0~ D~0~.
 The uppercase letters represent the first character of the <<CRUD>> operations in any order, run sequentially.
-The storage container, represents a hierarchical depth of 0.
+The container resources are organized in a collection hierarchy, with the default depth set to 1.
+In the context of the configurations of <<CSS>>, this equates to the storage resource, for example, `http://proxy.localhost:4000/client/`.
+Deeper hierarchies, such as URLs that are based on the aforementioned example, are ignored in the tested scenarios.
 
 === Data Privacy Cockpit Parameters
 
@@ -201,13 +204,11 @@ h|Hierarchical Depth
 
 | PARAM-CRUD-0
 | C~0~
-| sequential
-| 0
+.2+^.^| sequential
+.2+^.^| 1
 
 | PARAM-CRUD-1
 | C~0~ R~0~ U~0~ R~0~ R~0~ R~0~ R~0~ R~0~ D~0~ C~1~ U~1~ R~1~
-| sequential
-| 0
 |===
 
 xref:tbl-dpc-parameters-matrix[xrefstyle=short] presents the selection of <<Data Privacy Cockpit Parameters>> utilized in the test plans, as detailed in xref:tbl-test-parameters-matrix[xrefstyle=short].
