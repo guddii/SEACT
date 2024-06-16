@@ -147,14 +147,14 @@ PROXY_BYPASS_TOKEN="af8649fb"
 === Solid Ecosystem Parameters
 
 The Solid Protocol and Solid Application Interoperability permit two primary components to scale continuously within a running and growing Solid Provider.
-These components are the number of storages managed by the Solid Provider and the registered ShapeTrees.
-For the purpose of mass testing, the client storage resources will have an additional number.
-The number will be applied to client storages (e.g., `client42`), resulting in a client storage resource such as `http://example.tld/client42/`.
+These components are the amount of storages managed by the Solid Provider and the registered ShapeTrees.
+For the purpose of mass testing, the client storage resources will have an additional amount.
+The amount will be applied to client storages (e.g., `client42`), resulting in a client storage resource such as `http://example.tld/client42/`.
 In the context of a test case where this client has a claimed storage resource, all client storages between client1 and the given index are considered claimed as well.
 The index also determines the storage container in which the <<CRUD>> operations will be executed.
-This is necessary to validate the edge cases with a large number of storages.
+This is necessary to validate the edge cases with a large amount of storages.
 The same logic will apply to the ShapeTrees.
-Consequently, it is necessary to register a greater number of ShapeTrees before the actual required ShapeTree appears in the register.
+Consequently, it is necessary to register a greater amount of ShapeTrees before the actual required ShapeTree appears in the register.
 
 === Apache JMeter Parameters
 
@@ -236,16 +236,16 @@ h| Description
 
 xref:tbl-solid-ecosystem-parameters-matrix[xrefstyle=short] presents the selection of <<Solid Ecosystem Parameters>> utilized in the test plans, as detailed in xref:tbl-test-parameters-matrix[xrefstyle=short].
 The ID column serves as a unique identifier for this parameter set.
-The storage number column refers to the amount and index of storages used in the Solid Provider.
-Likewise, the ShapeTree Number column defines the amount and index of ShapeTrees which are operated with.
+The Storage Amount column refers to the amount and current index of storages used in the Solid Provider.
+Likewise, the ShapeTree Amount column defines the amount and index of ShapeTrees which are operated with.
 It should be noted that the selection of <<Data Privacy Cockpit Parameters>> may have an effect on this parameter, potentially some of the selections becoming obsolete.
 
 .Solid Ecosystem Parameters Matrix
 [cols="1,1,1",id="tbl-solid-ecosystem-parameters-matrix"]
 |===
 h| ID
-h| Storage Number
-h| ShapeTree Number
+h| Storage Amount
+h| ShapeTree Amount
 
 .^| PARAM-SOLID-1-1
 .3+^.^| 1

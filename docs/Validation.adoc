@@ -188,7 +188,7 @@ Upon analysis of the state of the application, it was found that the `.meta` res
 These resources, however, are conceptually relevant, as they are flagging a storage resource as such.
 This is a crucial step in the <<DPC Middleware>> to continue with any kind of logging.
 As the precise time of the resource deletion could not be determined, all tests with `i` in `{N, C}` are considered invalid, as they might not have executed the logging procedure.
-This may also explain the occurrence of results that appear unreasonable, such as TP1.1-C-30-30-30, which has a lower average response time (32.20s) than TP1.1-30-1-30 (107.65s), despite the necessity of traversing a greater number of ShapeTrees (`q`).
+This may also explain the occurrence of results that appear unreasonable, such as TP1.1-C-30-30-30, which has a lower average response time (32.20s) than TP1.1-30-1-30 (107.65s), despite the necessity of traversing a greater amount of ShapeTrees (`q`).
 
 Further analysis of the performance efficiency has been omitted due to the invalidity of the test reports that were created.
 
@@ -228,7 +228,7 @@ In each of the aforementioned test reports, the server returns an error message 
 This error is occasionally observed, in the proxy console.
 
 A detailed analysis reveals three errors that occur internally while processing requests.
-The most significant differences relate to the storage number (`p`) and the number of ShapeTrees (`q`).
+The most significant differences relate to the storage amount (`p`) and the amount of ShapeTrees (`q`).
 However, a strict behavior could not be determined.
 It appears that test plans executed with lower values for `p` and/or `q` than those used in other tests within this experiment result in an error message indicating that a file for the locking system of the <<Solid Provider>> is requested that does not exist.
 This error resulted in the immediate termination of the process (exit code 1).
