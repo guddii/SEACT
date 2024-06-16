@@ -49,6 +49,9 @@ v22.1.0
 
 In order to run the tests, certain adjustments had to be made to the Solid Provider as part of the <<Technology Stack>>.
 It was necessary to extend the <<OIDC>> session (client credential expiration time) and lock lifetimes.
+It is necessary to extend the expiration time for the session, as the <<Authentication>> process has not been tested and will be established once and for all runnable test plans.
+The extend of lock lifetimes was needed, as the default lifetimes did not cover long-running operations, as those expected in the tests.
+The <<CSS>> configuration generatorfootnote:[https://communitysolidserver.github.io/configuration-generator/v7/] recommends that in this case the lock lifetime value be increased.
 The default lifetime of a client credential token is 0.6 seconds, which has been increased to 172800 seconds (equivalent to two days).
 The lifetime of locks has been increased by the same amount.
 
@@ -163,8 +166,9 @@ According to citenp:[nevedrov_using_2006], JMeter has three relevant test parame
 
 [horizontal]
 Number of Threads:: The number of threads, represents the number of user, using a web service.
-Ramp-up Period:: The time needed for the creation of the threads is defined by the the ramp-up period
-Loop Count:: The loop count defines the total number of threads to be executed during the test.
+Ramp-up Period:: The time needed for the creation of the threads is defined by the the ramp-up period.
+(The start time for a thread is calculated as the _ramp-up period_ divided by the _number of threads_, multiplied by the thread indexfootnote:[https://jmeter.apache.org/usermanual/test_plan.html#thread_group].)
+Loop Count:: The number of times a thread group executes each of its elements.
 
 In addition to the thread group, there are samplers, which are configurable requests to the server, such as <<HTTP>> requests.
 Each of these <<HTTP>> samplers represents a transition in the <<CRUD>> sequence.
@@ -238,7 +242,9 @@ xref:tbl-solid-ecosystem-parameters-matrix[xrefstyle=short] presents the selecti
 The ID column serves as a unique identifier for this parameter set.
 The Storage Amount column refers to the amount and current index of storages used in the Solid Provider.
 Likewise, the ShapeTree Amount column defines the amount and index of ShapeTrees which are operated with.
-It should be noted that the selection of <<Data Privacy Cockpit Parameters>> may have an effect on this parameter, potentially some of the selections becoming obsolete.
+It should be noted that the selection of <<Data Privacy Cockpit Parameters>> may have an effect on this parameter.
+If the proxy module is bypassed, the <<Solid Ecosystem Parameters>> may become obsolete, as the <<DPC>> storage resource is not used.
+However, it is possible that this may have an influence on the performance of the <<Solid Provider>>.
 
 .Solid Ecosystem Parameters Matrix
 [cols="1,1,1",id="tbl-solid-ecosystem-parameters-matrix"]
