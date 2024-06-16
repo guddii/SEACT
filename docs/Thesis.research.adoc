@@ -15,7 +15,7 @@ ifdef::backend-html5[''']
 ifndef::backend-html5[<<<]
 
 This document is divided into five sections: the Introduction, Theoretical Framework, Design and Implementation, Analysis, and Reflection.
-The <<Introduction>> will refine the research context, the terminology used in this document, and the related work in this research area.
+The <<Introduction>> will provide a more detailed examination of the research context and the terminology utilized in this document.
 Fundamental concepts, such as data sovereignty and recommended quality aspects, will be summarized in the <<Theoretical Framework>>.
 The <<Design and Implementation>> section will explain the system design concept and the technological choices made.
 The <<Analysis>> section will define the experimental conditions and validate them with the quality criteria described in the Theoretical Framework.
@@ -24,24 +24,30 @@ The <<Reflection>> section will discuss the considerations from the Introduction
 = Introduction
 
 [partintro]
-The introduction will define the research, introduce the terminology used, and demonstrate related work on this topic.
+The introduction will set out the scope of the research and define the terminology used in this context.
 The <<Research, research>> chapter will begin with a motivating problem and objectives that define the interest in this research.
 This chapter will also define the design of this research and the concept, including the requirements.
 The <<Terminology, terminology>> chapter will explain general Solid terms, the understanding of access monitoring, the system definitions, and the proxy design pattern.
-A summary of the state of the art will be provided in the chapter on <<Related Work, related work>>.
 
 == Research
 
-The Solid Project is an <<RDF>>-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
-The technology is still in development and not yet fully evolved.
-The current version is missing some essential features required for production environments.
-Ongoing research and development is being conducted to improve the ecosystem, resulting in the regular introduction of new features or <<Solid Provider>>s.
+The topic of decentralized data processing represents a significant and complex area of inquiry within the field of computer science.
+One of the most significant developments in this field was the advent of the Internet.
+The server-client model, which separates processing into two parties, has enabled a wide range of consumers to benefit from this concept.
+In this regard, the use of web applications continued to grow.
+One of the limitations of this approach is that the data processing and storage are often shifted to the server, which increases the problem of vendor lock-in for one's own data.
+In order to overcome this issue, Solid Project was introduced as a vendor-agnostic approach for identity management, data storage, and access granting.
+It is an <<RDF>>-based ecosystem that aims to achieve a decentralized web for individuals, social entities, or software.
+
+The processing of data stored in the private space must be decentralized due to the decentralized nature of Solid.
+Given the involvement of multiple parties, resources maintained by the <<Solid Provider>> are frequently utilized.
+While access granting for these resources is a significant topic in the Solid Community, the actual access is not part of the scope of Solid, resulting in a lack of transparency and access control.
 
 This thesis aims to develop and analyze a Solid-based application that aligns with the Solid ecosystem without enforcing it.
 The application will enhance data privacy concerns, specifically in terms of data traceability and access control.
-The goal is to increase visibility and track requested resources from parties within and beyond the ecosystem through logs and their representation.
+The goal is to increase visibility and track requested resources from parties within and beyond the ecosystem through access logs and their representation.
 These requests should be processed and logged to achieve better control over the exposed data, by monitoring them.
-All of these achievements should be established in a clear context and communicated through data <<API,APIs>> to ensure safety for new features and potential changes in <<Solid Provider>>s.
+All of these achievements should be established in a clear context and communicated through data <<API,APIs>> to ensure safety for new features and potential changes in <<Solid Provider,Solid Providers>>.
 
 include::Problem_Definition.adoc[leveloffset=+2]
 
@@ -58,10 +64,6 @@ include::Access_Control_and_Traceability.adoc[leveloffset=+2]
 include::System.adoc[leveloffset=+2]
 
 include::Proxy.adoc[leveloffset=+2]
-
-== Related Work
-
-include::Related_Work.adoc[leveloffset=+2]
 
 = Theoretical Framework
 
@@ -110,6 +112,7 @@ include::Performance_Efficiency.adoc[leveloffset=+2]
 The Design and Implementation section provides a technical perspective on the prototype, which has been developed to validate the requirements and quality.
 The <<System Design>> illustrates the abstract concept of software, divided into its <<Logical Topology>>, <<Logical Data Model>>, and <<System Behavior>>.
 In contrast, the <<Technology>> section offers a more detailed examination of the dedicated software.
+Finally, a summary of the state of the art will be provided in the chapter on <<Related Work, related work>>.
 
 == System Design
 
@@ -143,6 +146,10 @@ include::Technology_Stack.adoc[leveloffset=+2]
 include::Limits_of_the_Technology_Stack.adoc[leveloffset=+2]
 
 include::Deviation_from_Specification.adoc[leveloffset=+2]
+
+== Related Work
+
+include::Related_Work.adoc[leveloffset=+2]
 
 = Analysis
 
