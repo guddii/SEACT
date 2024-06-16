@@ -102,3 +102,10 @@ In this scenario, the source of the problem may be the proxy, the server, or eve
 This does not explain the observed increase of almost 1000-fold when enabling the <<DPC>>, as shown in column `C`.
 However, it may explain a greater portion of the increment, as the <<DPC>> will multiply each request, as well as the potential error.
 Consequently, the accumulated response time of the <<DPC>> is increased, with the root cause being one of the other system components.
+
+The results of the experiments yielded only limited insights into the research questions.
+The effectiveness of the test results from <<Experiment 10>> was constrained by the scope of the investigation, which focused on bypassed and claimed storage cases.
+Additionally, the storage and ShapeTree amount were only tested with 10.
+The number of threads could only be tested up to 2.
+Given the limited data resulting from the parameters, it is challenging to provide an accurate assessment of the system load as required in <<QUEST-2>> and <<QUEST-3>>.
+The questions that can be answered by the data are summarized in xref:Conclusion.adoc[xrefstyle=short].
