@@ -22,8 +22,13 @@ citenp:[diederich_xdatenschutzcockpit_2023] describes the conclusion of a protot
 This cockpit was developed within an enclosed ecosystem to monitor a newly introduced digital registry, with the objective of achieving transparency for citizens and their data.
 
 // Solid and Access Control
-citenp:[esposito_assessing_2023] did consider security concerns, as outlined in the GDPR and other pertinent documents, in order to demonstrate their relevance to the measures in the <<Solid Protocol>>.
-Security concerns are currently addressed at various levels.
+citenp:[esposito_assessing_2023] did consider security concerns, as outlined in the <<GDPR>> and other pertinent documents, in order to demonstrate their relevance to the measures in the <<Solid Protocol>>.
+In this context, the lack of adequate logs has been criticized, as addressed in this work.
+They have been separated into two kinds of logs: "Event logs for system behaviour and user activities" and "Tamper-proof access logs with different views".
+As system behavior cannot be monitored from outside a system without modifying the <<Solid Provider>>, only access logs have been considered in the proposed approach.
+One aspect that has been deliberately excluded is the recommendation not to provide logs in external storage resources.
+This is due to the citenp:[esposito_assessing_2023] study, which has identified this as an unnecessary risk for the transmission of privacy-critical data over the internet.
+This may be the case for transmissions over public networks, but in this approach, the proxy and the <<Solid Provider>> must be served in an enclosed network, as the proxy is the only server that might be publicly accessible.
 citenp:[slabbinck_enforcing_2024] did propose a method for limiting access to a resource for a defined period of time, with the aim of gaining control over the exposed data utilizing an automated agent.
 The automated agent mechanism was also employed in the work of citenp:[slabbinck_rule-based_2023], where the agent executes automated background processes to synchronize the state of a smart bulb with a Solid storage.
 The concept of acting on behalf of another individual was also explored in the work of citenp:[schmid_rights_2024], where access privileges can be delegated to another agent via a proxyfootnote:[https://github.com/wintechis/delegation-proxy].

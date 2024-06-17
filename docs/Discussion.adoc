@@ -69,7 +69,6 @@ When the data is stored at the site of the <<Data Trustee>>, it is crucial that 
 This is a challenging issue, as the creation of a storage resource per agent seems a convenient solution.
 However, this isolated data space is not part of a defined workflow in the <<Solid Protocol>>.
 The creation of container resources does have a unified <<API>>, although <<CSS>> does this in a non-compliant way.
-// TODO external storage of logs (see citenp:[esposito_assessing_2023])
 
 The introduction of a <<Custom Vocabulary>> for this work is also open to debate.
 While it is legitimate to introduce a custom vocabulary, <<RDF>>-based systems benefit the most if the vocabulary is a common or at least publicly known vocabulary.
