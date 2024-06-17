@@ -4,13 +4,13 @@ Consequently, research sources are limited and related work is almost non-existe
 However, some work and projects do consider related ideas.
 
 // Motivation
-A research project that has greatly inspired this thesis is the showcase project of a Solid-based government-to-citizen use case as described by cite:[both_german_2024].
+A research project that has greatly inspired this thesis is the showcase project of a Solid-based government-to-citizen use case as described by citenp:[both_german_2024].
 In this project, the data of a citizen is maintained by several <<Data Trustee,Data Trustees>>, one for each governmental authority.
 In this model, the citizen passes references to the maintained data to the individual authority, ensuring that the data is only stored once at the responsible authority.
 This, however, resulted in the creation of a highly interconnected system, even with a relatively low number of authorities.
 The issue that emerged was that, following the citizen's granting of access, the actual retrieval of data from the authority was not transparent to the citizen.
 In order to regain control over the exposed data, the concept of a <<DPC>> was introduced.
-With the problem of interconnected data in mind, as outlined in <<ISSUE-2>>,
+With the problem of interconnected data in mind, as outlined in <<ISSUE-2>>.
 
 // Projects
 In addition to the research topics, there have been projects in the public sector addressing the issue of data exchange, access control, and transparency.
@@ -33,7 +33,7 @@ One of the primary concerns of this thesis is to determine the impact of the pro
 In this context, it is reasonable to align the proposed approach with known benchmarks to determine the incremental impact it will have.
 This will enable a clear understanding of the proposed approach's potential impact.
 There are numerous benchmarks, such as the Proxy-Benchmarksfootnote:[https://github.com/NickMRamirez/Proxy-Benchmarks], which are designed to assess the efficiency of proxies.
-In addition, cite:[pan_survey_2018] presents a variety of <<RDF>> benchmark datasets, including the Lehigh University Benchmark (LUBM)footnote:[https://swat.cse.lehigh.edu/projects/lubm/], the Berlin <<SPARQL>> Benchmark (BSBM), the DBpedia SPARQL Benchmark, and the SP^2Bench.
+In addition, citenp:[pan_survey_2018] presents a variety of <<RDF>> benchmark datasets, including the Lehigh University Benchmark (LUBM)footnote:[https://swat.cse.lehigh.edu/projects/lubm/], the Berlin <<SPARQL>> Benchmark (BSBM), the DBpedia SPARQL Benchmark, and the SP^2Bench.
 These benchmarks address specific scenarios, such as the passing through of a proxy or the querying of RDF data.
 The obstacle in using the proxy is that the efficiency of the proxy is not of interest; only the module that is executed within the proxy is relevant.
 Furthermore, querying <<RDF>> is not applicable to the context of this work, as it lives in a <<ROA>>, working with the actual resources.

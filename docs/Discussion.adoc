@@ -85,7 +85,7 @@ Instead, a <<Authorization Code Flow>> (Basic Flow) is provided, which does requ
 This presents a challenge for automated agents.
 While the majority of Solid Providers do support the <<Authorization Client Credentials Flow>>, this is not guaranteed, and therefore represents an unacceptably high level of risk when establishing a general approach.
 
-As previously stated in Chapter 8, this system is significantly influenced by cite:[both_german_2024].
+As previously stated in xref:related_work[xrefstyle="short"], this system is significantly influenced by citenp:[both_german_2024].
 The circumstances there are entirely distinct, as multiple disparate agents are attempting to access one's data.
 The present analysis is limited to the case of an individual attempting to access their own data.
 This may not be of particular interest to a potential <<DPC>> user, without the information of which application has accessed the data.
