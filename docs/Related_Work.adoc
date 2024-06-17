@@ -18,3 +18,15 @@ One of its central services is a monitoring system that logs data, as pointed ou
 A project that is already utilizing Solid is _Athumifootnote:[https://athumi.be/]_, which acts as a trust partner for the purpose of strengthening data collaboration between consumers, businesses, and public agencies in _Flanders_.
 citenp:[diederich_xdatenschutzcockpit_2023] describes the conclusion of a prototype period for a data privacy cockpit in Germany.
 This cockpit was developed within an enclosed ecosystem to monitor a newly introduced digital registry, with the objective of achieving transparency for citizens and their data.
+
+// Benchmark
+One of the primary concerns of this thesis is to determine the impact of the proposed approach on <<Performance Efficiency>>.
+In this context, it is reasonable to align the proposed approach with known benchmarks to determine the incremental impact it will have.
+This will enable a clear understanding of the proposed approach's potential impact.
+There are numerous benchmarks, such as the Proxy-Benchmarksfootnote:[https://github.com/NickMRamirez/Proxy-Benchmarks], which are designed to assess the efficiency of proxies.
+In addition, cite:[pan_survey_2018] presents a variety of <<RDF>> benchmark datasets, including the Lehigh University Benchmark (LUBM)footnote:[https://swat.cse.lehigh.edu/projects/lubm/], the Berlin <<SPARQL>> Benchmark (BSBM), the DBpedia SPARQL Benchmark, and the SP^2Bench.
+These benchmarks address specific scenarios, such as the passing through of a proxy or the querying of RDF data.
+The obstacle in using the proxy is that the efficiency of the proxy is not of interest; only the module that is executed within the proxy is relevant.
+Furthermore, querying <<RDF>> is not applicable to the context of this work, as it lives in a <<ROA>>, working with the actual resources.
+The only benchmark that could be found suitable for Solid-based scenarios is SolidBench.jsfootnote:[https://github.com/SolidBench/SolidBench.js], which is limited to requests without <<Authentication>>.
+As the objective of the <<DPC>> is to monitor authenticated requests, it is necessary to implement a bespoke mechanism, as outlined in the <<Network Parameters>> section of xref:Experiments[xrefstyle="short"].
