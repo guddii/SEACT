@@ -28,6 +28,8 @@ The returning server response will take the path back to the original requester.
 Since the requester can be the proxy itself, there needs to be some kind of guard to prevent infinite recursive calls.
 If the requester is someone other than the proxy, the Data Privacy Cockpit middleware can be executed.
 In certain cases, it may be necessary to read and evaluate the server response, which can be done during a response interceptionfootnote:[https://github.com/chimurai/http-proxy-middleware/blob/master/recipes/response-interceptor.md] step.
+In this process, a pair of client ID and the name of the registered web application, which were submitted during the OIDC process, is stored.
+This information can be utilized in authorized requests by processing the authorization token and retrieving the client ID from the store to obtain the corresponding application name.
 xref:behavior-ref-2[xrefstyle=short] provides an illustration of this process.
 
 .Sequence diagram of the request being forwarded by the proxy

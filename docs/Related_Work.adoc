@@ -3,12 +3,14 @@ Due to the relatively small size of the group and its limited public visibility,
 Consequently, research sources are limited and related work is almost non-existent.
 However, some work and projects do consider related ideas.
 
-// Solid and Access Control
-citenp:[esposito_assessing_2023] did consider security concerns, as outlined in the GDPR and other pertinent documents, in order to demonstrate their relevance to the measures in the <<Solid Protocol>>.
-Security concerns are currently addressed at various levels.
-citenp:[slabbinck_enforcing_2024] did propose a method for limiting access to a resource for a defined period of time, with the aim of gaining control over the exposed data utilizing an automated agent.
-The automated agent mechanism was also employed in the work of citenp:[slabbinck_rule-based_2023], where the agent executes automated background processes to synchronize the state of a smart bulb with a Solid storage.
-The concept of acting on behalf of another individual was also explored in the work of citenp:[schmid_rights_2024], where access privileges can be delegated to another agent via a proxyfootnote:[https://github.com/wintechis/delegation-proxy].
+// Motivation
+A research project that has greatly inspired this thesis is the showcase project of a Solid-based government-to-citizen use case as described by cite:[both_german_2024].
+In this project, the data of a citizen is maintained by several <<Data Trustee,Data Trustees>>, one for each governmental authority.
+In this model, the citizen passes references to the maintained data to the individual authority, ensuring that the data is only stored once at the responsible authority.
+This, however, resulted in the creation of a highly interconnected system, even with a relatively low number of authorities.
+The issue that emerged was that, following the citizen's granting of access, the actual retrieval of data from the authority was not transparent to the citizen.
+In order to regain control over the exposed data, the concept of a <<DPC>> was introduced.
+With the problem of interconnected data in mind, as outlined in <<ISSUE-2>>,
 
 // Projects
 In addition to the research topics, there have been projects in the public sector addressing the issue of data exchange, access control, and transparency.
@@ -18,6 +20,13 @@ One of its central services is a monitoring system that logs data, as pointed ou
 A project that is already utilizing Solid is _Athumifootnote:[https://athumi.be/]_, which acts as a trust partner for the purpose of strengthening data collaboration between consumers, businesses, and public agencies in _Flanders_.
 citenp:[diederich_xdatenschutzcockpit_2023] describes the conclusion of a prototype period for a data privacy cockpit in Germany.
 This cockpit was developed within an enclosed ecosystem to monitor a newly introduced digital registry, with the objective of achieving transparency for citizens and their data.
+
+// Solid and Access Control
+citenp:[esposito_assessing_2023] did consider security concerns, as outlined in the GDPR and other pertinent documents, in order to demonstrate their relevance to the measures in the <<Solid Protocol>>.
+Security concerns are currently addressed at various levels.
+citenp:[slabbinck_enforcing_2024] did propose a method for limiting access to a resource for a defined period of time, with the aim of gaining control over the exposed data utilizing an automated agent.
+The automated agent mechanism was also employed in the work of citenp:[slabbinck_rule-based_2023], where the agent executes automated background processes to synchronize the state of a smart bulb with a Solid storage.
+The concept of acting on behalf of another individual was also explored in the work of citenp:[schmid_rights_2024], where access privileges can be delegated to another agent via a proxyfootnote:[https://github.com/wintechis/delegation-proxy].
 
 // Benchmark
 One of the primary concerns of this thesis is to determine the impact of the proposed approach on <<Performance Efficiency>>.

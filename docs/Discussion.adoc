@@ -85,10 +85,15 @@ Instead, a <<Authorization Code Flow>> (Basic Flow) is provided, which does requ
 This presents a challenge for automated agents.
 While the majority of Solid Providers do support the <<Authorization Client Credentials Flow>>, this is not guaranteed, and therefore represents an unacceptably high level of risk when establishing a general approach.
 
-// TODO
-//It is necessary for the DPC application to alter the OIDC login process in order to receive the name of the application that requires data from a private storage resource.
-//In the suggested scenario, tokens are stored in the runtime memory, which may be vulnerable to data loss.
-//The effect of this mechanism is also unclear, especially when a session is expired and a fresh token is requested.
+As previously stated in Chapter 8, this system is significantly influenced by cite:[both_german_2024].
+The circumstances there are entirely distinct, as multiple disparate agents are attempting to access one's data.
+The present analysis is limited to the case of an individual attempting to access their own data.
+This may not be of particular interest to a potential <<DPC>> user, without the information of which application has accessed the data.
+This is why the detection for the application name has been introduced, as previously discussed in the section on <<Forwarded Request,Forwarded Requests>>.
+In this process, the <<DPC Middleware>> was required to observe the <<OIDC>> login procedure and obtain the name of the application.
+In this scenario, tokens are stored in the runtime memory, which may be susceptible to data loss.
+The effect of this mechanism is also unclear, particularly in the context of a session that has expired and a fresh token is requested.
+In addition to the technical limitations, this approach is constrained to the <<Authorization Code Flow>>, which may restrict the available functions of the <<Solid Provider>> or the reliability of this approach is uncertain.
 
 The most obvious shortcoming of the proposed approach is the lack of a stable and reliable use.
 Even if this approach is not implemented in its most optimal manner, the impact on the system's performance is significant, as evidenced by the <<Performance Efficiency Analysis>>.
