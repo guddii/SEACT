@@ -1,7 +1,7 @@
 = Custom Vocabulary
 
-The vocabulary provided by the <<Solid Ecosystem>> does not cover all the necessary information that has been introduced in the data model and is required for the process.
-An <<RDF>> vocabulary for the claim process and logging of access has been introduced to support this.
+The vocabulary provided by the <<Solid Ecosystem>> does not cover all the necessary information that has been introduced in the data model.
+An custom <<RDF>> vocabulary for the claim process and logging of access has been introduced to support this.
 
 == Claim Vocabulary
 
@@ -20,7 +20,6 @@ The claiming vocabulary presented in xref:lst-vocabulary-claim[xrefstyle=short],
 However, in the implementation, this approach has not been employed in an effective manner.
 For the purposes of mocking, the <<URL>> references were sufficient, as the data was not fetched from the vocabulary.
 Nevertheless, the semantics presented in the listing are accurate.
-
 Uses of the <<RDF>> vocabulary are shown in <<Claim Registry (Data Model)>> and <<Verification (Data Model)>>.
 
 == Access Log Vocabulary

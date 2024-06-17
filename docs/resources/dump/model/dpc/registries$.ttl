@@ -2,13 +2,13 @@
 @prefix claim:   <urn:claim#>.
 
 <#ab674650> # <1>
-    a                           interop:DataRegistry ;
-    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/74242fac/AccessLog/> .
+    a                           interop:DataRegistry;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/74242fac/AccessLog/>.
 
 <#ab674650>
-    a                           claim:Registry ;
-    claim:trustee               <http://proxy.localhost:4000/client/profile/card#me> ;
-    claim:monitoredStorage      <http://proxy.localhost:4000/client/> ;
-    claim:verificationResource  <http://proxy.localhost:4000/client/dpc#verification> ;
-    claim:verificationCode      "66097db6e9c3c234eb35f8ca66b5e4d829c6d..." ;
-    claim:claimedData           <http://proxy.localhost:4000/dpc/data/74242fac/> .
+    a                           claim:Registry;
+    claim:trustee               <http://proxy.localhost:4000/client/profile/card#me>;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client/>;
+    claim:verificationResource  <http://proxy.localhost:4000/client/dpc#verification>;
+    claim:verificationCode      "66097db6e9c3c234eb35f8ca66b5e4d829c6d...";
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/74242fac/>.

@@ -119,7 +119,7 @@ Finally, a summary of the state of the art will be provided in the chapter on <<
 === Logical Topology
 
 The logical topology describes the access, transport, addressing of protocols, and data paths.
-The following section illustrates the system components and their connections.
+The following section describes the system components and their internal and external connections.
 
 include::Component_Orchestration.adoc[leveloffset=+3]
 

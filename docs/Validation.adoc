@@ -472,6 +472,8 @@ As observed in the measurements shown in xref:tbl-test-run-summary-errors[xrefst
 The average decline in transactions per second is 13.29.
 In considering the aspects identified by <<IBM>> as influencing throughput, namely processing overhead in the software, the degree of parallelism supported by the software, and the types of transactions processed, it appears that these factors may be plausible causes of the issues that have been found.
 
+<<<
+
 .Test Run Throughput in Transactions per Second
 [cols="1,2,2",id="tbl-test-run-throughput"]
 |===

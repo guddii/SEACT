@@ -20,7 +20,7 @@ As part of the structural hierarchy shown in xref:wbs_Endpoint_structure[xrefsty
 == Personal Profile Document (Data Model)
 
 To participate in the Solid Application Interoperability Specification, an `interop:Agent` must be declared in the profile document.
-The node will refer to the <<Registry Set (Data Model), registry set>> that contains the references to the registered data.
+This node will also refer to the <<Registry Set (Data Model), registry set>>.
 xref:lst-model-1[xrefstyle=short] presents the corresponding <<RDF>> fragment.
 
 .`interop:Agent` <<Thing>> at http://proxy.localhost:4000/dpc/profile/card
