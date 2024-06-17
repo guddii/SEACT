@@ -1,0 +1,42 @@
+= Component Orchestration
+
+The system components consist of three main parts: the client, the proxy, and the <<Solid Provider>> as the server.
+The client does not require any concept-specific logic and will be omitted from the system component view.
+Clients can access the public endpoint without any changes to the <<API>>.
+The <<Solid Provider>> should also remain unaffected and only be accessed through its <<HTTP>> <<API,APIs>>.
+When accessing the storages that exist in the <<Solid Provider>>, it is important to divide them by ownership.
+This approach results in two different orchestrations of the system components: one where the captured data is held in trust, and another where the data is owned by the client.
+
+== Client as Data Owner
+
+In this approach, the main entry, such as a proxy module manager or router, delegates the network request of a monitored resource or endpoint to the proxy module in charge.
+The module verifies that the resource exists in storage.
+If so, the request module data is appended to a resource container within that storage.
+xref:Logical_Topology_B[xrefstyle=short] illustrates this topology.
+
+.Component Diagram of the Logical Topology (Client)
+[.text-center]
+[plantuml,format=svg,id="Logical_Topology_B"]
+....
+include::resources/diagrams/cmp_Logical_Topology_B.puml[]
+....
+
+== Trustee as Data Owner
+
+Similar to the previous approach, the main entry delegates the network request for a monitored resource or endpoint to the responsible proxy module.
+The module then verifies the resource's existence in storage.
+If applicable, append the request module data to a resource container in the module's storage.
+xref:Logical_Topology_A[xrefstyle=short] illustrates this topology, with the trustee as the data owner.
+
+.Component Diagram of the Logical Topology (Trustee)
+[.text-center]
+[plantuml,format=svg,id="Logical_Topology_A"]
+....
+include::resources/diagrams/cmp_Logical_Topology_A.puml[]
+....
+
+Depending on whether the capturing strategy is permanent or registration-based, both approaches may require agent identity verification.
+This requirement is indicated by a dashed arrow between the proxy module and the storage in both figures.
+
+The trustee-as-data-owner approach eliminates the need for ownership verification for every requested resource and avoids potential issues with the module's writing permissions to the client's storage.
+This approach is preferred over the client-as-data-owner approach, where the module relies on enough permissions.

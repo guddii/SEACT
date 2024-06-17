@@ -1,0 +1,45 @@
+= Future Work
+
+In the context of further work on this project, it is important to consider a number of additional factors that could potentially enhance the <<System Design>> and the <<Performance Efficiency>>.
+
+As previously discussed, the most crucial objective is to identify a method for stabilizing and optimizing this approach.
+Otherwise, any attempt to enhance this technique will inevitably lead to performance or load issues.
+It would be beneficial to initiate future work with this issue in mind, beginning with a test of the Solid Provider and continuing with a proxy and all other participating system components.
+This will enable an evaluation of the performance of each component, such as <<CSS>>, in relation to the approach in question.
+Ultimately, a test of the specific configuration must be conducted in order to achieve optimal efficiency.
+This may include the number of workersfootnote:[https://communitysolidserver.github.io/CommunitySolidServer/7.x/usage/starting-server/] for multithreaded mode.
+An alternative would be to consider a different server, such as the Manas solid serverfootnote:[https://manomayam.github.io/manas/], which focuses on robustness and concurrency.
+
+It is assumed that the access logs are only accessible to the owner of a storage resource.
+However, in a default configuration of <<CSS>>, this information is unknown when receiving an arbitrary resource from a storage resource.
+This particular <<Solid Provider>> does provide a visibility optionfootnote:[https://communitysolidserver.github.io/CommunitySolidServer/7.x/usage/account/json-api/] to assign a <<Identity>> to a storage resource.
+If activated, the reference is contained as a link header in the response, as demonstrated in xref:lst-referenced-webid-in-response-header[xrefstyle=short].
+This may potentially make the entire claiming mechanism obsolete, which would be an interesting topic for further investigation.
+
+.Referenced WebID in Response Header.
+[source,id="lst-referenced-webid-in-response-header"]
+----
+link: <http://example-tld/client/profile/card#me>; rel="http://www.w3.org/ns/solid/terms#owner"
+----
+
+In this work, the issue of application-level caching has not been a concern.
+The objective has been to ensure that all resources and relevant information are always the latest version, with no older version delivered from any caching mechanism.
+However, in real-world scenarios, this approach would be considered a bad practice, as it would result in unnecessary network penetration.
+The proposed approach does offer some instances in which caching may be suitable.
+For instance, caching can be employed to discover the containing storage resource.
+In this case, an arbitrary resource is reduced to the closest storage resource container.
+This process occurs each time a resource is requested, even if there is minimal change frequency.
+This is a scenario that should be investigated further to determine if caching is applicable.
+There may be other scenarios that emerge as a result of further research on this topic.
+
+Should the proposed <<System Design>> be retained, with a file located in the client's storage resource being read from the <<DPC>> agent, new possibilities emerge.
+Clients may restrict or manipulate access from their individual storage resources without modifying the code.
+Currently, this resource contains only the `claim:Verification` <<Thing>>.
+However, it could also contain filtering rules for requests, which, for instance, limit access by specific patterns.
+A research program in this direction could lead to a significant increase in control over data privacy, based on the transparency benefits achieved here.
+
+A final suggestion for future work is to apply the proposed approach to other proxy modules.
+The <<DPC Middleware>> is an illustrative example of how limits in the <<Solid Ecosystem>> or the individual Solid Provider could be overcome with the use of a intermediary design pattern, such as a proxy.
+However, it is important to note that the <<DPC Middleware>> is only a single module with a specific purpose.
+It would be of significant interest to ascertain the consequences of multiple proxy modules with distinct purposes.
+The implications of a more extensive implementation of this concept, as exemplified by the <<DPC Middleware>>, may be of interest, as it represents a generic idea.

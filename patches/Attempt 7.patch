@@ -1,0 +1,489 @@
+Subject: [PATCH] perf
+---
+Index: apps/proxy/src/utils/create-log.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/apps/proxy/src/utils/create-log.ts b/apps/proxy/src/utils/create-log.ts
+--- a/apps/proxy/src/utils/create-log.ts	(revision b600fe0e69640f9b101935f3bf65c6bbd5a64ae3)
++++ b/apps/proxy/src/utils/create-log.ts	(date 1718221610077)
+@@ -2,15 +2,21 @@
+ import {
+   AGENTS,
+   updateUrl,
+-  createOrUpdateResource,
+   createUrl,
+   findDataRegistrationsInClaimContainer,
+   createAccessLogNamespace,
+   VOCAB,
+   findAccessLogContainer,
++  toUrlString,
+ } from "@seact/core";
+-import { RDF, XSD } from "@inrupt/vocab-common-rdf";
+-import { buildThing } from "@inrupt/solid-client";
++import { RDF } from "@inrupt/vocab-common-rdf";
++import {
++  buildThing,
++  createSolidDataset,
++  createThing,
++  saveSolidDatasetInContainer,
++  setThing,
++} from "@inrupt/solid-client";
+ import type express from "express";
+ import {
+   getAgentUserSession,
+@@ -92,42 +98,35 @@
+ 
+     const dataRegistrationsInClaimContainer =
+       await findDataRegistrationsInClaimContainer(req, session);
+-    const accessLogNamespace = await createAccessLogNamespace(
+-      AGENTS.DPC,
+-      session,
+-    );
++    const accessLogNamespace = createAccessLogNamespace(AGENTS.DPC);
+     const accessLogContainer = await findAccessLogContainer(
+       dataRegistrationsInClaimContainer,
+       accessLogNamespace,
+       session,
+     );
+ 
+-    const date = new Date();
+-    // Get year, month, and day part from the date
+-    const year = date.toLocaleString("default", { year: "numeric" });
+-    const month = date.toLocaleString("default", { month: "2-digit" });
+-    const day = date.toLocaleString("default", { day: "2-digit" });
+-    // Generate yyyy-mm-dd date string
+-    const formattedDate = `${year}-${month}-${day}`;
+-
+     if (accessLogContainer) {
+-      await createOrUpdateResource({
+-        resource: updateUrl(`/${formattedDate}`, accessLogContainer),
+-        session,
+-        callback: (thing) =>
+-          buildThing(thing)
+-            .addUrl(RDF.type, VOCAB.LOG.AccessLog)
+-            .addDatetime(VOCAB.LOG.date, new Date())
+-            .addStringNoLocale(VOCAB.LOG.accessor, accessor)
+-            .addStringNoLocale(VOCAB.LOG.application, application)
+-            .addStringNoLocale(VOCAB.LOG.action, getCRUD(req))
+-            .addStringNoLocale(VOCAB.LOG.resource, req.url || "")
+-            .build(),
+-        prefixes: {
+-          al: `${accessLogNamespace.vocab.internal_resourceInfo.sourceIri}#`,
+-          ...XSD.PREFIX_AND_NAMESPACE,
++      let accessLogDataset = createSolidDataset();
++
++      const accessLogThing = buildThing(createThing({ name: "log" }))
++        .addUrl(RDF.type, VOCAB.LOG.AccessLog)
++        .addDatetime(VOCAB.LOG.date, new Date())
++        .addStringNoLocale(VOCAB.LOG.accessor, accessor)
++        .addStringNoLocale(VOCAB.LOG.application, application)
++        .addStringNoLocale(VOCAB.LOG.action, getCRUD(req))
++        .addStringNoLocale(VOCAB.LOG.resource, req.url || "")
++        .build();
++
++      accessLogDataset = setThing(accessLogDataset, accessLogThing);
++
++      const resource = updateUrl(`/`, accessLogContainer);
++      await saveSolidDatasetInContainer(
++        toUrlString(resource),
++        accessLogDataset,
++        {
++          fetch: session.fetch,
+         },
+-      });
++      );
+     }
+   }
+ 
+Index: package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/package.json b/package.json
+--- a/package.json	(revision b600fe0e69640f9b101935f3bf65c6bbd5a64ae3)
++++ b/package.json	(date 1718010506680)
+@@ -28,8 +28,8 @@
+     "prettier": "^3.1.1",
+     "turbo": "^1.13.3"
+   },
+-  "packageManager": "pnpm@9.1.0",
++  "packageManager": "pnpm@9.2.0",
+   "volta": {
+-    "node": "22.1.0"
++    "node": "20.14.0"
+   }
+ }
+Index: tests/benchmark/src/runner/jmeter/index.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tests/benchmark/src/runner/jmeter/index.ts b/tests/benchmark/src/runner/jmeter/index.ts
+--- a/tests/benchmark/src/runner/jmeter/index.ts	(revision b600fe0e69640f9b101935f3bf65c6bbd5a64ae3)
++++ b/tests/benchmark/src/runner/jmeter/index.ts	(date 1718137449683)
+@@ -9,7 +9,13 @@
+   saveSolidDatasetAt,
+   setThing,
+ } from "@inrupt/solid-client";
+-import { AGENTS, VOCAB, toUrlString, updateUrl } from "@seact/core";
++import {
++  AGENTS,
++  VOCAB,
++  findStorage,
++  toUrlString,
++  updateUrl,
++} from "@seact/core";
+ import type { WithResourceInfo } from "@inrupt/solid-client/src/interfaces.ts";
+ import type { GetAccessTokenResponse } from "../../utils/get-access-token.ts";
+ import { getAccessToken } from "../../utils/get-access-token.ts";
+@@ -19,10 +25,11 @@
+ import { sleep } from "../../utils/sleep.ts";
+ import { runJTL } from "./run-jtl.ts";
+ 
+-const storageParameters: ("N" | "C" | "B")[] = ["B", "N", "C"];
+-const storageNumbers = [1, 10, 30];
+-const shapeTreeNumbers = [1, 10, 30];
+-const numberOfThreads = [1, 10, 30];
++const storageParameters: ("N" | "C" | "B")[] = ["C", "B"];
++const storageNumbers = [10];
++const shapeTreeNumbers = [10];
++const numberOfThreads = [3];
++const attempt = 12;
+ 
+ export interface ForEachTestPlanOptions {
+   file: string;
+@@ -34,7 +41,7 @@
+ 
+ async function getClients(): Promise<GetAccessTokenResponse[]> {
+   return Promise.all(
+-    generateAgents("client", 100).map((client) => {
++    generateAgents("client", 10).map((client) => {
+       const CLIENT_N = client.toUpperCase();
+       return getAccessToken(
+         client,
+@@ -107,7 +114,7 @@
+     });
+ 
+     const parsedPath = path.parse(t);
+-    const testId = `${parsedPath.name}-${options.ncb}-${options.p}-${options.q}-${options.r}`;
++    const testId = `${parsedPath.name}.${attempt}-${options.ncb}-${options.p}-${options.q}-${options.r}`;
+ 
+     const l = path.format({
+       root: path.join(parsedPath.dir, "../reports/"),
+@@ -126,6 +133,21 @@
+       return;
+     }
+ 
++    const storage = await findStorage(
++      [new URL(`http://proxy.localhost:4000/client${options.p}/`)],
++      dpcSession,
++    );
++    if (!storage) {
++      console.log(
++        `------------------------------------------------------------`,
++      );
++      console.log(`Error ${testId}: No ".meta" resource`);
++      console.log(
++        `------------------------------------------------------------`,
++      );
++      return;
++    }
++
+     console.log(`------------------------------------------------------------`);
+     console.log(`Run ${testId}`);
+     console.log(`------------------------------------------------------------`);
+@@ -146,16 +168,14 @@
+       for (const p of storageNumbers) {
+         for (const q of shapeTreeNumbers) {
+           for (const r of numberOfThreads) {
+-            if (ncb.includes("C")) {
+-              await swapRegistrySet({
+-                dpcSession,
+-                path: `/registries-${p}-${q}`,
+-              });
+-            }
++            await swapRegistrySet({
++              dpcSession,
++              path: `/registries`,
++            });
++
+             await sleep();
+             await forEachTestPlan({ file, ncb, p, q, r });
+-            await swapRegistrySet({ dpcSession, path: `/registries` });
+-            await sleep();
++            await sleep(60);
+           }
+         }
+       }
+Index: apps/dpc/src/utils/claim.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/apps/dpc/src/utils/claim.ts b/apps/dpc/src/utils/claim.ts
+--- a/apps/dpc/src/utils/claim.ts	(revision b600fe0e69640f9b101935f3bf65c6bbd5a64ae3)
++++ b/apps/dpc/src/utils/claim.ts	(date 1718010506687)
+@@ -37,10 +37,7 @@
+   storage: URL,
+ ): Promise<SolidDataset & WithServerResourceInfo & WithChangeLog> {
+   const session = await getAgentUserSession(AGENTS.DPC);
+-  const accessLogNamespace = await createAccessLogNamespace(
+-    AGENTS.DPC,
+-    session,
+-  );
++  const accessLogNamespace = createAccessLogNamespace(AGENTS.DPC);
+ 
+   let registries: SolidDataset = await getRegistries(AGENTS.DPC, session);
+ 
+Index: packages/core/src/namepace/access-log.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/packages/core/src/namepace/access-log.ts b/packages/core/src/namepace/access-log.ts
+--- a/packages/core/src/namepace/access-log.ts	(revision b600fe0e69640f9b101935f3bf65c6bbd5a64ae3)
++++ b/packages/core/src/namepace/access-log.ts	(date 1718010506695)
+@@ -1,203 +1,34 @@
+-import type {
+-  SolidDataset,
+-  WithServerResourceInfo,
+-  WithResourceInfo,
+-} from "@inrupt/solid-client";
+-import {
+-  saveFileInContainer,
+-  buildThing,
+-  getFile,
+-  universalAccess,
+-} from "@inrupt/solid-client";
+-import { RDF, RDFS, XSD } from "@inrupt/vocab-common-rdf";
+ import type { Agent } from "../models/agent";
+-import { readOrCreatePublicResource } from "../solid/read-or-create-public-resource.ts";
+ import { toUrlString, updateUrl } from "../utils/url-helper.ts";
+ 
+-async function createAccessLogNamespaceVocab(
+-  agent: Agent,
+-  session: { fetch: typeof fetch },
+-): Promise<SolidDataset & WithServerResourceInfo> {
+-  const resource = updateUrl("/ns/log", agent.storage);
+-  return readOrCreatePublicResource({
+-    resource,
+-    session,
+-    thingCallbackPairs: [
+-      {
+-        name: "AccessLog",
+-        callback: (thing) =>
+-          buildThing(thing)
+-            .addUrl(RDF.type, RDFS.Class)
+-            .addStringEnglish(RDFS.label, "AccessLog")
+-            .build(),
+-      },
+-      {
+-        name: "date",
+-        callback: (thing) =>
+-          buildThing(thing)
+-            .addUrl(RDF.type, RDF.Property)
+-            .addStringEnglish(RDFS.label, "Accessed at")
+-            .build(),
+-      },
+-      {
+-        name: "accessor",
+-        callback: (thing) =>
+-          buildThing(thing)
+-            .addUrl(RDF.type, RDF.Property)
+-            .addStringEnglish(RDFS.label, "Accessing agent")
+-            .build(),
+-      },
+-      {
+-        name: "application",
+-        callback: (thing) =>
+-          buildThing(thing)
+-            .addUrl(RDF.type, RDF.Property)
+-            .addStringEnglish(RDFS.label, "Accessing application")
+-            .build(),
+-      },
+-      {
+-        name: "resource",
+-        callback: (thing) =>
+-          buildThing(thing)
+-            .addUrl(RDF.type, RDF.Property)
+-            .addStringEnglish(RDFS.label, "Accessed resource")
+-            .build(),
+-      },
+-      {
+-        name: "action",
+-        callback: (thing) =>
+-          buildThing(thing)
+-            .addUrl(RDF.type, RDF.Property)
+-            .addStringEnglish(RDFS.label, "Action")
+-            .build(),
+-      },
+-    ],
+-    prefixes: {
+-      ...RDF.PREFIX_AND_NAMESPACE,
+-      ...XSD.PREFIX_AND_NAMESPACE,
+-    },
+-    createHeader: true,
+-  });
++interface CustomWithResourceInfo {
++  internal_resourceInfo: { sourceIri: string };
+ }
+ 
+-async function createAccessLogNamespaceShex(
+-  vocab: WithResourceInfo,
+-  agent: Agent,
+-  session: { fetch: typeof fetch },
+-): Promise<WithResourceInfo> {
+-  const container = updateUrl("/ns/", agent.storage);
+-  const fileName = "log.shex";
+-  const sourceIri = toUrlString(updateUrl(`/${fileName}`, container));
+-  const contentType = "text/shex";
+-
+-  try {
+-    await getFile(sourceIri, session);
+-  } catch (e) {
+-    const file = new File(
+-      [
+-        `PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+-PREFIX xml: <http://www.w3.org/XML/1998/namespace>
+-PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+-PREFIX shx: <http://www.w3.org/ns/shex#>
+-PREFIX log: <${vocab.internal_resourceInfo.sourceIri}#>
+-
+-<#AccessLogShape> {
+-  log:date xsd:dateTime ;
+-  log:accessor IRI ;
+-  log:application xsd:string ;
+-  log:application xsd:string ;
+-  log:resource xsd:string ;
+-  log:action xsd:string 
+-}`,
+-      ],
+-      fileName,
+-      {
+-        type: contentType,
+-      },
+-    );
+-    const response = await saveFileInContainer(toUrlString(container), file, {
+-      slug: file.name,
+-      contentType: file.type,
+-      fetch: session.fetch,
+-    });
+-    await universalAccess.setPublicAccess(
+-      response.internal_resourceInfo.sourceIri,
+-      { read: true },
+-      session,
+-    );
+-  }
++export interface AccessLogNamespace {
++  vocab: CustomWithResourceInfo;
++  shex: CustomWithResourceInfo;
++  tree: CustomWithResourceInfo;
++}
+ 
+-  return {
++export function createAccessLogNamespace(agent: Agent): AccessLogNamespace {
++  const vocab = {
+     internal_resourceInfo: {
+-      sourceIri,
+-      isRawData: true,
+-      contentType,
++      sourceIri: toUrlString(updateUrl("/ns/log", agent.storage)),
+     },
+   };
+-}
+-
+-async function createAccessLogNamespaceTree(
+-  shex: WithResourceInfo,
+-  agent: Agent,
+-  session: { fetch: typeof fetch },
+-): Promise<WithResourceInfo> {
+-  const container = updateUrl("/ns/", agent.storage);
+-  const fileName = "log.tree";
+-  const sourceIri = toUrlString(updateUrl(`/${fileName}`, container));
+-
+-  try {
+-    await getFile(sourceIri, session);
+-  } catch (e) {
+-    const file = new File(
+-      [
+-        `PREFIX st: <http://www.w3.org/ns/shapetrees#> .
+-PREFIX log-shex: <${shex.internal_resourceInfo.sourceIri}#>.
+-
+-<#AccessLogRegistrationTree>
+-  a st:ShapeTree ;
+-  st:expectsType st:Container ;
+-  st:contains <#AccessLogTree> .
+ 
+-<#AccessLogTree>
+-  a st:ShapeTree ;
+-  st:expectsType st:Resource ;
+-  st:shape log-shex:AccessLogShape .`,
+-      ],
+-      fileName,
+-    );
+-    const response = await saveFileInContainer(toUrlString(container), file, {
+-      slug: file.name,
+-      fetch: session.fetch,
+-    });
+-    await universalAccess.setPublicAccess(
+-      response.internal_resourceInfo.sourceIri,
+-      { read: true },
+-      session,
+-    );
+-  }
+-
+-  return {
++  const shex = {
+     internal_resourceInfo: {
+-      sourceIri,
+-      isRawData: true,
++      sourceIri: toUrlString(updateUrl("/ns/log.shex", agent.storage)),
+     },
+   };
+-}
+ 
+-export interface AccessLogNamespace {
+-  vocab: SolidDataset & WithServerResourceInfo;
+-  shex: WithResourceInfo;
+-  tree: WithResourceInfo;
+-}
+-
+-export async function createAccessLogNamespace(
+-  agent: Agent,
+-  session: { fetch: typeof fetch },
+-): Promise<AccessLogNamespace> {
+-  const vocab = await createAccessLogNamespaceVocab(agent, session);
+-  const shex = await createAccessLogNamespaceShex(vocab, agent, session);
+-  const tree = await createAccessLogNamespaceTree(shex, agent, session);
++  const tree = {
++    internal_resourceInfo: {
++      sourceIri: toUrlString(updateUrl("/ns/log.tree", agent.storage)),
++    },
++  };
+ 
+   return {
+     vocab,
+Index: tests/benchmark/src/utils/create-clients-with-shape-trees-and-log-container.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/tests/benchmark/src/utils/create-clients-with-shape-trees-and-log-container.ts b/tests/benchmark/src/utils/create-clients-with-shape-trees-and-log-container.ts
+--- a/tests/benchmark/src/utils/create-clients-with-shape-trees-and-log-container.ts	(revision b600fe0e69640f9b101935f3bf65c6bbd5a64ae3)
++++ b/tests/benchmark/src/utils/create-clients-with-shape-trees-and-log-container.ts	(date 1718010506701)
+@@ -16,10 +16,7 @@
+   client: CreateClientsWithShapeTrees,
+   dpcSession: PseudoSession,
+ ): Promise<CreateClientsWithShapeTreesAndLogContainer> {
+-  const accessLogNamespace = await createAccessLogNamespace(
+-    AGENTS.DPC,
+-    dpcSession,
+-  );
++  const accessLogNamespace = createAccessLogNamespace(AGENTS.DPC);
+ 
+   const accessLogContainer = await createAccessLogContainer(
+     client.claimContainer,

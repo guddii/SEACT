@@ -11,13 +11,15 @@ fi
 
 asciidoctor-pdf \
     --require asciidoctor-bibtex \
+    --require asciidoctor-mathematical \
     --require asciidoctor-diagram \
     --destination-dir=out \
+    --attribute mathematical-format=svg \
     --theme docs/resources/themes/basic.yml \
     --attribute asciidoctor-bibtex-version=$ASCIIDOCTOR_BIBTEX_VERSION \
     --attribute asciidoctor-diagram-version=$ASCIIDOCTOR_DIAGRAM_VERSION \
     --attribute asciidoctor-pdf-version=$ASCIIDOCTOR_PDF_VERSION \
-    --attribute github-ref=$GITHUB_REF \
+    --attribute github-ref-name=$GITHUB_REF_NAME \
     --attribute github-repository=$GITHUB_REPOSITORY \
     --attribute github-run-id=$GITHUB_RUN_ID \
     --attribute github-server-url=$GITHUB_SERVER_URL \
@@ -25,5 +27,8 @@ asciidoctor-pdf \
     --attribute ostype=$OSTYPE \
     --attribute revdate=$REVDATE \
     --attribute revnumber=$REVNUMBER \
+    --attribute toclevels=1 \
     --backend=pdf \
-    docs/*.adoc
+    docs/*.research.adoc docs/*.dev.adoc
+
+mv docs/stem-*.svg out

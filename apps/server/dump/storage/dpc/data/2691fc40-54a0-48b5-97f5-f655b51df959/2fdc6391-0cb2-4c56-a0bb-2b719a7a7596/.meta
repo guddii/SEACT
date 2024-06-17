@@ -1,0 +1,4 @@
+<http://proxy.localhost:4000/dpc/data/2691fc40-54a0-48b5-97f5-f655b51df959/2fdc6391-0cb2-4c56-a0bb-2b719a7a7596/> a <http://www.w3.org/ns/solid/interop#DataRegistration>;
+    <http://www.w3.org/ns/solid/interop#registeredBy> <http://proxy.localhost:4000/dpc/profile/card/dpc/profile/card#id>;
+    <http://www.w3.org/ns/solid/interop#registeredAt> "2024-05-26T13:04:17.121Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+    <http://www.w3.org/ns/solid/interop#registeredShapeTree> <http://proxy.localhost:4000/dpc/ns/b0ff44e6cf72c03e.tree#68d3cb2339f173a8>.

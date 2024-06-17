@@ -1,0 +1,24 @@
+@startwbs
+mainframe **wbs** Project structure
++ .
+++ /apps
++++ /client
++++ /dpc
++++ /proxy
++++ /server
+++ /docs
++++ /partials
++++ /resources
+++ /packages
++++ /core
++++ /eslint-config-custom
++++ /jest-presets
++++ /tsconfig
++++ /ui
+++ /scripts
++++ /docs
++++ /install
+++ /tests
++++ /http
++++ /benchmark
+@endwbs

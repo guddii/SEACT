@@ -1,0 +1,7 @@
+= Data Trustee
+
+In the absence of an owner for the monitored resources, a concept is required to capture data and verify ownership at a later stage.
+One such concept is that of data trustees, which collect data on behalf of a natural or legal person.
+In the context of this work, the data trustee is an agent who captures data from the owner of the storage, who is another agent.
+The data trustee is an independent entity of trust that acts as a mediator between the data provider and the data user, ensuring the secure and legally compliant transfer of data.
+The concept can be distinguished by the type of data storage, which is either centralized or decentralized, and the type of data use, which is obligatory or optional cite:[specht-riemenschneider_designing_2022].

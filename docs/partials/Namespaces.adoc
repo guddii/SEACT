@@ -2,17 +2,22 @@
 = Namespaces
 
 This enumeration lists the prefixes and the associated namespace.
-It will be used as the standard syntax for RDF prefixes.
-When a prefix is followed by a colon symbol, the part after the colon can be appended to the namespace URI, thereby creating a new URI.
+It will be used as the standard syntax for <<RDF>> prefixes.
+When a prefix is followed by a colon symbol, the part after the colon can be appended to the namespace <<URI>>, thereby creating a new <<URI>>.
 
 [glossary]
 [horizontal]
-[[claim,claim]] claim:: urn:claim# (custom vocabulary)
-[[foaf,foaf]] foaf:: http://xmlns.com/foaf/0.1/
-[[interop,interop]] interop:: http://www.w3.org/ns/solid/interop#
-[[ldp,ldp]] ldp:: http://www.w3.org/ns/ldp#
-[[pim,pim]] pim:: http://www.w3.org/ns/pim/space#
-[[solid,solid]] solid:: http://www.w3.org/ns/solid/terms#
-[[st,st]] st:: http://www.w3.org/ns/shapetrees#
+acl:: http://www.w3.org/ns/auth/acl#
+al:: _dynamic_ (see <<Custom Vocabulary>>)
+claim:: urn:claim# (see <<Custom Vocabulary>>)
+ex:: _example_
+foaf:: http://xmlns.com/foaf/0.1/
+http:: http://www.w3.org/2011/http#
+interop:: http://www.w3.org/ns/solid/interop#
+ldp:: http://www.w3.org/ns/ldp#
+pim:: http://www.w3.org/ns/pim/space#
+rdfs:: https://www.w3.org/2000/01/rdf-schema#
+solid:: http://www.w3.org/ns/solid/terms#
+st:: http://www.w3.org/ns/shapetrees#
 
 The prefixes and namespaces enumerated above are applicable to diagrams, listings, and inline listings throughout the entirety of the document.

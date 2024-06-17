@@ -6,9 +6,9 @@
 
 <>
     a                           interop:DataRegistration ;
-    interop:registeredBy        <http://example.tld/dpc/profile/card#id> ;
+    interop:registeredBy        <http://proxy.localhost:4000/dpc/profile/card#id> ;
     interop:registeredAt        "2024-04-02T16:00:09.959Z"^^xsd:dateTime ;
-    interop:registeredShapeTree <http://example.tld/dpc/ns/log.tree#AccessLogRegistrationTree> . # <1>
+    interop:registeredShapeTree <http://proxy.localhost:4000/dpc/ns/log.tree#AccessLogRegistrationTree> . # <1>
 
 <>
     a           ldp:Container, ldp:BasicContainer, ldp:Resource ;

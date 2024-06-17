@@ -1,0 +1,272 @@
+@prefix interop: <http://www.w3.org/ns/solid/interop#>.
+@prefix claim:   <urn:claim#>.
+
+<#ec7dae2e>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client1/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client1/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client1/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/9970a774-ff74-4ad5-8b82-9ae05e670c24/AccessLog/> .
+
+<#b875d672>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client2/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client2/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client2/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/1eab8ede-5931-4c3c-8111-bd0ff8ae9002/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/1eab8ede-5931-4c3c-8111-bd0ff8ae9002/AccessLog/> .
+
+<#204af0fb>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client3/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client3/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client3/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/c4cd11bd-f569-49d0-8fb1-106e0aeffdac/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/c4cd11bd-f569-49d0-8fb1-106e0aeffdac/AccessLog/> .
+
+<#5e8f660a>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client4/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client4/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client4/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/a0e1c21b-b59d-4d15-8cfd-eeca2236310b/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/a0e1c21b-b59d-4d15-8cfd-eeca2236310b/AccessLog/> .
+
+<#0fe9df2b>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client5/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client5/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client5/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/b0b4790b-7a4a-493a-a656-8c49e875ce79/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/b0b4790b-7a4a-493a-a656-8c49e875ce79/AccessLog/> .
+
+<#a79f901f>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client6/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client6/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client6/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/fec438ac-a1fa-46dd-89b0-271567a43f43/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/fec438ac-a1fa-46dd-89b0-271567a43f43/AccessLog/> .
+
+<#98b7c13a>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client7/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client7/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client7/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/0c1bf5eb-236d-4b4c-90b1-b4b1a2e6002a/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/0c1bf5eb-236d-4b4c-90b1-b4b1a2e6002a/AccessLog/> .
+
+<#15103a29>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client8/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client8/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client8/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/aad7efb3-59e3-4cb4-b7fa-4b172a0b983e/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/aad7efb3-59e3-4cb4-b7fa-4b172a0b983e/AccessLog/> .
+
+<#001cab33>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client9/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client9/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client9/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/85cf5023-943a-4d37-bf5c-97560bdb4af9/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/85cf5023-943a-4d37-bf5c-97560bdb4af9/AccessLog/> .
+
+<#1b18b532>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client10/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client10/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client10/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/d4e6fdea-873a-4569-9423-fd9d879e88ba/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/d4e6fdea-873a-4569-9423-fd9d879e88ba/AccessLog/> .
+
+<#36517858>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client11/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client11/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client11/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/fc2a1c0e-e090-4662-a4ea-81359382422e/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/fc2a1c0e-e090-4662-a4ea-81359382422e/AccessLog/> .
+
+<#38212878>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client12/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client12/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client12/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/219fa4e4-fbbf-45ce-959f-9eecc182a5ee/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/219fa4e4-fbbf-45ce-959f-9eecc182a5ee/AccessLog/> .
+
+<#f7866d8f>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client13/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client13/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client13/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/220e382f-e2f7-4806-ab67-f658ddef8a1a/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/220e382f-e2f7-4806-ab67-f658ddef8a1a/AccessLog/> .
+
+<#7ded1a12>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client14/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client14/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client14/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/a63b01dd-84ab-4a9e-8fca-fa4f1608f8c2/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/a63b01dd-84ab-4a9e-8fca-fa4f1608f8c2/AccessLog/> .
+
+<#d00531c4>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client15/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client15/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client15/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/5aec929c-7ada-4ab1-aabf-92e38680849a/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/5aec929c-7ada-4ab1-aabf-92e38680849a/AccessLog/> .
+
+<#c2e5597b>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client16/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client16/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client16/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/6330593d-b75a-423a-8705-c4daf118b0ca/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/6330593d-b75a-423a-8705-c4daf118b0ca/AccessLog/> .
+
+<#740194be>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client17/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client17/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client17/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/63ba69ec-9c30-4cda-9430-c4a0a67bd455/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/63ba69ec-9c30-4cda-9430-c4a0a67bd455/AccessLog/> .
+
+<#6e48029d>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client18/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client18/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client18/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/569bd404-a574-4c9b-92e1-229a22ba7694/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/569bd404-a574-4c9b-92e1-229a22ba7694/AccessLog/> .
+
+<#a95b4253>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client19/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client19/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client19/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/cbeed8f1-0d0d-426c-82f6-3b196d06c9b7/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/cbeed8f1-0d0d-426c-82f6-3b196d06c9b7/AccessLog/> .
+
+<#7604fea8>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client20/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client20/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client20/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/0fca8bcd-198a-4975-a468-d592be0f2eec/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/0fca8bcd-198a-4975-a468-d592be0f2eec/AccessLog/> .
+
+<#c09a49db>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client21/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client21/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client21/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/0ee63c2f-a9df-4e83-8f07-39e5ad1087f4/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/0ee63c2f-a9df-4e83-8f07-39e5ad1087f4/AccessLog/> .
+
+<#c9c44fb6>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client22/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client22/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client22/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/63959276-f0ee-482a-868d-50a647f07a98/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/63959276-f0ee-482a-868d-50a647f07a98/AccessLog/> .
+
+<#72c5650f>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client23/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client23/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client23/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/ed35b1ff-173b-44fd-b6e4-6ddf5df60a4d/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/ed35b1ff-173b-44fd-b6e4-6ddf5df60a4d/AccessLog/> .
+
+<#5801f338>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client24/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client24/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client24/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/22b65259-7cb6-4c3a-be02-1337f1d8bcaf/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/22b65259-7cb6-4c3a-be02-1337f1d8bcaf/AccessLog/> .
+
+<#c099bf1c>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client25/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client25/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client25/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/b0d112f5-dcb0-4d0f-943a-510248d6716a/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/b0d112f5-dcb0-4d0f-943a-510248d6716a/AccessLog/> .
+
+<#36720c5f>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client26/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client26/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client26/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/f7dd5898-9500-4062-9313-88077d97756b/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/f7dd5898-9500-4062-9313-88077d97756b/AccessLog/> .
+
+<#bab21eca>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client27/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client27/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client27/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/49542944-d986-48ef-97ef-f959c9a49bb4/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/49542944-d986-48ef-97ef-f959c9a49bb4/AccessLog/> .
+
+<#f7f6abaa>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client28/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client28/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client28/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/51445238-d957-4dba-ae3e-e20b0aaa5208/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/51445238-d957-4dba-ae3e-e20b0aaa5208/AccessLog/> .
+
+<#50e0052e>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client29/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client29/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client29/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/8df61f83-dd05-4653-aedb-b98fd07ab25c/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/8df61f83-dd05-4653-aedb-b98fd07ab25c/AccessLog/> .
+
+<#5000cecd>
+    a                           claim:Registry, interop:DataRegistry ;
+    claim:trustee               <http://proxy.localhost:4000/client30/profile/card#me> ;
+    claim:monitoredStorage      <http://proxy.localhost:4000/client30/> ;
+    claim:verificationResource  <http://proxy.localhost:4000/client30/dpc#verification> ;
+    claim:verificationCode      "d399abfcd9d3f643e8cca7aa4b527774aa4e53a094b38859c413e231795c020fd3c2d124608f8c98a1a08aa1afbe67d7" ;
+    claim:claimedData           <http://proxy.localhost:4000/dpc/data/beb548bd-4d2c-4280-80ff-ffe249795c6e/> ;
+    interop:hasDataRegistration <http://proxy.localhost:4000/dpc/data/beb548bd-4d2c-4280-80ff-ffe249795c6e/AccessLog/> .

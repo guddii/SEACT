@@ -1,0 +1,37 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#>.
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix dcterms: <http://purl.org/dc/terms/>.
+
+<urn:claim>
+    dcterms:issued   "2024-04-02Z"^^xsd:date ;
+    dcterms:modified "2024-04-02Z"^^xsd:date ;
+    rdfs:label       "Access log vocabulary"@en .
+
+<#Registry>
+    a          rdfs:Class ;
+    rdfs:label "A registry entry for data that has been the subject of a trustee claim"@en .
+
+<#Verification>
+    a          rdfs:Class ;
+    rdfs:label "A verification resource, located in monitored storage" .
+
+<#trustee>
+    a          rdf:Property ;
+    rdfs:label "The WebID reference of the agent requesting access to the claimed data"@en .
+
+<#monitoredStorage>
+    a          rdf:Property ;
+    rdfs:label "The observed storage reference"@en .
+
+<#verificationResource>
+    a          rdf:Property ;
+    rdfs:label "The reference to the verification resource in the monitored storage"@en .
+
+<#verificationCode>
+    a          rdf:Property ;
+    rdfs:label "A random hash in the registry and verification resource"@en .
+
+<#claimedData>
+    a          rdf:Property ;
+    rdfs:label "The reference to the resource container of all claimed data resources"@en .

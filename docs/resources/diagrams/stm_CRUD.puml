@@ -1,0 +1,32 @@
+@startuml
+left to right direction
+hide empty description
+
+mainframe **stm** Resource CRUD Lifecycle
+
+state "Created" as C
+state "Read" as R
+state "Updated" as U
+state "Deleted" as D
+
+' Edges Start
+[*]     --> C       : create
+
+' Edges Create
+C       --> R       : read
+C       --> U       : update
+C       --> D       : delete
+
+' Edges  Read
+R       --> R       : read
+R       --> U       : update
+R       --> D       : delete
+
+' Edges  Update
+U       --> R       : read
+U       --> U       : update
+U       --> D       : delete
+
+' Edges  Delete
+D       --> C       : create
+@enduml

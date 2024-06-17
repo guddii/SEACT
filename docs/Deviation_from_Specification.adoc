@@ -1,0 +1,29 @@
+= Deviation from Specification
+
+The divergence from the specifications, whether in the form of Solid Protocol or Solid Application Interoperability, is of vital importance in the analysis of the proposed <<DPC>> approach.
+Any variation or unspecified use of an <<API>> may result in inconsistent or corrupt behaviour with other Solid Providers, which is detrimental to the generic approach that the proposed apprach is intended to be.
+During the <<Design and Implementation>> of this approach, two main discrepancies in the specifications were identified.
+
+The initial issue was identified as being related to the actual implementation of the utilized technologies.
+It would be reasonable to consider this in the specification, as it is a generalized concern.
+Both the proxy and server components engage in periodic self-requests for the purpose of writing access logs and verifying the identity.
+Given the absence of a mechanism to prevent or limit recursive network calls, it has been necessary to implement a variety of custom mechanisms to exclude these requests from monitoring.
+In the case of the <<Forwarded Request>>, this is presented as an `isLoggableRequest` condition.
+The application logic behind this condition is comprised of three distinct tests.
+One such test is that of a request header, which may or may not include a hash value.
+This value is applied to requests originating from the same web instance.
+Should the hash value in question align with the expected value, the request in question will not be monitored.
+Another filter for self-requests is the test to determine if the request <<URL>> matches the <<OIDC>> configuration path.
+This path is typically `/.well-known/openid-configuration`.
+In the case of <<CSS>>, this could be enhanced to include all internal data, as all internal <<URL>> paths begin with `/.`, but this technique is limited to <<CSS>> and is not a standard pattern.
+Finally, all agent WebIDs, which are utilized in middleware, are to be disregarded.
+As the connection is established within the middleware, the agents to be filtered are known at the time they are to be excluded.
+The filters for the <<OIDC>> configuration path, as well as the WebID of the middleware agent, are obtained from the server instance.
+In the absence of control over the fetcher, as is the case here, the request header hash mechanism cannot be employed.
+
+Another issue that was identified was the necessity of writing data to container resources.
+With a fundamental understanding of the <<CRUD>> operations, it would be relatively straightforward to perform a `POST`/`PUT` or `PATCH` request to the resource in question, for example: `PUT http://proxy.localhost:4000/client/data/`.
+However, this is not the case with <<CSS>>, as writing to container resources involves writing metadata.
+Metadata refers to the <<#description_resource,Description Resources>> mechanism, where a resource is linked as illustrated in xref:lst-storage-resource[xrefstyle=short].
+With the used version of <<CSS>>, only `PATCH` methods are permitted, resulting in a request such as `PATCH http://proxy.localhost:4000/client/data/.meta` for the creation of data and `GET http://proxy.localhost:4000/client/data/` if the data is read.
+This behavior is exclusive to <<CSS>>, yet a fundamental <<API>> to employ when <<Solid Application Interoperability>> is implemented, as the ShapeTrees are read from the resources containers, thereby inheriting the shape to the child resources.

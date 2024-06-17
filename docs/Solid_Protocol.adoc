@@ -1,0 +1,110 @@
+= Solid Protocol
+
+According to the citenp:[mozilla_developer_network_protocol_2023], a protocol is a set of rules for exchanging data between computers. citenp:[fischer_lexikon_2011(706)] provide additional clarification on this topic.
+The protocol includes setup, termination, collision prevention or correction, content integrity, and the actual actions within the same layer.
+
+The Solid Protocol is a type of protocol that encapsulates a modified set of new and existing specifications to fit into the ecosystem.
+The Protocol Specification includes additions and adoptions, or references to the original ones cite:[sarven_solid_2022].
+The specifications included here are only representative of a subset of the definitions relevant to this research, primarily focusing on special http headers, resources, representation, identity, authentication and authorization.
+
+== HTTP Headers
+
+The Solid Protocol employs a specific model of the relationships between resources on the Web and the types of these relationships.
+These are exposed as HTTP headers, linking to the related resource, as defined by citenp:[nottingham_rfc8288_2017].
+
+[#http_link_header]
+*HTTP Link headers* are conventional HTTP headers, with the header field `Link` and a value separated by a colon.
+Within the header value, the `uri-reference` points to the related resource, while the attribute value pair defines the relation.
+This is demonstrated in xref:lst-http-link-header[xrefstyle=short].
+
+.Syntax of a HTTP Link header
+[source,id="lst-http-link-header"]
+----
+Link: <uri-reference>; attribute="value"
+----
+
+In the event that multiple header values are to be applied, the values may be separated by a comma.
+
+== Resources
+
+The Solid Protocol employs a variety of resource definitions, which are constructed upon one another in a hierarchical manner.
+These definitions either extend or restrict the previous definition, thereby forming a structured system.
+
+The resources listed below are the most common resources in Solid and in the web in general:
+
+[horizontal]
+[[resource,resource]] resource:: The target of an <<HTTP>> request, identified by a <<URI>> cite:[fielding_rfc7231_2014].
+[[container_resource,container resource]] container resource:: A collection of resources and resource containers, organized in a hierarchical structure cite:[sarven_solid_2022].
+[[root_container,root container]] root container:: The top-level resource within a resource container hierarchy cite:[sarven_solid_2022].
+
+[#storage]
+*Storages* are spaces of <<URI,URIs>> that affords agents controlled access to resources.
+The storage resource, however, is the root container for all of its contained resources and is owned by an agent cite:[sarven_solid_2022].
+
+[#storage_resource]
+*Storage resources* are defined by a specific <<HTTP>> Link header that is used to mark a given container resource as a storage resource.
+This is achieved by including the `rel` attribute with the value `type`, along with a <<URI>> reference that matches `pim:Storage`.
+The owner of this storage can be made available optionally by including the `rel` attribute with the value `solid:owner`.
+This is demonstrated in xref:lst-storage-resource[xrefstyle=short], where additional headers and the response have been omitted in the listening (ibid.).
+
+.Storage resource declaration at http://proxy.localhost:4000/client/
+[source,id="lst-storage-resource"]
+----
+include::resources/requests/Storage_resource.txt[lines="1..3"]
+[...]
+include::resources/requests/Storage_resource.txt[lines="14"]
+[...]
+----
+
+As the storage resource is a top-level resource in the container resource hierarchy, all containing resources belong to a storage resource.
+The containing storage resource is not directly accessible via an <<HTTP>> header or any other means.
+However, the hierarchy can be traversed until the highest level is reached in order to identify the containing storage resource (ibid.).
+
+[#description_resource]
+*Description resources* represent a distinct category of auxiliary resources.
+These resources provide a description of a subject resource, which is referenced by a <<HTTP>> Link header.
+The `rel` attribute is used with the value `describedby` to indicate this relationship.
+This is also illustrated in xref:lst-storage-resource[xrefstyle=short] (ibid.).
+
+== Representation
+
+The representation of resources is primarily in the form of <<RDF>> documents.
+citenp:[bergwinkl_rdfjs_2019] introduced the Dataset specification, which represents the contents of these documents as ECMAScript objects.
+The Inrupt JavaScript Client Librariesfootnote:[https://docs.inrupt.com/developer-tools/javascript/client-libraries/structured-data] refined this further and introduced the terms SolidDataset and Thing.
+In order to facilitate the interpretation of the <<RDF>> documents, the following definitions will be used, based on the definitions mentioned:
+
+[horizontal]
+[[Thing]]Thing:: A Thing is a data entity that contains a set of data or properties about the Thing.
+[[Dataset]]Dataset:: A dataset is defined as a set of Things, represented as a <<RDF>> resource.
+
+== Identity
+
+In a decentralized platform, it is essential to have identifiable.
+Solid accomplishes this with WebIDs and the WebID Profile, which is associated with it cite:[sambra_webid_2014].
+
+[horizontal]
+WebID:: A WebID is a special resource of <<RDF>> type foaf:PersonalProfileDocument, which denote an agent.
+When a fragment identifier is contained by the <<URI>>, the WebID Profile is denoted (ibid.).
+WebID Profiles:: A WebID Profile is a Thing that serve to uniquely describe an agent, as denoted by the WebID (ibid.).
+
+== Authentication
+
+The authentication process in Solid is based on OAuth 2.0footnote:[https://datatracker.ietf.org/doc/html/rfc6749] and OpenID Connect Core 1.0footnote:[https://openid.net/specs/openid-connect-core-1_0.html], with certain enhancements.
+In order for the resource servers and authorization servers to function, they must have a trust relationship with the identity providers.
+Furthermore, ephemeral clients are intended to be the primary use case cite:[coburn_solid-oidc_2022].
+
+The authentication is mainly expected to be authorized via the Authorization Code Flowfootnote:[https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowSteps].
+However, as it is built on top of <<OIDC>>, the Client Credentials Flowfootnote:[https://datatracker.ietf.org/doc/html/rfc6749#section-4.4] is a viable option in the majority of implementations, such as <<CSS>>footnote:[https://communitysolidserver.github.io/CommunitySolidServer/7.x/usage/client-credentials/].
+
+In both cases, an access token will be returned to the authenticating client.
+Which usually is a Bearer Token in <<OIDC>> Sessions.
+Solid-OIDC however, depends on <<DPoP>> tokens.
+<<DPoP>> tokens ensure that third-party web applications can not use the token, as the are protected by a a public and private key pair cite:[coburn_solid-oidc_2022,fett_oauth_2023].
+
+== Authorization
+
+Authorization is a fundamental aspect of Solid.
+Each WebID-owned resource must be authorized, with either or both <<WAC>> and <<ACP>> publishing mechanisms as specified.
+This even applies to resources that are publicly accessible and that permit unauthenticated requests.
+Both mechanisms utilize <<ACL>> to grant access to a resource, for a selected agent with defined access privileges.
+The possible privileges for a resource are read, append, and write access, as well as control access, which is used to manage the access privileges cite:[sarven_solid_2022,capadisli_web_2022].

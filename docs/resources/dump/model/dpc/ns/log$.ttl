@@ -1,20 +1,33 @@
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#>.
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix dcterms: <http://purl.org/dc/terms/>.
 
-<http://example.tld/dpc/ns/log> dcterms:issued "2024-04-02Z"^^xsd:date;
-    dcterms:modified "2024-04-02Z"^^xsd:date;
-    rdfs:label "Access log vocabulary"@en.
-<#AccessLog> a rdfs:Class;
-    rdfs:label "AccessLog"@en.
-<#date> a rdf:Property;
-    rdfs:label "Accessed at"@en.
-<#accessor> a rdf:Property;
-    rdfs:label "Accessing agent"@en.
-<#application> a rdf:Property;
-    rdfs:label "Accessing application"@en.
-<#resource> a rdf:Property;
-    rdfs:label "Accessed resource"@en.
-<#action> a rdf:Property;
-    rdfs:label "Action"@en.
+<http://proxy.localhost:4000/dpc/ns/log>
+    dcterms:issued   "2024-04-02Z"^^xsd:date ;
+    dcterms:modified "2024-04-02Z"^^xsd:date ;
+    rdfs:label       "Access log vocabulary"@en .
+
+<#AccessLog>
+    a          rdfs:Class ;
+    rdfs:label "AccessLog"@en .
+
+<#date>
+    a          rdf:Property ;
+    rdfs:label "Accessed at"@en .
+
+<#accessor>
+    a          rdf:Property ;
+    rdfs:label "Accessing agent"@en .
+
+<#application>
+    a          rdf:Property ;
+    rdfs:label "Accessing application"@en .
+
+<#resource>
+    a          rdf:Property ;
+    rdfs:label "Accessed resource"@en .
+
+<#action>
+    a          rdf:Property ;
+    rdfs:label "Action"@en .

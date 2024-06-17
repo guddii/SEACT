@@ -1,0 +1,115 @@
+= Discussion
+
+This section of the study is devoted to a critical analysis and comparison of the present work with related works.
+Since there are few such works, the focus is on critical reflection.
+
+// System Design
+The <<System Design>> encompasses a multitude of elements that have a significant impact on the processing of data, particularly in terms of <<Performance Efficiency>>.
+It is important to note that the individual aspects are not distinct decisions that are made in isolation.
+Each of the individual options encourages or enforces a <<Logical Topology>>, with either the <<Client as Data Owner>> or a <<Trustee as Data Owner>>.
+Finally, it is crucial to identify the approach that aligns most closely with the system's requirements, even if it involves trade-offs.
+This will ensure that the system design achieves the desired quality, tailored to the specific needs of the system.
+In this context, the <<Trustee as Data Owner>>, with an <<Opt-In>> as <<Data Capturing Strategies,Data Capturing Strategy>> was chosen, as this approach appeared to offer the most promising results.
+However, subsequent analysis has revealed that this decision may not be the optimal choice in terms of system reliability.
+As evidenced by the findings of the <<Performance Efficiency Analysis>>, the logging of access can be easily disabled while still serving data.
+
+// Solid Application Interop
+The most significant impact has been observed in the area of <<Solid Application Interoperability>>, as the application model is based on it.
+In this work, this protocol extension has only been implemented to a limited extent, as it is a protocol that should be implemented by the <<Solid Provider>> itself.
+A complete implementation of this protocol in a custom proxy module would require a significant amount of time that is beyond the scope of this work.
+Therefore, a partial implementation was deemed appropriate as it could be integrated seamlessly into the existing <<Solid Ecosystem>> landscape.
+Additionally, alternative variations of <<Solid Application Interoperability>> were considered for the <<System Design>>.
+Some of these variations could potentially make the <<Claim Vocabulary>> obsolete, as they could be implemented through a mechanism inherent to <<Solid Application Interoperability>>.
+If this is indeed a viable option, a dedicated experiment should be conducted to assess its feasibility.
+The specifications appear to have been designed for a single-tent context.
+Nevertheless, all the tested variations resulted in a situation where the accessing agent must declare its participation in the specification, as illustrated in the <<Personal Profile Document (Data Model)>>.
+In the proposed approach, however, only the <<DPC>> agent is required to declare an `interop:Agent` in the <<Personal Profile Document (Data Model)>>.
+As this agent is under the control of the hosting party, no external agents are required to declare anything.
+Consequently, they may continue to utilise the <<Solid Protocol>>, which they are already familiar with.
+One disadvantage of the use of the <<Solid Application Interoperability>> was the <<Deviation from Specification, Deviation from the Specification>> in terms of container resource creation.
+The specification recommends that the <<Shape Trees (Data Model)>> be located in the container resource response.
+In the case of the <<DPC>>, this refers to the access log shape trees.
+However, patching the data associated with a container resource is a vendor-specific process.
+In <<CSS>>, providing data to a container resource necessitates operations on the linked <<#description_resource, Description Resource>>, a rather unconventional mechanism.
+The use of vendor-specific <<API,APIs>> prevents the implementation of a generalistic approach that was attempted.
+
+// Forwarding requests
+Another crucial decision was to utilise self-invocation for <<Forwarded Request, Forwarded Requests>> from the proxy to the <<Solid Provider>>.
+Instead, the requests could have been forwarded directly to the server, as illustrated in xref:lst-request-with-forwarded-headers[xrefstyle=short].
+This approach would have avoided proxying the requests, while simultaneously enabling the middleware to initiate new requests to the server and process the messages before returning them to the original requester.
+This serialization step would be a necessity, as the <<Solid Provider>> would return references to a server that is not publicly accessible within its headers and the body.
+This pattern was rejected, as it is very difficult to maintain, as every request format must be processible and adjusted on an individual format level.
+When using the self-invoking technique with the proxy set as `baseUrl` footnote:[https://communitysolidserver.github.io/CommunitySolidServer/latest/usage/starting-server/] within the <<Solid Provider>>, the correct references are used immediately.
+The disadvantage of this approach is that internal requests must be filtered and excluded to prevent recursive requests.
+There are several options for doing so, including the use of a randomized token to bypass the proxy, as shown in xref:lst-request-with-proxy-bypass-token[xrefstyle=short], as well as the exclusion of selected paths from logging.
+However, this approach violates design paradigms, particularly the prevention of cyclic dependencies, as discussed in the <<ADP Analysis>>.
+The apparent trade-off between control and flexibility proved to be illusory in the context of the prototype.
+Whenever a request was initiated, whether by the proxy or the server, there was a significant risk that the filtering mechanism would fail to exclude it, resulting in an infinite loop of recursive calls.
+Although this could be stabilized for the purposes of this test, updates to the <<Solid Provider>> are particularly risky, especially if they involve protocol changes that might necessitate the submission of new requests that are not part of the filtering mechanism.
+A generic approach, such as overwriting the fetcher globally, in the context of the proxy and the server, might be a viable solution that could limit these risks.
+
+// Data capturing strategies
+<<Authentication>> is a primary concern, particularly in the context of sensitive data such as access logs.
+In <<Data Capturing Strategies>>, an opt-in option has been introduced, which has been used for the <<System Design>>.
+Although the mechanism of consent aligns with the ideas of the <<Solid Ecosystem>>, it may have an impact on the data security that has not been considered in this work.
+The method of <<Ownership Verification>>, as proposed, necessitates the writing of a resource for verification, as presented in <<Write Verification Code to Client Storage>>.
+One potential risk is that, when an agent is logging in to any web application, the application acts on behalf of the agent.
+Consequently, this means that the application has complete access rights to the storage resource, and thereby to the verification resource, which is part of the storage.
+In the event that the application is malicious, it may gain access to the logged data.
+Another potential attack scenario, which is specific to <<CSS>>, is to simply temporarily or permanently delete the `.meta` resource at the storage resource level.
+This description resource marks a container as a storage resource by adding `http://www.w3.org/ns/pim/space#Storage` as the link header.
+Upon the removal of the resource, the lookup in the <<DPC Middleware>> will not be disrupted, thus allowing for unlogged access.
+The root of both attack scenarios lies in the sharing of privileges to web applications, which is a general problem of the <<Solid Protocol>>.
+However, for the purpose of access logging, an opt-in approach may not be as suitable as the <<Data Capturing Strategies, Data Capturing Strategy>>, due to the allowed absence of observed resource paths.
+A more suitable approach might be to consider a permanent approach, as every path will be observed at any time.
+
+One aspect of data storage that is contingent upon the <<Logical Topology>> selected is the <<Data Storage Structure>>.
+The arrangement of the data that is tracked must be organized when stored in the client storage.
+When the data is stored at the site of the <<Data Trustee>>, it is crucial that the data be grouped in a way that only authorized agents are able to access it.
+This is a challenging issue, as the creation of a storage resource per agent seems a convenient solution.
+However, this isolated data space is not part of a defined workflow in the <<Solid Protocol>>.
+The creation of container resources does have a unified <<API>>, although <<CSS>> does this in a non-compliant way.
+
+The introduction of a <<Custom Vocabulary>> for this work is also open to debate.
+While it is legitimate to introduce a custom vocabulary, <<RDF>>-based systems benefit the most if the vocabulary is a common or at least publicly known vocabulary.
+The application of one of the aforementioned vocabularies, namely the <<ODRL>> Information Modelfootnote:[https://www.w3.org/TR/odrl-model/] or the <<DPV>>footnote:[https://w3c.github.io/dpv/dpv/], would effect the <<System Design>>, potentially leading to increased fetches and, consequently, an impact on <<Performance Efficiency>>.
+In considering this, it is recommended that the proposed approach for system design involves the adaptation to an established vocabulary, with the aim of ensuring compatibility and reducing the potential for issues.
+Another significant consideration is that the access log employs a vocabulary that has already been established, such as the <<HTTP>> Vocabularyfootnote:[https://www.w3.org/TR/HTTP-in-RDF/].
+This process can be implemented within the individual application.
+By doing so, it is possible to utilize an established vocabulary while maintaining human readability, at least at the presentation layer.
+
+As previously mentioned, <<Authentication>> is one of the primary solutions provided by the <<Solid Ecosystem>>.
+It is important to note that the <<Authorization Client Credentials Flow, Client Credential Flow>>, which has been used to login the <<DPC>> agent, is not part of the Solid-<<OIDC>> specification, as defined by citenp:[coburn_solid-oidc_2022].
+Instead, a <<Authorization Code Flow>> (Basic Flow) is provided, which does require interaction by the login party.
+This presents a challenge for automated agents.
+While the majority of Solid Providers do support the <<Authorization Client Credentials Flow>>, this is not guaranteed, and therefore represents an unacceptably high level of risk when establishing a general approach.
+
+As previously stated in xref:related_work[xrefstyle="short"], this system is significantly influenced by citenp:[both_german_2024].
+The circumstances there are entirely distinct, as multiple disparate agents are attempting to access one's data.
+The present analysis is limited to the case of an individual attempting to access their own data.
+This may not be of particular interest to a potential <<DPC>> user, without the information of which application has accessed the data.
+This is why the detection for the application name has been introduced, as previously discussed in the section on <<Forwarded Request,Forwarded Requests>>.
+In this process, the <<DPC Middleware>> was required to observe the <<OIDC>> login procedure and obtain the name of the application.
+In this scenario, tokens are stored in the runtime memory, which may be susceptible to data loss.
+The effect of this mechanism is also unclear, particularly in the context of a session that has expired and a fresh token is requested.
+In addition to the technical limitations, this approach is constrained to the <<Authorization Code Flow>>, which may restrict the available functions of the <<Solid Provider>> or the reliability of this approach is uncertain.
+
+The most obvious shortcoming of the proposed approach is the lack of a stable and reliable use.
+Even if this approach is not implemented in its most optimal manner, the impact on the system's performance is significant, as evidenced by the <<Performance Efficiency Analysis>>.
+Despite the implementation of ten experiments, 20 of the 24 test runs remained unanalyzable due to errors or invalid results.
+All previous considerations are obsolete in the event that the stability cannot be brought to a reasonable level.
+Following the examination of the tested scenario, there remain numerous potential causes for the observed instability.
+In <<Experiment 10>>, the observed increase in average response times was 0.63 seconds, as shown in column `B` of xref:tbl-test-run-response-times-average[xrefstyle=short].
+This appears to be a notable phenomenon, particularly given that the threads are only incremented by one.
+It is noteworthy that the <<DPC>> logic is bypassed in this scenario, which leads to the assumption that the erroneous behavior may be caused by another system component.
+In this scenario, the source of the problem may be the proxy, the server, or even the client itself.
+This does not explain the observed increase of almost 1000-fold when enabling the <<DPC>>, as shown in column `C`.
+However, it may explain a greater portion of the increment, as the <<DPC>> will multiply each request, as well as the potential error.
+Consequently, the accumulated response time of the <<DPC>> is increased, with the root cause being one of the other system components.
+
+The results of the experiments yielded only limited insights into the research questions.
+The test results from <<Experiment 10>> were the only results that could effectively be used to answer the questions.
+These results were reduced to bypassed and claimed storage cases due to the errors that occurred.
+Additionally, the storage and ShapeTree amount were only tested with a number of 10. The number of threads could only be tested up to two.
+Given the limited data resulting from the parameters, it is challenging to provide an accurate assessment of the system load and influencing parameters as required in <<QUEST-2>> and <<QUEST-3>>.
+The questions that can be answered by the data are summarized in xref:Conclusion[xrefstyle=short].

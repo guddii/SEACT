@@ -17,15 +17,31 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  adoc_build:
+  build:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    name: asciidoctor
+    name: build
     steps:
+      #  Prepare
       - name: Checkout code
         uses: actions/checkout@v3
+      - name: Make out dir
+        run: |
+          mkdir out
+        shell: bash
+      # Build JMeter Reports
+      - name: Setup JMeter
+        run: |
+          # chmod +x ./scripts/docs/reports/setup.sh
+          ./scripts/docs/reports/setup.sh
+      - name: Build JMeter Reports
+        run: |
+          # chmod +x ./scripts/docs/reports/html.sh
+          ./scripts/docs/reports/html.sh
+        shell: bash
+      #  Build Asciidoc
       - name: Rename README to index
         run: |
           mv ./docs/README.adoc ./docs/index.adoc
@@ -45,6 +61,7 @@ jobs:
         uses: tonynv/asciidoctor-action@master
         with:
           program: "./scripts/docs/slides/html.sh"
+      # Deploy Pages
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact

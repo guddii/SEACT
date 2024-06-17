@@ -16,17 +16,20 @@ export interface SolidAppProxyOptions extends SolidAppOptions {
   forwardingUrl: string;
   openidConfigurationUrl: string;
   featureLogging: boolean;
+  bypassToken: string;
 }
 
 export class SolidAppProxy extends SolidApp {
   public readonly forwardingUrl: URL;
   public readonly openidConfigurationUrl: URL;
   public readonly featureLogging: boolean;
+  public readonly bypassToken: string;
 
   constructor(options: SolidAppProxyOptions) {
     super(options);
     this.forwardingUrl = createUrl(options.forwardingUrl);
     this.openidConfigurationUrl = createUrl(options.openidConfigurationUrl);
     this.featureLogging = options.featureLogging;
+    this.bypassToken = options.bypassToken;
   }
 }

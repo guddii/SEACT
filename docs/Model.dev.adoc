@@ -1,0 +1,17 @@
+= Data Model
+//Front matter
+include::partials/Front_matter.adoc[]
+
+include::Solid_Application_Interoperability.adoc[leveloffset=+1]
+
+include::Entity-Relationship_Model.adoc[leveloffset=+1]
+
+include::Information_Retrieval.adoc[leveloffset=+1]
+
+include::Vocabulary.adoc[leveloffset=+1]
+
+include::Serialized_Data_Model.adoc[leveloffset=+1]
+
+include::Appendix.adoc[]
+
+include::partials/Back_matter.adoc[]

@@ -3,7 +3,8 @@
 
 The diagrams in this document were generated using Asciidoctor Diagram {asciidoctor-diagram-version}{fn-asciidoctor-diagram} and its bundled PlantUML{fn-plantuml} version.
 
-Unless otherwise specified, all framed diagrams will use the UML 2.5.1{fn-uml} standard, constrained by the limitations of PlantUML. As defined in the standard, the following abbreviations will be utilized to identify the type of UML diagram:
+Unless otherwise specified, all framed diagrams will use the <<UML>> 2.5.1{fn-uml} standard, constrained by the limitations of PlantUML.
+As defined in the standard, the following abbreviations will be utilized to identify the type of <<UML>> diagram:
 
 // See https://www.omg.org/spec/UML/2.5.1/PDF#page=726
 [horizontal]
@@ -12,14 +13,18 @@ cmp:: component diagram
 // dep:: deployment diagram
 sd:: interaction diagram
 // pkg:: package diagram
-// stm:: state machine diagram
+stm:: state machine diagram
 // uc::  use case diagram
 
-In addition to the UML abbreviation, the following abbreviations are used to identify non-UML diagrams:
+In addition to the <<UML>> abbreviation, the following abbreviations are used to identify non-<<UML>> diagrams:
 
 [horizontal]
 // act:: activity diagram
-dm:: data model diagram; The information structure is entirely based on RDF, and will be presented as entity-relationship diagrams in Clive Finkelstein’s IE notation, with some additional elements. The text in the double angle brackets will define the entity type (e.g., <<Dataset>>, <<Thing>>, …). The path labels indicate potential routes through the graph structure, while the number within the bracket indicates the branch that has been taken.
+dm:: data model diagram; The information structure is entirely based on <<RDF>>, and will be presented as entity-relationship diagrams in Clive Finkelstein’s <<IE>>footnote:[https://plantuml.com/en/ie-diagram] notation, with some additional elements.
+The text in the double angle brackets will define the entity type (e.g., <<Dataset>>, <<Thing>>, …).
+The path labels indicate potential routes through the graph structure, while the number within the bracket indicates the branch that has been taken.
+wbs:: work breakdown structure; This diagram is a decompositional diagramfootnote:[https://plantuml.com/en/wbs-diagram], intended for use in hierarchical structures, originally designed as a project management tool.
+In this context, it is used to illustrate any kind of hierarchical structure.
 
-
-Notations that are not applicable to the entire document will be described in detail in the relevant section.
+All diagrams and figures presented in this work were created by the author.
+Any discrepancies have been highlighted in the corresponding figures.

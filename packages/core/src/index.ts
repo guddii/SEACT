@@ -21,6 +21,7 @@ export * from "./utils/find-storage";
 export * from "./utils/form";
 export * from "./utils/http-helper";
 export * from "./utils/log";
+export * from "./utils/meta";
 export * from "./utils/registries";
 export * from "./utils/url-helper";
 export * from "./utils/verification";

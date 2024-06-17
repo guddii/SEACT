@@ -16,7 +16,7 @@ export function createResourceUrl(storage: URL): URL {
 }
 
 export async function createVerification(
-  session: Session,
+  session: { fetch: typeof fetch },
   token: string,
   storage: URL,
 ): Promise<SolidDataset & WithServerResourceInfo & WithChangeLog> {
@@ -37,7 +37,7 @@ export async function createVerification(
 export async function createVerificationAcl(
   resourceUrl: string | null,
   webId: string,
-  session: Session,
+  session: { fetch: typeof fetch },
 ): Promise<AccessModes | null> {
   const access: Partial<AccessModes> = { read: true };
 

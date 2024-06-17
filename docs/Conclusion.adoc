@@ -1,0 +1,70 @@
+= Conclusion
+
+This thesis builds upon the prototypical implementation of the Data Privacy Cockpit (<<DPC>>) to explore the general possibility of extending <<Access Control and Traceability>>.
+The DPC was designed for data-driven web-based systems with a vendor-agnostic approach over a web interface, with Solid as a technical foundation.
+The ability to view actual requests to private resources on the web server represents a novel task within the <<Solid Ecosystem>>.
+For the first time, it is possible to ascertain which agents have been granted access to specific resources.
+However, these capabilities come with a drawback that has been extensively investigated.
+On the one hand, the impact on the <<System Design>> has been considered, and on the other hand, the loss of <<Performance Efficiency>> has been evaluated.
+
+The analysis of the <<System Design Quality>> revealed that no critical violations of common design principles could be identified.
+The majority of the violations identified relate to the orchestration of system components and are part of the <<Component Cohesion>> principles.
+The only <<Component Coupling>> principle that was found to be violated is the <<ADP>>, which prohibits cyclic dependencies.
+As previously noted in the <<ADP Analysis>>, this is, like the Component Cohesion principles, a violation that is not by design.
+In this context, these principles have been discarded due to their maintenance benefits.
+
+The findings of the <<Performance Efficiency Analysis>> are cause for concern.
+The proposed approach resulted in a notable decline in <<Performance Efficiency>>, as evidenced by an increase in average response time and throughput.
+However, the most significant drawback is the rise in error rate.
+This, in turn, has the potential to either result in the complete failure of the system or to cause it to skip the logging process.
+Even if executed correctly, the error rate, average response time, and throughput will increase significantly, effectively rendering the system inaccessible to users.
+The quantity of parallel threads describing the interaction of a single user is the most evident aspect influencing this.
+
+When planning the <<Objectives and Research Interest,Objectives and Research Interests>> of this thesis, it became evident that this examination could not encompass all aspects of the proposed approach.
+However, it was intended to identify the vulnerable aspects of this concept in order to determine whether this approach should be pursued in principle.
+When only considering the <<Analysis>> conducted, this approach appears to have no future.
+However, as previously discussed in xref:Discussion[xrefstyle=short], the erroneous behavior may not be solely attributed to this approach, as the other system components cannot be definitively excluded as a cause.
+While there have been other concerns discussed, such as potential security risks related to the <<Authentication>> and claiming mechanism, this approach remains a promising one due to its flexibility and various implementation options, as outlined in <<Component Orchestration>>.
+For the time being, no general recommendation or objection can be made.
+However, a caveat regarding the potential for high loads should be noted.
+
+In addition to the general considerations, a specific question was posed in the context of this experiment.
+In order to provide a satisfactory answer, the sub-questions must first be addressed.
+
+In <<QUEST-1>>, questions were raised about the fulfillment of the general <<Requirements>> for the system.
+The <<Functional Requirements>>, namely <<REQ-F1>> and <<REQ-F2>>, were identified as being capable of being satisfied properly.
+A <<DPC>> client was identified as being responsible for the presentation of the access logs, in the event that the user in question has been granted sufficient privileges to claim a storage resource.
+This fulfills the requirement set out in <<REQ-F1>>.
+It was also possible, as requested in <<REQ-F2>>, to capture resource-related data, namely the date of the request, the requested resource and the action processed on the resource.
+Party-related data, such as the accessing identity, has also been accessible, although this depended on the access privileges of the individual resource.
+In the case of publicly accessible resources, no <<Identity>> is attached.
+However, an issue did emerge in this context.
+When a user accessed a resource from a Solid application with a private account, the user was the accessor.
+Therefore, the application field has been introduced to the access log.
+The data of this field are defined by the Solid application itself, and therefore cannot be relied upon without further effort.
+Parsing the metadata of a request, as demanded in <<REQ-NF1>> of the <<Non-Functional Requirements>>, has been an implicit effort of <<REQ-F2>>.
+The actual <<Identity>> value is encoded in the token used in the <<Authentication>> process, which has been processed to slice out the <<Identity>>.
+The remaining <<Non-Functional Requirements>> have proven to be challenging to accomplish. <<REQ-NF2>> requests compatibility with the <<Solid Protocol>>, which was achieved to a significant extent, although there was a <<Deviation from Specification>>.
+This primarily related to the web APIs exposed by <<CSS>> as <<Solid Provider>>.
+The most significant shortcoming is the one requested in <<REQ-NF3>>, namely the request for an appropriate time consumption.
+As demonstrated in the <<Performance Efficiency Analysis>>, the <<DPC>> requires up to five times the amount of time for a request to be processed when the logic is bypassed.
+
+The findings from the analysis of <<REQ-NF3>> align with the sub-question from <<QUEST-2>>.
+This question asks about the contribution to increasing the network requests and load.
+The proposed approach, as presented, will result in a multiplication of single requests triggered from the <<DPC Middleware>>.
+For initial requests, the network requests will result in a total number of 30 requests, with follow-ups resulting in 12. As previously stated, this will result in a significant increase in the average response time.
+Similarly, the throughput will decrease by an average of 13.29 transactions per second in the testable scenarios.
+
+The <<Test Parameters>> that affect the system, as requested by <<QUEST-3>>, are difficult to name due to the number of errors within the <<Performance Efficiency Analysis>>.
+However, the number of parallel requests, referred to as the number of threads of the <<Apache JMeter Parameters>>, has a serious impact on system behavior.
+The number of threads represents the number of users using a service in parallel and has been limited to two users when a storage resource is claimed.
+The amount of storages, as well as the amount of ShapeTrees in the successfully tested scenario, was limited to 10.
+The loops in this test were also limited to 10, reducing them showed that up to 7 threads could be run.
+Both <<Apache JMeter Parameters>> affected the total number of requests made to the system, which is limited to a relatively small number if the <<DPC Middleware>> is to run without errors.
+
+Finally, the answer to the key research question is that there was a <<System Design>> that could be used to increase transparency and access control.
+The answer of <<QUEST-1>> proves that these goals, denoted as <<Functional Requirements>>, could be satisfied, even if the feasibility is questionable.
+However, the <<Non-Functional Requirements>> could not be fully satisfied.
+It is important to note that the compatibility with the <<Solid Protocol>> could not be fully implemented, and thus it is not fully vendor-agnostic.
+However, the most significant outcome of this experiment was the observed decline in performance.
+While the underlying cause of this decline could not be definitively determined, the frequency and severity of the observed performance drops, coupled with the high error rate, indicate that the proposed prototypical system is not a viable approach.

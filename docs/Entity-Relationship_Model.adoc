@@ -1,0 +1,28 @@
+= Entity-Relationship Model
+
+The Entity-Relationship Model is based on the <<Solid Application Interoperability>> specification and describes the logical arrangement of the system's data.
+This selected part of the specification can be used without further modification while the specification is still a draft.
+However, the current state of the specification does not fully satisfy the needs of a claiming mechanism.
+xref:dm_Claim[xrefstyle=short] illustrates the additions to the model that are necessary to enable this mechanism.
+The full model can be found in xref:full_logical_data_model[xrefstyle=short].
+
+.<<IE>> diagram of the Claim addition to the Solid Application Interoperability Data Registry
+[.text-center]
+[plantuml,format=svg,id="dm_Claim"]
+....
+include::resources/diagrams/dm_Claim.puml[]
+....
+
+The model meets the requirements of the Solid Application Interoperability Specification, which is omitted in xref:dm_Claim[xrefstyle=short].
+However, as described in <<Solid Application Interoperability>>, the data discovery will begin from the personal profile document.
+This document declares an `interop:Agent`, which refers to a registry set.
+This declaration informs agents that the data model will be modeled according to the specification.
+The registry set contains a list of all references to data registrations.
+A data registration is a resource container that contains all resources in a given treefootnote:[https://shapetrees.org/TR/specification/] and shapefootnote:[https://shex.io/shex-semantics/].
+
+As the interoperability specification does not address the handling of multi-agent data or require agents to participate in the specification, some enhancements have been made to the data model.
+In xref:dm_Claim[xrefstyle=short], the highlighted additions (bold) to the model include the requirement that <<Thing, Things>> contained by the registry set must have a unique identifier based on the claimed item, which in this case is the hashed (SHAKE256) storage <<URL>>.
+The <<Thing, Thing's>> type is claim:Registry, a newly introduced <<Claim Vocabulary>> that will be explained in detail in the <<Custom Vocabulary>> section.
+
+The `claim:Verification` is a resource within the observed storage that serves to verify using a verification code.
+This code must correspond to the verification code within the `claim:Registry` to authorize the trustee's access to the claimed data.

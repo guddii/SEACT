@@ -11,7 +11,7 @@ participant "Server" as Server
 
         [->  Proxy  ++  : **CRUD** Request
         opt isLoggableRequest
-        ||5||
+Proxy   --> Proxy       : Process authorisation token
         ref over Proxy, Server : DPC Middleware
         end
 Proxy   ->  Server  ++  : **CRUD** Request

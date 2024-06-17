@@ -1,0 +1,96 @@
+= Research Design
+
+The research will employ two different research methodologies, namely qualitative and quantitative, to address the research objectives and research interests.
+Regarding the qualitative analysis, it is intended to explain how the proposed approach will affect the system design as required by <<QUEST-1>>.
+A quantitative analysis will quantify the expected increase in the network load required in <<QUEST-2>> and <<QUEST-3>>.
+
+The identified analyses will be conducted using data and insights collected from an experimental prototype.
+The prototype must satisfy the specified requirements, which are derived from the problem definition.
+The data set is shown in xref:tbl-sampling-schema[xrefstyle=short].
+It contains the `timeStamp` of the sample and the `elapsed` time until the test concluded.
+As a sequence of network operations is tested, a `label` for the individual action must be set.
+In addition, the `responseCode` of the <<HTTP>> request will indicate whether the operation was successful or erroneous.
+The <<URL>> is necessary in case further insights into the individual <<HTTP>> request are required.
+In order to have comparable values, each sample will be taken with and without the considered approach.
+
+.Sampling Schema
+[cols="2,2,5",id="tbl-sampling-schema"]
+|===
+h| Item
+h| Format
+h| Example
+
+| timeStamp
+| number
+| 1716570602084
+
+| elapsed
+| number
+| 230
+
+| label
+| string
+| Created 0
+
+| responseCode
+| number
+| 201
+
+// | responseMessage
+// |
+// | Created
+
+// | threadName
+// |
+// | Thread Group 1-1
+
+// | dataType
+// |
+// |
+
+// | success
+// |
+// | true
+
+// | failureMessage
+// |
+// |
+
+// | bytes
+// |
+// | 494
+
+// | sentBytes
+// | number
+// | 903
+
+// | grpThreads
+// |
+// | 1
+
+// | allThreads
+// |
+// | 1
+
+| URL
+| string
+| http://proxy.localhost:4000/client100/run1716570595598_thread1_loop1_resource0
+
+// | Latency
+// | number
+// | 218
+
+// | IdleTime
+// |
+// | 0
+
+// | Connect
+// |
+// | 38
+|===
+
+It should be noted that the general proxy functions of delegating and forwarding requests have been excluded from this view.
+There are various implementations of proxies that must not be considered in this research.
+However, the <<DPC>> proxy module, which runs before and after the client response and request, has been included.
+
+// Todo: How will the data be analysed?

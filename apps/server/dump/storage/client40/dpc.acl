@@ -1,0 +1,14 @@
+<http://proxy.localhost:4000/client40/.acl#owner>
+    a                                        <http://www.w3.org/ns/auth/acl#Authorization> ;
+    <http://www.w3.org/ns/auth/acl#agent>    <http://proxy.localhost:4000/client40/profile/card#me> ;
+    <http://www.w3.org/ns/auth/acl#mode>     <http://www.w3.org/ns/auth/acl#Read>,
+                                             <http://www.w3.org/ns/auth/acl#Write>,
+                                             <http://www.w3.org/ns/auth/acl#Control> ;
+    <http://www.w3.org/ns/auth/acl#accessTo> <http://proxy.localhost:4000/client40/dpc> ;
+    <http://www.w3.org/ns/auth/acl#default>  <http://proxy.localhost:4000/client40/dpc> .
+
+<#77603d60-fc91-45f6-a8a0-7ed6cbdb6d80>
+    a                                        <http://www.w3.org/ns/auth/acl#Authorization> ;
+    <http://www.w3.org/ns/auth/acl#agent>    <http://proxy.localhost:4000/dpc/profile/card#me> ;
+    <http://www.w3.org/ns/auth/acl#mode>     <http://www.w3.org/ns/auth/acl#Read> ;
+    <http://www.w3.org/ns/auth/acl#accessTo> <http://proxy.localhost:4000/client40/dpc> .

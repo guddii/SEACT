@@ -1,0 +1,29 @@
+= Performance Efficiency
+
+<<ISO>>/<<IEC>> 25010 is a quality model for the evaluation of system quality.
+The quality model defines which characteristics are to be considered when a system is developed.
+It considers various aspects of a software system.
+In this case, the characteristics of performance efficiency are the central aspect that is observed.
+It represents the extent to which a system performs its functions, considering the time and throughput necessary, its efficient use of resources, and the capacity used under specified conditions, as listed below:
+
+[horizontal]
+Time behavior:: A system's responsiveness and throughput are measures of its ability to perform the functions it is designed to perform.
+Resource utilization:: The quantity and type of resources utilized by a system to fulfill its operational requirements.
+Capacity:: The maximum limits of storage usage correspond to the system parameters.
+
+The time behavior is of particular importance in this quality model.
+As the software is a web-based system that individuals are operating with, it is crucial to consider usability.
+citenp:[nielsen_usability_1993] identifies three main time limits (in seconds), which are determined by human perceptual abilities, that should be kept in mind when evaluating the performance of a system.
+
+[horizontal]
+0.1s:: The point at which the user perceives the system to respond instantaneously.
+1s:: The maximum limit may result in a delay in the user's cognitive process, even if the user is aware of the delay.
+10s:: The temporal constraint on the user's ability to maintain their focus on the process.
+
+In the event that the system is unable to provide a response time that is close to instantaneously, it is necessary to employ visual progression, for example, in the form of a percent-done indicator.
+
+In terms of throughput—one of the key time-behavior aspects—<<IBM>>footnote:[https://www.ibm.com/docs/en/informix-servers/14.10?topic=performance-throughput] has identified a range of influential factors that affect the throughput of a system in their solution.
+These include the specifications of the host computer, the software processing overhead, the data layout on the hard disk, the degree of hardware and software parallelism, and the types of transactions processed.
+
+Resource utilization and capacity are also crucial considerations when evaluating performance efficiency.
+However, due to the limited scope of this research, they are not included in this analysis.

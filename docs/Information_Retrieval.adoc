@@ -1,0 +1,14 @@
+= Information Retrieval
+
+The <<DPC>> agent captures, manages, and presents client data.
+Data can only be retrieved through the <<DPC>> agent.
+xref:dm_Claim[xrefstyle=short] shows five paths through the data structure.
+Two of the paths are alternative paths that lead to the same leaf of the graph.
+The resulting data that can be received is:
+
+[horizontal]
+AccessLogShape:: following path [1,1,1], [1,2,1,1]
+AccessLog:: following path [1,1,2], [1,2,2]
+Verification:: following path [1,2,2]
+
+The bracketed numbers indicate which branch to follow to access the described data.

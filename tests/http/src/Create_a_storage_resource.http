@@ -1,0 +1,36 @@
+### Finding API URLs
+GET http://proxy.localhost:4000/.account/
+
+> {%
+client.global.set("login", response.body["controls"]["password"]["login"]);
+%}
+
+### Login
+POST {{login}}
+content-type: application/json
+
+{
+"email": "client@example.com",
+"password": "secret!"
+}
+
+> {%
+client.global.set("authorization", response.body["authorization"]);
+%}
+
+### Finding Account API URLs
+GET http://proxy.localhost:4000/.account/
+authorization: CSS-Account-Token {{authorization}}
+
+> {%
+client.global.set("pod", response.body["controls"]["account"]["pod"]);
+%}
+
+### Create new storage resource
+POST {{pod}}
+authorization: CSS-Account-Token {{authorization}}
+content-type: application/json
+
+{
+"name": "new-pod"
+}

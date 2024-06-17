@@ -1,0 +1,49 @@
+= Benchmark
+
+This package is designed for the purpose of benchmarking the implementation of the data privacy cockpit.
+The software employs https://jmeter.apache.org[Apache JMeter] for load testing, executed from a node.js instance.
+
+== Installation
+
+This tool requires `jmeter`, which is available on the command line.
+Please refer to the installation instructions from Apache JMeter for guidance: https://jmeter.apache.org/usermanual/get-started.html#install.
+Alternatively, you can install it with your preferred package manager (e.g., `brew install jmeter`).
+
+This package will be built with the other packages when executing the build command at the umbrella package.
+Should you wish to build only this package, please run the following command:
+
+[source,bash]
+----
+turbo run build --filter=@seact/benchmark
+----
+
+== Usage
+
+Please use a probabilistic sequence of CRUD requests, which will be executed on the data privacy cockpit middleware instance.
+Alternatively, you may generate your own sequence:
+
+[source,bash]
+----
+node ./tests/benchmark/dist/index.js generate sequence | tee ./tests/benchmark/data/models/TP1.json
+----
+
+The sequence can be processed for viewing in Asciidoc documents...
+
+[source,bash]
+----
+cat ./tests/benchmark/data/models/TP1.json | node ./tests/benchmark/dist/index.js generate adoc
+----
+
+...or used for the generation of JMeter test plans.
+
+[source,bash]
+----
+cat ./tests/benchmark/data/models/TP1.json | node ./tests/benchmark/dist/index.js generate testplan | tee ./tests/benchmark/data/plans/TP1.jmx
+----
+
+This test plan can now be run using the following command:
+
+[source,bash]
+----
+pnpm run benchmark
+----

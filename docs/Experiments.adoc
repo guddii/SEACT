@@ -1,0 +1,371 @@
+= Experiments
+
+== Test Environment
+
+Prior to initiating experimentation, it is imperative to specify the test environment.
+The server and proxy applications will be build and run the platform depicted in xref:lst-env-profile[xrefstyle=short].
+
+.System Profile
+[source,id="lst-env-profile"]
+----
+$ system_profiler SPSoftwareDataType SPHardwareDataType
+
+Software:
+
+    System Software Overview:
+
+      System Version: macOS 12.7.4 (21H1123)
+      Kernel Version: Darwin 21.6.0
+      Boot Volume: Macintosh HD
+      ...
+
+Hardware:
+
+    Hardware Overview:
+
+      Model Name: MacBook Pro
+      Model Identifier: MacBookPro13,2
+      Processor Name: Dual-Core Intel Core i7
+      Processor Speed: 3,3 GHz
+      Number of Processors: 1
+      Total Number of Cores: 2
+      L2 Cache (per Core): 256 KB
+      L3 Cache: 4 MB
+      Hyper-Threading Technology: Enabled
+      Memory: 16 GB
+      System Firmware Version: 526.0.0.0.0
+      OS Loader Version: 540.120.3~37
+      ...
+----
+
+The installed version of Node.js is that described in xref:lst-env-node[xrefstyle=short].
+
+.Node.js Version
+[source,id="lst-env-node"]
+----
+$ node -v
+v22.1.0
+----
+
+In order to run the tests, certain adjustments had to be made to the Solid Provider as part of the <<Technology Stack>>.
+It was necessary to extend the <<OIDC>> session (client credential expiration time) and lock lifetimes.
+It is necessary to extend the expiration time for the session, as the <<Authentication>> process has not been tested and will be established once and for all runnable test plans.
+The extend of lock lifetimes was needed, as the default lifetimes did not cover long-running operations, as those expected in the tests.
+The <<CSS>> configuration generatorfootnote:[https://communitysolidserver.github.io/configuration-generator/v7/] recommends that in this case the lock lifetime value be increased.
+The default lifetime of a client credential token is 0.6 seconds, which has been increased to 172800 seconds (equivalent to two days).
+The lifetime of locks has been increased by the same amount.
+
+== Test Parameters
+
+It is important to note that the tested use case only considers <<Authorised CRUD Requests>>, which are designated as <<Process Entries>> for users and any type of agent.
+Consequently, the <<Log Claiming>> and <<Log Discovery>> functionality has not been subjected to a direct examination, as its performance is dependent on the application logic implemented and not on the underlying concept.
+It is essential to subject the parameters of the network <<API,APIs>> and the aspects of the Solid Ecosystem, which are defined by a set of options provided by the test executer, to exhaustive testing.
+All of these test parameters are summarized in a test matrix at the end of this section.
+
+=== Network Parameters
+
+The scenarios to be tested on this system will cover <<CRUD>> operations on <<RDF>> resources, as these are the most common for <<ROA, ROAs>> and Solid applications, respectively.
+As suggested in the <<System>> section, a <<CRUD>> sequence will be built based on the <<CRUD>> resource lifecycle state machine described there.
+To generate a sequence that represents the behavior of an actual agent, a probability stem:[P] must be applied to all possible transitions stem:[T]:
+
+[.text-center]
+[stem]
+++++
+P(t)=\frac{t}{\sum_{i=1}^{|T|} t_i}, T=\{t_1,...,t_{n \in \mathbb{N}}\}
+++++
+
+xref:tbl-curd-probabilities[xrefstyle=short] lists the assumptions for all possible transitions.
+It considers that the amount of read operations is significantly higher than other operations.
+Updates to and deletions of existing resources occur with greater frequency than the initial creation of a resource.
+Furthermore, the spreading of probability values occurs with the smallest probability when a resource is created.
+
+.CRUD Probabilities
+[cols="1,1,1,1,1,1",id="tbl-curd-probabilities"]
+|===
+^.^h| i
+^.^h| 1
+^.^h| 2
+^.^h| 3
+^.^h| 4
+.2+^.^h| stem:[\sum]
+
+^.^h| Transition
+^.^h| Create
+^.^h| Read
+^.^h| Update
+^.^h| Delete
+
+^.^h| t
+^.^|  1
+^.^|  10
+2+^.^| 2
+^.^| 15
+
+^.^h| P(t)
+^.^|  0.06
+^.^|  0.66
+2+^.^|  0.13
+^.^|  1
+|===
+
+The create transition can only be applied to deleted resources and to new resources.
+When a create transition is determined, another probability process will delegate it equally to the deleted resources or create a new resource.
+In order to ascertain which resource is affected by the <<CRUD>> operation, a subscript index is applied to the transition identifier.
+For example, the following notation is used: C~0~ R~1~ U~0~ D~0~.
+The uppercase letters represent the first character of the <<CRUD>> operations in any order, run sequentially.
+The container resources are organized in a collection hierarchy, with the default depth set to 1.
+In the context of the configurations of <<CSS>>, this equates to the storage resource, for example, `http://proxy.localhost:4000/client/`.
+Deeper hierarchies, such as URLs that are based on the aforementioned example, are ignored in the tested scenarios.
+
+=== Data Privacy Cockpit Parameters
+
+The <<DPC>> has three states that are considered configuration parameters.
+One state is that of a claimed storage container, which monitors the corresponding resources in the storage.
+In contrast, the second state is that of a non-claimed storage container, which will not monitor any requests to the storage.
+However, this state still needs to determine if it is in the list of storage containers to be tracked.
+The third state is that of a configuration that bypasses the proxy module and skips the logging process of the middleware.
+This is necessary because there is no existing benchmark against which the <<DPC>> configuration can be compared.
+In order to ascertain the extent of the increase in network load, it is essential to measure the bypassed scenario, which will serve as a reference value against which the other <<DPC>> configurations can be compared.
+
+The bypass scenario utilizes the bypass mechanism of <<Forwarded Request,Forwarded Requests>>, which is used for internal self requests.
+The mechanism in adds a randomized header hash to the request, which is read during the request process in order to disable the <<DPC>> on self-calling.
+This is demonstrated in xref:lst-request-with-proxy-bypass-token[xrefstyle=short].
+
+.Request with Proxy Bypass Token
+[source,httprequest,id="lst-request-with-proxy-bypass-token"]
+----
+GET http://proxy.localhost:4000/client/profile/card#me
+X-Proxy-Bypass-Token: af8649fb
+----
+
+A new environment variable has been introduced for testing purposes, which allows the automatic generation of the hash value to be static value to be used instead.
+This is demonstrated in xref:lst-proxy-bypass-token-env-var[xrefstyle=short].
+
+.Proxy Bypass Token Environment Variable
+[source,dotenv,id="lst-proxy-bypass-token-env-var"]
+----
+PROXY_BYPASS_TOKEN="af8649fb"
+----
+
+=== Solid Ecosystem Parameters
+
+The Solid Protocol and Solid Application Interoperability permit two primary components to scale continuously within a running and growing Solid Provider.
+These components are the amount of storages managed by the Solid Provider and the registered ShapeTrees.
+For the purpose of mass testing, the client storage resources will have an additional amount.
+The amount will be applied to client storages (e.g., `client42`), resulting in a client storage resource such as `http://proxy.localhost:4000/client42/`.
+In the context of a test case where this client has a claimed storage resource, all client storages between client1 and the given index are considered claimed as well.
+The index also determines the storage container in which the <<CRUD>> operations will be executed.
+This is necessary to validate the edge cases with a large amount of storages.
+The same logic will apply to the ShapeTrees.
+Consequently, it is necessary to register a greater amount of ShapeTrees before the actual required ShapeTree appears in the register.
+
+=== Apache JMeter Parameters
+
+In order to perform the tests, version 5.6.3 of Apache JMeterfootnote:[https://jmeter.apache.org/] was utilized.
+According to citenp:[nevedrov_using_2006], JMeter has three relevant test parameters that are contained by a _thread group_: the _number of threads_, the _ramp-up time_, and the _loop count_.
+
+[horizontal]
+Number of Threads:: The number of threads, represents the number of user, using a web service.
+Ramp-up Period:: The time needed for the creation of the threads is defined by the the ramp-up period.
+(The start time for a thread is calculated as the _ramp-up period_ divided by the _number of threads_, multiplied by the thread indexfootnote:[https://jmeter.apache.org/usermanual/test_plan.html#thread_group].)
+Loop Count:: The number of times a thread group executes each of its elements.
+
+In addition to the thread group, there are samplers, which are configurable requests to the server, such as <<HTTP>> requests.
+Each of these <<HTTP>> samplers represents a transition in the <<CRUD>> sequence.
+Specifically, C~i~ is mapped to a `PUT`, R~i~ to a `GET`, U~i~ to a `PUT`, and D~i~ to a `DELETE` method in the request.
+The `POST` <<API>>, as an alternative to C~i~, was not considered in the tested scenarios.
+In order to enforce a sequential run, independent of the execution time, thread group and loop, these values are applied to the resource name, as shown in xref:lst-resource-name[xrefstyle=short].
+
+.Structure of created resources.
+[source,id="lst-resource-name"]
+----
+http://proxy.localhost:4000/client/run1716802767389_thread3_loop1_resource0
+----
+
+The body of the <<HTTP>> request is a minimal <<RDF>> triple (`<ex:s> <ex:p> <ex:o>.`), which is relevant for the creation and updating of resources utilizing the `PUT` method.
+
+=== Test Parameters Matrix
+
+This section presents a comprehensive list of selected test parameters, organized by context.
+The aggregation of each parameter into a test plan is summarized in xref:tbl-test-parameters-matrix[xrefstyle=short] at the end of this section.
+
+Each execution of a test plan involves a preparation phase, which precedes the actual execution of the test plan.
+A general preparation step is to seed all client storage containers into the <<Solid Provider>> before executing the test plan.
+Similarly, <<DPC>> registries, claim data containers, and ShapeTrees are preproduced.
+Prior to each test run, the registry corresponding to the test case will be patched in the <<DPC>> social agent.
+The authorization will also occur outside of the actual execution of the test plan.
+
+xref:tbl-network-parameters-matrix[xrefstyle=short] presents the selection of <<Network Parameters>> utilized in the test plans, as detailed in xref:tbl-test-parameters-matrix[xrefstyle=short].
+The ID column serves as a unique identifier for this parameter set.
+The <<CRUD>> sequence column indicates the <<CRUD>> operations that are executed during the test run.
+The run mode determines the order in which the operations are executed, either sequentially or in parallel.
+The hierarchical depth column indicates the depth of the resource container in which the operations are executed.
+
+.Network Parameters Matrix
+[cols="1,1,1,1",id="tbl-network-parameters-matrix"]
+|===
+h| ID
+h| CRUD Sequence
+h| Run Mode
+h|Hierarchical Depth
+
+| PARAM-CRUD-0
+| C~0~
+.2+^.^| sequential
+.2+^.^| 1
+
+| PARAM-CRUD-1
+| C~0~ R~0~ U~0~ R~0~ R~0~ R~0~ R~0~ R~0~ D~0~ C~1~ U~1~ R~1~
+|===
+
+xref:tbl-dpc-parameters-matrix[xrefstyle=short] presents the selection of <<Data Privacy Cockpit Parameters>> utilized in the test plans, as detailed in xref:tbl-test-parameters-matrix[xrefstyle=short].
+The ID column serves as a unique identifier for this parameter.
+The description column provides an overview of the configuration applied to the module prior to the execution of the test run.
+
+.Data Privacy Cockpit Parameters Matrix
+[cols="1,1",id="tbl-dpc-parameters-matrix"]
+|===
+h| ID
+h| Description
+
+| PARAM-DPC-N
+| Non-Claimed Storage
+
+| PARAM-DPC-C
+| Claimed Storage
+
+| PARAM-DPC-B
+| Bypassed Proxy Module
+|===
+
+xref:tbl-solid-ecosystem-parameters-matrix[xrefstyle=short] presents the selection of <<Solid Ecosystem Parameters>> utilized in the test plans, as detailed in xref:tbl-test-parameters-matrix[xrefstyle=short].
+The ID column serves as a unique identifier for this parameter set.
+The Storage Amount column refers to the amount and current index of storages used in the Solid Provider.
+Likewise, the ShapeTree Amount column defines the amount and index of ShapeTrees which are operated with.
+It should be noted that the selection of <<Data Privacy Cockpit Parameters>> may have an effect on this parameter.
+If the proxy module is bypassed, the <<Solid Ecosystem Parameters>> may become obsolete, as the <<DPC>> storage resource is not used.
+However, it is possible that this may have an influence on the performance of the <<Solid Provider>>.
+
+.Solid Ecosystem Parameters Matrix
+[cols="1,1,1",id="tbl-solid-ecosystem-parameters-matrix"]
+|===
+h| ID
+h| Storage Amount
+h| ShapeTree Amount
+
+.^| PARAM-SOLID-1-1
+.3+^.^| 1
+^.^| 1
+
+.^| PARAM-SOLID-1-10
+^.^| 10
+
+.^| PARAM-SOLID-1-30
+^.^| 30
+
+.^| PARAM-SOLID-10-1
+.3+^.^| 10
+^.^| 1
+
+.^| PARAM-SOLID-10-10
+^.^| 10
+
+.^| PARAM-SOLID-10-30
+^.^| 30
+
+.^| PARAM-SOLID-30-1
+.3+^.^| 30
+^.^| 1
+
+.^| PARAM-SOLID-30-10
+^.^| 10
+
+.^| PARAM-SOLID-30-30
+^.^| 30
+|===
+
+xref:tbl-apache-jmeter-parameters-matrix[xrefstyle=short] presents the selection of <<Apache JMeter Parameters>> utilized in the test plans, as detailed in xref:tbl-test-parameters-matrix[xrefstyle=short].
+The ID column serves as a unique identifier for this parameter set.
+The number of threads column specifies the number of users engaged in the web service.
+The ramp-up period has been fixed at 10 seconds.
+This value is a rounded estimate derived from the initial transition of the <<CRUD>> sequence, which is C~0~, and takes approximately 8 seconds.
+The initial transition will create the dynamic resources once, after which the system will be considered to be in a steady state.
+Given the results of previous testing, the loop count has been set to 10, which is a relatively small number of test runs for simple tests with one thread only.
+Nevertheless, this results in a considerable increase in the duration of the tests when the number of threads is augmented.
+
+<<<
+
+.Apache JMeter Parameters Matrix
+[cols="2,1,1,1",id="tbl-apache-jmeter-parameters-matrix"]
+|===
+h| ID
+h| Number of Threads
+h| Ramp-up Period (in seconds)
+h| Loop Count
+
+.^| PARAM-JMETER-1
+^.^| 1
+.10+^.^| 10s
+.10+^.^| 10
+
+.^| PARAM-JMETER-2
+^.^| 2
+
+.^| PARAM-JMETER-3
+^.^| 3
+
+.^| PARAM-JMETER-4
+^.^| 4
+
+.^| PARAM-JMETER-5
+^.^| 5
+
+.^| PARAM-JMETER-6
+^.^| 6
+
+.^| PARAM-JMETER-7
+^.^| 7
+
+.^| PARAM-JMETER-8
+^.^| 8
+
+.^| PARAM-JMETER-10
+^.^| 10
+
+.^| PARAM-JMETER-30
+^.^| 30
+|===
+
+xref:tbl-test-parameters-matrix[xrefstyle=short] presents the aggregation of configurable options to be tested as test plans.
+The schema column serves as a generic identifier for all parameterized test plans.
+The experiment column denotes the experiment in which a test plan was executed.
+The value of that cell is an incrementing natural number, starting at `1`.
+The <<Network Parameters>> column refers to the ID column of xref:tbl-network-parameters-matrix[xrefstyle=short].
+The <<Data Privacy Cockpit Parameters>> column refers to the ID column of xref:tbl-dpc-parameters-matrix[xrefstyle=short].
+The <<Solid Ecosystem Parameters>> column refers to the ID column of xref:tbl-solid-ecosystem-parameters-matrix[xrefstyle=short].
+The <<Apache JMeter Parameters>> column refers to the ID column of xref:tbl-apache-jmeter-parameters-matrix[xrefstyle=short].
+
+.Test Plan Matrix
+[cols="3,2,2,2,2,2",id="tbl-test-parameters-matrix"]
+|===
+h| Schema
+h| Experiment
+h| Network Parameters
+h| Data Privacy Cockpit Parameters
+h| Solid Ecosystem Parameters
+h| Apache JMeter Parameters
+
+.^| PRE1.`a`
+^.^| `a` in stem:[\mathbb{N}]
+.^| PARAM-CRUD-0
+.^| PARAM-DPC-C
+.^| PARAM-SOLID-1-1
+.^| <<NA>>
+
+.^| TP1.`a`-`i`-`p`-`q`-`r`
+^.^| `a` in stem:[\mathbb{N}]
+.^| PARAM-CRUD-1
+.^| PARAM-DPC-`i`
+.^| PARAM-SOLID-`p`-`q`
+.^| PARAM-JMETER-`r`
+|===

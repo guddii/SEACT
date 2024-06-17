@@ -1,4 +1,3 @@
-import type { Session } from "@inrupt/solid-client-authn-node";
 import type {
   SolidDataset,
   WithServerResourceInfo,
@@ -17,7 +16,7 @@ import { toUrlString, updateUrl } from "../utils/url-helper.ts";
 
 async function createAccessLogNamespaceVocab(
   agent: Agent,
-  session: Session,
+  session: { fetch: typeof fetch },
 ): Promise<SolidDataset & WithServerResourceInfo> {
   const resource = updateUrl("/ns/log", agent.storage);
   return readOrCreatePublicResource({
@@ -84,7 +83,7 @@ async function createAccessLogNamespaceVocab(
 async function createAccessLogNamespaceShex(
   vocab: WithResourceInfo,
   agent: Agent,
-  session: Session,
+  session: { fetch: typeof fetch },
 ): Promise<WithResourceInfo> {
   const container = updateUrl("/ns/", agent.storage);
   const fileName = "log.shex";
@@ -141,7 +140,7 @@ PREFIX log: <${vocab.internal_resourceInfo.sourceIri}#>
 async function createAccessLogNamespaceTree(
   shex: WithResourceInfo,
   agent: Agent,
-  session: Session,
+  session: { fetch: typeof fetch },
 ): Promise<WithResourceInfo> {
   const container = updateUrl("/ns/", agent.storage);
   const fileName = "log.tree";
@@ -194,7 +193,7 @@ export interface AccessLogNamespace {
 
 export async function createAccessLogNamespace(
   agent: Agent,
-  session: Session,
+  session: { fetch: typeof fetch },
 ): Promise<AccessLogNamespace> {
   const vocab = await createAccessLogNamespaceVocab(agent, session);
   const shex = await createAccessLogNamespaceShex(vocab, agent, session);

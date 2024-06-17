@@ -1,0 +1,10 @@
+= Ownership Verification
+
+In decentralized systems, it appears that a resource cannot be directly associated with an owner.
+This is also the case in Solid-based systems.
+Despite the necessity for the system to know the ownership of the individual resource, it may not be exposed to the public.
+One solution to this problem is to write a randomized verification token in the space associated with the owner.
+This approach will be used within the prototype developed.
+This ensures that the requester has a minimum level of privileges to the resource space.
+It works in a manner analogous to other services, such as Google’s Search Consolefootnote:[https://support.google.com/webmasters/answer/9008080].
+A similar challenge is faced by these services, namely that the <<DNS>> server is only aware of the domain name and <<IP>> address relationship, but lacks the information necessary to determine the ownership of the domain name.

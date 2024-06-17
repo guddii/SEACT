@@ -1,0 +1,13 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1717925619563,22919,Created 0,201,Created,Thread Group 1-1,,true,,493,894,1,1,http://proxy.localhost:4000/client10/run1717925615021_thread1_loop1_resource0,22913,0,30
+1717925642492,11892,Read 0,200,OK,Thread Group 1-1,text,true,,1061,894,1,1,http://proxy.localhost:4000/client10/run1717925615021_thread1_loop1_resource0,11891,0,1
+1717925654384,14303,Updated 0,205,Reset Content,Thread Group 1-1,,true,,410,894,1,1,http://proxy.localhost:4000/client10/run1717925615021_thread1_loop1_resource0,0,0,5
+1717925668689,11666,Read 0,200,OK,Thread Group 1-1,text,true,,1061,894,1,1,http://proxy.localhost:4000/client10/run1717925615021_thread1_loop1_resource0,11666,0,1
+1717925680355,10543,Read 0,200,OK,Thread Group 1-1,text,true,,1061,894,1,1,http://proxy.localhost:4000/client10/run1717925615021_thread1_loop1_resource0,10543,0,3
+1717925690901,11674,Read 0,200,OK,Thread Group 1-1,text,true,,1061,894,1,1,http://proxy.localhost:4000/client10/run1717925615021_thread1_loop1_resource0,11674,0,2
+1717925702577,11781,Read 0,200,OK,Thread Group 1-1,text,true,,1061,894,1,1,http://proxy.localhost:4000/client10/run1717925615021_thread1_loop1_resource0,11781,0,4
+1717925714359,11437,Read 0,200,OK,Thread Group 1-1,text,true,,1061,894,1,1,http://proxy.localhost:4000/client10/run1717925615021_thread1_loop1_resource0,11437,0,1
+1717925725797,11904,Deleted 0,205,Reset Content,Thread Group 1-1,,true,,410,897,1,1,http://proxy.localhost:4000/client10/run1717925615021_thread1_loop1_resource0,0,0,12
+1717925737702,12075,Created 1,201,Created,Thread Group 1-1,,true,,493,894,1,1,http://proxy.localhost:4000/client10/run1717925615021_thread1_loop1_resource1,12075,0,0
+1717925749778,23694,Updated 1,205,Reset Content,Thread Group 1-1,,true,,410,894,1,1,http://proxy.localhost:4000/client10/run1717925615021_thread1_loop1_resource1,0,0,1
+1717925773474,12655,Read 1,200,OK,Thread Group 1-1,text,true,,1061,894,1,1,http://proxy.localhost:4000/client10/run1717925615021_thread1_loop1_resource1,12655,0,1

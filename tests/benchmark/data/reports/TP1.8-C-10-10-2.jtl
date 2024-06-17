@@ -1,0 +1,25 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1717926830379,46778,Created 0,201,Created,Thread Group 1-2,,true,,493,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread2_loop1_resource0,46772,0,1
+1717926830012,47199,Created 0,201,Created,Thread Group 1-1,,true,,493,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread1_loop1_resource0,47199,0,35
+1717926877161,21908,Read 0,200,OK,Thread Group 1-2,text,true,,1061,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread2_loop1_resource0,21908,0,3
+1717926877213,22124,Read 0,200,OK,Thread Group 1-1,text,true,,1061,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread1_loop1_resource0,22124,0,1
+1717926899071,20580,Updated 0,205,Reset Content,Thread Group 1-2,,true,,410,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread2_loop1_resource0,0,0,1
+1717926899339,20533,Updated 0,205,Reset Content,Thread Group 1-1,,true,,410,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread1_loop1_resource0,0,0,1
+1717926919871,19648,Read 0,200,OK,Thread Group 1-1,text,true,,1061,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread1_loop1_resource0,19648,0,1
+1717926919651,20168,Read 0,200,OK,Thread Group 1-2,text,true,,1061,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread2_loop1_resource0,20168,0,1
+1717926939522,23314,Read 0,200,OK,Thread Group 1-1,text,true,,1061,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread1_loop1_resource0,23313,0,1
+1717926939822,23295,Read 0,200,OK,Thread Group 1-2,text,true,,1061,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread2_loop1_resource0,23295,0,0
+1717926963116,20516,Read 0,200,OK,Thread Group 1-2,text,true,,1061,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread2_loop1_resource0,20516,0,1
+1717926962838,21268,Read 0,200,OK,Thread Group 1-1,text,true,,1061,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread1_loop1_resource0,21268,0,2
+1717926984108,45570,Read 0,200,OK,Thread Group 1-1,text,true,,1061,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread1_loop1_resource0,45569,0,1
+1717926983634,46526,Read 0,200,OK,Thread Group 1-2,text,true,,1061,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread2_loop1_resource0,46526,0,2
+1717927030162,19789,Read 0,200,OK,Thread Group 1-2,text,true,,1061,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread2_loop1_resource0,19789,0,0
+1717927029678,20566,Read 0,200,OK,Thread Group 1-1,text,true,,1061,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread1_loop1_resource0,20566,0,3
+1717927049951,21245,Deleted 0,205,Reset Content,Thread Group 1-2,,true,,410,897,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread2_loop1_resource0,0,0,4
+1717927050247,21337,Deleted 0,205,Reset Content,Thread Group 1-1,,true,,410,897,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread1_loop1_resource0,0,0,0
+1717927071198,2203,Created 1,201,Created,Thread Group 1-2,,true,,493,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread2_loop1_resource1,2203,0,2
+1717927073402,21806,Updated 1,205,Reset Content,Thread Group 1-2,,true,,410,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread2_loop1_resource1,0,0,1
+1717927071585,24266,Created 1,201,Created,Thread Group 1-1,,true,,493,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread1_loop1_resource1,24266,0,1
+1717927095853,22384,Updated 1,205,Reset Content,Thread Group 1-1,,true,,410,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread1_loop1_resource1,0,0,1
+1717927095210,23358,Read 1,200,OK,Thread Group 1-2,text,true,,1061,894,2,2,http://proxy.localhost:4000/client10/run1717926824978_thread2_loop1_resource1,23358,0,1
+1717927118237,12868,Read 1,200,OK,Thread Group 1-1,text,true,,1061,894,1,1,http://proxy.localhost:4000/client10/run1717926824978_thread1_loop1_resource1,12867,0,2

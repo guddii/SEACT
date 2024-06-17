@@ -1,0 +1,41 @@
+= System Design Quality
+
+The determination of the quality of systems and software is a complex process that is challenging to verify.
+The specific approach taken may depend on the problem to be solved.
+citenp:[martin_clean_2018] distinguishes between the micro architecture view, which considers low-level details, and the macro architecture view, which addresses quality concerns at an abstract level.
+These concerns can be divided into two categories: <<Component Cohesion>> and <<Component Coupling>>
+These categories can be used to determine the quality of a system design, in therms of inner and outer connections.
+
+== Component Cohesion
+
+The component cohesion represent general approaches to system design, as defined by citenp:[martin_clean_2018].
+It is used to specifiy components that are ment to be gouped in one package or service.
+In order to accive that three principles are needed to be satisfied by the system, the _Reuse/Release Equivalence Principle_, the _Common Closure Principle_, and the _Common Reuse Principle_.
+
+[horizontal]
+[[RRP,RRP]]RRP:: In essence, the _Reuse/Release Equivalence Principle_ proposes that the granularity of reuse is identical to that of release.
+Consequently, in order for a package's components to be reusable and usable across a range of scenarios, it is necessary that all parts of the service are included in versioned releases (ibid.).
+[[CCP,CCP]]CCP:: The _Common Closure Principle_ may be defined as a method of grouping together objects that change for the same reasons and at the same times.
+This principle is related to the _Single Responsibility Principle_, which states that each component should provide a service for a single actor (ibid.).
+[[CRP,CRP]]CRP:: The _Common Reuse Principle_ postulates that the components of a system should not impose unnecessary dependencies on others.
+This principle is related to the _Interface Segregation Principle_, which posits that components and interfaces should not be relied upon if they are not being utilized (ibid.).
+
+The principles outlined here are intended for object-oriented programming, but they are also generic concepts that can be applied to any top-level view of a system, as will be in this context.
+Therefore, each subsystem of the proposed system will be treated as a package in the object-oriented paradigm.
+
+== Component Coupling
+
+The external relationships of a component, namely the connections between one component and another, are referred to as coupling.
+Four principles are relevant to this matter: the _Acyclic Dependencies Principle_, _Top-Down Design_, _Stable Dependencies Principle_, and _Stable Abstractions Principle_ cite:[martin_clean_2018].
+
+[horizontal]
+[[ADP,ADP]]ADP:: The _Acyclic Dependencies Principle_ asserts that it is of vital importance to exercise caution to ensure that no cyclical dependencies exist during the modeling process (ibid.).
+[[TDD,TDD]]TDD:: In order to prevent the breakdown of system components from the top into smaller chunks, it is imperative that a system not be developed in a tree-like structure, in accordance with the principles of _Top-Down Design_ (ibid.).
+[[SDP,SDP]]SDP:: In accordance with the _Stable Dependencies Principle_, components to which dependencies exist should be stable.
+Any of these components should not depend on a component that is subject to frequent change.
+Thus, stability is defined as a low frequency of change (ibid.).
+[[SAP,SAP]]SAP:: In addition to the SDP, a stable component should be abstract, in accordance with the _Stable Abstractions Principle_.
+This implies that all high-level policies respectively the application logic of the system should be encapsulated into a stable component (ibid.).
+
+These principles are to be taken into consideration when software components are aligned to each other on a top-level view.
+In addition to the Component Cohesion Principles, they also represent a part of the spectrum of a macroarchitectural view.

@@ -1,0 +1,7 @@
+= Community Solid Server Configuration
+
+.Community Solid Server Configuration
+[source,json,id="lst-css-config"]
+----
+include::../apps/server/data/config.json[]
+----

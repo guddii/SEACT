@@ -1,0 +1,496 @@
+= Validation
+
+This chapter serves to validate the <<Design and Implementation>> of the proposed system, thereby ensuring that it meets the quality standards set for both design and performance efficiency.
+The <<Quality Model>> should reveal any shortcomings inherent to this approach.
+
+== Design Quality Analysis
+
+The design quality model is divided into two parts, which are to be analyzed in detail.
+The first part concerns the general <<Component Cohesion>> and recommendations for <<Component Coupling>>.
+
+=== RRP Analysis
+
+The <<RRP>> that proposes that the granularity of reuse is identical to that of release is not applicable to the system design and subsystem arrangement.
+From the perspective of the project, each module can be reused at any time, either as it is contained by a shared package or can be moved there.
+This is because the project is arranged as a multi-package repository, as described in the <<Project Structure>>.
+From the perspective of <<HTTP>> <<API,APIs>>, this is not a problem, as the logic behind the request handlers is delegated to packages within the multi-package repository.
+However, currently, the shared packages relevant for central aspects of the system are only separated into `core` and `ui`.
+The `core` package contains global functions that are needed in all types of packages and applications, while the `ui` contains the parts that are used in graphical user interfaces and generic view logic.
+Nevertheless, the `core` package could be divided into multiple packages, as not all of its functions are necessary in all dependent packages.
+This would prevent the unnecessary release of packages if they were released separately.
+
+=== CPP Analysis
+
+According to the <<CCP>>, each component must change for the same reasons and at the same time.
+However, this is not feasible with the system design.
+For example, if the <<RDF>> vocabulary changes, every subsystem of the proposed system is affected, including the Solid Provider, the <<DPC>> middleware, and the <<DPC>> application.
+The Solid Provider must update the already persisted data structure if it is changed to an incompatible vocabulary.
+The <<DPC>> middleware produces new data in the form of the changed vocabulary, and the <<DPC>> application must be able to interpret and display the new data format if it requires custom view logic.
+Considering the related requirements of the _Single Responsibility Principle_, which states that each component should provide a service to a single actor, this appears to be a feasible solution.
+This is a satisfactory concern for both the <<DPC>> application and the middleware, since actors are defined as a group of one or more users.
+In this case, all Solid Provider users are grouped as an actor.
+The <<DPC>> application serves only as a user interface for handling access logs.
+The middleware is a proxy module that monitors traffic to the web server and creates the necessary resources if all conditions are met.
+However, complex scenarios where a single proxy module is responsible for multiple changes would violate the above rule.
+
+=== CRP Analysis
+
+The <<CRP>> demands that the components of a system should not impose unnecessary dependencies on others.
+The scenario is analogous to the one described in the <<RRP Analysis>>.
+From a <<Project Structure>> perspective, there are potential areas for improvement, but there are no violations on a conceptual level.
+However, when considering the <<HTTP>> <<API,APIs>>, there are relevant differences.
+With regard to component orchestration, it is possible to utilise the concept illustrated in xref:Logical_Topology_B[xrefstyle=short] in place of that in xref:Logical_Topology_A[xrefstyle=short].
+This would result in a reduction in the required storage containers, with the system becoming dependent on the client storage container alone.
+If the drawback to the system design is tolerable, the dependency on the module storage container could be regarded as an unnecessary dependency.
+
+=== ADP Analysis
+
+The <<ADP>> requires that no cyclical dependencies should be part of the system's design.
+However, this is a component coupling principle that is not satisfied with the proposed approach.
+When a <<Forwarded Request>> is used, referred from the proxy as an actor, the proxy will request itself, meaning it has a dependency on itself and thereby a cyclic dependency.
+Even when a proxy is not requesting itself and requests are forwarded using forwarded headers, as illustrated in xref:lst-request-with-forwarded-headers[xrefstyle=short], the server would still have a cyclic dependency.
+This is because the <<CSS>> requires the proxy hostname to be the base <<URL>>.
+Consequently, when Solid Provider verifies an agent from its own instance, it will still request itself through the proxy, which is then cyclic again.
+
+.Request with Forwarded Headers
+[source,httprequest,id="lst-request-with-forwarded-headers"]
+----
+GET http://server.localhost:3000/client/profile/card#me
+X-Forwarded-Host: proxy.localhost:4000
+X-Forwarded-Proto: http
+----
+
+=== TDD Analysis
+
+The <<TDD>> proposes that the structural composition of a system cannot be predetermined at its inception.
+Instead, it is expected that this structure will naturally evolve as the system itself progresses.
+This is, in fact, an inherent aspect of proposed system development.
+It appears to be resolvable within the modular framework of a proxy, as illustrated in xref:Logical_Topology_A[xrefstyle=short] and xref:Logical_Topology_B[xrefstyle=short].
+Indeed, new proxy modules, such as the middleware component of the <<DPC>>, are added as additional middlewares, all of which are processed one after another.
+
+=== SDP Analysis
+
+Each variant of the <<Component Orchestration>> fulfills the need <<SDP>>, which requires that every component relies on a stable component.
+Given that the change of data does not affect the change frequency, the Solid Provider subsystem has the lowest change frequency.
+Given the conceptual purpose of the proposed system, all changes, including those made to the <<Solid Protocol>>, are handled in the proxy subsystem.
+Consequently, the changes are delegated to the proxy, which results in the higher change frequency being outsourced to it.
+Consequently, as the proxy is dependent on the server, the stable dependency requirement is satisfied.
+Any potential users of the public endpoint, such as the <<DPC>> application or any other <<HTTP>> client, are reliant on the stable proxy-server construct.
+As they are not responsible for any relevant application logic, they are free to modify their functionality as often as necessary.
+
+=== SAP Analysis
+
+The <<SAP>> is a principle that aims to separate high-level policies from the other functionalities of a system.
+If <<RDF>>, as a basis of <<Solid Ecosystem>>, is taken seriously, this is an inherent concept of it and thereby a satisfiable quality criterion without any additional design considerations.
+This is the case, as the full information structure and thereby the application logic is encapsulated in <<RDF>> data, although the processing needs to be implemented.
+The <<Solid Application Interoperability>> specification unifies a significant portion of this functionality.
+
+== Performance Efficiency Analysis
+
+Due to a series of errors that occurred during the execution of the performance efficiency analysis tests, the tests were divided into several experiments.
+In order to obtain reliable results, each experiment was executed with different test parameters and outcomes.
+Prior to executing the individual experiments, a pretest was conducted to gain insights into how a single request effectively influences the system.
+
+=== Pretest
+
+The pretest is a single <<Authorised CRUD Requests,Authorised CRUD Request>>, which creates a resource on the webserver as this will always be the first request of a <<Resource CRUD Lifecycle>> . It will demonstrate how a request will effectively influence the overall system, particularly in terms of the multiplication of requests.
+A behavior that comes with the vendor-agnostic approach of the <<DPC Middleware>> when the <<Data Privacy Cockpit Parameters,Data Privacy Cockpit Parameter>> is set to `C`.
+The <<Solid Ecosystem Parameters>> are set to `1`.
+The corresponding request to the pretest is presented in xref:lst-pretest-request[xrefstyle=short].
+
+.A single request to create a resource.
+[source,httprequest,id="lst-pretest-request"]
+----
+PUT http://proxy.localhost:4000/client/resource.ttl
+Authorization: Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6ImF0K2p3dCIsImtpZCI6...
+Content-Type: text/turtle
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<ex:s> <ex:p> <ex:o>.
+----
+
+The first run of the pretest is PRE1.1 as shown in xref:tbl-test-parameters-matrix[xrefstyle=short].
+It uses the request shown in xref:lst-pretest-request[xrefstyle=short].
+The corresponding console output when the request is executed is shown in xref:lst-pretest-console[xrefstyle=short].
+As can be seen in the output, the proxy receives a total of 30 requests, all of which are triggered by the <<DPC Middleware>> or the <<Solid Provider>>.
+
+.Proxy Console Output
+[source,id="lst-pretest-console"]
+----
+GET /.well-known/openid-configuration 200 869.917 ms - 1628
+POST /.oidc/token 200 355.897 ms - 689
+GET /dpc/profile/card 200 41.793 ms - 455
+GET /.well-known/openid-configuration 200 5.183 ms - 1628
+GET /.well-known/openid-configuration 200 11.725 ms - 1628
+GET /.oidc/jwks 200 28.389 ms - 215
+HEAD /client/ 200 1308.392 ms - -
+GET /dpc/profile/card 200 328.853 ms - 455
+GET /dpc/profile/card 200 357.867 ms - 455
+GET /dpc/registries 200 423.300 ms - 748
+GET /dpc/ns/log 200 445.733 ms - 879
+GET /dpc/ns/log.shex 200 194.348 ms - 489
+GET /dpc/ns/log.tree 200 34.588 ms - 331
+GET /dpc/data/2acf59fe.../AccessLog/ 200 1104.491 ms - 4920
+GET /dpc/data/2acf59fe.../AccessLog/2024-06-15 404 193.933 ms - 106
+PUT /dpc/data/2acf59fe.../AccessLog/2024-06-15 201 478.769 ms - -
+HEAD /client/ 200 1218.440 ms - -
+GET /dpc/profile/card 200 259.182 ms - 455
+GET /dpc/profile/card 200 444.497 ms - 455
+GET /dpc/registries 200 441.340 ms - 748
+GET /dpc/ns/log 200 451.397 ms - 879
+GET /dpc/ns/log.shex 200 498.059 ms - 489
+GET /dpc/ns/log.tree 200 51.325 ms - 331
+GET /dpc/data/2acf59fe.../AccessLog/ 200 1066.895 ms - 5140
+GET /dpc/data/2acf59fe.../AccessLog/2024-06-15 200 497.765 ms - 444
+PATCH /dpc/data/2acf59fe.../AccessLog/2024-06-15 205 1205.967 ms - -
+GET /.well-known/openid-configuration 200 10.385 ms - 1628
+GET /client/profile/card 200 6839.827 ms - 451
+GET /.well-known/openid-configuration 200 14.058 ms - 1628
+PUT /client/resource.ttl 201 14371.603 ms - -
+----
+
+Follow-up requests (PRE1.2) have significantly fewer total requests.
+A total of 12, as presented in xref:lst-pretest-console-2[xrefstyle=short].
+It is less because the <<DPC>> agent running in the <<DPC Middleware>> has already established a session, which only needs to be done once.
+The same applies to the <<Authorization>> of the requesting agent, which in both cases is the owner of the storage resource.
+
+.Proxy Console Output
+[source,id="lst-pretest-console-2"]
+----
+HEAD /client/ 200 144.839 ms - -
+GET /dpc/profile/card 200 128.599 ms - 455
+GET /dpc/profile/card 200 300.807 ms - 455
+GET /dpc/registries 200 525.531 ms - 748
+GET /dpc/ns/log 200 61.741 ms - 879
+GET /dpc/ns/log.shex 200 492.467 ms - 489
+GET /dpc/ns/log.tree 200 52.425 ms - 331
+GET /dpc/data/2acf59fe.../AccessLog/ 200 702.389 ms - 5140
+GET /dpc/data/2acf59fe.../AccessLog/2024-06-15 200 435.568 ms - 542
+PATCH /dpc/data/2acf59fe.../AccessLog/2024-06-15 205 97.043 ms - -
+GET /.well-known/openid-configuration 200 8.759 ms - 1628
+PUT /client/resource.ttl 205 4004.135 ms - -
+----
+
+=== Experiment 1
+
+The initial experiment was designed to provide an overview of a greater number of tests, with parameters that were not intended to create a critical load on the system.
+The objective was to identify potential areas of heavy load and to produce detailed insight based on these initial results.
+
+[horizontal]
+Parameters:: All test plans were executed with the variable `i` assigned to each element of the set `{B, N, C}`.
+The variables `p`, `q`, and `r` were selected from the set `{1, 10, 30}`.
+Total Reports:: 81
+Reports:: TP1.1-B-1-1-1, TP1.1-B-1-1-10, TP1.1-B-1-1-30, TP1.1-B-1-10-1, TP1.1-B-1-10-10, TP1.1-B-1-10-30, TP1.1-B-1-30-1, TP1.1-B-1-30-10, TP1.1-B-1-30-30, TP1.1-B-10-1-1, TP1.1-B-10-1-10, TP1.1-B-10-1-30, TP1.1-B-10-10-1, TP1.1-B-10-10-10, TP1.1-B-10-10-30, TP1.1-B-10-30-1, TP1.1-B-10-30-10, TP1.1-B-10-30-30, TP1.1-B-30-1-1, TP1.1-B-30-1-10, TP1.1-B-30-1-30, TP1.1-B-30-10-1, TP1.1-B-30-10-10, TP1.1-B-30-10-30, TP1.1-B-30-30-1, TP1.1-B-30-30-10, TP1.1-B-30-30-30, TP1.1-N-1-1-1, TP1.1-N-1-1-10, TP1.1-N-1-1-30, TP1.1-N-1-10-1, TP1.1-N-1-10-10, TP1.1-N-1-10-30, TP1.1-N-1-30-1, TP1.1-N-1-30-10, TP1.1-N-1-30-30, TP1.1-N-10-1-1, TP1.1-N-10-1-10, TP1.1-N-10-1-30, TP1.1-N-10-10-1, TP1.1-N-10-10-10, TP1.1-N-10-10-30, TP1.1-N-10-30-1, TP1.1-N-10-30-10, TP1.1-N-10-30-30, TP1.1-N-30-1-1, TP1.1-N-30-1-10, TP1.1-N-30-1-30, TP1.1-N-30-10-1, TP1.1-N-30-10-10, TP1.1-N-30-10-30, TP1.1-N-30-30-1, TP1.1-N-30-30-10, TP1.1-N-30-30-30, TP1.1-C-1-1-1, TP1.1-C-1-1-10, TP1.1-C-1-1-30, TP1.1-C-1-10-1, TP1.1-C-1-10-10, TP1.1-C-1-10-30, TP1.1-C-1-30-1, TP1.1-C-1-30-10, TP1.1-C-1-30-30, TP1.1-C-10-1-1, TP1.1-C-10-1-10, TP1.1-C-10-1-30, TP1.1-C-10-10-1, TP1.1-C-10-10-10, TP1.1-C-10-10-30, TP1.1-C-10-30-1, TP1.1-C-10-30-10, TP1.1-C-10-30-30, TP1.1-C-30-1-1, TP1.1-C-30-1-10, TP1.1-C-30-1-30footnote:[https://www.guddii.de/SEACT/TP1.1-C-30-1-30/], TP1.1-C-30-10-1, TP1.1-C-30-10-10, TP1.1-C-30-10-30, TP1.1-C-30-30-1, TP1.1-C-30-30-10, and TP1.1-C-30-30-30footnote:[https://www.guddii.de/SEACT/TP1.1-C-30-30-30/]
+Outcome:: The tests were conducted over a period of approximately seven days, including the occurrence of errors in the proposed system.
+On restarting the applications of the system, the tests could be continued from that point onwards.
+Upon analysis of the state of the application, it was found that the `.meta` resources in the tested storage resources were missing.
+These resources, however, are conceptually relevant, as they are flagging a storage resource as such.
+This is a crucial step in the <<DPC Middleware>> to continue with any kind of logging.
+As the precise time of the resource deletion could not be determined, all tests with `i` in `{N, C}` are considered invalid, as they might not have executed the logging procedure.
+This may also explain the occurrence of results that appear unreasonable, such as TP1.1-C-30-30-30, which has a lower average response time (32.20s) than TP1.1-30-1-30 (107.65s), despite the necessity of traversing a greater amount of ShapeTrees (`q`).
+
+Further analysis of the performance efficiency has been omitted due to the invalidity of the test reports that were created.
+Despite the completion of the experiment, all tests have been flagged as invalid due to the inability to determine the exact time of occurrence of errors in the proposed system.
+
+=== Experiment 2
+
+The second experiment was planed with the same intend as the initial experiment, with a smaller scope, that only tackles the edge cases and brings less reports to analyse.
+The primary concern however was to get valid results and to overcome the error that has been found in the first experiment.
+
+[horizontal]
+Parameters:: All test plans were executed with the variable `i` assigned to each element of the set `{B, N, C}`.
+The variables `p`, `q`, and `r` were selected from the set `{1, 30}`.
+Total Reports:: 24
+Reports:: TP1.2-B-1-1-1,
+TP1.2-B-1-1-30, TP1.2-B-1-30-1, TP1.2-B-1-30-30, TP1.2-B-30-1-1, TP1.2-B-30-1-30, TP1.2-B-30-30-1, TP1.2-B-30-30-30, TP1.2-N-1-1-1, TP1.2-N-1-1-30, TP1.2-N-1-30-1, TP1.2-N-1-30-30, TP1.2-N-30-1-1, TP1.2-N-30-1-30, TP1.2-N-30-30-1, TP1.2-N-30-30-30, TP1.2-C-1-1-1, TP1.2-C-1-1-30, TP1.2-C-1-30-1, TP1.2-C-1-30-30, TP1.2-C-30-1-1, TP1.2-C-30-1-30, TP1.2-C-30-30-1, and TP1.2-C-30-30-30
+Outcome:: The tests were conducted over a period of approximately three days, including the occurrence of application errors.
+It appeared that the application was failing again, resulting in invalid results.
+The reason for this failure was the same as the error that occurred in <<Experiment 1>>.
+
+Further analysis of the performance efficiency has been omitted due to the invalidity of the test reports that were created.
+Despite the completion of the experiment, all tests have been flagged as invalid due to the inability to determine the exact time of occurrence of errors in the proposed system.
+
+=== Experiment 3
+
+The erroneous behavior observed in <<Experiment 1>> was not accidental, as verified in <<Experiment 2>>.
+Consequently, the third experiment was conducted under the assumption that an error would occur at some point, resulting in the loss of relevant data.
+To further investigate this error, individual tests were run to examine the specific edge cases that led to these critical errors.
+
+[horizontal]
+Parameters:: All test plans were executed with the variable `i` fixed at `C`, which represents the most exhaustive <<DPC>> configuration.
+The variables `p`, `q`, and `r` were selected individually from the set `{1, 10, 30}`.
+Total Reports:: 7
+Reports:: TP1.3-1-1-30,
+TP1.3-1-1-10, TP1.3-30-30-10, TP1.3-30-10-10, TP1.3-10-10-10, TP1.3-10-1-10, and TP1.3-1-10-10
+Outcome:: The only tests that completed without error were TP1.3-1-1-10. All other tests resulted in one of three erroneous situations.
+TP1.3-1-1-30, TP1.3-10-1-10, and TP1.3-1-10-10  exhibited critical system errors, resulting in immediate cessation of the application, as illustrated in xref:lst-err-perf-1[xrefstyle=short].
+The second error, as demonstrated in xref:lst-err-perf-2[xrefstyle=short], was thrown in TP1.3-30-30-10, TP1.3-30-10-10, and TP1.3-10-10-10.
+The error in question was a network error, which did not stop the application from functioning. The processing continued as normal.
+In each of the aforementioned test reports, the server returns an error message indicating that a header has already been sent.
+This error is occasionally observed, in the proxy console.
+
+A detailed analysis reveals three errors that occur internally while processing requests.
+The most significant differences relate to the storage amount (`p`) and the amount of ShapeTrees (`q`).
+However, a strict behavior could not be determined.
+It appears that test plans executed with lower values for `p` and/or `q` than those used in other tests within this experiment result in an error message indicating that a file for the locking system of the <<Solid Provider>> is requested that does not exist.
+This error resulted in the immediate termination of the process (exit code 1).
+This is a unique function of the <<CSS>> as described in <<Third-Party Software>>.
+The corresponding error message is shown in Listing 1.
+
+.Server Console Error
+[source,id="lst-err-perf-1"]
+----
+Process is halting due to an uncaughtException with error ENOENT: no such file or directory, stat '/SEACT/apps/server/data/storage/.internal/locks/00169a735ca3f756b7e8d18151283856'
+/SEACT/node_modules/.pnpm/@solid+community-server@7.0.4/node_modules/@solid/community-server/dist/util/locking/FileSystemResourceLocker.js:152
+            throw err;
+            ^
+@seact/server:start:
+[Error: ENOENT: no such file or directory, stat '/SEACT/apps/server/data/storage/.internal/locks/00169a735ca3f756b7e8d18151283856'] {
+  errno: -2,
+  code: 'ECOMPROMISED',
+  syscall: 'stat',
+  path: '/SEACT/apps/server/data/storage/.internal/locks/00169a735ca3f756b7e8d18151283856'
+}
+
+Node.js v22.1.0
+ELIFECYCLE Command failed with exit code 1.
+----
+
+Tests conducted with `p` and/or `q` values that were higher than those of other tests resulted in a fetch exception when attempting to locate storage resources.
+This aligns with the results observed in <<Experiment 1>> and <<Experiment 2, 2>>.
+An example of this error is shown in xref:lst-err-perf-2[xrefstyle=short].
+The error did not result in the immediate termination of the process.
+
+.Proxy Console Error
+[source,id="lst-err-perf-2"]
+----
+TypeError: fetch failed
+    at node:internal/deps/undici/undici:12502:13
+    at async findStorage (/SEACT/packages/core/dist/index.js:617:29)
+    at async findDataRegistrationsInClaimContainer (/SEACT/packages/core/dist/index.js:726:19)
+    at async createLog (/SEACT/apps/proxy/dist/index.js:303:47)
+----
+
+The third error, which occurred during the processing of the requests, was a "header has already been sent" error.
+In such a case, the `responseInterceptor`, which is employed in the context of <<Forwarded Request, Forwarded Requests>>, attempts to modify the response object before returning it to the original requester.
+The error did not result in the immediate termination of the process.
+
+=== Experiment 4
+
+This experiment aimed to tackle the locking issue found in <<Experiment 3>>.
+As previously stated in the <<Test Environment>> section, for testing purposes, the lifetime of locks has been increased to 172800 seconds, in order to be capable of handling long-running requests.
+In order to verify that this is not a miss configuration, the configuration has been reset to its default for this experiment.
+
+[horizontal]
+Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
+The variables `p`, `q`, and `r` were fixed at a relatively high value of `10`, in comparison to previous experiments.
+Total Reports:: 1
+Reports:: TP1.4-10-10-10
+Outcome:: The test terminated almost instantaneously, thus confirming the necessity for longer lock lifetimes.
+
+=== Experiment 5
+
+The initial test scenarios were designed with considerably elevated numeric test parameters.
+Upon consideration of the assumptions presented in <<Experiment 3>>, it becomes evident that a solution to the deletion of the `.meta` resource, as outlined in <<Experiment 1>>, is necessary.
+The most trivial solution for that is to create the required files with a user with more privileges.
+As the files are persisted as files, these files are replaced by the same files created with a `sudo` user.
+This effectively prohibits the application, which is executed with current user privileges only, from deleting the resource.
+
+[horizontal]
+Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
+The variables `p`, `q`, and `r` were fixed at a relatively high value of `10`, in comparison to previous experiments.
+Total Reports:: 1
+Reports:: TP1.5-10-10-10
+Outcome:: The test plan could not be executed, due to a critical internal server error, as shown in xref:lst-err-perf-3[xrefstyle=short].
+
+The error message displayed in xref:lst-err-perf-3[xrefstyle=short] indicates that the Solid Provider lacks the necessary permissions to access the relevant resources.
+The intention was to prevent the deletion of this resource.
+However, the actual result was that the server process lacked sufficient privileges for read-only purposes.
+
+.Server Network Error
+[source,json,id="lst-err-perf-3"]
+----
+{
+  "name": "InternalServerError",
+  "message": "Received unexpected non-HttpError: EACCES: permission denied, open '/SEACT/apps/server/data/storage/client10/.meta'",
+  "statusCode": 500,
+  "errorCode": "H500",
+  "details": {}
+}
+----
+
+=== Experiment 6
+
+As an alternative to <<Experiment 4>> and <<Experiment 5>>, the objective of this experiment was to address the third issue identified in <<Experiment 3>>.
+This was achieved by deactivating the `selfHandleResponse` and `responseInterceptor` properties in the proxy.
+By doing so, all post-processing of requests from the proxy to the server was handled by the proxy library.
+This should prevent any manipulation of the response object, as the response has already been sent.
+
+[horizontal]
+Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
+The variables `p`, `q`, and `r` were fixed at a relatively high value of `10`, in comparison to previous experiments.
+Total Reports:: 1
+Reports:: TP1.6-10-10-10
+Outcome:: The tests were conducted for approximately four hours before being terminated.
+The process ended with the error message `Error: socket hang up`, accompanied by the error code `ECONNRESET`.
+This may be indicative of any premature connection termination event, as documented in the Node.js <<HTTP>>footnote:[https://nodejs.org/api/http.html] module documentation.
+
+=== Experiment 7
+
+The straightforward solutions proposed in <<Experiment 4, Experiments 4>>, <<Experiment 5, 5>>, and <<Experiment 6, 6>> did not result in any improvement in the errors identified in <<Experiment 3>>.
+Consequently, patchesfootnote:[{github-server-url}/{github-repository}/tree/{github-ref-name}/patches] to the applications have been implemented in order to address the aforementioned errors.
+The errors that have been identified thus far suggest that the proxy module is unable to handle the volume of requests it receives without causing errors.
+In particular, the issue of writing to the same file appears to be problematic, potentially leading to the locking issue.
+The <<DPC Middleware>> is configured to write logs on a daily basis, which means that a single file will be written in every request.
+This modification was implemented in this experiment with the intention of ensuring that a new log is written per request.
+Furthermore, the <<Create Dynamic Namespace>> process has been replaced with static paths, as this could also be handled in a bootstrapping step, which might lead to unnecessary requests.
+At last, the version of the Node.js <<Test Environment>> has been reduced to 20.14.0, the current <<LTS>> version.
+This was done as it is the preferred version of the oidc-providerfootnote:[https://github.com/panva/node-oidc-provider], a <<CSS>> inherent modulefootnote:[https://github.com/CommunitySolidServer/CommunitySolidServer/blob/v7.0.4/package.json#L125].
+
+[horizontal]
+Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
+The variables `p`, `q`, and `r` have been set to `10`, one after another, in order to identify the first breaking test.
+Total Reports:: 3
+Reports:: TP1.7-10-1-1, TP1.7-10-10-1, and TP1.7-10-10-10
+Outcome:: While the tests TP1.7-10-1-1 and TP1.7-10-10-1 were successfully completed, TP1.7-10-10-10 was unsuccessful.
+This leads to the conclusion that the greatest impact is derived from the number of threads executed in parallel.
+
+=== Experiment 8
+
+In <<Experiment 8>>, the limitations of the `r` value, which represents the number of threads, are examined based on the assumptions of <<Experiment 7>>.
+These assumptions posit that concurrency represents a significant challenge for the proposed approach.
+The value was incremented until the first error occurred, with the step width set to 1, starting at 1. This process was repeated until an erroneous test run was observed.
+In order to extend the runtime, the loop count, as part of the <<Apache JMeter Parameters>>, has been set to 1.
+Furthermore, the modifications to the application introduced in <<Experiment 7>> have also been applied in this experiment.
+
+[horizontal]
+Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
+The variables `p` and `q` were fixed at a value of `10`.
+The `r` value was incremented until the first error occurred.
+Total Reports:: 8
+Reports:: TP1.8-C-10-10-1, TP1.8-C-10-10-2, TP1.8-C-10-10-3, TP1.8-C-10-10-4, TP1.8-C-10-10-5, TP1.8-C-10-10-6, TP1.8-C-10-10-7, and TP1.8-C-10-10-8
+Outcome:: The first test run that was prematurely terminated was the test with an `r` value of `8`.
+It is noteworthy that the test with an `r` value of `7` was successful, despite 46.43% of its requests failing.
+
+=== Experiment 9
+
+The objective of this experiment was to determine whether the observed behavior in <<Experiment 8>> would also manifest with a loop count of `10`.
+In this experiment, the number of threads was limited to `7`.
+Furthermore, the modifications to the application introduced in <<Experiment 7>> have also been applied in this experiment.
+
+[horizontal]
+Parameters:: The test plan was executed with the variable `i` fixed at `C`, which represents the most exhaustive configuration of the <<DPC>>.
+The variables `p` and `q` were fixed at a value of `10`.
+The `r` value was incremented until the first error occurred.
+Total Reports:: 3
+Reports:: TP1.9-C-10-10-1, TP1.9-C-10-10-2, and TP1.9-C-10-10-3
+Outcome:: The first failure occurred with `3` threads, resulting in the remaining selection of threads being `2`.
+
+=== Experiment 10
+
+The 10th and final experiment was intended to run in a larger context, to receive comparable results within the limits discovered in previous experiments.
+Furthermore, the modifications to the application introduced in <<Experiment 7>> have also been applied in this experiment.
+
+[horizontal]
+Parameters:: All test plans were executed with the variable `i` assigned to each element of the set `{B, N, C}`.
+The variables `p` and `q` were selected from the set `{1, 10}`.
+The `r` variable selected from the set `{1, 2}`.
+Total Reports:: 24
+Reports:: TP1.10-B-1-1-1, TP1.10-B-1-1-2, TP1.10-B-1-10-1, TP1.10-B-1-10-2, TP1.10-B-10-1-1, TP1.10-B-10-1-2, TP1.10-B-10-10-1footnote:[https://www.guddii.de/SEACT/TP1.10-B-10-10-1/], TP1.10-B-10-10-2footnote:[https://www.guddii.de/SEACT/TP1.10-B-10-10-2/], TP1.10-N-1-1-1, TP1.10-N-1-1-2, TP1.10-N-1-10-1, TP1.10-N-1-10-2, TP1.10-N-10-1-1, TP1.10-N-10-1-2, TP1.10-N-10-10-1, TP1.10-N-10-10-2, TP1.10-C-1-1-1, TP1.10-C-1-1-2, TP1.10-C-1-10-1, TP1.10-C-1-10-2, TP1.10-C-10-1-1, TP1.10-C-10-1-2, TP1.10-C-10-10-1footnote:[https://www.guddii.de/SEACT/TP1.10-C-10-10-1/], and TP1.10-C-10-10-2footnote:[https://www.guddii.de/SEACT/TP1.10-C-10-10-2/]
+Outcome:: Tests with a `p` or `q` value of `1` were invalid, as the `.meta` resource was deleted again.
+The same behavior occurred with `i` values set to `N`.
+Regardless of the number of repetitions, the outcome remained unchanged.
+
+xref:tbl-test-run-summary-errors[xrefstyle=short], xref:tbl-test-run-response-times-average[xrefstyle=short], and xref:tbl-test-run-throughput[xrefstyle=short] summarize of the test runs for TP1.10-`i`-10-10-`r`, with `i` in `{B, C}` and `r` in `{1, 2}`.
+They provide an overview of how the system behaves at different loads and configurations.
+The first column of the tables refers to the test plan that was carried out, followed by the `i` value of this test.
+The next column contains the corresponding `p`, `q`, and `r` values.
+Table headers that appear below these variables indicate the configuration of these variables.
+
+The Test Run Error Summary is presented in xref:tbl-test-run-summary-errors[xrefstyle=short].
+Its shows the percent of failed requests, returning a network status codefootnote:[https://developer.mozilla.org/en-US/docs/Web/HTTP/Status] greater or equals `400`.
+Other requests are considered successful, in a network status code range `100`-`399`.
+
+It can be observed that the complexity of the test run is directly proportional to the number of failed requests, even with a limited number of results.
+When the <<Data Privacy Cockpit Parameters>> are set to `C`, the failed requests are on average 2.92% higher than when the proxy module is bypassed `B`.
+Furthermore, the erroneous requests also increase when the number of threads (`r`) is increased.
+It is noteworthy that the number of errors also increases in bypassed cases, despite the original request not triggering any subprocesses.
+
+.Test Run Error Summary in Percent
+[cols="1,2,2",id="tbl-test-run-summary-errors"]
+|===
+^.^h| TP1.10
+2+^.^h| `i`
+
+^.^h| `p`-`q`-`r`
+>.^h| B
+>.^h| C
+
+^.^h| 10-10-1
+>.^| 0.00 %
+>.^| 2.50 %
+
+^.^h| 10-10-2
+>.^| 0.83 %
+>.^| 4.17 %
+|===
+
+xref:tbl-test-run-response-times-average[xrefstyle=short] presents the averaged response time in seconds, rounded to two decimals.
+The standard deviation of B is 0,31681 s, the standard deviation of C is 5,560185 s.
+
+The values presented are consistent with the results presented in xref:tbl-test-run-summary-errors[xrefstyle=short].
+A higher complexity results in a higher average reaction time.
+The values of the `B` column are still below 1 second, which is the maximum limit that can cause a delay in the user's cognitive process.
+The `C` column, on the other hand, dramatically increases the amount of time a potential user can focus on a process.
+Based on the observations of citenp:[nielsen_usability_1993], the value is limited to 10 seconds, which is exceeded by about 4 times even with the lowest possible `r` value of 1. With this value set to 2, it is exceeded by about 5 times the recommended limit.
+
+.Test Run Average Response Times in Seconds
+[cols="1,2,2",id="tbl-test-run-response-times-average"]
+|===
+^.^h| TP1.10
+2+^.^h| `i`
+
+^.^h| `p`-`q`-`r`
+>.^h| B
+>.^h| C
+
+^.^h| 10-10-1
+>.^|  0.04 s
+>.^| 41.21 s
+
+^.^h| 10-10-2
+>.^|  0.67 s
+>.^| 52.33 s
+|===
+
+The overall performance of the proposed system is quantified by the throughput measurements presented in xref:tbl-test-run-throughput[xrefstyle=short].
+The values listed are in transactions per second.
+The standard deviation of B is 12,87 Transactions/s, the standard deviation of C is 0,005 Transactions/s.
+
+As observed in the measurements shown in xref:tbl-test-run-summary-errors[xrefstyle=short] and xref:tbl-test-run-response-times-average[xrefstyle=short], the throughput drops significantly when the complexity of the system and the amount of threads increases.
+The average decline in transactions per second is 13.29.
+In considering the aspects identified by <<IBM>> as influencing throughput, namely processing overhead in the software, the degree of parallelism supported by the software, and the types of transactions processed, it appears that these factors may be plausible causes of the issues that have been found.
+
+<<<
+
+.Test Run Throughput in Transactions per Second
+[cols="1,2,2",id="tbl-test-run-throughput"]
+|===
+^.^h| TP1.10
+2+^.^h| `i`
+
+^.^h| `p`-`q`-`r`
+>.^h| B
+>.^h| C
+
+^.^h| 10-10-1
+>.^| 26.41 Transactions/s
+>.^|  0.01 Transactions/s
+
+^.^h| 10-10-2
+>.^| 0.20 Transactions/s
+>.^| 0.02 Transactions/s
+|===
+
+
