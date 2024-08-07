@@ -42,10 +42,6 @@ jobs:
           ./scripts/docs/reports/html.sh
         shell: bash
       #  Build Asciidoc
-      - name: Rename README to index
-        run: |
-          mv ./docs/README.adoc ./docs/index.adoc
-        shell: bash
       - name: Build HTML
         id: build-html
         uses: tonynv/asciidoctor-action@master
@@ -61,6 +57,10 @@ jobs:
         uses: tonynv/asciidoctor-action@master
         with:
           program: "./scripts/docs/slides/html.sh"
+      - name: Rename README to index
+        run: |
+          mv ./out/README.adoc ./out/index.adoc
+        shell: bash
       # Deploy Pages
       - name: Setup Pages
         uses: actions/configure-pages@v3
