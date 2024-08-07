@@ -59,7 +59,7 @@ jobs:
           program: "./scripts/docs/slides/html.sh"
       - name: Rename README to index
         run: |
-          mv ./out/README.adoc ./out/index.adoc
+          mv ./out/README.html ./out/index.html
         shell: bash
       # Deploy Pages
       - name: Setup Pages
