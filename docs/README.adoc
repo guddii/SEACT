@@ -42,13 +42,6 @@ include::partials/Attributes.adoc[]
 |xref:{url-docs}/Behavior.dev.pdf[window=_blank]
 |===
 
-== Reports
-
-[%header,cols="2,6",format=csv]
-|===
-include::reports.csv[]
-|===
-
 == Miscellaneous
 
 [cols="2,6"]
@@ -58,4 +51,15 @@ include::reports.csv[]
 |Colloquium 1 (Slides)
 |xref:{url-docs}/Colloquium1.slides.html[window=_blank] (de)
 
+|Colloquium 2 (Slides)
+|xref:{url-docs}/Colloquium2.slides.html[window=_blank] (de)
+
 |===
+
+== Reports
+
+[%header,cols="2,6",format=csv]
+|===
+include::reports.csv[]
+|===
+
