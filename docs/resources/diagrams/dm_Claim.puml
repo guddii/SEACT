@@ -37,7 +37,7 @@ entity "interop:DataRegistration" as DataRegistration << (D,orange) Dataset >> {
 entity "ldp:Container" as Container2 << (D,orange) Dataset >> {
     ldp:contains
 }
-note bottom: Resource container\nfor all access logs.
+note left: Resource container\nfor all access logs.
 
 WebID_Client    |o-down-o|          Verification                : > owns
 RegistrySet     }|-down-o|          DataRegistry                : Path [1,1]
