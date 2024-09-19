@@ -22,3 +22,6 @@ asciidoctor-revealjs \
     --attribute revnumber=$REVNUMBER \
     --attribute revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@4.1.2 \
     docs/*.slides.adoc
+
+mkdir -p out/resources/
+cp -r docs/resources/views out/resources/
