@@ -20,7 +20,7 @@ asciidoctor-revealjs \
     --attribute github-sha=$GITHUB_SHA \
     --attribute revdate=$REVDATE \
     --attribute revnumber=$REVNUMBER \
-    --attribute revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@4.6.1 \
+    --attribute revealjsdir=https://cdn.jsdelivr.net/npm/reveal.js@4.1.2 \
     docs/*.slides.adoc
 
 mkdir -p out/resources/
