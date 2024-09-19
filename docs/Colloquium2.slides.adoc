@@ -278,7 +278,7 @@ include::resources/diagrams/cmp_Logical_Topology_A.puml[]
 
 [horizontal,labelwidth=16]
 QUEST-1:: REQ-F1 ✅, REQ-F2 ✅ +
-REQ-NF1 ✅, REQ-NF2 ⚠️, REQ-NF3 ⚠️
+REQ-NF1 ⚠️, REQ-NF2 ⚠️, REQ-NF3 ⚠️
 QUEST-2:: Die Standardabweichung von `B` beträgt `0,31681 s`, die Standardabweichung von `C` beträgt `5,560185 s`.
 QUEST-3:: Datenschutzcockpit-Parameter, Apache JMeter Parameters → Fehlerhafte Anwendung
 
