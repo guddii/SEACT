@@ -1,125 +1,111 @@
-= Solid-Based Extended Access Control and Traceability in Data-Driven Web-Based Systems (SEACT)
-// Refs:
-:url-repo: https://github.com/guddii/SEACT
+# Solid-Based Extended Access Control and Traceability in Data-Driven Web-Based Systems (SEACT)
 
-image:https://img.shields.io/badge/Project-Solid-7C4DFF.svg[link="https://solidproject.org/"]
-image:https://img.shields.io/github/actions/workflow/status/guddii/SEACT/github-pages.yml[link="{url-repo}/actions/workflows/github-pages.yml"]
+![https://solidproject.org/](https://img.shields.io/badge/Project-Solid-7C4DFF.svg)
+![https://github.com/guddii/SEACT/actions/workflows/github-pages.yml](https://img.shields.io/github/actions/workflow/status/guddii/SEACT/github-pages.yml)
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./docs/resources/preview/dark.jpg">
+  <img alt="System features preview" src="./docs/resources/preview/light.jpg">
+</picture>
 
 This work focuses on improving Solid-based extended access control and traceability in data-driven web-based systems.
 By implementing an extended access control mechanism and improved traceability of data access, this project aims to strengthen the security and transparency of web applications.
-The https://solidproject.org/TR/protocol[Solid Protocol] forms the basis for these enhancements, which aim to provide clear and effective control over access to sensitive data.
+The [Solid Protocol](https://solidproject.org/TR/protocol) forms the basis for these enhancements, which aim to provide clear and effective control over access to sensitive data.
 
 In this repository you will find the complete source code, detailed integration instructions and examples of how to use these extensions.
 The thesis provides not only a theoretical foundation, but also practical implementations for developers and researchers concerned with privacy and access control in modern web applications.
 
-== Installation
+## Installation
 
 To be able to run the web applications locally, you need the following entries in your host file:
 
-[source]
-----
+```
 127.0.0.1 client.localhost
 127.0.0.1 dpc.localhost
 127.0.0.1 proxy.localhost
 127.0.0.1 server.localhost
-----
+```
 
 These entries are necessary so that Node.js and Docker can be resolved as local hosts.
 
 In addition, an .env file is required to provide the necessary environment variables at runtime.
 You can find the available environment variables in xref:.example.env[] or copy the entire file:
 
-[source,bash]
-----
+```bash
 cp .example.env .env
-----
+```
 
 Some variables cannot be set immediately and are only added after the first start of the application.
 
-=== Installation and Build with Node.js
+### Installation and Build with Node.js
 
-Once you have performed the general <<Installation>>, you can install the project via https://nodejs.org/en/download/package-manager[Node.js].
-Please use https://pnpm.io/installation[pnpm] as package manager for this:
+Once you have performed the general Installation, you can install the project via [Node.js](https://nodejs.org/en/download/package-manager).
+Please use [pnpm](https://pnpm.io/installation) as package manager for this:
 
-[source,bash]
-----
+```bash
 pnpm install
-----
+```
 
 To add the missing environment variables, you can start the application for the first time:
 
-[source,bash]
-----
+```bash
 pnpm run dev
-----
+```
 
-Wait until the seeding of the https://communitysolidserver.github.io/CommunitySolidServer/latest/usage/seeding-pods/[Community Solid Server] is finished and execute the bootstrapping script while the application is running:
+Wait until the seeding of the [Community Solid Server](https://communitysolidserver.github.io/CommunitySolidServer/latest/usage/seeding-pods/) is finished and execute the bootstrapping script while the application is running:
 
-[source,bash]
-----
+```bash
 node ./scripts/install/bootstrap.js
-----
+```
 
 This command completes the missing environment variables in the .env file.
 The application must be restarted for the environment variables to be loaded.
 
-=== Installation and Build with Docker
+### Installation and Build with Docker
 
-Alternatively, you can also use https://docs.docker.com/get-docker/[Docker]  to install and build the application within a container.
+Alternatively, you can also use [Docker](https://docs.docker.com/get-docker/) to install and build the application within a container.
 However, the general installation must also have been performed for this.
 
-[source,bash]
-----
-docker network create seact
+```bash
+ddocker network create seact
 docker compose up --build
-----
+```
 
 This command builds and starts the application.
-If this was successful, wait until the seeding of the https://communitysolidserver.github.io/CommunitySolidServer/latest/usage/seeding-pods/[Community Solid Server] is finished, and execute the bootstrapping script:
+If this was successful, wait until the seeding of the [Community Solid Server](https://communitysolidserver.github.io/CommunitySolidServer/latest/usage/seeding-pods/) is finished, and execute the bootstrapping script:
 
-[source,bash]
-----
+```bash
 docker run -it --rm --name seact-bootstrap --network=seact -v "$PWD":/usr/src/app -w /usr/src/app node:22-alpine3.18 node ./scripts/install/bootstrap.js
-----
+```
 
 This command completes the missing environment variables in the .env file.
 The application must be restarted for the environment variables to be loaded.
 
-== Usage
+## Usage
 
 If you want to run this project, enter one of the following commands in your terminal, depending on whether you have installed the application via Node.js or Docker:
 
-[source,bash]
-----
+```bash
 pnpm run dev
-----
+```
 
 or
 
-[source,bash]
-----
+```bash
 docker compose up
-----
+```
 
 The following users are available in development mode:
 
-[cols="2,1,1",width=100%]
-|===
-|name |email |password
-
-|client[1...100]
-|client[1...100]@example.com
-|secret!
-
-|dpc
-|dpc@example.com
-|secret!
-|===
+| name          | password                  | password |
+|---------------|---------------------------|----------|
+| client[1…100] | client[1…100]@example.com | secret!  |
+| dpc           | dpc@example.com           | secret!  |
 
 The accounts are available at http://proxy.localhost:4000/.account/
 
-== Licence
+## Licence
 
 This project is part of a master's thesis.
 It was created on behalf of mgm tp, which retains copyright to all artifacts.
-See  link:LICENSE[LICENSE].
+See  [LICENSE](./LICENSE).
