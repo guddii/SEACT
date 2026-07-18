@@ -9,5 +9,5 @@ do
   mkdir ./out/${out}
   jmeter -g $source_file -o ./out/${out}
   # Update HTML Entry
-  echo "${out},https://www.guddii.de/SEACT/${out}/" >> ./docs/reports.csv
+  echo "${out},https://www.guddii.dev/SEACT/${out}/" >> ./docs/reports.csv
 done
