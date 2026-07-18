@@ -26,7 +26,7 @@ jobs:
     steps:
       #  Prepare
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Make out dir
         run: |
           mkdir out
@@ -63,11 +63,11 @@ jobs:
           program: "./scripts/docs/slides/html.sh"
       # Deploy Pages
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v5
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: "./out"
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v5
