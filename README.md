@@ -1,7 +1,7 @@
 # Solid-Based Extended Access Control and Traceability in Data-Driven Web-Based Systems (SEACT)
 
-![https://solidproject.org/](https://img.shields.io/badge/Project-Solid-7C4DFF.svg)
-![https://github.com/guddii/SEACT/actions/workflows/github-pages.yml](https://img.shields.io/github/actions/workflow/status/guddii/SEACT/github-pages.yml)
+[![Solid](https://img.shields.io/badge/Project-Solid-7C4DFF.svg)](https://solidproject.org/)
+[![GH Pages](https://img.shields.io/github/actions/workflow/status/guddii/SEACT/github-pages.yml)](https://github.com/guddii/SEACT/actions/workflows/github-pages.yml)
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./docs/resources/preview/dark.jpg">
